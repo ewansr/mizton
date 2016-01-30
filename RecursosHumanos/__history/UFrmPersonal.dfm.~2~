@@ -1,0 +1,62 @@
+inherited FrmPersonal: TFrmPersonal
+  Caption = 'FrmPersonal'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxDockSite1: TdxDockSite
+    DockingType = 5
+    OriginalWidth = 913
+    OriginalHeight = 377
+    inherited dxlytdckst1: TdxLayoutDockSite
+      DockingType = 0
+      OriginalWidth = 300
+      OriginalHeight = 200
+    end
+    inherited dxHorizContainerDockSite1: TdxHorizContainerDockSite
+      DockingType = 0
+      OriginalWidth = 185
+      OriginalHeight = 140
+      inherited dxDockGrid: TdxDockPanel
+        DockingType = 1
+        OriginalWidth = 632
+        OriginalHeight = 140
+      end
+      inherited dxDockDatos: TdxDockPanel
+        DockingType = 1
+        OriginalWidth = 281
+        OriginalHeight = 140
+        inherited cxPageDatos: TcxPageControl
+          inherited cxTsDatos: TcxTabSheet
+            inherited dxLYCDatos: TdxLayoutControl
+              inherited dxLyDatos: TdxLayoutGroup
+                Index = -1
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited dxRibbon1: TdxRibbon
+    inherited dxRibbon1Tab1: TdxRibbonTab
+      Index = 0
+    end
+  end
+  inherited dxBarManager1: TdxBarManager
+    LookAndFeel.SkinName = ''
+    DockControlHeights = (
+      0
+      0
+      0
+      0)
+    inherited dxbrManager1Bar: TdxBar
+      FloatClientWidth = 153
+      FloatClientHeight = 307
+    end
+    inherited dxButtonGuardar: TdxBarLargeButton
+      ImageIndex = 8
+    end
+  end
+  inherited dxDockingManager1: TdxDockingManager
+    PixelsPerInch = 96
+  end
+end

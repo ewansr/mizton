@@ -44,12 +44,6 @@ type
     dxLYCDatosItem6: TdxLayoutItem;
     zMedida: TZQuery;
     dsMedida: TDataSource;
-    cxColumnCodigo: TcxGridDBColumn;
-    cxColumnServicio: TcxGridDBColumn;
-    cxColumnDescripcion: TcxGridDBColumn;
-    cxColumnFechaRegistro: TcxGridDBColumn;
-    cxColumnTipo: TcxGridDBColumn;
-    cxColumnUnidadMedida: TcxGridDBColumn;
     cxtextCodigos: TcxDBTextEdit;
     dxLYCDatosItem1: TdxLayoutItem;
     cxPrecio: TcxTabSheet;
@@ -87,7 +81,6 @@ type
     cxtextIdServicio: TcxDBTextEdit;
     cxDBImage1: TcxDBImage;
     dxLYCDatosItem7: TdxLayoutItem;
-    cxGridDatosColumn1: TcxGridDBColumn;
     cxSpinIVA: TcxDBSpinEdit;
     dxLayoutControl1Item4: TdxLayoutItem;
     dxlytmLYCDatosItem8: TdxLayoutItem;

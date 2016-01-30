@@ -71,6 +71,8 @@ type
     stWarning: TdxScreenTip;
     stInfo: TdxScreenTip;
     stCustom: TdxScreenTip;
+    cxMizton32: TcxImageList;
+    cxMizton16: TcxImageList;
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private

@@ -1,7 +1,7 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{9652A7BF-32F9-4A92-BD0D-CBCC08B08027}</ProjectGuid>
-			<MainSource>NoilFacturacion.dpr</MainSource>
+			<MainSource>MiztonConstrucciones.dpr</MainSource>
 			<ProjectVersion>12.2</ProjectVersion>
 			<Base>True</Base>
 			<Config Condition="'$(Config)'==''">Debug</Config>
@@ -47,7 +47,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="NoilFacturacion.dpr">
+			<DelphiCompile Include="MiztonConstrucciones.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="UConection.pas">
@@ -76,9 +76,6 @@
 			<DCCReference Include="UFrmInicio.pas">
 				<Form>FrmInicio</Form>
 			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmCatalogoClientes.pas">
-				<Form>frmCatalogoClientes</Form>
-			</DCCReference>
 			<DCCReference Include="Generales\UFrmPais.pas">
 				<Form>FrmPais</Form>
 			</DCCReference>
@@ -94,32 +91,14 @@
 			<DCCReference Include="Generales\UFrmEmpresas.pas">
 				<Form>FrmEmpresas</Form>
 			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmCondicionPago.pas">
-				<Form>FrmCondicionPago</Form>
-			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmFormaPago.pas">
-				<Form>FrmFormaPago</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\UFrmGiroEmpresa.pas">
-				<Form>FrmGiroEmpresa</Form>
-			</DCCReference>
 			<DCCReference Include="Generales\UFrmUnidadMedida.pas">
 				<Form>FrmUnidadMedida</Form>
-			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmCatalogoProveedores.pas">
-				<Form>FrmCatalogoProveedores</Form>
 			</DCCReference>
 			<DCCReference Include="Generales\UFrmAbrirEmpresa.pas">
 				<Form>FrmAbrirEmpresa</Form>
 			</DCCReference>
 			<DCCReference Include="UFrmSplash.pas">
 				<Form>FrmSplash</Form>
-			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmServicio.pas">
-				<Form>FrmServicio</Form>
-			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmFacturas.pas">
-				<Form>FrmFacturas</Form>
 			</DCCReference>
 			<DCCReference Include="Generales\UMsgBox.pas">
 				<Form>MsgBox</Form>
@@ -130,30 +109,21 @@
 			<DCCReference Include="UFrmUsuario.pas">
 				<Form>FrmUsuario</Form>
 			</DCCReference>
-			<DCCReference Include="Generales\UFrmBancos.pas">
-				<Form>FrmBancos</Form>
-			</DCCReference>
 			<DCCReference Include="Generales\UFrmAEmpresas.pas">
 				<Form>FrmAEmpresas</Form>
 			</DCCReference>
-			<DCCReference Include="Facturacion\NewFactura.pas">
-				<Form>FrmNewFactura</Form>
+			<DCCReference Include="Generales\UFrmEnviarCorreo.pas">
+				<Form>FrmEnviarCorreo</Form>
 			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmCatalogoImpuestos.pas">
-				<Form>FrmCatalogoImpuestos</Form>
+			<DCCReference Include="Generales\UFrmConfigCorreo.pas">
+				<Form>FrmConfigCorreo</Form>
 			</DCCReference>
-			<DCCReference Include="Generales\UWebBrowser.pas">
-				<Form>FrmWebBrowser</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\UCreadorFormulas.pas">
-				<Form>Form1</Form>
-			</DCCReference>
+			<DCCReference Include="PFE\PAC\FO\wsFO.pas"/>
 			<DCCReference Include="PFE\CFDI.pas"/>
 			<DCCReference Include="PFE\PFacturaElectronica.pas"/>
 			<DCCReference Include="PFE\PFacturaElectronica_PAC.pas"/>
 			<DCCReference Include="PFE\PFacturaElectronica_Reglamentaciones.pas"/>
 			<DCCReference Include="PFE\PAC\FO\PACFo.pas"/>
-			<DCCReference Include="PFE\PAC\FO\wsFO.pas"/>
 			<DCCReference Include="PFE\GeneradorSello\ClaseCertificadoSellos.pas"/>
 			<DCCReference Include="PFE\GeneradorSello\ClaseOpenSSL.pas"/>
 			<DCCReference Include="PFE\GeneradorSello\libeay32.pas"/>
@@ -163,26 +133,9 @@
 			<DCCReference Include="PFE\GeneradorCBB\GeneradorCBB.pas"/>
 			<DCCReference Include="PFE\GeneradorCBB\QuricolAPI.pas"/>
 			<DCCReference Include="PFE\GeneradorCBB\QuricolCode.pas"/>
-			<DCCReference Include="Generales\UFrmParcialidad.pas">
-				<Form>FrmParcialidad</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\Progreso.pas">
-				<Form>FrmProgreso</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\UFrmEnviarCorreo.pas">
-				<Form>FrmEnviarCorreo</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\UFrmConfigCorreo.pas">
-				<Form>FrmConfigCorreo</Form>
-			</DCCReference>
-			<DCCReference Include="Nomina\UFrmImportarNomina.pas">
-				<Form>FrmImportarNomina</Form>
-			</DCCReference>
-			<DCCReference Include="Generales\UFrmCuentaBancaria.pas">
-				<Form>FrmCuentaBancaria</Form>
-			</DCCReference>
-			<DCCReference Include="Inventarios\UFrmMovimientos.pas">
-				<Form>FrmMovimientos</Form>
+			<DCCReference Include="PFE\Addendas\PAddenda_PEP.pas"/>
+			<DCCReference Include="RecursosHumanos\UFrmPersonal.pas">
+				<Form>FrmPersonal</Form>
 			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
@@ -232,7 +185,7 @@
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Source>
-						<Source Name="MainSource">NoilFacturacion.dpr</Source>
+						<Source Name="MainSource">MiztonConstrucciones.dpr</Source>
 					</Source>
 					<Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k150.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>

@@ -55,7 +55,6 @@ type
     dxDockGrid: TdxDockPanel;
     dxlytdckst1: TdxLayoutDockSite;
     dxDockDatos: TdxDockPanel;
-    dxlytdckst2: TdxLayoutDockSite;
     cxGridGral: TcxGrid;
     cxGridDatos: TcxGridDBTableView;
     GridLevel1: TcxGridLevel;
@@ -67,6 +66,7 @@ type
     dxButtonOpcional: TdxBarLargeButton;
     dxButtonDetalle: TdxBarLargeButton;
     cxHintStyleController: TcxHintStyleController;
+    dxHorizContainerDockSite2: TdxHorizContainerDockSite;
     procedure FormShow(Sender: TObject);
     procedure dxButtonSalirClick(Sender: TObject);
     procedure dxButtonNuevoClick(Sender: TObject);

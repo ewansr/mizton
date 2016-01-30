@@ -25,23 +25,17 @@ uses
   ZDataset, UConection, UnitRegistroWindows, dxRibbonGallery,
   dxSkinChooserGallery, cxPC, dxSkinscxPCPainter, dxBarBuiltInMenu, dxTabbedMDI,
   dxAlertWindow, dxScreenTip, dxCustomHint, cxHint, dxGDIPlusClasses, cxImage,
-  Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu;
+  Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
+  dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
+  dxNavBarGroupItems, ActnList, cxSplitter;
 
 type
   THackForm = class(TForm);
   TFrmInicio = class(TdxRibbonForm)
     dxBarManager1: TdxBarManager;
     dxBarManager1Bar1: TdxBar;
-    dxRibbon1: TdxRibbon;
-    dxRibbon1Tab1: TdxRibbonTab;
-    dxRibbonBackstageView1: TdxRibbonBackstageView;
-    dxRibbonBackstageViewTabSheet1: TdxRibbonBackstageViewTabSheet;
     dxStatusBarInicio: TdxRibbonStatusBar;
-    dxRibbonBackstageViewGalleryControl1: TdxRibbonBackstageViewGalleryControl;
-    cxLabel1: TcxLabel;
-    dxRibbonBackstageViewGalleryControl1Group1: TdxRibbonBackstageViewGalleryGroup;
     dxSkinController1: TdxSkinController;
-    dxRibbonBackstageViewGalleryControl1Group1Item1: TdxRibbonBackstageViewGalleryItem;
     dxButtonUsuarios: TdxBarLargeButton;
     cxlkndflcntrlr1: TcxLookAndFeelController;
     dxbrManager1Bar: TdxBar;
@@ -66,9 +60,7 @@ type
     dxButtonFacturas: TdxBarLargeButton;
     dxAlertSRV: TdxAlertWindowManager;
     cxHintStyleController1: TcxHintStyleController;
-    dxtabConfiguracionGral: TdxRibbonTab;
     dxButtonUMedida: TdxBarLargeButton;
-    cxImage1: TcxImage;
     dxButtonProductos: TdxBarLargeButton;
     btnOrg: TcxButton;
     dxRadial1: TdxRibbonRadialMenu;
@@ -77,12 +69,28 @@ type
     zEmpresa: TZQuery;
     btnConfigCorreo: TdxBarLargeButton;
     btnEnviarCorreo: TdxBarLargeButton;
-    dxTabNomina: TdxRibbonTab;
     dxbrManager1Bar3: TdxBar;
     btn1: TdxBarLargeButton;
-    dxTabInventario: TdxRibbonTab;
     dxbrProductos: TdxBar;
     btnInventario: TdxBarLargeButton;
+    navMenu: TdxNavBar;
+    cxImage1: TcxImage;
+    ItemRh: TdxNavBarGroup;
+    ItemConfiguracion: TdxNavBarGroup;
+    LinkPersonal: TdxNavBarItem;
+    LinkCargos: TdxNavBarItem;
+    LinkSalarios: TdxNavBarItem;
+    LinkFolios: TdxNavBarItem;
+    LinkCiudad: TdxNavBarItem;
+    LinkPais: TdxNavBarItem;
+    LinkEstado: TdxNavBarItem;
+    LinkUMedida: TdxNavBarItem;
+    sepConfig: TdxNavBarSeparator;
+    acListMenu: TActionList;
+    actPersonal: TAction;
+    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
+    dxPopup1: TdxBarPopupMenu;
+    cxspltrMenu: TcxSplitter;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -114,6 +122,7 @@ type
     procedure btnConfigCorreoClick(Sender: TObject);
     procedure btnEnviarCorreoClick(Sender: TObject);
     procedure dxButtonCuentasBancariasClick(Sender: TObject);
+    procedure actPersonalExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -130,14 +139,20 @@ implementation
 {$R *.dfm}
 
 Uses
-  ULogin, UConsultasSQL, UConfigMYSQL, UFrmusuarios, UFrmCatalogoClientes,
-  UfrmCiudad, UFrmEstado, UFrmMonedas, UfrmGiroEmpresa,
-  UFrmPais, UfrmEmpresas, UFrmBancos, UFrmCondicionPago, UFrmFormaPago,
-  UFrmCatalogoProveedores, UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
-  UFrmServicio, UFrmFacturas, UFrmUsuario, UFrmAEmpresas, UFrmCatalogoImpuestos,
-  UFrmConfigCorreo, uFrmEnviarCorreo, UfrmcuentaBancaria;
+  ULogin, UConsultasSQL, UConfigMYSQL, UFrmusuarios,
+  UfrmCiudad, UFrmEstado, UFrmMonedas,
+  UFrmPais, UfrmEmpresas,
+  UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
+  UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
+  UFrmConfigCorreo, uFrmEnviarCorreo;
 
 { TForm1 }
+
+procedure TFrmInicio.actPersonalExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFrmPersonal, FrmPersonal);
+  FrmPersonal.Show;
+end;
 
 procedure TFrmInicio.ArrancarSistema;
 var
@@ -161,7 +176,7 @@ begin
       Application.CreateForm(TFrmSplash, FrmSplash);
       FrmSplash.ShowModal;
 
-      dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
+      //dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
       dxSkinController1.SkinName := ASkinName;   //SkinController
       dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
 
@@ -180,6 +195,7 @@ begin
         SetRegistry('\Settings','\' + Mireg + '', 'Database', 'Noil');
         SetRegistry('\Settings','\' + Mireg + '', 'Description', 'Conexión creada automáticamente por el sistema');
         SetRegistry('\Settings','\' + Mireg + '', 'Default', 'True');
+
       end;
 
       UDMConection.conBD.User := VarRegistry('\Settings','\Mi_Equipo', 'MysqlUser');
@@ -201,7 +217,7 @@ begin
         ASkinName := 'Office2013White';
       end;
 
-      dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
+      //dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
       dxSkinController1.SkinName := ASkinName;   //SkinController
       dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
 
@@ -303,8 +319,8 @@ end;
 
 procedure TFrmInicio.dxButtonBancosClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmBancos, FrmBancos);
-  FrmBancos.Show;
+//  Application.CreateForm(TFrmBancos, FrmBancos);
+//  FrmBancos.Show;
 end;
 
 procedure TFrmInicio.dxButtonCiudadClick(Sender: TObject);
@@ -315,22 +331,22 @@ end;
 
 procedure TFrmInicio.dxButtonClientesClick(Sender: TObject);
 begin
-  Application.CreateForm(TfrmCatalogoClientes, frmCatalogoClientes);
-  frmCatalogoClientes.FormStyle := fsMDIChild;
-  frmCatalogoClientes.Visible := False;
-  frmCatalogoClientes.Show;
+//  Application.CreateForm(TfrmCatalogoClientes, frmCatalogoClientes);
+//  frmCatalogoClientes.FormStyle := fsMDIChild;
+//  frmCatalogoClientes.Visible := False;
+//  frmCatalogoClientes.Show;
 end;
 
 procedure TFrmInicio.dxButtonCondicionPagoClick(Sender: TObject);
 begin
-  Application.CreateForm(TfrmCondicionPago, FrmCondicionPago);
-  FrmCondicionPago.Show;
+//  Application.CreateForm(TfrmCondicionPago, FrmCondicionPago);
+//  FrmCondicionPago.Show;
 end;
 
 procedure TFrmInicio.dxButtonCuentasBancariasClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmCuentaBancaria, FrmCuentaBancaria);
-  FrmCuentaBancaria.Show;
+//  Application.CreateForm(TFrmCuentaBancaria, FrmCuentaBancaria);
+//  FrmCuentaBancaria.Show;
 end;
 
 procedure TFrmInicio.dxButtonEmpresaClick(Sender: TObject);
@@ -349,26 +365,26 @@ end;
 
 procedure TFrmInicio.dxButtonFacturasClick(Sender: TObject);
 begin
-  Application.CreateForm(TfrmFacturas, FrmFacturas);
-  FrmFacturas.Show;
+//  Application.CreateForm(TfrmFacturas, FrmFacturas);
+//  FrmFacturas.Show;
 end;
 
 procedure TFrmInicio.dxButtonFormaPagoClick(Sender: TObject);
 begin
-  Application.CreateForm(TfrmFormaPago, FrmFormaPago);
-  FrmFormaPago.Show;
+//  Application.CreateForm(TfrmFormaPago, FrmFormaPago);
+//  FrmFormaPago.Show;
 end;
 
 procedure TFrmInicio.dxButtonGiroProveedorClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmGiroEmpresa, FrmGiroEmpresa);
-  FrmGiroEmpresa.Show;
+//  Application.CreateForm(TFrmGiroEmpresa, FrmGiroEmpresa);
+//  FrmGiroEmpresa.Show;
 end;
 
 procedure TFrmInicio.dxButtonImpuestoClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmCatalogoImpuestos, FrmCatalogoImpuestos);
-  FrmCatalogoImpuestos.Show;
+//  Application.CreateForm(TFrmCatalogoImpuestos, FrmCatalogoImpuestos);
+//  FrmCatalogoImpuestos.Show;
 end;
 
 procedure TFrmInicio.dxButtonMonedasClick(Sender: TObject);
@@ -386,16 +402,16 @@ end;
 
 procedure TFrmInicio.dxButtonProductosClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmServicio, FrmServicio);
-  FrmServicio.FormStyle := fsMDIChild;
-  FrmServicio.Visible := True;
-  FrmServicio.Show;
+//  Application.CreateForm(TFrmServicio, FrmServicio);
+//  FrmServicio.FormStyle := fsMDIChild;
+//  FrmServicio.Visible := True;
+//  FrmServicio.Show;
 end;
 
 procedure TFrmInicio.dxButtonProveedoresClick(Sender: TObject);
 begin
-  Application.CreateForm(TFrmCatalogoProveedores, FrmCatalogoProveedores);
-  FrmCatalogoProveedores.Show;
+//  Application.CreateForm(TFrmCatalogoProveedores, FrmCatalogoProveedores);
+//  FrmCatalogoProveedores.Show;
 end;
 
 procedure TFrmInicio.dxButtonUMedidaClick(Sender: TObject);
@@ -413,7 +429,7 @@ end;
 procedure TFrmInicio.dxSkingallery1SkinChanged(Sender: TObject;
   const ASkinName: string);
 begin
-  dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
+  //dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
   dxSkinController1.SkinName := ASkinName;   //SkinController
   dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
   SetRegistry('\Settings' ,'\' + varGlobal.Elemento('ConnectionName').AsString, 'SkinName', ASkinName);
@@ -422,7 +438,7 @@ end;
 procedure TFrmInicio.dxTabManager1PageAdded(Sender: TdxTabbedMDIManager;
   APage: TdxTabbedMDIPage);
 begin
-  dxRibbon1.ShowTabGroups := False;
+  //dxRibbon1.ShowTabGroups := False;
 end;
 
 procedure TFrmInicio.FormCreate(Sender: TObject);

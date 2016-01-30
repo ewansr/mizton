@@ -16,57 +16,59 @@ object FrmCatalogo: TFrmCatalogo
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  DesignSize = (
-    913
-    472)
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
     Left = 0
-    Top = 97
+    Top = 95
     Width = 913
-    Height = 375
+    Height = 377
     Align = alClient
     DockingType = 5
     OriginalWidth = 913
-    OriginalHeight = 375
-    object dxlytdckst2: TdxLayoutDockSite
+    OriginalHeight = 377
+    object dxlytdckst1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 885
-      Height = 375
+      Width = 913
+      Height = 377
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
-      object dxlytdckst1: TdxLayoutDockSite
-        Left = 0
-        Top = 0
-        Width = 885
-        Height = 375
-        DockingType = 0
-        OriginalWidth = 300
-        OriginalHeight = 200
-      end
+    end
+    object dxHorizContainerDockSite2: TdxHorizContainerDockSite
+      Left = 0
+      Top = 0
+      Width = 913
+      Height = 377
+      ActiveChildIndex = -1
+      AllowFloating = True
+      AutoHide = False
+      CustomCaptionButtons.Buttons = <>
+      DockingType = 0
+      OriginalWidth = 185
+      OriginalHeight = 140
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 885
-        Height = 375
+        Width = 632
+        Height = 377
         AllowFloating = False
         AutoHide = False
         Caption = 'Tabla de registros'
-        CaptionButtons = []
+        CaptionButtons = [cbMaximize]
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
-        DockingType = 0
-        OriginalWidth = 185
+        ExplicitHeight = 0
+        DockingType = 1
+        OriginalWidth = 632
         OriginalHeight = 140
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 871
-          Height = 325
+          Width = 618
+          Height = 341
           Align = alClient
           TabOrder = 0
           object cxGridDatos: TcxGridDBTableView
@@ -92,53 +94,55 @@ object FrmCatalogo: TFrmCatalogo
           end
         end
       end
-    end
-    object dxDockDatos: TdxDockPanel
-      Left = -281
-      Top = 0
-      Width = 281
-      Height = 0
-      Visible = False
-      AllowFloating = True
-      AutoHide = True
-      Caption = 'Insertar / Editar Registros'
-      CaptionButtons = [cbMaximize, cbHide]
-      CustomCaptionButtons.Buttons = <>
-      TabsProperties.CustomButtons.Buttons = <>
-      AutoHidePosition = 0
-      DockingType = 1
-      OriginalWidth = 281
-      OriginalHeight = 140
-      object cxPageDatos: TcxPageControl
-        Left = 0
+      object dxDockDatos: TdxDockPanel
+        Left = 632
         Top = 0
-        Width = 273
-        Height = 0
-        Align = alClient
-        TabOrder = 0
-        Properties.ActivePage = cxTsDatos
-        Properties.CustomButtons.Buttons = <>
-        Properties.NavigatorPosition = npRightBottom
-        ClientRectRight = 0
-        ClientRectTop = 0
-        object cxTsDatos: TcxTabSheet
-          Caption = 'Datos'
-          ImageIndex = 0
-          object dxLYCDatos: TdxLayoutControl
-            Left = 0
-            Top = 0
-            Width = 0
-            Height = 0
-            Align = alClient
-            TabOrder = 0
-            LayoutLookAndFeel = UDMConection.dxStyleForms
-            object dxLyDatos: TdxLayoutGroup
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              ButtonOptions.Buttons = <>
-              Hidden = True
-              ShowBorder = False
-              Index = -1
+        Width = 281
+        Height = 377
+        AllowFloating = True
+        AutoHide = False
+        Caption = 'Insertar / Editar Registros'
+        CaptionButtons = [cbHide]
+        CustomCaptionButtons.Buttons = <>
+        TabsProperties.CustomButtons.Buttons = <>
+        ExplicitTop = 140
+        ExplicitHeight = 140
+        DockingType = 1
+        OriginalWidth = 281
+        OriginalHeight = 140
+        object cxPageDatos: TcxPageControl
+          Left = 0
+          Top = 0
+          Width = 273
+          Height = 347
+          Align = alClient
+          TabOrder = 0
+          Properties.ActivePage = cxTsDatos
+          Properties.CustomButtons.Buttons = <>
+          Properties.NavigatorPosition = npRightBottom
+          ClientRectBottom = 341
+          ClientRectLeft = 2
+          ClientRectRight = 267
+          ClientRectTop = 27
+          object cxTsDatos: TcxTabSheet
+            Caption = 'Datos'
+            ImageIndex = 0
+            object dxLYCDatos: TdxLayoutControl
+              Left = 0
+              Top = 0
+              Width = 265
+              Height = 314
+              Align = alClient
+              TabOrder = 0
+              LayoutLookAndFeel = UDMConection.dxStyleForms
+              object dxLyDatos: TdxLayoutGroup
+                AlignHorz = ahLeft
+                AlignVert = avTop
+                ButtonOptions.Buttons = <>
+                Hidden = True
+                ShowBorder = False
+                Index = -1
+              end
             end
           end
         end
@@ -149,9 +153,9 @@ object FrmCatalogo: TFrmCatalogo
     Left = 0
     Top = 0
     Width = 913
-    Height = 97
+    Height = 95
     BarManager = dxBarManager1
-    ColorSchemeName = 'Office2013White'
+    ColorSchemeName = 'VS2010'
     ShowTabHeaders = False
     SupportNonClientDrawing = True
     Contexts = <>
@@ -181,8 +185,8 @@ object FrmCatalogo: TFrmCatalogo
       2)
     Categories.Visibles = (
       True)
-    ImageOptions.Images = UDMConection.cxImage16
-    ImageOptions.LargeImages = UDMConection.cxImage342
+    ImageOptions.Images = UDMConection.cxMizton16
+    ImageOptions.LargeImages = UDMConection.cxMizton32
     LookAndFeel.SkinName = ''
     PopupMenuLinks = <>
     UseSystemFont = True
@@ -208,10 +212,6 @@ object FrmCatalogo: TFrmCatalogo
           ItemName = 'dxButtonNuevo'
         end
         item
-          Visible = True
-          ItemName = 'dxButtonOpcional'
-        end
-        item
           BeginGroup = True
           Visible = True
           ItemName = 'dxBButtonEditar'
@@ -225,6 +225,10 @@ object FrmCatalogo: TFrmCatalogo
           ItemName = 'dxBButtonEliminar'
         end
         item
+          Visible = True
+          ItemName = 'dxButtonDetalle'
+        end
+        item
           BeginGroup = True
           Visible = True
           ItemName = 'dxButtonGuardar'
@@ -234,22 +238,13 @@ object FrmCatalogo: TFrmCatalogo
           ItemName = 'dxButtonCancelar'
         end
         item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxButtonDetalle'
-        end
-        item
           Visible = True
           ItemName = 'dxButtonActualizar'
         end
         item
-          Visible = True
-          ItemName = 'dxButtonExportar'
-        end
-        item
           BeginGroup = True
           Visible = True
-          ItemName = 'dxButtonSalir'
+          ItemName = 'dxButtonExportar'
         end>
       OneOnRow = True
       Row = 0
@@ -312,7 +307,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Nuevo'
       Visible = ivAlways
-      LargeImageIndex = 0
+      LargeImageIndex = 4
       ShortCut = 16462
       OnClick = dxButtonNuevoClick
     end
@@ -331,7 +326,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Buscar'
       Visible = ivAlways
-      ImageIndex = 5
+      ImageIndex = 10
       ShortCut = 16450
       OnClick = dxBButtonBuscarClick
     end
@@ -340,7 +335,8 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Eliminar'
       Visible = ivAlways
-      ImageIndex = 9
+      ImageIndex = 11
+      LargeImageIndex = 11
       ShortCut = 46
       OnClick = dxBButtonEliminarClick
     end
@@ -349,7 +345,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Guardar'
       Visible = ivAlways
-      LargeImageIndex = 18
+      LargeImageIndex = 9
       ShortCut = 16455
       OnClick = dxButtonGuardarClick
       SyncImageIndex = False
@@ -360,7 +356,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 7
+      LargeImageIndex = 12
       ShortCut = 116
       OnClick = dxButtonActualizarClick
     end
@@ -369,7 +365,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Cancelar'
       Visible = ivAlways
-      LargeImageIndex = 2
+      LargeImageIndex = 14
       ShortCut = 115
       OnClick = dxButtonCancelarClick
     end
@@ -393,7 +389,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Exportar a Excel'
       Visible = ivAlways
-      LargeImageIndex = 12
+      LargeImageIndex = 15
       ShortCut = 16464
       OnClick = dxButtonExportarClick
     end
@@ -408,7 +404,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Ver Informaci'#243'n Adicional'
       Visible = ivAlways
-      LargeImageIndex = 22
+      LargeImageIndex = 13
       OnClick = dxButtonDetalleClick
     end
   end

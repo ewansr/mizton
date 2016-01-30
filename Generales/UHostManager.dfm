@@ -32,9 +32,6 @@ object FrmHostManager: TFrmHostManager
     OptionsView.Item.Image.Size.Width = 32
     OptionsView.Item.Text.Position = posRight
     OnItemClick = dxGalleryHostItemClick
-    ExplicitLeft = 268
-    ExplicitTop = 15
-    ExplicitHeight = 447
     object dxGroupHost: TdxGalleryControlGroup
       Caption = 'Conexiones'
       object dxglrycntrltmGroupHostItem1: TdxGalleryControlItem
@@ -46,34 +43,29 @@ object FrmHostManager: TFrmHostManager
   object cxspltr1: TcxSplitter
     Left = 207
     Top = 122
-    Width = 12
+    Width = 5
     Height = 365
-    ExplicitLeft = 287
-    ExplicitTop = 3
-    ExplicitHeight = 453
   end
   object pnl1: TPanel
     AlignWithMargins = True
-    Left = 222
+    Left = 215
     Top = 125
-    Width = 389
+    Width = 396
     Height = 359
     Align = alClient
     TabOrder = 2
-    ExplicitLeft = 363
-    ExplicitTop = 6
-    ExplicitWidth = 324
-    ExplicitHeight = 447
+    ExplicitLeft = 222
+    ExplicitWidth = 389
     object pnl2: TPanel
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 381
+      Width = 388
       Height = 80
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 3
+      ExplicitWidth = 381
       object cxImage1: TcxImage
         Left = 0
         Top = 0
@@ -325,7 +317,7 @@ object FrmHostManager: TFrmHostManager
       AlignWithMargins = True
       Left = 6
       Top = 92
-      Width = 377
+      Width = 384
       Height = 93
       Margins.Left = 5
       Margins.Top = 5
@@ -335,7 +327,7 @@ object FrmHostManager: TFrmHostManager
       Align = alTop
       OptionsView.RowHeaderWidth = 117
       TabOrder = 1
-      ExplicitWidth = 373
+      ExplicitWidth = 377
       Version = 1
       object cxctgryrwVGrid1CategoryRow1: TcxCategoryRow
         Properties.Caption = 'Propiedades'
@@ -414,10 +406,9 @@ object FrmHostManager: TFrmHostManager
         'cxmDescripcion')
       Properties.ReadOnly = True
       TabOrder = 2
-      ExplicitWidth = 373
-      ExplicitHeight = 166
+      ExplicitWidth = 377
       Height = 136
-      Width = 377
+      Width = 384
     end
     object Lbl1: TcxLabel
       AlignWithMargins = True
@@ -430,7 +421,7 @@ object FrmHostManager: TFrmHostManager
       Align = alTop
       Caption = 'Descripci'#243'n:'
       Transparent = True
-      ExplicitWidth = 373
+      ExplicitWidth = 377
     end
   end
   object dxRibbon1: TdxRibbon
@@ -443,7 +434,6 @@ object FrmHostManager: TFrmHostManager
     Contexts = <>
     TabOrder = 7
     TabStop = False
-    ExplicitWidth = 610
     object dxTabRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Administrador de conexiones'
@@ -563,7 +553,7 @@ object FrmHostManager: TFrmHostManager
   object cxlkndflcntrlr1: TcxLookAndFeelController
     Kind = lfOffice11
     NativeStyle = False
-    SkinName = 'Office2013White'
+    SkinName = 'DevExpressStyle'
     Left = 328
     Top = 296
   end

@@ -230,6 +230,7 @@ begin
   SetRegistry('\Settings','\' + cxTextNombreCOn.Text + '', 'Database', cbbBd.Text);
   SetRegistry('\Settings','\' + cxTextNombreCOn.Text + '', 'Description', cxmDescripcion.Text);
   SetRegistry('\Settings','\' + cxTextNombreCOn.Text + '', 'Default', 'False');
+  SetRegistry('\Settings','\' + cxTextNombreCOn.Text + '', 'SkinName', 'VS2010');
 
   //Establecer como predeterminada
   i := 0;

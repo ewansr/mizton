@@ -241,7 +241,7 @@ begin
 
       if Assigned(FrmInicio) then
       begin
-        FrmInicio.dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
+        //FrmInicio.dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
         FrmInicio.dxSkinController1.SkinName := ASkinName;   //SkinController
         FrmInicio.dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
       end;

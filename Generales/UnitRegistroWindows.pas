@@ -15,12 +15,12 @@ function RecuperaNumerico(Grupo: String; Subkey: String; Cadena: String; Valor: 
 Function LeerGrupos(Grupo: String): TStringList;
 
 var
-  IdentificadorSistema: String = 'NOIL-FACTURACION R4';
+  IdentificadorSistema: String = 'Mizton R1';
 
 implementation
 
 Const
-  ClaveRegistroWindows = '\Software\DTEI_Software\';
+  ClaveRegistroWindows = '\Software\Mizton\';
 
 function funcVarRegistry(Grupo: String; SubKey: String; Cadena: String; Var Existe: Boolean; SoloGrupo: Boolean = False): String;
 var
