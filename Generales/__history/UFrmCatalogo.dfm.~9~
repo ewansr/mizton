@@ -2,8 +2,8 @@ object FrmCatalogo: TFrmCatalogo
   Left = 0
   Top = 0
   Caption = 'FrmCatalogo'
-  ClientHeight = 557
-  ClientWidth = 1133
+  ClientHeight = 472
+  ClientWidth = 913
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,55 +21,56 @@ object FrmCatalogo: TFrmCatalogo
   object dxDockSite1: TdxDockSite
     Left = 0
     Top = 95
-    Width = 1133
-    Height = 462
+    Width = 913
+    Height = 377
     Align = alClient
     DockingType = 5
-    OriginalWidth = 1133
-    OriginalHeight = 462
-    object dxLayoutDockSite1: TdxLayoutDockSite
+    OriginalWidth = 913
+    OriginalHeight = 377
+    object dxlytdckst1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 743
-      Height = 462
+      Width = 913
+      Height = 377
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
-      object dxlytdckst1: TdxLayoutDockSite
-        Left = 0
-        Top = 0
-        Width = 743
-        Height = 462
-        DockingType = 0
-        OriginalWidth = 300
-        OriginalHeight = 200
-      end
+    end
+    object dxHorizContainerDockSite2: TdxHorizContainerDockSite
+      Left = 0
+      Top = 0
+      Width = 913
+      Height = 377
+      ActiveChildIndex = -1
+      AllowFloating = True
+      AutoHide = False
+      CustomCaptionButtons.Buttons = <>
+      DockingType = 0
+      OriginalWidth = 185
+      OriginalHeight = 140
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 743
-        Height = 462
+        Width = 632
+        Height = 377
         AllowFloating = False
         AutoHide = False
         Caption = 'Tabla de registros'
-        CaptionButtons = []
+        CaptionButtons = [cbMaximize]
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
-        ExplicitWidth = 185
-        ExplicitHeight = 140
-        DockingType = 0
-        OriginalWidth = 185
+        ExplicitHeight = 0
+        DockingType = 1
+        OriginalWidth = 632
         OriginalHeight = 140
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 729
-          Height = 426
+          Width = 618
+          Height = 341
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1119
-          ExplicitHeight = 104
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -93,53 +94,55 @@ object FrmCatalogo: TFrmCatalogo
           end
         end
       end
-    end
-    object dxDockDatos: TdxDockPanel
-      Left = 743
-      Top = 0
-      Width = 390
-      Height = 462
-      AllowFloating = True
-      AutoHide = False
-      Caption = 'Insertar / Editar Registros'
-      CaptionButtons = [cbHide]
-      CustomCaptionButtons.Buttons = <>
-      TabsProperties.CustomButtons.Buttons = <>
-      DockingType = 3
-      OriginalWidth = 390
-      OriginalHeight = 140
-      object cxPageDatos: TcxPageControl
-        Left = 0
+      object dxDockDatos: TdxDockPanel
+        Left = 632
         Top = 0
-        Width = 382
-        Height = 432
-        Align = alClient
-        TabOrder = 0
-        Properties.ActivePage = cxTsDatos
-        Properties.CustomButtons.Buttons = <>
-        Properties.NavigatorPosition = npRightBottom
-        ClientRectBottom = 426
-        ClientRectLeft = 2
-        ClientRectRight = 376
-        ClientRectTop = 27
-        object cxTsDatos: TcxTabSheet
-          Caption = 'Datos'
-          ImageIndex = 0
-          object dxLYCDatos: TdxLayoutControl
-            Left = 0
-            Top = 0
-            Width = 374
-            Height = 399
-            Align = alClient
-            TabOrder = 0
-            LayoutLookAndFeel = UDMConection.dxStyleForms
-            object dxLyDatos: TdxLayoutGroup
-              AlignHorz = ahLeft
-              AlignVert = avTop
-              ButtonOptions.Buttons = <>
-              Hidden = True
-              ShowBorder = False
-              Index = -1
+        Width = 281
+        Height = 377
+        AllowFloating = True
+        AutoHide = False
+        Caption = 'Insertar / Editar Registros'
+        CaptionButtons = [cbHide]
+        CustomCaptionButtons.Buttons = <>
+        TabsProperties.CustomButtons.Buttons = <>
+        ExplicitTop = 140
+        ExplicitHeight = 140
+        DockingType = 1
+        OriginalWidth = 281
+        OriginalHeight = 140
+        object cxPageDatos: TcxPageControl
+          Left = 0
+          Top = 0
+          Width = 273
+          Height = 347
+          Align = alClient
+          TabOrder = 0
+          Properties.ActivePage = cxTsDatos
+          Properties.CustomButtons.Buttons = <>
+          Properties.NavigatorPosition = npRightBottom
+          ClientRectBottom = 341
+          ClientRectLeft = 2
+          ClientRectRight = 267
+          ClientRectTop = 27
+          object cxTsDatos: TcxTabSheet
+            Caption = 'Datos'
+            ImageIndex = 0
+            object dxLYCDatos: TdxLayoutControl
+              Left = 0
+              Top = 0
+              Width = 265
+              Height = 314
+              Align = alClient
+              TabOrder = 0
+              LayoutLookAndFeel = UDMConection.dxStyleForms
+              object dxLyDatos: TdxLayoutGroup
+                AlignHorz = ahLeft
+                AlignVert = avTop
+                ButtonOptions.Buttons = <>
+                Hidden = True
+                ShowBorder = False
+                Index = -1
+              end
             end
           end
         end
@@ -149,7 +152,7 @@ object FrmCatalogo: TFrmCatalogo
   object dxRibbon1: TdxRibbon
     Left = 0
     Top = 0
-    Width = 1133
+    Width = 913
     Height = 95
     BarManager = dxBarManager1
     ColorSchemeName = 'VS2010'

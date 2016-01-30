@@ -40,6 +40,8 @@ object FrmCatalogo: TFrmCatalogo
         Top = 0
         Width = 743
         Height = 462
+        ExplicitWidth = 300
+        ExplicitHeight = 200
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -68,8 +70,6 @@ object FrmCatalogo: TFrmCatalogo
           Height = 426
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1119
-          ExplicitHeight = 104
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -158,6 +158,7 @@ object FrmCatalogo: TFrmCatalogo
     Contexts = <>
     TabOrder = 0
     TabStop = False
+    ExplicitWidth = 913
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Nombre Cat'#225'logo'

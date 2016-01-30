@@ -66,7 +66,7 @@ type
     dxButtonOpcional: TdxBarLargeButton;
     dxButtonDetalle: TdxBarLargeButton;
     cxHintStyleController: TcxHintStyleController;
-    dxLayoutDockSite1: TdxLayoutDockSite;
+    dxHorizContainerDockSite2: TdxHorizContainerDockSite;
     procedure FormShow(Sender: TObject);
     procedure dxButtonSalirClick(Sender: TObject);
     procedure dxButtonNuevoClick(Sender: TObject);
