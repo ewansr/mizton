@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/10/30 12:23:53.000.906,=E:\SVN\NOIL FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/10/30 12:26:22.000.364,E:\SVN\NOIL FACTURACION\Unit1.dfm=E:\SVN\NOIL FACTURACION\Facturacion\UFrmFacturas.dfm</Transaction>
+    <Transaction>2015/10/30 12:26:22.000.364,E:\SVN\NOIL FACTURACION\Unit1.pas=E:\SVN\NOIL FACTURACION\Facturacion\UFrmFacturas.pas</Transaction>
+    <Transaction>2015/10/30 12:54:19.000.485,E:\SVN\NOIL FACTURACION\Facturacion\UFrmFacturas.pas=</Transaction>
+    <Transaction>2015/10/30 12:59:47.000.727,=E:\SVN\NOIL FACTURACION\Facturacion\UFrmFacturas.pas</Transaction>
+    <Transaction>2015/10/30 23:31:56.000.114,=E:\PERSONAL\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/10/30 23:33:40.000.185,E:\PERSONAL\NOIL-FACTURACION\Unit1.dfm=E:\PERSONAL\NOIL-FACTURACION\Generales\UMsgBox.dfm</Transaction>
+    <Transaction>2015/10/30 23:33:40.000.185,E:\PERSONAL\NOIL-FACTURACION\Unit1.pas=E:\PERSONAL\NOIL-FACTURACION\Generales\UMsgBox.pas</Transaction>
+    <Transaction>2015/11/04 16:24:13.000.682,=E:\SVN\NOIL FACTURACION\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/11/04 16:25:55.000.435,E:\SVN\NOIL FACTURACION\NOIL-FACTURACION\Unit1.dfm=E:\SVN\NOIL FACTURACION\NOIL-FACTURACION\Facturacion\UFrmNuevaFactura.dfm</Transaction>
+    <Transaction>2015/11/04 16:25:55.000.435,E:\SVN\NOIL FACTURACION\NOIL-FACTURACION\Unit1.pas=E:\SVN\NOIL FACTURACION\NOIL-FACTURACION\Facturacion\UFrmNuevaFactura.pas</Transaction>
+    <Transaction>2015/11/16 16:23:03.000.964,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/11/16 16:23:37.000.258,F:\SVN\NOIL-FACTURACION\Generales\UHostManager.pas=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/11/16 16:23:37.000.258,F:\SVN\NOIL-FACTURACION\Generales\UHostManager.dfm=F:\SVN\NOIL-FACTURACION\Unit1.dfm</Transaction>
+    <Transaction>2015/11/19 15:52:57.000.486,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/11/19 16:00:44.000.338,F:\SVN\NOIL-FACTURACION\UFrmUsuario.dfm=F:\SVN\NOIL-FACTURACION\Unit1.dfm</Transaction>
+    <Transaction>2015/11/19 16:00:44.000.338,F:\SVN\NOIL-FACTURACION\UFrmUsuario.pas=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/11/21 10:36:56.000.855,=F:\SVN\NOIL-FACTURACION\Generales\UFrmAEmpresas.pas</Transaction>
+    <Transaction>2015/12/07 16:16:12.000.907,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/12/07 16:16:38.000.979,F:\SVN\NOIL-FACTURACION\Unit1.pas=F:\SVN\NOIL-FACTURACION\Facturacion\NewFactura.pas</Transaction>
+    <Transaction>2015/12/07 16:16:38.000.979,F:\SVN\NOIL-FACTURACION\Unit1.dfm=F:\SVN\NOIL-FACTURACION\Facturacion\NewFactura.dfm</Transaction>
+    <Transaction>2015/12/08 18:34:54.000.812,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/12/08 18:44:27.000.829,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/12/08 18:45:00.000.284,F:\SVN\NOIL-FACTURACION\Unit1.dfm=F:\SVN\NOIL-FACTURACION\Facturacion\UFrmCatalogoImpuestos.dfm</Transaction>
+    <Transaction>2015/12/08 18:45:00.000.284,F:\SVN\NOIL-FACTURACION\Unit1.pas=F:\SVN\NOIL-FACTURACION\Facturacion\UFrmCatalogoImpuestos.pas</Transaction>
+    <Transaction>2015/12/08 18:46:57.000.168,=F:\SVN\NOIL-FACTURACION\Unit1.pas</Transaction>
+    <Transaction>2015/12/08 18:47:54.000.607,F:\SVN\NOIL-FACTURACION\Unit1.pas=F:\SVN\NOIL-FACTURACION\Generales\UWebBrowser.pas</Transaction>
+    <Transaction>2015/12/08 18:47:54.000.607,F:\SVN\NOIL-FACTURACION\Unit1.dfm=F:\SVN\NOIL-FACTURACION\Generales\UWebBrowser.dfm</Transaction>
+    <Transaction>2015/12/18 18:03:13.000.934,=F:\SVN\NOIL-FACTURACION\Debug\Win32\Busy.ani</Transaction>
+    <Transaction>2015/12/29 16:40:21.000.264,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2015/12/29 16:41:08.000.171,F:\SVN\NOIL-FACTURACION\Unit2.dfm=F:\SVN\NOIL-FACTURACION\Generales\UFrmParcialidad.dfm</Transaction>
+    <Transaction>2015/12/29 16:41:08.000.171,F:\SVN\NOIL-FACTURACION\Unit2.pas=F:\SVN\NOIL-FACTURACION\Generales\UFrmParcialidad.pas</Transaction>
+    <Transaction>2016/01/08 16:40:56.000.476,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2016/01/08 16:44:54.000.440,F:\SVN\NOIL-FACTURACION\Unit2.dfm=F:\SVN\NOIL-FACTURACION\Generales\Progreso.dfm</Transaction>
+    <Transaction>2016/01/08 16:44:54.000.440,F:\SVN\NOIL-FACTURACION\Unit2.pas=F:\SVN\NOIL-FACTURACION\Generales\Progreso.pas</Transaction>
+    <Transaction>2016/01/13 16:55:30.000.881,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2016/01/13 16:56:07.000.373,F:\SVN\NOIL-FACTURACION\Unit2.pas=F:\SVN\NOIL-FACTURACION\Generales\UFrmEnviarCorreo.pas</Transaction>
+    <Transaction>2016/01/13 16:56:07.000.373,F:\SVN\NOIL-FACTURACION\Unit2.dfm=F:\SVN\NOIL-FACTURACION\Generales\UFrmEnviarCorreo.dfm</Transaction>
+    <Transaction>2016/01/13 17:32:57.000.718,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2016/01/13 17:33:37.000.505,F:\SVN\NOIL-FACTURACION\Unit2.dfm=F:\SVN\NOIL-FACTURACION\Generales\UFrmConfigCorreo.dfm</Transaction>
+    <Transaction>2016/01/13 17:33:37.000.505,F:\SVN\NOIL-FACTURACION\Unit2.pas=F:\SVN\NOIL-FACTURACION\Generales\UFrmConfigCorreo.pas</Transaction>
+    <Transaction>2016/01/19 17:01:15.000.551,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2016/01/19 17:02:31.000.425,F:\SVN\NOIL-FACTURACION\Unit2.pas=F:\SVN\NOIL-FACTURACION\Nomina\UFrmImportarNomina.pas</Transaction>
+    <Transaction>2016/01/19 17:02:31.000.425,F:\SVN\NOIL-FACTURACION\Unit2.dfm=F:\SVN\NOIL-FACTURACION\Nomina\UFrmImportarNomina.dfm</Transaction>
+    <Transaction>2016/01/20 12:30:07.000.384,=E:\SVN PERSONAL\NOIL-FACTURACION\Generales\UFrmCuentaBancaria.pas</Transaction>
+    <Transaction>2016/01/20 19:36:11.000.387,F:\SVN\NOIL-FACTURACION\Facturacion\UFrmNuevaFactura.pas=</Transaction>
+    <Transaction>2016/01/25 19:15:25.000.390,=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+    <Transaction>2016/01/25 19:17:30.000.157,F:\SVN\NOIL-FACTURACION\Inventarios\UFrmMovimientos.dfm=F:\SVN\NOIL-FACTURACION\Unit2.dfm</Transaction>
+    <Transaction>2016/01/25 19:17:30.000.157,F:\SVN\NOIL-FACTURACION\Inventarios\UFrmMovimientos.pas=F:\SVN\NOIL-FACTURACION\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

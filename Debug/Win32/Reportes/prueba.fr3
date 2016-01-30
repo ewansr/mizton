@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.10.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Por defecto" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42359.6990443634" ReportOptions.Description.Text="" ReportOptions.LastChange="42359.743819294" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C65667403100203546F700300010844617461736574730101063C20446174615365743D2246727844624461746F73466163747572612220446174615365744E616D653D2246727844624461746F7346616374757261220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="216" PaperHeight="279" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" Height="151.1812" Left="0" Top="18.89765" Width="740.78788" ColumnWidth="0" ColumnGap="0" DataSet="FrxDbDatosFactura" DataSetName="FrxDbDatosFactura" RowCount="0">
+      <TfrxMemoView Name="FrxDbDatosFacturaNombreEmpresa" Left="113.3859" Top="26.45671" Width="351.49629" Height="18.89765" ShowHint="False" DataField="NombreEmpresa" DataSet="FrxDbDatosFactura" DataSetName="FrxDbDatosFactura" Text="[FrxDbDatosFactura.&#34;NombreEmpresa&#34;]"/>
+      <TfrxMemoView Name="Memo1" Left="18.89765" Top="26.45671" Width="94.48825" Height="18.89765" ShowHint="False" Text="gggg"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

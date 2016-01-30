@@ -1,0 +1,248 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{9652A7BF-32F9-4A92-BD0D-CBCC08B08027}</ProjectGuid>
+			<MainSource>NoilFacturacion.dpr</MainSource>
+			<ProjectVersion>12.2</ProjectVersion>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform>Win32</Platform>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>vclimg;vcl;vclx;dbrtl;Rave90VCL;bdertl;VclSmp;rtl;svnui;svn;TeeUI;TeeDB;Tee;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_110_150;Intraweb_110_150;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapClient;dbxcds;DataSnapServer;AzureCloud;DBXInterBaseDriver;DBXMySQLDriver;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;CodeSiteExpressVcl;NxCommonRun_xe;NxCommonDsgn_xe;NxGridRun_xe;NxGridDsgn_xe;NxDBGridRun_xe;NxDBGridDsgn_xe;NxInspectorRun_xe;NxInspectorDsgn_xe;NxCollectionRun_xe;NxCollectionDsgn_xe;NxSheetRun_xe;NxAddonsRun_xe;frx15;frxADO15;frxBDE15;frxcs15;frxDB15;frxDBX15;frxe15;frxIBX15;frxTee15;fs15;fsADO15;fsBDE15;fsDB15;fsIBX15;fsTee15;PngComponents;RtmRxCtl150;RtmRxDB150;RtmRxBDE150;tmsd2011;tmsexd2011;tmswizd2011;tmsxlsd2011;OverbyteIcsDXeRun;ZComponent;ZDbc;ZPlain;ZCore;ZParseSql;JclDeveloperTools;Jcl;JclVcl;JclContainers;JvCore;JvCmp;JvSystem;JvStdCtrls;JvControls;JvCustom;JvPageComps;JvAppFrm;JvNet;JvXPCtrls;JvDocking;JvWizards;JvDB;JvDlgs;JvBDE;JvMM;JvTimeFramework;JvCrypt;JvHMI;JvPascalInterpreter;JvManagedThreads;JvPrintPreview;JvRuntimeDesign;JvPluginSystem;JvBands;AutoScalerComponent;dxCoreRS15;cxLibraryRS15;dxGDIPlusRS15;dxThemeRS15;cxPageControlRS15;dxServerModeRS15;cxDataRS15;dxDBXServerModeRS15;dxADOServerModeRS15;cxEditorsRS15;dxWizardControlRS15;cxBarEditItemRS15;dxBarRS15;dxComnRS15;dxBarExtDBItemsRS15;dxBarExtItemsRS15;dxBarDBNavRS15;dxRibbonRS15;dxTabbedMDIRS15;dxDockingRS15;dxLayoutControlRS15;cxSchedulerRS15;cxExportRS15;cxTreeListRS15;cxGridRS15;cxVerticalGridRS15;dxmdsRS15;dxSpellCheckerRS15;cxSpreadSheetRS15;dxTileControlRS15;dxNavBarRS15;dxSkinsCoreRS15;dxSkinBlackRS15;dxSkinBlueprintRS15;dxSkinBlueRS15;dxSkinCaramelRS15;dxSkinCoffeeRS15;dxSkinDarkRoomRS15;dxSkinDarkSideRS15;dxSkinDevExpressDarkStyleRS15;dxSkinDevExpressStyleRS15;dxSkinFoggyRS15;dxSkinGlassOceansRS15;dxSkinHighContrastRS15;dxSkiniMaginaryRS15;dxSkinLilianRS15;dxSkinLiquidSkyRS15;dxSkinLondonLiquidSkyRS15;dxSkinMcSkinRS15;dxSkinMetropolisDarkRS15;dxSkinMetropolisRS15;dxSkinMoneyTwinsRS15;dxSkinOffice2007BlackRS15;dxSkinOffice2007BlueRS15;dxSkinOffice2007GreenRS15;dxSkinOffice2007PinkRS15;dxSkinOffice2007SilverRS15;dxSkinOffice2010BlackRS15;dxSkinOffice2010BlueRS15;dxSkinOffice2010SilverRS15;dxSkinOffice2013DarkGrayRS15;dxSkinOffice2013LightGrayRS15;dxSkinOffice2013WhiteRS15;dxSkinPumpkinRS15;dxSkinSevenClassicRS15;dxSkinSevenRS15;dxSkinSharpPlusRS15;dxSkinSharpRS15;dxSkinSilverRS15;dxSkinSpringTimeRS15;dxSkinStardustRS15;dxSkinSummer2008RS15;dxSkinTheAsphaltWorldRS15;dxSkinValentineRS15;dxSkinVS2010RS15;dxSkinWhiteprintRS15;dxSkinXmas2008BlueRS15;dxPSCoreRS15;dxPSTeeChartRS15;dxPSLnksRS15;dxPSDBTeeChartRS15;dxPScxPCProdRS15;cxPivotGridRS15;cxPivotGridOLAPRS15;dxdbtrRS15;dxtrmdRS15;dxorgcRS15;dxdborRS15;dxFlowChartRS15;dxMapControlRS15;dxSpreadSheetRS15;dxGaugeControlRS15;dxRibbonCustomizationFormRS15;cxSchedulerRibbonStyleEventEditorRS15;cxSchedulerGridRS15;cxSchedulerTreeBrowserRS15;cxTreeListdxBarPopupMenuRS15;dxSkinscxPCPainterRS15;dxSkinscxSchedulerPainterRS15;dxSkinsdxBarPainterRS15;dxSkinsdxNavBarPainterRS15;dxSkinsdxRibbonPainterRS15;dxSkinsdxDLPainterRS15;dxPScxCommonRS15;dxPScxExtCommonRS15;dxPSdxLCLnkRS15;dxPScxPivotGridLnkRS15;dxPScxSchedulerLnkRS15;dxPScxSSLnkRS15;dxPScxTLLnkRS15;dxPScxVGridLnkRS15;dxPSdxDBOCLnkRS15;dxPSdxOCLnkRS15;dxPSdxDBTVLnkRS15;dxPSdxFCLnkRS15;dxPScxGridLnkRS15;dxPSdxSpreadSheetLnkRS15;dxPsPrVwAdvRS15;dxPSPrVwRibbonRS15;cxPivotGridChartRS15</DCC_UsePackage>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_DcuOutput>.\$(Config)\$(Platform)</DCC_DcuOutput>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_ExeOutput>.\$(Config)\$(Platform)</DCC_ExeOutput>
+			<DCC_E>false</DCC_E>
+			<DCC_N>false</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="NoilFacturacion.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="UConection.pas">
+				<Form>UDMConection</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Generales\ULogin.pas">
+				<Form>FrmLogin</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UConsultasSQL.pas">
+				<Form>FrmConsultasSQL</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UnitRegistroWindows.pas"/>
+			<DCCReference Include="Generales\UConfigMySQL.pas">
+				<Form>FrmConfigMySQL</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmCatalogo.pas">
+				<Form>FrmCatalogo</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmMiniCatalogo.pas">
+				<Form>FrmMiniCatalogo</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmUsuarios.pas">
+				<Form>FrmUsuarios</Form>
+			</DCCReference>
+			<DCCReference Include="UFrmInicio.pas">
+				<Form>FrmInicio</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmCatalogoClientes.pas">
+				<Form>frmCatalogoClientes</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmPais.pas">
+				<Form>FrmPais</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmCiudad.pas">
+				<Form>FrmCiudad</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmEstado.pas">
+				<Form>FrmEstado</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmMonedas.pas">
+				<Form>FrmMonedas</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmEmpresas.pas">
+				<Form>FrmEmpresas</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmCondicionPago.pas">
+				<Form>FrmCondicionPago</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmFormaPago.pas">
+				<Form>FrmFormaPago</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmGiroEmpresa.pas">
+				<Form>FrmGiroEmpresa</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmUnidadMedida.pas">
+				<Form>FrmUnidadMedida</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmCatalogoProveedores.pas">
+				<Form>FrmCatalogoProveedores</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmAbrirEmpresa.pas">
+				<Form>FrmAbrirEmpresa</Form>
+			</DCCReference>
+			<DCCReference Include="UFrmSplash.pas">
+				<Form>FrmSplash</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmServicio.pas">
+				<Form>FrmServicio</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmFacturas.pas">
+				<Form>FrmFacturas</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UMsgBox.pas">
+				<Form>MsgBox</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UHostManager.pas">
+				<Form>FrmHostManager</Form>
+			</DCCReference>
+			<DCCReference Include="UFrmUsuario.pas">
+				<Form>FrmUsuario</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmBancos.pas">
+				<Form>FrmBancos</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmAEmpresas.pas">
+				<Form>FrmAEmpresas</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\NewFactura.pas">
+				<Form>FrmNewFactura</Form>
+			</DCCReference>
+			<DCCReference Include="Facturacion\UFrmCatalogoImpuestos.pas">
+				<Form>FrmCatalogoImpuestos</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UWebBrowser.pas">
+				<Form>FrmWebBrowser</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UCreadorFormulas.pas">
+				<Form>Form1</Form>
+			</DCCReference>
+			<DCCReference Include="PFE\CFDI.pas"/>
+			<DCCReference Include="PFE\PFacturaElectronica.pas"/>
+			<DCCReference Include="PFE\PFacturaElectronica_PAC.pas"/>
+			<DCCReference Include="PFE\PFacturaElectronica_Reglamentaciones.pas"/>
+			<DCCReference Include="PFE\PAC\FO\PACFo.pas"/>
+			<DCCReference Include="PFE\PAC\FO\wsFO.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\ClaseCertificadoSellos.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\ClaseOpenSSL.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\libeay32.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\LibEay32Plus.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\OpenSSLUtils.pas"/>
+			<DCCReference Include="PFE\GeneradorSello\SelloDigital.pas"/>
+			<DCCReference Include="PFE\GeneradorCBB\GeneradorCBB.pas"/>
+			<DCCReference Include="PFE\GeneradorCBB\QuricolAPI.pas"/>
+			<DCCReference Include="PFE\GeneradorCBB\QuricolCode.pas"/>
+			<DCCReference Include="Generales\UFrmParcialidad.pas">
+				<Form>FrmParcialidad</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\Progreso.pas">
+				<Form>FrmProgreso</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmEnviarCorreo.pas">
+				<Form>FrmEnviarCorreo</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmConfigCorreo.pas">
+				<Form>FrmConfigCorreo</Form>
+			</DCCReference>
+			<DCCReference Include="Nomina\UFrmImportarNomina.pas">
+				<Form>FrmImportarNomina</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmCuentaBancaria.pas">
+				<Form>FrmCuentaBancaria</Form>
+			</DCCReference>
+			<DCCReference Include="Inventarios\UFrmMovimientos.pas">
+				<Form>FrmMovimientos</Form>
+			</DCCReference>
+			<None Include="Debug\Win32\Busy.ani"/>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="Release">2</VersionInfo>
+						<VersionInfo Name="Build">10</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">2058</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.1.2.10</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Source>
+						<Source Name="MainSource">NoilFacturacion.dpr</Source>
+					</Source>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k150.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp150.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
