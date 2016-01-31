@@ -610,7 +610,7 @@ object FrmInicio: TFrmInicio
     SpeedButtonOptions.CanBeFocused = False
     SpeedButtonOptions.Flat = True
     SpeedButtonOptions.Transparent = True
-    TabOrder = 5
+    TabOrder = 3
     Visible = False
     DragMode = dmAutomatic
   end
@@ -622,13 +622,12 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 6
+    TabOrder = 5
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
-    ExplicitTop = -6
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0
@@ -2269,9 +2268,8 @@ object FrmInicio: TFrmInicio
   object cxspltrMenu: TcxSplitter
     Left = 281
     Top = 0
-    Width = 8
+    Width = 5
     Height = 607
-    ExplicitLeft = 287
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

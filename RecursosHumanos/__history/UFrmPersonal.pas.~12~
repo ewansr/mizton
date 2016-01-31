@@ -26,8 +26,7 @@ uses
   ZDataset, dxLayoutContainer, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
   cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxCalendar, cxDBEdit,
-  cxMaskEdit, cxTextEdit, cxImage, UConection, cxSpinEdit, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox;
+  cxMaskEdit, cxTextEdit, cxImage;
 
 type
   TFrmPersonal = class(TFrmCatalogo)
@@ -62,54 +61,6 @@ type
     dxLYCDatosGroup3: TdxLayoutAutoCreatedGroup;
     cbbEdoCivil: TcxDBComboBox;
     lyEdoCivil: TdxLayoutItem;
-    dxLayoutControl1: TdxLayoutControl;
-    cxTextCURP: TcxDBTextEdit;
-    cxTextRFC: TcxDBTextEdit;
-    dxLayoutControl1Group_Root: TdxLayoutGroup;
-    lyCurp: TdxLayoutItem;
-    lyRFC: TdxLayoutItem;
-    cxTextNSS: TcxDBTextEdit;
-    lyNSS: TdxLayoutItem;
-    cxTextInfonavit: TcxDBTextEdit;
-    lyInfonavit: TdxLayoutItem;
-    cbbTipoInfonavit: TcxDBComboBox;
-    lytipoInfonavit: TdxLayoutItem;
-    cxSpinFactor: TcxDBSpinEdit;
-    lyFactor: TdxLayoutItem;
-    dxLayoutControl1Group1: TdxLayoutAutoCreatedGroup;
-    dxLayControl1Group_Root: TdxLayoutGroup;
-    dxLayControl1: TdxLayoutControl;
-    cxMaskTel: TcxDBMaskEdit;
-    lyTel: TdxLayoutItem;
-    cxMaskMovil: TcxDBMaskEdit;
-    lyMovil: TdxLayoutItem;
-    cxTextCorreo: TcxDBTextEdit;
-    lyCOrreo: TdxLayoutItem;
-    cbbPais: TcxDBLookupComboBox;
-    lyPais: TdxLayoutItem;
-    cbbEstado: TcxDBLookupComboBox;
-    lyEstado: TdxLayoutItem;
-    cbbCiudad: TcxDBLookupComboBox;
-    lyCiudad: TdxLayoutItem;
-    cxTextCalle: TcxDBTextEdit;
-    lyCalle: TdxLayoutItem;
-    cbbColonia: TcxDBLookupComboBox;
-    lyColona: TdxLayoutItem;
-    cxSpinCP: TcxDBSpinEdit;
-    lyCp: TdxLayoutItem;
-    cxTextINt: TcxDBTextEdit;
-    lyINt: TdxLayoutItem;
-    cxTextExt: TcxDBTextEdit;
-    lyExt: TdxLayoutItem;
-    cxTextLocalidad: TcxDBTextEdit;
-    lyLocalidad: TdxLayoutItem;
-    dxLayControl1Group1: TdxLayoutAutoCreatedGroup;
-    cxTextSangre: TcxDBTextEdit;
-    lySangre: TdxLayoutItem;
-    cxDateInicio: TcxDBDateEdit;
-    lyInicio: TdxLayoutItem;
-    cxDateFin: TcxDBDateEdit;
-    lyFin: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

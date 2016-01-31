@@ -9,44 +9,43 @@
   TextHeight = 13
   inherited dxDockSite1: TdxDockSite
     Width = 959
-    Height = 465
+    Height = 463
     ExplicitWidth = 959
-    ExplicitHeight = 465
+    ExplicitHeight = 463
     DockingType = 5
     OriginalWidth = 959
-    OriginalHeight = 465
-    inherited dxLayoutDockSite1: TdxLayoutDockSite
-      Left = 660
-      Width = 299
-      Height = 465
-      ExplicitWidth = 299
-      ExplicitHeight = 465
+    OriginalHeight = 463
+    inherited dxlytdckst2: TdxLayoutDockSite
+      Width = 931
+      Height = 463
+      ExplicitWidth = 931
+      ExplicitHeight = 463
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       inherited dxlytdckst1: TdxLayoutDockSite
-        Width = 299
-        Height = 465
-        ExplicitWidth = 299
-        ExplicitHeight = 465
+        Width = 931
+        Height = 463
+        ExplicitWidth = 931
+        ExplicitHeight = 463
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
       end
       inherited dxDockGrid: TdxDockPanel
-        Width = 299
-        Height = 465
-        ExplicitWidth = 299
-        ExplicitHeight = 465
+        Width = 931
+        Height = 463
+        ExplicitWidth = 931
+        ExplicitHeight = 463
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
         inherited cxGridGral: TcxGrid
-          Width = 285
-          Height = 429
+          Width = 917
+          Height = 413
           Visible = False
-          ExplicitWidth = 285
-          ExplicitHeight = 429
+          ExplicitWidth = 917
+          ExplicitHeight = 413
           inherited cxGridDatos: TcxGridDBTableView
             DataController.DataSource = dsDatos
             object cxColumnCodigo: TcxGridDBColumn
@@ -81,8 +80,8 @@
         object lstEmpresas: TcxDBTreeList
           Left = 0
           Top = 0
-          Width = 291
-          Height = 435
+          Width = 923
+          Height = 419
           Align = alClient
           Bands = <
             item
@@ -172,33 +171,32 @@
     inherited dxDockDatos: TdxDockPanel
       Left = 0
       Width = 660
-      Height = 465
+      Height = 140
       Color = clWhite
       ManagerColor = False
       ExplicitLeft = 0
       ExplicitWidth = 660
-      ExplicitHeight = 465
+      ExplicitHeight = 140
+      AutoHidePosition = 0
       DockingType = 1
       OriginalWidth = 660
       OriginalHeight = 140
       inherited cxPageDatos: TcxPageControl
         Width = 652
-        Height = 435
+        Height = 419
         Color = clWhite
         ParentBackground = False
         ParentColor = False
         Properties.ActivePage = cxDomicilio
         ExplicitWidth = 652
-        ExplicitHeight = 435
-        ClientRectBottom = 429
-        ClientRectRight = 646
+        ExplicitHeight = 419
+        ClientRectBottom = 417
+        ClientRectLeft = 2
+        ClientRectRight = 650
+        ClientRectTop = 28
         inherited cxTsDatos: TcxTabSheet
           Caption = 'Empresa'
           TabVisible = False
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           inherited dxLYCDatos: TdxLayoutControl
             Width = 648
             Height = 389
@@ -215,8 +213,8 @@
           object dxLayoutControl1: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 644
-            Height = 402
+            Width = 648
+            Height = 389
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -438,10 +436,6 @@
         object cxDireccion: TcxTabSheet
           Caption = 'Direcci'#243'n'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl2: TdxLayoutControl
             Left = 0
             Top = 0
@@ -796,10 +790,6 @@
         object cxConfiguracionImpuesto: TcxTabSheet
           Caption = 'Configuraci'#243'n de Impuesto'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl3: TdxLayoutControl
             Left = 0
             Top = 0
@@ -838,14 +828,14 @@
             Left = 289
             Top = 0
             Width = 72
-            Height = 402
+            Height = 0
             Align = alLeft
             TabOrder = 1
             LayoutLookAndFeel = UDMConection.dxStyleForms
             ExplicitHeight = 389
             DesignSize = (
               72
-              402)
+              0)
             object cxButton1: TcxButton
               Left = 11
               Top = 11
@@ -928,12 +918,11 @@
           object dxLayoutControl7: TdxLayoutControl
             Left = 361
             Top = 0
-            Width = 283
-            Height = 402
+            Width = 287
+            Height = 0
             Align = alClient
             TabOrder = 2
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitWidth = 287
             ExplicitHeight = 389
             object cxImpuestosSeleccionados: TcxListBox
               Left = 11
@@ -964,10 +953,6 @@
         object cxConfiguracionCDFI: TcxTabSheet
           Caption = 'Configuraci'#243'n CFDI'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl4: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1054,10 +1039,6 @@
         object cxOtrasConfiguraciones: TcxTabSheet
           Caption = 'Otras Configuraciones'
           ImageIndex = 5
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object dxLayoutControl5: TdxLayoutControl
             Left = 0
             Top = 0
@@ -1167,7 +1148,7 @@
       0)
     inherited dxbrManager1Bar: TdxBar
       FloatClientWidth = 153
-      FloatClientHeight = 307
+      FloatClientHeight = 420
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8

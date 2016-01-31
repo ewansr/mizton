@@ -125,9 +125,6 @@ inherited FrmPersonal: TFrmPersonal
             object imgFoto: TcxDBImage [0]
               Left = 11
               Top = 11
-              DataBinding.DataField = 'Imagen'
-              DataBinding.DataSource = dsDatosUpt
-              Properties.GraphicClassName = 'TdxSmartImage'
               Style.HotTrack = False
               TabOrder = 0
               Height = 110
@@ -310,7 +307,7 @@ inherited FrmPersonal: TFrmPersonal
             Margins.Bottom = 10
             Align = alClient
             TabOrder = 1
-            Properties.ActivePage = cxTabDireccion
+            Properties.ActivePage = cxTabSheet2
             Properties.CustomButtons.Buttons = <>
             ExplicitTop = 142
             ExplicitWidth = 511

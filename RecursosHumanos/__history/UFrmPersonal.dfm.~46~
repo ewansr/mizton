@@ -125,9 +125,6 @@ inherited FrmPersonal: TFrmPersonal
             object imgFoto: TcxDBImage [0]
               Left = 11
               Top = 11
-              DataBinding.DataField = 'Imagen'
-              DataBinding.DataSource = dsDatosUpt
-              Properties.GraphicClassName = 'TdxSmartImage'
               Style.HotTrack = False
               TabOrder = 0
               Height = 110
@@ -137,7 +134,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 184
               Top = 11
               DataBinding.DataField = 'CodigoPersonal'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 1
               Width = 224
@@ -146,7 +142,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 184
               Top = 38
               DataBinding.DataField = 'Nombre'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 2
               Width = 121
@@ -155,7 +150,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 184
               Top = 65
               DataBinding.DataField = 'APaterno'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 3
               Width = 121
@@ -164,7 +158,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 184
               Top = 92
               DataBinding.DataField = 'AMaterno'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 4
               Width = 121
@@ -173,7 +166,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 117
               Top = 127
               DataBinding.DataField = 'Sexo'
-              DataBinding.DataSource = dsDatosUpt
               Properties.Items.Strings = (
                 'Hombre'
                 'Mujer')
@@ -185,7 +177,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 313
               Top = 127
               DataBinding.DataField = 'EstadoCivil'
-              DataBinding.DataSource = dsDatosUpt
               Properties.Items.Strings = (
                 'Soltero'
                 'Casado'
@@ -198,7 +189,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 117
               Top = 154
               DataBinding.DataField = 'FechaNacimiento'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 7
               Width = 74
@@ -207,7 +197,6 @@ inherited FrmPersonal: TFrmPersonal
               Left = 117
               Top = 181
               DataBinding.DataField = 'GrupoSanguineo'
-              DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 8
               Width = 279
@@ -344,7 +333,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 11
                   DataBinding.DataField = 'Telefono'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 303
@@ -353,7 +341,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 38
                   DataBinding.DataField = 'Movil'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 1
                   Width = 121
@@ -362,7 +349,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 65
                   DataBinding.DataField = 'CorreoElectronico'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 2
                   Width = 121
@@ -371,7 +357,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 200
                   DataBinding.DataField = 'IdPais'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
                   Style.HotTrack = False
                   TabOrder = 8
@@ -381,7 +366,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 227
                   DataBinding.DataField = 'IdEstado'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
                   Style.HotTrack = False
                   TabOrder = 9
@@ -391,7 +375,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 254
                   DataBinding.DataField = 'IdCiudad'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
                   Style.HotTrack = False
                   TabOrder = 10
@@ -401,7 +384,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 281
                   DataBinding.DataField = 'Localidad'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 11
                   Width = 121
@@ -410,7 +392,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 92
                   DataBinding.DataField = 'Calle'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 3
                   Width = 121
@@ -419,7 +400,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 119
                   DataBinding.DataField = 'Colonia'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
                   Style.HotTrack = False
                   TabOrder = 4
@@ -429,7 +409,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 146
                   DataBinding.DataField = 'CP'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 5
                   Width = 121
@@ -438,7 +417,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 74
                   Top = 173
                   DataBinding.DataField = 'NoExt'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 6
                   Width = 121
@@ -447,7 +425,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 256
                   Top = 173
                   DataBinding.DataField = 'NoInt'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 7
                   Width = 121
@@ -575,8 +552,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxTextCURP: TcxDBTextEdit
                   Left = 92
                   Top = 11
-                  DataBinding.DataField = 'Curp'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 285
@@ -584,8 +559,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxTextRFC: TcxDBTextEdit
                   Left = 92
                   Top = 38
-                  DataBinding.DataField = 'RFC'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 1
                   Width = 121
@@ -593,8 +566,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxTextNSS: TcxDBTextEdit
                   Left = 92
                   Top = 65
-                  DataBinding.DataField = 'Nss'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 2
                   Width = 121
@@ -602,8 +573,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cbbTipoInfonavit: TcxDBComboBox
                   Left = 92
                   Top = 139
-                  DataBinding.DataField = 'TipoInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.Items.Strings = (
                     'Fijo'
                     'VSM'
@@ -615,8 +584,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxSpinFactor: TcxDBSpinEdit
                   Left = 280
                   Top = 139
-                  DataBinding.DataField = 'FactorInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.AssignedValues.MinValue = True
                   Properties.Nullstring = '0'
                   Properties.ValueType = vtFloat
@@ -627,8 +594,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxTextInfonavit: TcxDBTextEdit
                   Left = 92
                   Top = 112
-                  DataBinding.DataField = 'Infonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 3
                   Width = 121
@@ -636,8 +601,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxDateInicio: TcxDBDateEdit
                   Left = 92
                   Top = 166
-                  DataBinding.DataField = 'AplicacionInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 6
                   Width = 121
@@ -645,8 +608,6 @@ inherited FrmPersonal: TFrmPersonal
                 object cxDateFin: TcxDBDateEdit
                   Left = 92
                   Top = 193
-                  DataBinding.DataField = 'TerminoInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 7
                   Width = 121

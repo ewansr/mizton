@@ -127,7 +127,6 @@ inherited FrmPersonal: TFrmPersonal
               Top = 11
               DataBinding.DataField = 'Imagen'
               DataBinding.DataSource = dsDatosUpt
-              Properties.GraphicClassName = 'TdxSmartImage'
               Style.HotTrack = False
               TabOrder = 0
               Height = 110

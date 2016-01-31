@@ -24,10 +24,45 @@ uses
   dxSkinsdxDockControlPainter, dxScreenTip, dxCustomHint, cxHint, cxClasses,
   dxDockControl, dxBar, dxRibbon, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, dxLayoutContainer, dxLayoutControl, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
+  cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxCalendar, cxDBEdit,
+  cxMaskEdit, cxTextEdit, cxImage;
 
 type
   TFrmPersonal = class(TFrmCatalogo)
+    cxColCodigoPersonal: TcxGridDBColumn;
+    cxColAPaterno: TcxGridDBColumn;
+    cxColAMaterno: TcxGridDBColumn;
+    cxColTelFijo: TcxGridDBColumn;
+    cxColTelMovil: TcxGridDBColumn;
+    cxColCorreo: TcxGridDBColumn;
+    cxColCurp: TcxGridDBColumn;
+    cxColRfc: TcxGridDBColumn;
+    cxColNSS: TcxGridDBColumn;
+    imgFoto: TcxDBImage;
+    lyLYCDatosItem1: TdxLayoutItem;
+    cxTextCodigoPersonal: TcxDBTextEdit;
+    lyCodigoPersonal: TdxLayoutItem;
+    cxTextNombre: TcxDBTextEdit;
+    lyNombre: TdxLayoutItem;
+    dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup;
+    cxTextAPaterno: TcxDBTextEdit;
+    lyAPaterno: TdxLayoutItem;
+    cxTextAMaterno: TcxDBTextEdit;
+    lyAMaterno: TdxLayoutItem;
+    cxPageControl1: TcxPageControl;
+    cxTabDireccion: TcxTabSheet;
+    cxTabSheet2: TcxTabSheet;
+    cbbSexo: TcxDBComboBox;
+    lySexo: TdxLayoutItem;
+    dxLYCDatosGroup2: TdxLayoutAutoCreatedGroup;
+    cxDateNacimiento: TcxDBDateEdit;
+    lyNacimiento: TdxLayoutItem;
+    dxLYCDatosGroup3: TdxLayoutAutoCreatedGroup;
+    cbbEdoCivil: TcxDBComboBox;
+    lyEdoCivil: TdxLayoutItem;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    dxLayoutControl1: TdxLayoutControl;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -45,11 +80,11 @@ implementation
 procedure TFrmPersonal.FormCreate(Sender: TObject);
 begin
   inherited;
-
   QueryName := 'master_personal';
   PKField := 'IdPersonal';
-  CampoMostrar :='CodigoPersonal';
-  pCondiciones := '~(IdPersonal)&(Codigo)';
+  CampoMostrar := 'CodigoPersonal';
+  //Validar Registros duplicados
+  pCondiciones := '~(IdPersonal)&(CodigoPersonal)';
   pCampos := 'IdPersonal,CodigoPersonal';
 end;
 

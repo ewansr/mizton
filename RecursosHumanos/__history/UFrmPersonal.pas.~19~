@@ -106,10 +106,6 @@ type
     dxLayControl1Group1: TdxLayoutAutoCreatedGroup;
     cxTextSangre: TcxDBTextEdit;
     lySangre: TdxLayoutItem;
-    cxDateInicio: TcxDBDateEdit;
-    lyInicio: TdxLayoutItem;
-    cxDateFin: TcxDBDateEdit;
-    lyFin: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

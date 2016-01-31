@@ -27,7 +27,17 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel;
 
 type
-  TFrmCatalogo1 = class(TFrmCatalogo)
+  TFrmPersonal = class(TFrmCatalogo)
+    cxColCodigoPersonal: TcxGridDBColumn;
+    cxColAPaterno: TcxGridDBColumn;
+    cxColAMaterno: TcxGridDBColumn;
+    cxColTelFijo: TcxGridDBColumn;
+    cxColTelMovil: TcxGridDBColumn;
+    cxColCorreo: TcxGridDBColumn;
+    cxColCurp: TcxGridDBColumn;
+    cxColRfc: TcxGridDBColumn;
+    cxColNSS: TcxGridDBColumn;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,10 +45,21 @@ type
   end;
 
 var
-  FrmCatalogo1: TFrmCatalogo1;
+  FrmPersonal: TFrmPersonal;
 
 implementation
 
 {$R *.dfm}
+
+procedure TFrmPersonal.FormCreate(Sender: TObject);
+begin
+  inherited;
+  QueryName := 'master_personal';
+  PKField := 'IdPersonal';
+  CampoMostrar := 'CodigoPersonal';
+  //Validar Registros duplicados
+  pCondiciones := '~(IdPersonal)&(CodigoPersonal)';
+  pCampos := 'IdPersonal,CodigoPersonal';
+end;
 
 end.

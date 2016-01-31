@@ -24,7 +24,24 @@ uses
   UFrmUsuario in 'UFrmUsuario.pas' {FrmUsuario},
   UFrmAEmpresas in 'Generales\UFrmAEmpresas.pas' {FrmAEmpresas},
   UFrmEnviarCorreo in 'Generales\UFrmEnviarCorreo.pas' {FrmEnviarCorreo},
-  UFrmConfigCorreo in 'Generales\UFrmConfigCorreo.pas' {FrmConfigCorreo};
+  UFrmConfigCorreo in 'Generales\UFrmConfigCorreo.pas' {FrmConfigCorreo},
+  wsFO in 'PFE\PAC\FO\wsFO.pas',
+  CFDI in 'PFE\CFDI.pas',
+  PFacturaElectronica in 'PFE\PFacturaElectronica.pas',
+  PFacturaElectronica_PAC in 'PFE\PFacturaElectronica_PAC.pas',
+  PFacturaElectronica_Reglamentaciones in 'PFE\PFacturaElectronica_Reglamentaciones.pas',
+  PACFo in 'PFE\PAC\FO\PACFo.pas',
+  ClaseCertificadoSellos in 'PFE\GeneradorSello\ClaseCertificadoSellos.pas',
+  ClaseOpenSSL in 'PFE\GeneradorSello\ClaseOpenSSL.pas',
+  libeay32 in 'PFE\GeneradorSello\libeay32.pas',
+  LibEay32Plus in 'PFE\GeneradorSello\LibEay32Plus.pas',
+  OpenSSLUtils in 'PFE\GeneradorSello\OpenSSLUtils.pas',
+  SelloDigital in 'PFE\GeneradorSello\SelloDigital.pas',
+  GeneradorCBB in 'PFE\GeneradorCBB\GeneradorCBB.pas',
+  QuricolAPI in 'PFE\GeneradorCBB\QuricolAPI.pas',
+  QuricolCode in 'PFE\GeneradorCBB\QuricolCode.pas',
+  PAddenda_PEP in 'PFE\Addendas\PAddenda_PEP.pas',
+  UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmCatalogo1};
 
 {$R *.res}
 
@@ -36,5 +53,6 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
+  Application.CreateForm(TFrmCatalogo1, FrmCatalogo1);
   Application.Run;
 end.

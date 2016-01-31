@@ -125,9 +125,6 @@ inherited FrmPersonal: TFrmPersonal
             object imgFoto: TcxDBImage [0]
               Left = 11
               Top = 11
-              DataBinding.DataField = 'Imagen'
-              DataBinding.DataSource = dsDatosUpt
-              Properties.GraphicClassName = 'TdxSmartImage'
               Style.HotTrack = False
               TabOrder = 0
               Height = 110
@@ -576,7 +573,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 11
                   DataBinding.DataField = 'Curp'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 0
                   Width = 285
@@ -585,7 +581,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 38
                   DataBinding.DataField = 'RFC'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 1
                   Width = 121
@@ -594,7 +589,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 65
                   DataBinding.DataField = 'Nss'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 2
                   Width = 121
@@ -603,7 +597,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 139
                   DataBinding.DataField = 'TipoInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.Items.Strings = (
                     'Fijo'
                     'VSM'
@@ -616,7 +609,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 280
                   Top = 139
                   DataBinding.DataField = 'FactorInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Properties.AssignedValues.MinValue = True
                   Properties.Nullstring = '0'
                   Properties.ValueType = vtFloat
@@ -628,7 +620,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 112
                   DataBinding.DataField = 'Infonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 3
                   Width = 121
@@ -637,7 +628,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 166
                   DataBinding.DataField = 'AplicacionInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 6
                   Width = 121
@@ -646,7 +636,6 @@ inherited FrmPersonal: TFrmPersonal
                   Left = 92
                   Top = 193
                   DataBinding.DataField = 'TerminoInfonavit'
-                  DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 7
                   Width = 121
