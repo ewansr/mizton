@@ -685,9 +685,7 @@ object FrmInicio: TFrmInicio
       Caption = 'Salarios'
     end
     object LinkFolios: TdxNavBarItem
-      Caption = 'Actividades (Folios)'
-      LargeImageIndex = 1
-      SmallImageIndex = 1
+      Action = actFolios
     end
     object LinkCiudad: TdxNavBarItem
       Caption = 'Ciudades'
@@ -2845,6 +2843,7 @@ object FrmInicio: TFrmInicio
     TabProperties.CloseTabWithMiddleClick = True
     TabProperties.CustomButtons.Buttons = <>
     TabProperties.Focusable = True
+    TabProperties.TabPosition = tpBottom
     OnPageAdded = dxTabManager1PageAdded
     Left = 576
     Top = 272
@@ -2924,6 +2923,11 @@ object FrmInicio: TFrmInicio
       Caption = 'Cat'#225'logo de Personal'
       ImageIndex = 0
       OnExecute = actPersonalExecute
+    end
+    object actFolios: TAction
+      Caption = 'Actividades (Folios por Expediente)'
+      ImageIndex = 1
+      OnExecute = actFoliosExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

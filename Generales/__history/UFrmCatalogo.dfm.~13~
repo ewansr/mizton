@@ -168,7 +168,7 @@ object FrmCatalogo: TFrmCatalogo
     ExplicitWidth = 1133
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
-      Caption = 'Inicio'
+      Caption = 'Nombre Cat'#225'logo'
       Groups = <
         item
         end

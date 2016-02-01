@@ -41,7 +41,9 @@ uses
   QuricolAPI in 'PFE\GeneradorCBB\QuricolAPI.pas',
   QuricolCode in 'PFE\GeneradorCBB\QuricolCode.pas',
   PAddenda_PEP in 'PFE\Addendas\PAddenda_PEP.pas',
-  UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmPersonal};
+  UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmPersonal},
+  USelExpediente in 'USelExpediente.pas' {FrmSelExpediente},
+  UFrmMaterialesxFolios in 'RecursosHumanos\UFrmMaterialesxFolios.pas' {FrmMaterialesxFolios};
 
 {$R *.res}
 

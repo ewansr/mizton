@@ -137,6 +137,12 @@
 			<DCCReference Include="RecursosHumanos\UFrmPersonal.pas">
 				<Form>FrmPersonal</Form>
 			</DCCReference>
+			<DCCReference Include="USelExpediente.pas">
+				<Form>FrmSelExpediente</Form>
+			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmMaterialesxFolios.pas">
+				<Form>FrmMaterialesxFolios</Form>
+			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

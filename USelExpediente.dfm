@@ -1,0 +1,245 @@
+object FrmSelExpediente: TFrmSelExpediente
+  Left = 0
+  Top = 0
+  Caption = 'Seleccionar Expediente'
+  ClientHeight = 417
+  ClientWidth = 476
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lstExpedientes: TcxListView
+    Left = 0
+    Top = 63
+    Width = 476
+    Height = 354
+    Align = alClient
+    Columns = <>
+    LargeImages = UDMConection.cxMizton32
+    SmallImages = UDMConection.cxMizton16
+    TabOrder = 0
+    ExplicitLeft = 32
+    ExplicitTop = 96
+    ExplicitWidth = 121
+    ExplicitHeight = 97
+  end
+  object zPersonal: TZQuery
+    Params = <>
+    Left = 280
+    Top = 200
+  end
+  object dxBarManager1: TdxBarManager
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Categories.Strings = (
+      'Default')
+    Categories.ItemsVisibles = (
+      2)
+    Categories.Visibles = (
+      True)
+    ImageOptions.Images = UDMConection.cxMizton16
+    ImageOptions.LargeImages = UDMConection.cxMizton32
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    Left = 304
+    Top = 120
+    DockControlHeights = (
+      0
+      0
+      63
+      0)
+    object dxbrManager1Bar: TdxBar
+      Caption = 'Opciones'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 664
+      FloatTop = 8
+      FloatClientWidth = 153
+      FloatClientHeight = 307
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'btnAbrir'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonActualizar'
+        end>
+      NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
+      OneOnRow = True
+      Row = 0
+      ShowMark = False
+      UseOwnFont = False
+      UseRestSpace = True
+      Visible = True
+      WholeRow = False
+    end
+    object dxbrManager1Bar1: TdxBar
+      Caption = 'Custom 1'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 543
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxButtonNuevo'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBButtonEditar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBButtonBuscar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBButtonEliminar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonGuardar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonActualizar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonCancelar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonSalir'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = False
+      WholeRow = False
+    end
+    object dxButtonNuevo: TdxBarLargeButton
+      Caption = '&Nuevo'
+      Category = 0
+      Hint = 'Nuevo'
+      Visible = ivAlways
+      LargeImageIndex = 4
+      ShortCut = 16462
+    end
+    object dxBButtonEditar: TdxBarButton
+      Caption = '&Editar'
+      Category = 0
+      Hint = 'Editar'
+      Visible = ivAlways
+      ImageIndex = 3
+      LargeImageIndex = 3
+      ShortCut = 16453
+    end
+    object dxBButtonBuscar: TdxBarButton
+      Caption = '&Buscar'
+      Category = 0
+      Hint = 'Buscar'
+      Visible = ivAlways
+      ImageIndex = 10
+      ShortCut = 16450
+    end
+    object dxBButtonEliminar: TdxBarButton
+      Caption = 'Eli&minar'
+      Category = 0
+      Hint = 'Eliminar'
+      Visible = ivAlways
+      ImageIndex = 11
+      LargeImageIndex = 11
+      ShortCut = 46
+    end
+    object dxButtonGuardar: TdxBarLargeButton
+      Caption = '&Guardar'
+      Category = 0
+      Hint = 'Guardar'
+      Visible = ivAlways
+      LargeImageIndex = 9
+      ShortCut = 16455
+      SyncImageIndex = False
+      ImageIndex = 8
+    end
+    object dxButtonActualizar: TdxBarLargeButton
+      Caption = '&Actualizar'
+      Category = 0
+      Hint = 'Actualizar'
+      Visible = ivAlways
+      LargeImageIndex = 12
+      ShortCut = 116
+      AutoGrayScale = False
+    end
+    object dxButtonCancelar: TdxBarLargeButton
+      Caption = '&Cancelar'
+      Category = 0
+      Hint = 'Cancelar'
+      Visible = ivAlways
+      LargeImageIndex = 14
+      ShortCut = 115
+    end
+    object dxButtonSalir: TdxBarLargeButton
+      Caption = '&Salir'
+      Category = 0
+      Hint = 'Salir'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      ShortCut = 16499
+    end
+    object dxButton2: TdxBarLargeButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxButtonExportar: TdxBarLargeButton
+      Caption = '&Exportar a Excel'
+      Category = 0
+      Hint = 'Exportar a Excel'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      ShortCut = 16464
+    end
+    object dxButtonOpcional: TdxBarLargeButton
+      Caption = 'Opcional'
+      Category = 0
+      Hint = 'Opcional'
+      Visible = ivNever
+    end
+    object dxButtonDetalle: TdxBarLargeButton
+      Caption = '&Ver Informaci'#243'n Adicional'
+      Category = 0
+      Hint = 'Ver Informaci'#243'n Adicional'
+      Visible = ivAlways
+      LargeImageIndex = 13
+    end
+    object btnAbrir: TdxBarLargeButton
+      Caption = '&Abrir'
+      Category = 0
+      Hint = 'Abrir'
+      Visible = ivAlways
+      LargeImageIndex = 1
+      AutoGrayScale = False
+    end
+  end
+end

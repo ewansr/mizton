@@ -26,7 +26,8 @@ uses
   dxSkinChooserGallery, cxPC, dxSkinscxPCPainter, dxBarBuiltInMenu, dxTabbedMDI,
   dxAlertWindow, dxScreenTip, dxCustomHint, cxHint, dxGDIPlusClasses, cxImage,
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
-  dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns;
+  dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
+  dxNavBarGroupItems, ActnList, cxSplitter;
 
 type
   THackForm = class(TForm);
@@ -80,6 +81,16 @@ type
     LinkCargos: TdxNavBarItem;
     LinkSalarios: TdxNavBarItem;
     LinkFolios: TdxNavBarItem;
+    LinkCiudad: TdxNavBarItem;
+    LinkPais: TdxNavBarItem;
+    LinkEstado: TdxNavBarItem;
+    LinkUMedida: TdxNavBarItem;
+    sepConfig: TdxNavBarSeparator;
+    acListMenu: TActionList;
+    actPersonal: TAction;
+    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
+    dxPopup1: TdxBarPopupMenu;
+    cxspltrMenu: TcxSplitter;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -111,6 +122,7 @@ type
     procedure btnConfigCorreoClick(Sender: TObject);
     procedure btnEnviarCorreoClick(Sender: TObject);
     procedure dxButtonCuentasBancariasClick(Sender: TObject);
+    procedure actPersonalExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -130,11 +142,17 @@ Uses
   ULogin, UConsultasSQL, UConfigMYSQL, UFrmusuarios,
   UfrmCiudad, UFrmEstado, UFrmMonedas,
   UFrmPais, UfrmEmpresas,
-   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
-    UFrmUsuario, UFrmAEmpresas,
+  UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
+  UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo;
 
 { TForm1 }
+
+procedure TFrmInicio.actPersonalExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFrmPersonal, FrmPersonal);
+  FrmPersonal.Show;
+end;
 
 procedure TFrmInicio.ArrancarSistema;
 var

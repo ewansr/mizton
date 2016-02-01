@@ -1,7 +1,7 @@
 object FrmInicio: TFrmInicio
   Left = 0
   Top = 0
-  Caption = 'Noil Inicio'
+  Caption = 'Mizton Construcciones S.A. de C.V.'
   ClientHeight = 630
   ClientWidth = 1246
   Color = clBtnFace
@@ -610,7 +610,7 @@ object FrmInicio: TFrmInicio
     SpeedButtonOptions.CanBeFocused = False
     SpeedButtonOptions.Flat = True
     SpeedButtonOptions.Transparent = True
-    TabOrder = 5
+    TabOrder = 3
     Visible = False
     DragMode = dmAutomatic
   end
@@ -620,12 +620,14 @@ object FrmInicio: TFrmInicio
     Width = 281
     Height = 607
     Align = alLeft
+    PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 6
-    ViewReal = 15
+    TabOrder = 5
+    View = 15
+    ViewStyle.SkinName = 'VS2010'
+    ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
-    ExplicitTop = 8
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0
@@ -2263,6 +2265,12 @@ object FrmInicio: TFrmInicio
     Height = 100
     Width = 140
   end
+  object cxspltrMenu: TcxSplitter
+    Left = 281
+    Top = 0
+    Width = 5
+    Height = 607
+  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -2819,7 +2827,7 @@ object FrmInicio: TFrmInicio
   object dxSkinController1: TdxSkinController
     Kind = lfOffice11
     NativeStyle = False
-    SkinName = 'VS2010'
+    SkinName = 'DevExpressStyle'
     UseImageSet = imsOriginal
     Left = 576
     Top = 224
@@ -2827,7 +2835,7 @@ object FrmInicio: TFrmInicio
   object cxlkndflcntrlr1: TcxLookAndFeelController
     Kind = lfOffice11
     NativeStyle = False
-    SkinName = 'VS2010'
+    SkinName = 'DevExpressStyle'
     Left = 664
     Top = 136
   end
@@ -2889,7 +2897,11 @@ object FrmInicio: TFrmInicio
     Top = 184
   end
   object dxRadial1: TdxRibbonRadialMenu
-    ItemLinks = <>
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxSkingallery1'
+      end>
     UseOwnFont = False
     Left = 664
     Top = 232
@@ -2913,5 +2925,27 @@ object FrmInicio: TFrmInicio
       ImageIndex = 0
       OnExecute = actPersonalExecute
     end
+  end
+  object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
+    BarManager = dxBarManager1
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxSkingallery1'
+      end>
+    UseOwnFont = False
+    Left = 408
+    Top = 240
+  end
+  object dxPopup1: TdxBarPopupMenu
+    BarManager = dxBarManager1
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxSkingallery1'
+      end>
+    UseOwnFont = False
+    Left = 336
+    Top = 296
   end
 end

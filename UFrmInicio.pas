@@ -91,6 +91,7 @@ type
     dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
     dxPopup1: TdxBarPopupMenu;
     cxspltrMenu: TcxSplitter;
+    actFolios: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -123,6 +124,7 @@ type
     procedure btnEnviarCorreoClick(Sender: TObject);
     procedure dxButtonCuentasBancariasClick(Sender: TObject);
     procedure actPersonalExecute(Sender: TObject);
+    procedure actFoliosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -144,9 +146,15 @@ Uses
   UFrmPais, UfrmEmpresas,
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
-  UFrmConfigCorreo, uFrmEnviarCorreo;
+  UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente;
 
 { TForm1 }
+
+procedure TFrmInicio.actFoliosExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFrmSelExpediente, FrmSelExpediente);
+  FrmSelExpediente.ShowModal;
+end;
 
 procedure TFrmInicio.actPersonalExecute(Sender: TObject);
 begin

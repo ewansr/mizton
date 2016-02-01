@@ -1,48 +1,45 @@
-object FrmCatalogo: TFrmCatalogo
+object FrmMaterialesxFolios: TFrmMaterialesxFolios
   Left = 0
   Top = 0
-  Caption = 'FrmCatalogo'
-  ClientHeight = 472
-  ClientWidth = 913
+  Caption = 'FrmMaterialesxFolios'
+  ClientHeight = 624
+  ClientWidth = 1122
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  FormStyle = fsMDIChild
   OldCreateOrder = False
-  Visible = True
-  OnClose = FormClose
-  OnCloseQuery = FormCloseQuery
-  OnShow = FormShow
-  DesignSize = (
-    913
-    472)
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
     Left = 0
-    Top = 97
-    Width = 913
-    Height = 375
+    Top = 127
+    Width = 1122
+    Height = 497
     Align = alClient
+    ExplicitLeft = -292
+    ExplicitWidth = 1133
+    ExplicitHeight = 430
     DockingType = 5
-    OriginalWidth = 913
-    OriginalHeight = 375
-    object dxlytdckst2: TdxLayoutDockSite
+    OriginalWidth = 1122
+    OriginalHeight = 497
+    object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 885
-      Height = 375
+      Width = 732
+      Height = 497
+      ExplicitWidth = 743
+      ExplicitHeight = 430
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 885
-        Height = 375
+        Width = 732
+        Height = 497
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -50,8 +47,8 @@ object FrmCatalogo: TFrmCatalogo
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 885
-        Height = 375
+        Width = 732
+        Height = 497
         AllowFloating = False
         AutoHide = False
         Caption = 'Tabla de registros'
@@ -65,10 +62,12 @@ object FrmCatalogo: TFrmCatalogo
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 873
-          Height = 336
+          Width = 718
+          Height = 461
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 729
+          ExplicitHeight = 394
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -94,44 +93,49 @@ object FrmCatalogo: TFrmCatalogo
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = -281
+      Left = 732
       Top = 0
-      Width = 281
-      Height = 0
-      Visible = False
+      Width = 390
+      Height = 497
       AllowFloating = True
-      AutoHide = True
+      AutoHide = False
       Caption = 'Insertar / Editar Registros'
-      CaptionButtons = [cbMaximize, cbHide]
+      CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      AutoHidePosition = 0
-      DockingType = 1
-      OriginalWidth = 281
+      ExplicitLeft = 743
+      ExplicitHeight = 430
+      DockingType = 3
+      OriginalWidth = 390
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
         Top = 0
-        Width = 275
-        Height = 0
+        Width = 382
+        Height = 467
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ClientRectRight = 0
-        ClientRectTop = 0
+        ExplicitHeight = 400
+        ClientRectBottom = 461
+        ClientRectLeft = 2
+        ClientRectRight = 376
+        ClientRectTop = 27
         object cxTsDatos: TcxTabSheet
           Caption = 'Datos'
           ImageIndex = 0
+          ExplicitHeight = 367
           object dxLYCDatos: TdxLayoutControl
             Left = 0
             Top = 0
-            Width = 0
-            Height = 0
+            Width = 374
+            Height = 434
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = UDMConection.dxStyleForms
+            ExplicitHeight = 367
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -146,20 +150,23 @@ object FrmCatalogo: TFrmCatalogo
     end
   end
   object dxRibbon1: TdxRibbon
-    Left = 0
-    Top = 0
-    Width = 913
-    Height = 97
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 1116
+    Height = 121
     BarManager = dxBarManager1
-    ColorSchemeName = 'Office2013White'
-    ShowTabHeaders = False
+    Style = rs2013
+    ColorSchemeName = 'VS2010'
     SupportNonClientDrawing = True
     Contexts = <>
-    TabOrder = 0
+    TabOrder = 1
     TabStop = False
+    ExplicitLeft = -286
+    ExplicitWidth = 1127
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
-      Caption = 'Nombre Cat'#225'logo'
+      Caption = 'Inicio'
       Groups = <
         item
         end
@@ -221,6 +228,10 @@ object FrmCatalogo: TFrmCatalogo
           ItemName = 'dxBButtonEliminar'
         end
         item
+          Visible = True
+          ItemName = 'dxButtonDetalle'
+        end
+        item
           BeginGroup = True
           Visible = True
           ItemName = 'dxButtonGuardar'
@@ -230,22 +241,13 @@ object FrmCatalogo: TFrmCatalogo
           ItemName = 'dxButtonCancelar'
         end
         item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxButtonDetalle'
-        end
-        item
           Visible = True
           ItemName = 'dxButtonActualizar'
         end
         item
-          Visible = True
-          ItemName = 'dxButtonExportar'
-        end
-        item
           BeginGroup = True
           Visible = True
-          ItemName = 'dxButtonSalir'
+          ItemName = 'dxButtonExportar'
         end>
       OneOnRow = True
       Row = 0
@@ -310,7 +312,6 @@ object FrmCatalogo: TFrmCatalogo
       Visible = ivAlways
       LargeImageIndex = 4
       ShortCut = 16462
-      OnClick = dxButtonNuevoClick
     end
     object dxBButtonEditar: TdxBarButton
       Caption = '&Editar'
@@ -320,7 +321,6 @@ object FrmCatalogo: TFrmCatalogo
       ImageIndex = 3
       LargeImageIndex = 3
       ShortCut = 16453
-      OnClick = dxBButtonEditarClick
     end
     object dxBButtonBuscar: TdxBarButton
       Caption = '&Buscar'
@@ -329,7 +329,6 @@ object FrmCatalogo: TFrmCatalogo
       Visible = ivAlways
       ImageIndex = 10
       ShortCut = 16450
-      OnClick = dxBButtonBuscarClick
     end
     object dxBButtonEliminar: TdxBarButton
       Caption = 'Eli&minar'
@@ -339,7 +338,6 @@ object FrmCatalogo: TFrmCatalogo
       ImageIndex = 11
       LargeImageIndex = 11
       ShortCut = 46
-      OnClick = dxBButtonEliminarClick
     end
     object dxButtonGuardar: TdxBarLargeButton
       Caption = '&Guardar'
@@ -348,7 +346,6 @@ object FrmCatalogo: TFrmCatalogo
       Visible = ivAlways
       LargeImageIndex = 9
       ShortCut = 16455
-      OnClick = dxButtonGuardarClick
       SyncImageIndex = False
       ImageIndex = 8
     end
@@ -357,18 +354,16 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 7
+      LargeImageIndex = 12
       ShortCut = 116
-      OnClick = dxButtonActualizarClick
     end
     object dxButtonCancelar: TdxBarLargeButton
       Caption = '&Cancelar'
       Category = 0
       Hint = 'Cancelar'
       Visible = ivAlways
-      LargeImageIndex = 2
+      LargeImageIndex = 14
       ShortCut = 115
-      OnClick = dxButtonCancelarClick
     end
     object dxButtonSalir: TdxBarLargeButton
       Caption = '&Salir'
@@ -377,7 +372,6 @@ object FrmCatalogo: TFrmCatalogo
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16499
-      OnClick = dxButtonSalirClick
     end
     object dxButton2: TdxBarLargeButton
       Caption = 'New Button'
@@ -390,9 +384,8 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Exportar a Excel'
       Visible = ivAlways
-      LargeImageIndex = 12
+      LargeImageIndex = 15
       ShortCut = 16464
-      OnClick = dxButtonExportarClick
     end
     object dxButtonOpcional: TdxBarLargeButton
       Caption = 'Opcional'
@@ -405,8 +398,7 @@ object FrmCatalogo: TFrmCatalogo
       Category = 0
       Hint = 'Ver Informaci'#243'n Adicional'
       Visible = ivAlways
-      LargeImageIndex = 11
-      OnClick = dxButtonDetalleClick
+      LargeImageIndex = 13
     end
   end
   object dsDatos: TDataSource
@@ -472,8 +464,8 @@ object FrmCatalogo: TFrmCatalogo
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Left = 360
-    Top = 384
+    Left = 344
+    Top = 232
     PixelsPerInch = 96
   end
   object cxHintStyleController: TcxHintStyleController

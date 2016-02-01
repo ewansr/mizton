@@ -41,7 +41,8 @@ uses
   QuricolAPI in 'PFE\GeneradorCBB\QuricolAPI.pas',
   QuricolCode in 'PFE\GeneradorCBB\QuricolCode.pas',
   PAddenda_PEP in 'PFE\Addendas\PAddenda_PEP.pas',
-  UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmCatalogo1};
+  UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmPersonal},
+  USelExpediente in 'USelExpediente.pas' {FrmSelExpediente};
 
 {$R *.res}
 
@@ -53,6 +54,5 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
-  Application.CreateForm(TFrmCatalogo1, FrmCatalogo1);
   Application.Run;
 end.
