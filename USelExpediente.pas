@@ -62,7 +62,7 @@ uses
 procedure TFrmSelExpediente.btnAbrirClick(Sender: TObject);
 begin
   Application.CreateForm(TFrmMaterialesxFolios, FrmMaterialesxFolios);
-  FrmMaterialesxFolios.ShowModal;
+  FrmMaterialesxFolios.Show;
 end;
 
 procedure TFrmSelExpediente.CrearExpedientes;

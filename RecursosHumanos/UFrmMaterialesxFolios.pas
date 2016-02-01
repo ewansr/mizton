@@ -100,6 +100,7 @@ type
     btnDelete: TdxBarLargeButton;
     btnEdit: TdxBarLargeButton;
     btnRefresh: TdxBarLargeButton;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -112,5 +113,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  action := Cafree;
+end;
 
 end.

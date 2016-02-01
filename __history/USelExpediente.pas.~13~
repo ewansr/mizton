@@ -19,7 +19,7 @@ uses
   dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
   dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue,
   cxContainer, cxEdit, cxListView, dxSkinsdxBarPainter, dxBar, cxClasses, DB,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, umsgbox, UConection;
 
 type
   TFrmSelExpediente = class(TForm)
@@ -41,8 +41,11 @@ type
     dxButtonOpcional: TdxBarLargeButton;
     dxButtonDetalle: TdxBarLargeButton;
     btnAbrir: TdxBarLargeButton;
+    procedure FormShow(Sender: TObject);
+    procedure btnAbrirClick(Sender: TObject);
   private
     { Private declarations }
+    procedure CrearExpedientes;
   public
     { Public declarations }
   end;
@@ -52,6 +55,74 @@ var
 
 implementation
 
+uses
+  UfrmMaterialesxFolios;
 {$R *.dfm}
+
+procedure TFrmSelExpediente.btnAbrirClick(Sender: TObject);
+begin
+  Application.CreateForm(TFrmMaterialesxFolios, FrmMaterialesxFolios);
+  FrmMaterialesxFolios.ShowModal;
+end;
+
+procedure TFrmSelExpediente.CrearExpedientes;
+var
+  nombreCOmpleto: String;
+begin
+  try
+    if zPersonal.Active then
+    begin
+      lstExpedientes.Clear;
+      zPersonal.First;
+      while not zPersonal.Eof do
+      begin
+        nombreCOmpleto := '[' +zPersonal.FieldByName('CodigoPersonal').AsString + '] ' + zPersonal.FieldByName('Nombre').AsString  + ' ' + zPersonal.FieldByName('Apaterno').AsString  + ' ' + zPersonal.FieldByName('AMaterno').AsString  ;
+        with lstExpedientes.Items.Add do
+        begin
+          Caption := NombreCOmpleto;
+          ImageIndex := 16;
+          Data := Pointer(zPersonal.FieldByName('IdPersonal').AsInteger);
+        end;
+
+        zPersonal.Next;
+      end;
+    end;
+  Except
+    raise;
+  end;
+end;
+
+procedure TFrmSelExpediente.FormShow(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      if Not AsignarSQL(zPersonal, 'master_personal', pReadOnly) then
+        raise Exception.Create(pErrorConsulta + '[master_personal]');
+
+      if not FiltrarDataset(zPersonal, 'IdPersonal', ['-1']) then
+        raise Exception.Create(pErrorFiltrar + '[master_personal]');
+
+      if zPersonal.Active then
+        zPersonal.Refresh
+      else
+        zPersonal.Open;
+
+      CrearExpedientes;
+    finally
+      AutoFocus(TForm(self));
+      Screen.Cursor := Cursor;
+      AplicarTema(TForm(Self));
+    end;
+  except
+    on e: exception do
+    begin
+      MsgBox.ShowModal('Error.',pMensajeError + e.Message, cmtError, [cmbOK]);
+      PostMessage(Self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
 
 end.

@@ -1,7 +1,7 @@
 object FrmMaterialesxFolios: TFrmMaterialesxFolios
   Left = 0
   Top = 0
-  Caption = 'FrmMaterialesxFolios'
+  Caption = 'Materiales usados en actividades'
   ClientHeight = 624
   ClientWidth = 1122
   Color = clBtnFace
@@ -10,7 +10,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Visible = True
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
