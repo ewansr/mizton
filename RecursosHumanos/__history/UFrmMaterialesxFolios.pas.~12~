@@ -45,6 +45,7 @@ type
     dxLyDatos: TdxLayoutGroup;
     dxBarManager1: TdxBarManager;
     dxbrManager1Bar: TdxBar;
+    dxbrManager1Bar1: TdxBar;
     dxButtonNuevo: TdxBarLargeButton;
     dxBButtonEditar: TdxBarButton;
     dxBButtonBuscar: TdxBarButton;
@@ -94,12 +95,6 @@ type
     cxColCantidad: TcxGridDBColumn;
     dxRibbon1: TdxRibbon;
     dxRibbon1Tab1: TdxRibbonTab;
-    dxDockBar1: TdxBarDockControl;
-    dxbrManager1Bar1: TdxBar;
-    btnadd: TdxBarLargeButton;
-    btnDelete: TdxBarLargeButton;
-    btnEdit: TdxBarLargeButton;
-    btnRefresh: TdxBarLargeButton;
   private
     { Private declarations }
   public

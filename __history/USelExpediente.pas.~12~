@@ -42,7 +42,6 @@ type
     dxButtonDetalle: TdxBarLargeButton;
     btnAbrir: TdxBarLargeButton;
     procedure FormShow(Sender: TObject);
-    procedure btnAbrirClick(Sender: TObject);
   private
     { Private declarations }
     procedure CrearExpedientes;
@@ -55,15 +54,7 @@ var
 
 implementation
 
-uses
-  UfrmMaterialesxFolios;
 {$R *.dfm}
-
-procedure TFrmSelExpediente.btnAbrirClick(Sender: TObject);
-begin
-  Application.CreateForm(TFrmMaterialesxFolios, FrmMaterialesxFolios);
-  FrmMaterialesxFolios.ShowModal;
-end;
 
 procedure TFrmSelExpediente.CrearExpedientes;
 var

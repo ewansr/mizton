@@ -145,17 +145,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
-        Top = 58
+        Top = 0
         Width = 382
-        Height = 256
+        Height = 314
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitTop = 0
         ExplicitHeight = 467
-        ClientRectBottom = 250
+        ClientRectBottom = 308
         ClientRectLeft = 2
         ClientRectRight = 376
         ClientRectTop = 27
@@ -165,7 +164,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           ExplicitHeight = 434
           object dxLYCDatos: TdxLayoutControl
             Left = 0
-            Top = 207
+            Top = 265
             Width = 374
             Height = 16
             Align = alBottom
@@ -187,7 +186,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Left = 3
             Top = 3
             Width = 368
-            Height = 201
+            Height = 259
             Align = alClient
             TabOrder = 1
             ExplicitLeft = -372
@@ -229,14 +228,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             end
           end
         end
-      end
-      object dxDockBar1: TdxBarDockControl
-        Left = 0
-        Top = 0
-        Width = 382
-        Height = 58
-        Align = dalTop
-        BarManager = dxBarManager1
       end
     end
   end
@@ -384,6 +375,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         end
         item
           ToolbarName = 'dxbrManager1Bar'
+        end
+        item
+          ToolbarName = 'dxbrManager1Bar1'
         end>
       Index = 0
     end
@@ -468,41 +462,52 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       WholeRow = False
     end
     object dxbrManager1Bar1: TdxBar
-      Caption = 'Materiales'
+      Caption = 'Custom 1'
       CaptionButtons = <>
-      DockControl = dxDockBar1
-      DockedDockControl = dxDockBar1
+      DockedDockingStyle = dsTop
       DockedLeft = 0
       DockedTop = 0
-      FloatLeft = 1156
+      FloatLeft = 543
       FloatTop = 8
       FloatClientWidth = 0
       FloatClientHeight = 0
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'btnadd'
+          ItemName = 'dxButtonNuevo'
         end
         item
           Visible = True
-          ItemName = 'btnDelete'
+          ItemName = 'dxBButtonEditar'
         end
         item
           Visible = True
-          ItemName = 'btnEdit'
+          ItemName = 'dxBButtonBuscar'
         end
         item
           Visible = True
-          ItemName = 'btnRefresh'
+          ItemName = 'dxBButtonEliminar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonGuardar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonActualizar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonCancelar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonSalir'
         end>
-      NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
       OneOnRow = True
       Row = 0
-      ShowMark = False
-      SizeGrip = False
       UseOwnFont = False
-      UseRestSpace = True
-      Visible = True
+      Visible = False
       WholeRow = False
     end
     object dxButtonNuevo: TdxBarLargeButton
@@ -599,38 +604,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Ver Informaci'#243'n Adicional'
       Visible = ivAlways
       LargeImageIndex = 13
-    end
-    object btnadd: TdxBarLargeButton
-      Caption = 'A'#241'adir'
-      Category = 0
-      Hint = 'A'#241'adir'
-      Visible = ivAlways
-      LargeImageIndex = 4
-      AutoGrayScale = False
-    end
-    object btnDelete: TdxBarLargeButton
-      Caption = 'Quitar'
-      Category = 0
-      Hint = 'Quitar'
-      Visible = ivAlways
-      LargeImageIndex = 11
-      AutoGrayScale = False
-    end
-    object btnEdit: TdxBarLargeButton
-      Caption = 'Editar'
-      Category = 0
-      Hint = 'Editar'
-      Visible = ivAlways
-      LargeImageIndex = 3
-      AutoGrayScale = False
-    end
-    object btnRefresh: TdxBarLargeButton
-      Caption = 'Actualizar'
-      Category = 0
-      Hint = 'Actualizar'
-      Visible = ivAlways
-      LargeImageIndex = 12
-      AutoGrayScale = False
     end
   end
   object dsDatos: TDataSource

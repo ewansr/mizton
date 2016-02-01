@@ -27,7 +27,7 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
   UConection, umsgbox, ExtCtrls, cxContainer, ComCtrls, dxCore, cxDateUtils,
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons;
+  cxGroupBox;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -45,6 +45,7 @@ type
     dxLyDatos: TdxLayoutGroup;
     dxBarManager1: TdxBarManager;
     dxbrManager1Bar: TdxBar;
+    dxbrManager1Bar1: TdxBar;
     dxButtonNuevo: TdxBarLargeButton;
     dxBButtonEditar: TdxBarButton;
     dxBButtonBuscar: TdxBarButton;
@@ -73,33 +74,6 @@ type
     lyLayControl1Item1: TdxLayoutItem;
     cxDateEdit2: TcxDateEdit;
     lyHasta: TdxLayoutItem;
-    btnAplicar: TcxButton;
-    lyAplicar: TdxLayoutItem;
-    cxGroupBox1: TcxGroupBox;
-    dxLayoutControl1: TdxLayoutControl;
-    dxLayoutGroup1: TdxLayoutGroup;
-    cxColFolioPrincipal: TcxGridDBColumn;
-    cxColFolio: TcxGridDBColumn;
-    cxColTelefono: TcxGridDBColumn;
-    cxColPrincipal: TcxGridDBColumn;
-    cxColSecundario: TcxGridDBColumn;
-    cxColArea: TcxGridDBColumn;
-    cxColContratista: TcxGridDBColumn;
-    cxColNoVale: TcxGridDBColumn;
-    cxGrid1: TcxGrid;
-    cxGridDBTableView1: TcxGridDBTableView;
-    cxGridLevel1: TcxGridLevel;
-    cxColmaterial: TcxGridDBColumn;
-    cxColUMedida: TcxGridDBColumn;
-    cxColCantidad: TcxGridDBColumn;
-    dxRibbon1: TdxRibbon;
-    dxRibbon1Tab1: TdxRibbonTab;
-    dxDockBar1: TdxBarDockControl;
-    dxbrManager1Bar1: TdxBar;
-    btnadd: TdxBarLargeButton;
-    btnDelete: TdxBarLargeButton;
-    btnEdit: TdxBarLargeButton;
-    btnRefresh: TdxBarLargeButton;
   private
     { Private declarations }
   public

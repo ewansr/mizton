@@ -145,9 +145,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
-        Top = 58
+        Top = 46
         Width = 382
-        Height = 256
+        Height = 268
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
@@ -155,7 +155,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Properties.NavigatorPosition = npRightBottom
         ExplicitTop = 0
         ExplicitHeight = 467
-        ClientRectBottom = 250
+        ClientRectBottom = 262
         ClientRectLeft = 2
         ClientRectRight = 376
         ClientRectTop = 27
@@ -165,7 +165,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           ExplicitHeight = 434
           object dxLYCDatos: TdxLayoutControl
             Left = 0
-            Top = 207
+            Top = 219
             Width = 374
             Height = 16
             Align = alBottom
@@ -187,7 +187,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Left = 3
             Top = 3
             Width = 368
-            Height = 201
+            Height = 213
             Align = alClient
             TabOrder = 1
             ExplicitLeft = -372
@@ -234,7 +234,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 0
         Top = 0
         Width = 382
-        Height = 58
+        Height = 46
         Align = dalTop
         BarManager = dxBarManager1
       end
@@ -605,32 +605,24 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'A'#241'adir'
       Visible = ivAlways
-      LargeImageIndex = 4
-      AutoGrayScale = False
     end
     object btnDelete: TdxBarLargeButton
       Caption = 'Quitar'
       Category = 0
       Hint = 'Quitar'
       Visible = ivAlways
-      LargeImageIndex = 11
-      AutoGrayScale = False
     end
     object btnEdit: TdxBarLargeButton
       Caption = 'Editar'
       Category = 0
       Hint = 'Editar'
       Visible = ivAlways
-      LargeImageIndex = 3
-      AutoGrayScale = False
     end
     object btnRefresh: TdxBarLargeButton
       Caption = 'Actualizar'
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 12
-      AutoGrayScale = False
     end
   end
   object dsDatos: TDataSource

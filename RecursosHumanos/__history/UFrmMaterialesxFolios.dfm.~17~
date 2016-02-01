@@ -15,20 +15,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   TextHeight = 13
   object dxDockSite1: TdxDockSite
     Left = 0
-    Top = 280
+    Top = 153
     Width = 1122
-    Height = 344
+    Height = 471
     Align = alClient
     ExplicitTop = 127
     ExplicitHeight = 497
     DockingType = 5
     OriginalWidth = 1122
-    OriginalHeight = 344
+    OriginalHeight = 471
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
       Width = 732
-      Height = 344
+      Height = 471
       ExplicitHeight = 497
       DockingType = 0
       OriginalWidth = 300
@@ -37,7 +37,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 0
         Top = 0
         Width = 732
-        Height = 344
+        Height = 471
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -46,10 +46,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 0
         Top = 0
         Width = 732
-        Height = 344
+        Height = 471
         AllowFloating = False
         AutoHide = False
-        Caption = 'Listado de Folios'
+        Caption = 'Tabla de registros'
         CaptionButtons = []
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
@@ -61,12 +61,11 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Left = 3
           Top = 3
           Width = 718
-          Height = 308
+          Height = 435
           Align = alClient
           TabOrder = 0
           ExplicitLeft = 67
           ExplicitTop = 107
-          ExplicitHeight = 435
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -108,17 +107,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               Width = 87
             end
             object cxColArea: TcxGridDBColumn
-              Caption = #193'rea'
-              DataBinding.FieldName = 'Area'
               Width = 85
             end
             object cxColContratista: TcxGridDBColumn
-              DataBinding.FieldName = 'Contratista'
               Width = 86
             end
             object cxColNoVale: TcxGridDBColumn
-              Caption = 'No. Vale'
-              DataBinding.FieldName = 'NoVale'
               Width = 85
             end
           end
@@ -132,7 +126,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Left = 732
       Top = 0
       Width = 390
-      Height = 344
+      Height = 471
       AllowFloating = True
       AutoHide = False
       Caption = 'Insertar / Editar Registros'
@@ -145,34 +139,32 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
-        Top = 58
+        Top = 0
         Width = 382
-        Height = 256
+        Height = 441
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitTop = 0
         ExplicitHeight = 467
-        ClientRectBottom = 250
+        ClientRectBottom = 435
         ClientRectLeft = 2
         ClientRectRight = 376
         ClientRectTop = 27
         object cxTsDatos: TcxTabSheet
-          Caption = 'Materiales por Folio'
+          Caption = 'Datos'
           ImageIndex = 0
           ExplicitHeight = 434
           object dxLYCDatos: TdxLayoutControl
             Left = 0
-            Top = 207
+            Top = 0
             Width = 374
-            Height = 16
-            Align = alBottom
+            Height = 408
+            Align = alClient
             TabOrder = 0
-            Visible = False
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitTop = 392
+            ExplicitHeight = 434
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -182,72 +174,17 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               Index = -1
             end
           end
-          object cxGrid1: TcxGrid
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 368
-            Height = 201
-            Align = alClient
-            TabOrder = 1
-            ExplicitLeft = -372
-            ExplicitTop = 11
-            ExplicitWidth = 718
-            ExplicitHeight = 435
-            object cxGridDBTableView1: TcxGridDBTableView
-              Navigator.Buttons.CustomButtons = <>
-              DataController.Summary.DefaultGroupSummaryItems = <>
-              DataController.Summary.FooterSummaryItems = <>
-              DataController.Summary.SummaryGroups = <>
-              FilterRow.InfoText = '< Clic aqu'#237' para definir un filtro >'
-              OptionsData.CancelOnExit = False
-              OptionsData.Deleting = False
-              OptionsData.DeletingConfirmation = False
-              OptionsData.Editing = False
-              OptionsData.Inserting = False
-              OptionsView.NoDataToDisplayInfoText = '<No hay informaci'#243'n disponible>'
-              OptionsView.ColumnAutoWidth = True
-              OptionsView.GroupByBox = False
-              Styles.Content = UDMConection.cxstylContent
-              Styles.Header = UDMConection.cxstylHeader
-              object cxColCantidad: TcxGridDBColumn
-                DataBinding.FieldName = 'Cantidad'
-                Width = 65
-              end
-              object cxColmaterial: TcxGridDBColumn
-                DataBinding.FieldName = 'Material'
-                Width = 221
-              end
-              object cxColUMedida: TcxGridDBColumn
-                Caption = 'U. Medida'
-                DataBinding.FieldName = 'UnidadMedida'
-                Width = 80
-              end
-            end
-            object cxGridLevel1: TcxGridLevel
-              GridView = cxGridDBTableView1
-            end
-          end
         end
-      end
-      object dxDockBar1: TdxBarDockControl
-        Left = 0
-        Top = 0
-        Width = 382
-        Height = 58
-        Align = dalTop
-        BarManager = dxBarManager1
       end
     end
   end
   object pnlFiltro: TPanel
     Left = 0
-    Top = 127
+    Top = 0
     Width = 1122
     Height = 153
     Align = alTop
     TabOrder = 5
-    ExplicitTop = 0
     object cxGboxFiltro: TcxGroupBox
       AlignWithMargins = True
       Left = 11
@@ -361,33 +298,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end
     end
   end
-  object dxRibbon1: TdxRibbon
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 1116
-    Height = 121
-    BarManager = dxBarManager1
-    Style = rs2013
-    ColorSchemeName = 'VS2010'
-    SupportNonClientDrawing = True
-    Contexts = <>
-    TabOrder = 6
-    TabStop = False
-    ExplicitLeft = -2
-    ExplicitTop = 0
-    object dxRibbon1Tab1: TdxRibbonTab
-      Active = True
-      Caption = 'Inicio'
-      Groups = <
-        item
-        end
-        item
-          ToolbarName = 'dxbrManager1Bar'
-        end>
-      Index = 0
-    end
-  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -415,8 +325,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     object dxbrManager1Bar: TdxBar
       Caption = 'Opciones'
       CaptionButtons = <>
+      DockedDockingStyle = dsNone
       DockedLeft = 0
       DockedTop = 0
+      DockingStyle = dsNone
       FloatLeft = 664
       FloatTop = 8
       FloatClientWidth = 153
@@ -464,85 +376,97 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OneOnRow = True
       Row = 0
       UseOwnFont = False
-      Visible = True
+      Visible = False
       WholeRow = False
     end
     object dxbrManager1Bar1: TdxBar
-      Caption = 'Materiales'
+      Caption = 'Custom 1'
       CaptionButtons = <>
-      DockControl = dxDockBar1
-      DockedDockControl = dxDockBar1
+      DockedDockingStyle = dsTop
       DockedLeft = 0
       DockedTop = 0
-      FloatLeft = 1156
+      DockingStyle = dsTop
+      FloatLeft = 543
       FloatTop = 8
       FloatClientWidth = 0
       FloatClientHeight = 0
       ItemLinks = <
         item
           Visible = True
-          ItemName = 'btnadd'
+          ItemName = 'dxButtonNuevo'
         end
         item
           Visible = True
-          ItemName = 'btnDelete'
+          ItemName = 'dxBButtonEditar'
         end
         item
           Visible = True
-          ItemName = 'btnEdit'
+          ItemName = 'dxBButtonBuscar'
         end
         item
           Visible = True
-          ItemName = 'btnRefresh'
+          ItemName = 'dxBButtonEliminar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonGuardar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonActualizar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonCancelar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonSalir'
         end>
-      NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
       OneOnRow = True
       Row = 0
-      ShowMark = False
-      SizeGrip = False
       UseOwnFont = False
-      UseRestSpace = True
-      Visible = True
+      Visible = False
       WholeRow = False
     end
     object dxButtonNuevo: TdxBarLargeButton
-      Caption = '&Nuevo'#13#10'Folio'
+      Caption = '&Nuevo'
       Category = 0
-      Hint = 'Nuevo'#13#10'Folio'
+      Hint = 'Nuevo'
       Visible = ivAlways
       LargeImageIndex = 4
       ShortCut = 16462
     end
     object dxBButtonEditar: TdxBarButton
-      Caption = '&Editar Folio'
+      Caption = '&Editar'
       Category = 0
-      Hint = 'Editar Folio'
+      Hint = 'Editar'
       Visible = ivAlways
       ImageIndex = 3
       LargeImageIndex = 3
       ShortCut = 16453
     end
     object dxBButtonBuscar: TdxBarButton
-      Caption = '&Buscar Folio'
+      Caption = '&Buscar'
       Category = 0
-      Hint = 'Buscar Folio'
+      Hint = 'Buscar'
       Visible = ivAlways
       ImageIndex = 10
       ShortCut = 16450
     end
     object dxBButtonEliminar: TdxBarButton
-      Caption = 'Eli&minar Folio'
+      Caption = 'Eli&minar'
       Category = 0
-      Hint = 'Eliminar Folio'
+      Hint = 'Eliminar'
       Visible = ivAlways
       ImageIndex = 11
       LargeImageIndex = 11
       ShortCut = 46
     end
     object dxButtonGuardar: TdxBarLargeButton
-      Caption = '&Guardar Folio'
+      Caption = '&Guardar'
       Category = 0
-      Hint = 'Guardar Folio'
+      Hint = 'Guardar'
       Visible = ivAlways
       LargeImageIndex = 9
       ShortCut = 16455
@@ -599,38 +523,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Ver Informaci'#243'n Adicional'
       Visible = ivAlways
       LargeImageIndex = 13
-    end
-    object btnadd: TdxBarLargeButton
-      Caption = 'A'#241'adir'
-      Category = 0
-      Hint = 'A'#241'adir'
-      Visible = ivAlways
-      LargeImageIndex = 4
-      AutoGrayScale = False
-    end
-    object btnDelete: TdxBarLargeButton
-      Caption = 'Quitar'
-      Category = 0
-      Hint = 'Quitar'
-      Visible = ivAlways
-      LargeImageIndex = 11
-      AutoGrayScale = False
-    end
-    object btnEdit: TdxBarLargeButton
-      Caption = 'Editar'
-      Category = 0
-      Hint = 'Editar'
-      Visible = ivAlways
-      LargeImageIndex = 3
-      AutoGrayScale = False
-    end
-    object btnRefresh: TdxBarLargeButton
-      Caption = 'Actualizar'
-      Category = 0
-      Hint = 'Actualizar'
-      Visible = ivAlways
-      LargeImageIndex = 12
-      AutoGrayScale = False
     end
   end
   object dsDatos: TDataSource

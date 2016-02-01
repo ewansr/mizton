@@ -606,7 +606,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'A'#241'adir'
       Visible = ivAlways
       LargeImageIndex = 4
-      AutoGrayScale = False
     end
     object btnDelete: TdxBarLargeButton
       Caption = 'Quitar'
@@ -614,7 +613,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Quitar'
       Visible = ivAlways
       LargeImageIndex = 11
-      AutoGrayScale = False
     end
     object btnEdit: TdxBarLargeButton
       Caption = 'Editar'
@@ -622,7 +620,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Editar'
       Visible = ivAlways
       LargeImageIndex = 3
-      AutoGrayScale = False
     end
     object btnRefresh: TdxBarLargeButton
       Caption = 'Actualizar'
@@ -630,7 +627,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Actualizar'
       Visible = ivAlways
       LargeImageIndex = 12
-      AutoGrayScale = False
     end
   end
   object dsDatos: TDataSource
