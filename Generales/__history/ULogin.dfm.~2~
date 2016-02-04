@@ -5,7 +5,7 @@ object FrmLogin: TFrmLogin
   BorderStyle = bsDialog
   Caption = 'Iniciar Sesi'#243'n'
   ClientHeight = 393
-  ClientWidth = 450
+  ClientWidth = 438
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FrmLogin: TFrmLogin
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignSize = (
-    450
+    438
     393)
   PixelsPerInch = 96
   TextHeight = 13
@@ -955,9 +955,8 @@ object FrmLogin: TFrmLogin
     Properties.GraphicClassName = 'TdxSmartImage'
     TabOrder = 8
     Transparent = True
-    ExplicitWidth = 438
     Height = 393
-    Width = 450
+    Width = 438
   end
   object cxlbl1: TcxLabel
     Left = 72
@@ -1016,7 +1015,7 @@ object FrmLogin: TFrmLogin
   end
   object cxTextUsuario: TcxTextEdit
     Tag = -1
-    Left = 108
+    Left = 101
     Top = 205
     Anchors = [akTop]
     AutoSize = False
@@ -1029,13 +1028,12 @@ object FrmLogin: TFrmLogin
     StyleHot.LookAndFeel.SkinName = 'Whiteprint'
     TabOrder = 0
     OnKeyDown = FormKeyDown
-    ExplicitLeft = 101
     Height = 28
     Width = 274
   end
   object cxTextContrasena: TcxTextEdit
     Tag = -1
-    Left = 109
+    Left = 102
     Top = 258
     Anchors = [akTop]
     AutoSize = False
@@ -1049,7 +1047,6 @@ object FrmLogin: TFrmLogin
     StyleHot.LookAndFeel.SkinName = 'Whiteprint'
     TabOrder = 1
     OnKeyDown = FormKeyDown
-    ExplicitLeft = 102
     Height = 28
     Width = 274
   end
