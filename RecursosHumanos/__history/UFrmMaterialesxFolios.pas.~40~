@@ -119,14 +119,10 @@ type
     dsMaterial: TDataSource;
     cxLvlGrafico: TcxGridLevel;
     cxChartProductividad: TcxGridDBChartView;
-    cxSerieProductividad: TcxGridDBChartSeries;
-    cxDataEstatus: TcxGridDBChartDataGroup;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnAplicarClick(Sender: TObject);
-    procedure cxGridGralActiveTabChanged(Sender: TcxCustomGrid;
-      ALevel: TcxGridLevel);
   private
 
     { Private declarations }
@@ -176,30 +172,6 @@ begin
   if Not Modal then
   begin
     IdPersonal := Personal;
-  end;
-end;
-
-procedure TFrmMaterialesxFolios.cxGridGralActiveTabChanged(
-  Sender: TcxCustomGrid; ALevel: TcxGridLevel);
-begin
-  try
-    if cxGridGral.ActiveLevel = cxLvlGrafico then
-    begin
-      if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta,Grafica', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date), 'Si']) then
-        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
-    end
-    else
-    begin
-       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
-        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
-    end;
-
-    if zDatos.Active then
-      zDatos.Refresh
-    else
-      zDatos.Open;
-  Except
-    raise;
   end;
 end;
 

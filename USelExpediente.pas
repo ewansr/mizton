@@ -44,6 +44,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnAbrirClick(Sender: TObject);
   private
+    //fMat: TFrmMaterialesxFolios;
     { Private declarations }
     procedure CrearExpedientes;
   public
@@ -62,6 +63,10 @@ uses
 procedure TFrmSelExpediente.btnAbrirClick(Sender: TObject);
 begin
   Application.CreateForm(TFrmMaterialesxFolios, FrmMaterialesxFolios);
+  //FrmMaterialesxFolios := TFrmMaterialesxFolios.CreateByParam(Integer(lstExpedientes.Selected.Data));
+  FrmMaterialesxFolios.IdPersonal := Integer(lstExpedientes.Selected.Data);
+  FrmMaterialesxFolios.FormStyle := fsMDIChild;
+  FrmMaterialesxFolios.visible := True;
   FrmMaterialesxFolios.Show;
 end;
 

@@ -27,7 +27,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
   UConection, umsgbox, ExtCtrls, cxContainer, ComCtrls, dxCore, cxDateUtils,
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
-  cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons;
+  cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
+  cxImage, cxDBEdit, cxLabel, cxDBLabel;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -45,7 +46,6 @@ type
     dxLyDatos: TdxLayoutGroup;
     dxBarManager1: TdxBarManager;
     dxbrManager1Bar: TdxBar;
-    dxbrManager1Bar1: TdxBar;
     dxButtonNuevo: TdxBarLargeButton;
     dxBButtonEditar: TdxBarButton;
     dxBButtonBuscar: TdxBarButton;
@@ -70,9 +70,9 @@ type
     cxGboxFiltro: TcxGroupBox;
     dxLayControl1: TdxLayoutControl;
     dxLayControl1Group_Root: TdxLayoutGroup;
-    cxDateEdit1: TcxDateEdit;
+    cxDateDesde: TcxDateEdit;
     lyLayControl1Item1: TdxLayoutItem;
-    cxDateEdit2: TcxDateEdit;
+    cxDateHasta: TcxDateEdit;
     lyHasta: TdxLayoutItem;
     btnAplicar: TcxButton;
     lyAplicar: TdxLayoutItem;
@@ -87,9 +87,46 @@ type
     cxColArea: TcxGridDBColumn;
     cxColContratista: TcxGridDBColumn;
     cxColNoVale: TcxGridDBColumn;
+    cxGrid1: TcxGrid;
+    cxGridDBTableView1: TcxGridDBTableView;
+    cxGridLevel1: TcxGridLevel;
+    cxColmaterial: TcxGridDBColumn;
+    cxColUMedida: TcxGridDBColumn;
+    cxColCantidad: TcxGridDBColumn;
+    dxRibbon1: TdxRibbon;
+    dxRibbon1Tab1: TdxRibbonTab;
+    dxDockBar1: TdxBarDockControl;
+    dxbrManager1Bar1: TdxBar;
+    btnadd: TdxBarLargeButton;
+    btnDelete: TdxBarLargeButton;
+    btnEdit: TdxBarLargeButton;
+    btnRefresh: TdxBarLargeButton;
+    zPersonal: TZQuery;
+    dsPersonal: TDataSource;
+    imgFoto: TcxDBImage;
+    lyFoto: TdxLayoutItem;
+    LblCodigo: TcxDBLabel;
+    dxLayoutControl1Item1: TdxLayoutItem;
+    LblNombre: TcxDBLabel;
+    lyNombre: TdxLayoutItem;
+    LblApPat: TcxDBLabel;
+    lyApPat: TdxLayoutItem;
+    LblApMat: TcxDBLabel;
+    lyApMat: TdxLayoutItem;
+    LblNoCarro: TcxDBLabel;
+    lyBNocarro: TdxLayoutItem;
+    zMaterial: TZQuery;
+    dsMaterial: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnAplicarClick(Sender: TObject);
   private
+
     { Private declarations }
   public
+    IdPersonal: integer;
+    constructor CreateByParam(Personal: Integer; Modal: Boolean = False);
     { Public declarations }
   end;
 
@@ -99,5 +136,97 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmMaterialesxFolios.btnAplicarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [Idpersonal]) then
+        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+
+      if zDatos.Active then
+        zDatos.Refresh
+      else
+        zDatos.Open;
+
+    finally
+      Screen.Cursor := Cursor;
+    end;
+  Except
+    on e: Exception do
+    begin
+      MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
+    end;
+  end;
+end;
+
+constructor TFrmMaterialesxFolios.CreateByParam(Personal: integer; Modal: Boolean = False);
+begin
+  if Not Modal then
+  begin
+    IdPersonal := Personal;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  action := Cafree;
+end;
+
+procedure TFrmMaterialesxFolios.FormCreate(Sender: TObject);
+begin
+  if NOT AsignarSQL(zPersonal, 'master_personal', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[master_personal]');
+
+  if NOT AsignarSQL(zDatos, 'mt_foliosxtecnicos', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[mt_foliosxtecnicos]');
+
+end;
+
+procedure TFrmMaterialesxFolios.FormShow(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      cxDateDesde.Date := StartOfTheWeek(Now);
+      cxDateHasta.Date := EndOfTheWeek(Now);
+
+      if not FiltrarDataset(zPersonal, 'IdPersonal', [Idpersonal]) then
+        raise Exception.Create(pErrorFiltrar + '[master_personal]');
+
+      if zPersonal.Active then
+        zPersonal.Refresh
+      else
+        zPersonal.Open;
+
+      if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intoTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
+        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+
+      if zDatos.Active then
+        zDatos.Refresh
+      else
+        zDatos.Open;
+
+    finally
+      Screen.Cursor := Cursor;
+    end;
+  Except
+    on e: Exception do
+    begin
+      MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
+      PostMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
 
 end.

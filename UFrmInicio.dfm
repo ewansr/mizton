@@ -610,7 +610,7 @@ object FrmInicio: TFrmInicio
     SpeedButtonOptions.CanBeFocused = False
     SpeedButtonOptions.Flat = True
     SpeedButtonOptions.Transparent = True
-    TabOrder = 3
+    TabOrder = 1
     Visible = False
     DragMode = dmAutomatic
   end
@@ -622,7 +622,7 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 5
+    TabOrder = 3
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
@@ -710,8 +710,8 @@ object FrmInicio: TFrmInicio
     end
   end
   object cxImage1: TcxImage
-    Left = 844
-    Top = 305
+    Left = 1004
+    Top = 49
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D494844520000068A
       0000037D0806000000A44D2B1B000000206348524D00007A25000080830000F9

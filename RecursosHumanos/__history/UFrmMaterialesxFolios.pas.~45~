@@ -183,14 +183,14 @@ procedure TFrmMaterialesxFolios.cxGridGralActiveTabChanged(
   Sender: TcxCustomGrid; ALevel: TcxGridLevel);
 begin
   try
-    if cxGridGral.ActiveLevel = cxLvlGrafico then
+    if cxGridGral.ActiveLevel = cxchartProductividad then
     begin
       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta,Grafica', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date), 'Si']) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
     end
     else
     begin
-       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
+       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta,Grafica', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date), 'Si']) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
     end;
 
