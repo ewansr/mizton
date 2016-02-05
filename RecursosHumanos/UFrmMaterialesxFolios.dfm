@@ -658,7 +658,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Caption = '&Guardar Folio'
       Category = 0
       Hint = 'Guardar Folio'
-      Visible = ivAlways
+      Visible = ivNever
       LargeImageIndex = 9
       ShortCut = 16455
       SyncImageIndex = False
@@ -676,7 +676,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Caption = '&Cancelar'
       Category = 0
       Hint = 'Cancelar'
-      Visible = ivAlways
+      Visible = ivNever
       LargeImageIndex = 14
       ShortCut = 115
     end
@@ -709,9 +709,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivNever
     end
     object dxButtonDetalle: TdxBarLargeButton
-      Caption = '&Ver Informaci'#243'n Adicional'
+      Caption = '&Ver materiales'
       Category = 0
-      Hint = 'Ver Informaci'#243'n Adicional'
+      Hint = 'Ver materiales'
       Visible = ivNever
       LargeImageIndex = 13
     end
@@ -758,16 +758,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Params = <>
     Left = 440
     Top = 384
-  end
-  object zDatosUpt: TZQuery
-    Params = <>
-    Left = 504
-    Top = 384
-  end
-  object dsDatosUpt: TDataSource
-    DataSet = zDatosUpt
-    Left = 504
-    Top = 432
   end
   object dxPopupGrid: TdxRibbonPopupMenu
     BarManager = dxBarManager1

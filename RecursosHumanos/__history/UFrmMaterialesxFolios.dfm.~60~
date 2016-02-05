@@ -3,7 +3,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   Top = 0
   Caption = 'Materiales usados en actividades'
   ClientHeight = 624
-  ClientWidth = 1122
+  ClientWidth = 1335
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,19 +19,21 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   object dxDockSite1: TdxDockSite
     Left = 289
     Top = 131
-    Width = 833
+    Width = 1046
     Height = 493
     Align = alClient
     ExplicitTop = 127
+    ExplicitWidth = 833
     ExplicitHeight = 497
     DockingType = 5
-    OriginalWidth = 833
+    OriginalWidth = 1046
     OriginalHeight = 493
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 443
+      Width = 656
       Height = 493
+      ExplicitWidth = 443
       ExplicitHeight = 497
       DockingType = 0
       OriginalWidth = 300
@@ -39,7 +41,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 443
+        Width = 656
         Height = 493
         DockingType = 0
         OriginalWidth = 300
@@ -48,7 +50,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 443
+        Width = 656
         Height = 493
         AllowFloating = False
         AutoHide = False
@@ -63,10 +65,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 429
+          Width = 642
           Height = 457
           Align = alClient
           TabOrder = 0
+          RootLevelOptions.DetailTabsPosition = dtpTop
+          OnActiveTabChanged = cxGridGralActiveTabChanged
+          ExplicitWidth = 429
           ExplicitHeight = 461
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
@@ -86,7 +91,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Styles.Header = UDMConection.cxstylHeader
             object cxColFolioPrincipal: TcxGridDBColumn
               Caption = 'Folio Maestro'
-              DataBinding.FieldName = 'FolioPrinicipal'
+              DataBinding.FieldName = 'FolioPrincipal'
               Visible = False
               GroupIndex = 0
               Width = 117
@@ -123,14 +128,30 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               Width = 151
             end
           end
+          object cxChartProductividad: TcxGridDBChartView
+            DataController.DataSource = dsDatos
+            DiagramColumn.Active = True
+            ToolBox.DiagramSelector = True
+            object cxDataEstatus: TcxGridDBChartDataGroup
+              DataBinding.FieldName = 'estatus'
+            end
+            object cxSerieProductividad: TcxGridDBChartSeries
+              DataBinding.FieldName = 'productividad'
+            end
+          end
           object GridLevel1: TcxGridLevel
+            Caption = 'Informaci'#243'n detallada de Folios'
             GridView = cxGridDatos
+          end
+          object cxLvlGrafico: TcxGridLevel
+            Caption = 'Gr'#225'fico de productividad'
+            GridView = cxChartProductividad
           end
         end
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = 443
+      Left = 656
       Top = 0
       Width = 390
       Height = 493
@@ -140,22 +161,24 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
+      ExplicitLeft = 443
       ExplicitHeight = 497
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
-        Top = 58
+        Top = 63
         Width = 382
-        Height = 405
+        Height = 400
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
+        ExplicitTop = 58
         ExplicitHeight = 409
-        ClientRectBottom = 399
+        ClientRectBottom = 394
         ClientRectLeft = 2
         ClientRectRight = 376
         ClientRectTop = 27
@@ -165,7 +188,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           ExplicitHeight = 376
           object dxLYCDatos: TdxLayoutControl
             Left = 0
-            Top = 356
+            Top = 351
             Width = 374
             Height = 16
             Align = alBottom
@@ -187,7 +210,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Left = 3
             Top = 3
             Width = 368
-            Height = 350
+            Height = 345
             Align = alClient
             TabOrder = 1
             ExplicitHeight = 354
@@ -231,7 +254,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 0
         Top = 0
         Width = 382
-        Height = 58
+        Height = 63
         Align = dalTop
         BarManager = dxBarManager1
       end
@@ -459,7 +482,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1116
+    Width = 1329
     Height = 125
     BarManager = dxBarManager1
     Style = rs2013
@@ -468,6 +491,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Contexts = <>
     TabOrder = 6
     TabStop = False
+    ExplicitWidth = 1116
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Inicio'
@@ -494,7 +518,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       True)
     ImageOptions.Images = UDMConection.cxMizton16
     ImageOptions.LargeImages = UDMConection.cxMizton32
-    LookAndFeel.SkinName = ''
     PopupMenuLinks = <>
     UseSystemFont = True
     Left = 600

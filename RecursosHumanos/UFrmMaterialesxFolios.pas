@@ -60,8 +60,6 @@ type
     dxButtonDetalle: TdxBarLargeButton;
     dsDatos: TDataSource;
     zDatos: TZQuery;
-    zDatosUpt: TZQuery;
-    dsDatosUpt: TDataSource;
     dxPopupGrid: TdxRibbonPopupMenu;
     dlgSave1: TSaveDialog;
     dxDockingManager1: TdxDockingManager;
