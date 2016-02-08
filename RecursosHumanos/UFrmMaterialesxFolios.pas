@@ -469,7 +469,7 @@ begin
       ExApp.Range['D9:E9'] := zDatos.FieldByName('NoVale').AsString;
       ExApp.Range['D9:E9'].mergeCells := True;
 
-      ExApp.Range['B10:C10'] := 'FECHA vALE';
+      ExApp.Range['B10:C10'] := 'FECHA VALE';
       ExApp.Range['B10:C10'].mergeCells := True;
       ExApp.Range['D10:E10'] := zDatos.FieldByName('FechaVale').AsString;
       ExApp.Range['D10:E10'].mergeCells := True;
@@ -483,7 +483,7 @@ begin
       SetBorders(Exapp.Range['B9:E11'], xlThin, xlContinuous);
 
       ExApp.Range['C12'] := 'FOLIO';
-      ExApp.Range['D12'] :=  zDatos.FieldByName('FoliPrincipal').AsString;
+      ExApp.Range['D12'] :=  zDatos.FieldByName('FoliOPrincipal').AsString;
       SetBorders(Exapp.Range['C12'], xlThin, xlContinuous);
 
       ExApp.Range['A13'] := 'NO.';
