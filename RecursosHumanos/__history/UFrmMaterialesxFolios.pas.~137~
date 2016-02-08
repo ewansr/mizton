@@ -418,6 +418,8 @@ begin
     begin
       //encabezado y datos generales
       ExApp.Range['A2'] := 'EXP.';
+      FormatoTexto(ExApp.Range['A2'], 'Arial Narrow', 11, True, True);
+
       ExApp.Range['B5:C5'] := 'DIVISION';
       ExApp.Range['B5:C5'].mergeCells := True;
       ExApp.Range['B6:C6'] := 'AREA';
@@ -441,9 +443,7 @@ begin
       ExApp.Range['F13'] := 'PSEC';
 
       Rango := EXApp.Range['A1:F13'];
-      Rango.Font.Name := 'Arial Narrow';
-      Rango.Font.Size := 10;
-      Rango.Font.Bold := True;
+      FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
 
 
 
@@ -472,18 +472,23 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)] := zUMateriales.FieldByName('Material').AsString;
           ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)].mergeCells := True;
           ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)].Orientation := 90;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)], 'Arial Narrow', 10, true, False);
 
           //Unidad Medida
           ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)] := zUMateriales.FieldByName('Unidad').AsString;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)], 'Arial Narrow', 9, true, True);
+
           inc(RecCol);
           zUMateriales.Next;
         end;
+        //Bordes de Materiales
+        SetBorders(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)], xlContinuous, xlThin);
+
 
         //Agregando folios de la semana
         iniFila := 14;
         InicOl := 0;
         recFila := 0;
-
 
         zDatos.First;
         while Not zDatos.Eof do
@@ -526,6 +531,12 @@ begin
           inc(RecFila);
           zDatos.Next;
         end;
+
+        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila)];
+        SetBorders(Rango, xlContinuous, xlThin);
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
+        ExApp.ActiveSheet.name := 'MATERIALES';
+        ExApp.ActiveWindow.DisplayGridlines := False;
       finally
         Screen.Cursor := Cursor;
       end;

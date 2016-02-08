@@ -395,7 +395,7 @@ Var
   Continuar: Boolean;
   Rango: Variant;
   zMat: TZQuery;
-  iniFila, iniCol, recFila, recCol: Integer;
+  iniFila, iniCol, recFila, recCol, i: Integer;
   ListaMaterial: TStringList;
 begin
   try
@@ -445,6 +445,8 @@ begin
       Rango := EXApp.Range['A1:F13'];
       FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
 
+      //Esto es para que no me desmadre el formato de principal y secundario
+      ExApp.Columns['E:F'].NumberFormat := '@';
 
 
       Cursor := Screen.Cursor;
@@ -481,6 +483,9 @@ begin
           inc(RecCol);
           zUMateriales.Next;
         end;
+        //Bordes de Materiales
+        SetBorders(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(1)], xlContinuous, xlThin);
+
 
         //Agregando folios de la semana
         iniFila := 14;
@@ -494,6 +499,7 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 2) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Folio').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 3) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Telefono').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Direccion').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)]
           ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Principal').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Secundario').AsString;
 
@@ -528,7 +534,24 @@ begin
           inc(RecFila);
           zDatos.Next;
         end;
-        ExApp.ActiveSheet.name := 'MATERIALES'
+        //Sumatoria
+        ExApp.Range['F'+intToStr(RecFila)] := 'Total';
+
+        for i := 0 to zUMateriales.RecordCount-1 do
+        begin
+          //=SUM(R[-5]C:R[-1]C)
+          ExApp.Range[ColumnaNombre(7+i) +intToStr(RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
+
+        end;
+
+
+        //Borders a cuerpo del excel
+        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila-1)];
+        SetBorders(Rango, xlContinuous, xlThin);
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, False);
+
+        ExApp.ActiveSheet.name := 'MATERIALES';
+        ExApp.ActiveWindow.DisplayGridlines := False;
       finally
         Screen.Cursor := Cursor;
       end;
