@@ -534,20 +534,19 @@ begin
           zDatos.Next;
         end;
         //Sumatoria
-        ExApp.Range['F'+intToStr(RecFila)] := 'Total';
+        ExApp.Range['F'+intToStr(IniFila +RecFila)] := 'Total';
 
         for i := 0 to zUMateriales.RecordCount-1 do
         begin
           //=SUM(R[-5]C:R[-1]C)
-          ExApp.Range[ColumnaNombre(7+i) +intToStr(RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
-
+          ExApp.Range[ColumnaNombre(7+i) +intToStr(IniFila + RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
         end;
 
 
         //Borders a cuerpo del excel
-        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila-1)];
+        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila)];
         SetBorders(Rango, xlContinuous, xlThin);
-        FormatoTexto(Rango, 'Arial Narrow', 10, True, False);
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
 
         ExApp.ActiveSheet.name := 'MATERIALES';
         ExApp.ActiveWindow.DisplayGridlines := False;

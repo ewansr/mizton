@@ -499,7 +499,6 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 2) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Folio').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 3) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Telefono').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Direccion').AsString;
-          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)]
           ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Principal').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Secundario').AsString;
 
@@ -535,12 +534,12 @@ begin
           zDatos.Next;
         end;
         //Sumatoria
-        ExApp.Range['F'+intToStr(RecFila)] := 'Total';
+        ExApp.Range['F'+intToStr(RecFila+1)] := 'Total';
 
-        for i := 0 to zUMateriales.RecordCount do
+        for i := 0 to zUMateriales.RecordCount-1 do
         begin
           //=SUM(R[-5]C:R[-1]C)
-          ExApp.Range['F'+intToStr(RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
+          ExApp.Range[ColumnaNombre(7+i) +intToStr(RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
 
         end;
 
