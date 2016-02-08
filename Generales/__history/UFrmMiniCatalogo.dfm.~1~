@@ -95,18 +95,18 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Properties.ActivateFocusedTab = False
       Properties.CustomButtons.Buttons = <>
       Properties.NavigatorPosition = npRightBottom
-      ClientRectBottom = 191
+      ClientRectBottom = 195
       ClientRectLeft = 2
-      ClientRectRight = 509
-      ClientRectTop = 27
+      ClientRectRight = 513
+      ClientRectTop = 28
       object cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de registro.'
         ImageIndex = 0
         object dxLYCDatos: TdxLayoutControl
           Left = 0
           Top = 0
-          Width = 507
-          Height = 164
+          Width = 511
+          Height = 167
           Align = alClient
           TabOrder = 0
           LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -134,8 +134,8 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       2)
     Categories.Visibles = (
       True)
-    ImageOptions.Images = UDMConection.cxMizton16
-    ImageOptions.LargeImages = UDMConection.cxMizton32
+    ImageOptions.Images = UDMConection.cxImage16
+    ImageOptions.LargeImages = UDMConection.cxImage342
     LookAndFeel.SkinName = ''
     PopupMenuLinks = <>
     UseSystemFont = True
@@ -190,6 +190,11 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
         item
           Visible = True
           ItemName = 'dxButtonExportar'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxButtonSalir'
         end>
       OneOnRow = True
       Row = 0
@@ -252,7 +257,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Nuevo'
       Visible = ivAlways
-      LargeImageIndex = 4
+      LargeImageIndex = 0
       ShortCut = 16462
       OnClick = dxButtonNuevoClick
     end
@@ -271,8 +276,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Buscar'
       Visible = ivAlways
-      ImageIndex = 10
-      LargeImageIndex = 10
+      ImageIndex = 5
       ShortCut = 16450
       OnClick = dxBButtonBuscarClick
     end
@@ -281,7 +285,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Eliminar'
       Visible = ivAlways
-      ImageIndex = 11
+      ImageIndex = 9
       ShortCut = 46
       OnClick = dxBButtonEliminarClick
     end
@@ -290,18 +294,18 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Guardar'
       Visible = ivAlways
-      LargeImageIndex = 9
+      LargeImageIndex = 18
       ShortCut = 16455
       OnClick = dxButtonGuardarClick
       SyncImageIndex = False
-      ImageIndex = 9
+      ImageIndex = 8
     end
     object dxButtonActualizar: TdxBarLargeButton
       Caption = '&Actualizar'
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 12
+      LargeImageIndex = 7
       ShortCut = 116
       OnClick = dxButtonActualizarClick
     end
@@ -310,7 +314,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Cancelar'
       Visible = ivAlways
-      LargeImageIndex = 14
+      LargeImageIndex = 2
       ShortCut = 115
       OnClick = dxButtonCancelarClick
     end
@@ -334,7 +338,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Category = 0
       Hint = 'Exportar a Excel'
       Visible = ivAlways
-      LargeImageIndex = 15
+      LargeImageIndex = 12
       ShortCut = 16464
       OnClick = dxButtonExportarClick
     end

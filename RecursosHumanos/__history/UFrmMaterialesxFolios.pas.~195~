@@ -451,39 +451,32 @@ begin
 
       ExApp.Range['B5:C5'] := 'DIVISION';
       ExApp.Range['B5:C5'].mergeCells := True;
-      ExApp.Range['D5:E5'] := zDatos.FieldByName('Division').AsString;
       ExApp.Range['D5:E5'].mergeCells := True;
 
       ExApp.Range['B6:C6'] := 'AREA';
       ExApp.Range['B6:C6'].mergeCells := True;
-      ExApp.Range['D6:E6'] := zDatos.FieldByName('Area').AsString;
       ExApp.Range['D6:E6'].mergeCells := True;
 
       ExApp.Range['B7:C7'] := 'CONTRATISTA';
       ExApp.Range['B7:C7'].mergeCells := True;
-      ExApp.Range['D7:E7'] := zDatos.FieldByName('Contratista').AsString;
       ExApp.Range['D7:E7'].mergeCells := True;
 
       ExApp.Range['B9:C9'] := 'No. VALE';
       ExApp.Range['B9:C9'].mergeCells := True;
-      ExApp.Range['D9:E9'] := zDatos.FieldByName('NoVale').AsString;
       ExApp.Range['D9:E9'].mergeCells := True;
 
       ExApp.Range['B10:C10'] := 'FECHA vALE';
       ExApp.Range['B10:C10'].mergeCells := True;
-      ExApp.Range['D10:E10'] := zDatos.FieldByName('FechaVale').AsString;
       ExApp.Range['D10:E10'].mergeCells := True;
 
       ExApp.Range['B11:C11'] := 'DEL MES';
       ExApp.Range['B11:C11'].mergeCells := True;
-
       ExApp.Range['D11:E11'].mergeCells := True;
 
       SetBorders(Exapp.Range['B5:E7'], xlThin, xlContinuous);
       SetBorders(Exapp.Range['B9:E11'], xlThin, xlContinuous);
 
       ExApp.Range['C12'] := 'FOLIO';
-      ExApp.Range['D12'] :=  zDatos.FieldByName('FoliPrincipal').AsString;
       SetBorders(Exapp.Range['C12'], xlThin, xlContinuous);
 
       ExApp.Range['A13'] := 'NO.';

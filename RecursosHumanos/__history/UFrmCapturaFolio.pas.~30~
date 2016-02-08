@@ -54,17 +54,10 @@ type
     lyVale: TdxLayoutItem;
     zVales: TZQuery;
     dsVales: TDataSource;
-    cxTextDivision: TcxDBTextEdit;
-    lyDivision: TdxLayoutItem;
-    cxTextContratista: TcxDBTextEdit;
-    lyContratista: TdxLayoutItem;
-    cxDateFechaVale: TcxDBDateEdit;
-    lyFechaVale: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure cbbValePropertiesEditValueChanged(Sender: TObject);
   private
 
     { Private declarations }
@@ -114,18 +107,6 @@ begin
   end;
 end;
 
-procedure TFrmCapturaFolio.cbbValePropertiesEditValueChanged(Sender: TObject);
-begin
-  if zDatos.Active AND zVales.Active then
-  begin
-    zDatos.FieldByName('FolioPrincipal').AsString := zVales.FieldByName('FolioMaestro').AsString;
-    zDatos.FieldByName('Area').AsString := zVales.FieldByName('Area').AsString;
-    zDatos.FieldByName('Division').AsString := zVales.FieldByName('Division').AsString;
-    zDatos.FieldByName('Contratista').AsString := zVales.FieldByName('Contratista').AsString;
-    zDatos.FieldByName('FechaVale').asDateTime := zVales.FieldByName('FechaVale').asDateTime;
-  end;
-end;
-
 procedure TFrmCapturaFolio.FormCreate(Sender: TObject);
 begin
   IdFolio := -9;
@@ -167,10 +148,10 @@ begin
       if not FiltrarDataset(zVales, 'Estatus', ['Abierto']) then
         raise Exception.Create(pErrorFiltrar + '[Catálogo de Vales]');
 
-      if zVales.Active then
-        zVales.Refresh
+      if zMaterial.Active then
+        zMaterial.Refresh
       else
-        zVales.Open;
+        zMaterial.Open;
 
     finally
       SCreen.Cursor := Cursor;

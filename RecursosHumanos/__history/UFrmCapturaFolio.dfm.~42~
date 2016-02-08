@@ -292,7 +292,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
       Height = 28
       Align = alRight
       Caption = '&Cancelar'
-      ModalResult = 2
       OptionsImage.ImageIndex = 2
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 1

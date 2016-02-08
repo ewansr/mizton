@@ -2941,7 +2941,6 @@ object FrmInicio: TFrmInicio
     object actVales: TAction
       Caption = 'Cat'#225'logo de Vales '
       ImageIndex = 1
-      OnExecute = actValesExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

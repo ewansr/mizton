@@ -461,7 +461,7 @@ begin
 
       ExApp.Range['B7:C7'] := 'CONTRATISTA';
       ExApp.Range['B7:C7'].mergeCells := True;
-      ExApp.Range['D7:E7'] := zDatos.FieldByName('Contratista').AsString;
+      ExApp.Range['D7:E7'] ;= zDatos.FieldByName('Contratista').AsString;
       ExApp.Range['D7:E7'].mergeCells := True;
 
       ExApp.Range['B9:C9'] := 'No. VALE';

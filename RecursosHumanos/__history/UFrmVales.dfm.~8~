@@ -1,0 +1,100 @@
+inherited FrmVales: TFrmVales
+  Caption = 'Cat'#225'logo de Vales'
+  ClientHeight = 611
+  ClientWidth = 1137
+  OnCreate = FormCreate
+  ExplicitWidth = 1143
+  ExplicitHeight = 640
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxRibbon1: TdxRibbon
+    Width = 1137
+    inherited dxRibbon1Tab1: TdxRibbonTab
+      Caption = 'Inicio'
+      Index = 0
+    end
+  end
+  inherited cxGridGral: TcxGrid
+    Width = 1131
+    Height = 282
+    inherited cxGridDatos: TcxGridDBTableView
+      OptionsView.ColumnAutoWidth = False
+      object cxColFolio: TcxGridDBColumn
+        Caption = 'Folio Maestro'
+        DataBinding.FieldName = 'FolioMaestro'
+        Width = 112
+      end
+      object cxColNoVale: TcxGridDBColumn
+        Caption = 'No. Vale'
+        DataBinding.FieldName = 'NoVale'
+        Width = 75
+      end
+      object cxColFecha: TcxGridDBColumn
+        Caption = 'Fecha Vale'
+        DataBinding.FieldName = 'FechaVale'
+        Width = 95
+      end
+      object cxColDivision: TcxGridDBColumn
+        Caption = 'Divisi'#243'n'
+        DataBinding.FieldName = 'Division'
+        Width = 117
+      end
+      object cxColArea: TcxGridDBColumn
+        Caption = #193'rea'
+        DataBinding.FieldName = 'Area'
+        Width = 103
+      end
+      object cxColContratista: TcxGridDBColumn
+        DataBinding.FieldName = 'Contratista'
+        Width = 160
+      end
+      object cxColFirmaContratista: TcxGridDBColumn
+        Caption = 'Firmante Contratista'
+        DataBinding.FieldName = 'FirmaContratista'
+        Width = 160
+      end
+      object cxColFirmaSupervisor: TcxGridDBColumn
+        Caption = 'Firmante Supervisor'
+        DataBinding.FieldName = 'FirmaSupervisor'
+        Width = 160
+      end
+      object cxColCreacion: TcxGridDBColumn
+        Caption = 'Fecha de Creaci'#243'n'
+        DataBinding.FieldName = 'FechaCreacion'
+        Width = 131
+      end
+    end
+  end
+  inherited pnlDatos: TPanel
+    Top = 410
+    Width = 1137
+    inherited cxPageDatos: TcxPageControl
+      Width = 1133
+      ClientRectRight = 1127
+      inherited cxTsDatos: TcxTabSheet
+        Caption = 'Inserci'#243'n/Edici'#243'n de vales'
+        inherited dxLYCDatos: TdxLayoutControl
+          Width = 1125
+          inherited dxLyDatos: TdxLayoutGroup
+            Index = -1
+          end
+        end
+      end
+    end
+  end
+  inherited dxBarManager1: TdxBarManager
+    LookAndFeel.SkinName = ''
+    DockControlHeights = (
+      0
+      0
+      0
+      0)
+    inherited dxbrManager1Bar: TdxBar
+      FloatClientWidth = 97
+      FloatClientHeight = 307
+    end
+    inherited dxButtonGuardar: TdxBarLargeButton
+      ImageIndex = 8
+    end
+  end
+end

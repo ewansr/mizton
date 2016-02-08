@@ -20,8 +20,7 @@ uses
   dxSkinXmas2008Blue, dxSkinscxPCPainter, ExtCtrls, dxLayoutContainer,
   dxLayoutControl, cxContainer, cxEdit, dxLayoutcxEditAdapters, cxMaskEdit,
   cxDBEdit, cxTextEdit, cxDropDownEdit, cxCalendar, Menus, StdCtrls, cxButtons,
-  DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, UConection, UMsgBox,
-  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, UConection, UMsgBox;
 
 type
   TFrmCapturaFolio = class(TForm)
@@ -40,6 +39,8 @@ type
     lySecundario: TdxLayoutItem;
     cxTextArea: TcxDBTextEdit;
     lyArea: TdxLayoutItem;
+    cxTextNoVale: TcxDBTextEdit;
+    lyNoVale: TdxLayoutItem;
     cxDateFecha: TcxDBDateEdit;
     lyFecha: TdxLayoutItem;
     cbbEstatus: TcxDBComboBox;
@@ -50,21 +51,10 @@ type
     zDatos: TZQuery;
     zMaterial: TZQuery;
     dsMaterial: TDataSource;
-    cbbVale: TcxDBLookupComboBox;
-    lyVale: TdxLayoutItem;
-    zVales: TZQuery;
-    dsVales: TDataSource;
-    cxTextDivision: TcxDBTextEdit;
-    lyDivision: TdxLayoutItem;
-    cxTextContratista: TcxDBTextEdit;
-    lyContratista: TdxLayoutItem;
-    cxDateFechaVale: TcxDBDateEdit;
-    lyFechaVale: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure cbbValePropertiesEditValueChanged(Sender: TObject);
   private
 
     { Private declarations }
@@ -114,26 +104,14 @@ begin
   end;
 end;
 
-procedure TFrmCapturaFolio.cbbValePropertiesEditValueChanged(Sender: TObject);
-begin
-  if zDatos.Active AND zVales.Active then
-  begin
-    zDatos.FieldByName('FolioPrincipal').AsString := zVales.FieldByName('FolioMaestro').AsString;
-    zDatos.FieldByName('Area').AsString := zVales.FieldByName('Area').AsString;
-    zDatos.FieldByName('Division').AsString := zVales.FieldByName('Division').AsString;
-    zDatos.FieldByName('Contratista').AsString := zVales.FieldByName('Contratista').AsString;
-    zDatos.FieldByName('FechaVale').asDateTime := zVales.FieldByName('FechaVale').asDateTime;
-  end;
-end;
-
 procedure TFrmCapturaFolio.FormCreate(Sender: TObject);
 begin
   IdFolio := -9;
   if not AsignarSQL(zDatos, 'mt_foliosxtecnicos', pUpdate) then
     raise Exception.Create(pErrorConsulta + '[mt_foliosxtecnicos]');
 
-  if not AsignarSQL(zVales, 'mt_vales', pReadOnly) then
-    raise Exception.Create(pErrorConsulta + '[Catálogo de Vales]');
+//  if not AsignarSQL(zMaterial, 'factura_servicios', pReadOnly) then
+//    raise Exception.Create(pErrorConsulta + '[Materiales]');
 
 end;
 
@@ -164,13 +142,13 @@ begin
       else
         zDatos.Edit;
 
-      if not FiltrarDataset(zVales, 'Estatus', ['Abierto']) then
-        raise Exception.Create(pErrorFiltrar + '[Catálogo de Vales]');
-
-      if zVales.Active then
-        zVales.Refresh
-      else
-        zVales.Open;
+//      if not FiltrarDataset(zMaterial, 'IdFolio', [IdFolio]) then
+//        raise Exception.Create(pErrorFiltrar + '[Materiales]');
+//
+//      if zMaterial.Active then
+//        zMaterial.Refresh
+//      else
+//        zMaterial.Open;
 
     finally
       SCreen.Cursor := Cursor;

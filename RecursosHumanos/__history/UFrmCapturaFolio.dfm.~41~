@@ -114,8 +114,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
     object cxTextDivision: TcxDBTextEdit
       Left = 94
       Top = 281
-      DataBinding.DataField = 'division'
-      DataBinding.DataSource = dsDatos
       Enabled = False
       Style.HotTrack = False
       TabOrder = 10
@@ -124,8 +122,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
     object cxTextContratista: TcxDBTextEdit
       Left = 94
       Top = 254
-      DataBinding.DataField = 'Contratista'
-      DataBinding.DataSource = dsDatos
       Enabled = False
       Style.HotTrack = False
       TabOrder = 9
@@ -134,8 +130,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
     object cxDateFechaVale: TcxDBDateEdit
       Left = 94
       Top = 227
-      DataBinding.DataField = 'FechaVale'
-      DataBinding.DataSource = dsDatos
       Enabled = False
       Style.HotTrack = False
       TabOrder = 8
@@ -292,7 +286,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
       Height = 28
       Align = alRight
       Caption = '&Cancelar'
-      ModalResult = 2
       OptionsImage.ImageIndex = 2
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 1

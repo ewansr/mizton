@@ -649,9 +649,6 @@ object FrmInicio: TFrmInicio
           Item = LinkSalarios
         end
         item
-          Item = LinkVales
-        end
-        item
           Item = LinkFolios
         end>
     end
@@ -713,9 +710,6 @@ object FrmInicio: TFrmInicio
     end
     object sepConfig: TdxNavBarSeparator
       Caption = 'sepConfig'
-    end
-    object LinkVales: TdxNavBarItem
-      Action = actVales
     end
   end
   object cxImage1: TcxImage
@@ -2937,11 +2931,6 @@ object FrmInicio: TFrmInicio
       Caption = 'Actividades (Folios por Expediente)'
       ImageIndex = 1
       OnExecute = actFoliosExecute
-    end
-    object actVales: TAction
-      Caption = 'Cat'#225'logo de Vales '
-      ImageIndex = 1
-      OnExecute = actValesExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

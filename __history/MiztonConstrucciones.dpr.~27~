@@ -59,5 +59,6 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
+  Application.CreateForm(TFrmVales, FrmVales);
   Application.Run;
 end.

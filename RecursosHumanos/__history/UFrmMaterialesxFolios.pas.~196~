@@ -461,7 +461,7 @@ begin
 
       ExApp.Range['B7:C7'] := 'CONTRATISTA';
       ExApp.Range['B7:C7'].mergeCells := True;
-      ExApp.Range['D7:E7'] := zDatos.FieldByName('Contratista').AsString;
+      ExApp.Range['D7:E7'] ;= zDatos.FieldByName('Contratista').AsString;
       ExApp.Range['D7:E7'].mergeCells := True;
 
       ExApp.Range['B9:C9'] := 'No. VALE';
@@ -483,7 +483,6 @@ begin
       SetBorders(Exapp.Range['B9:E11'], xlThin, xlContinuous);
 
       ExApp.Range['C12'] := 'FOLIO';
-      ExApp.Range['D12'] :=  zDatos.FieldByName('FoliPrincipal').AsString;
       SetBorders(Exapp.Range['C12'], xlThin, xlContinuous);
 
       ExApp.Range['A13'] := 'NO.';

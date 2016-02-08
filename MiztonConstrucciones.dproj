@@ -150,6 +150,9 @@
 				<Form>FrmFolioMaterial</Form>
 			</DCCReference>
 			<DCCReference Include="Generales\ExportaExcel.pas"/>
+			<DCCReference Include="RecursosHumanos\UFrmVales.pas">
+				<Form>FrmVales</Form>
+			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
