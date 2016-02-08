@@ -1,9 +1,11 @@
 object FrmCapturaFolio: TFrmCapturaFolio
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'Captura Folio'
-  ClientHeight = 304
-  ClientWidth = 389
+  ClientHeight = 314
+  ClientWidth = 399
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,98 +20,105 @@ object FrmCapturaFolio: TFrmCapturaFolio
   object dxLayControl1: TdxLayoutControl
     Left = 0
     Top = 0
-    Width = 389
-    Height = 264
+    Width = 399
+    Height = 274
     Align = alClient
     TabOrder = 0
+    LayoutLookAndFeel = UDMConection.dxStyleForms
+    ExplicitLeft = -3
     object cxTextFolioPrincipal: TcxDBTextEdit
-      Left = 83
-      Top = 37
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Tag = -1
+      Left = 94
+      Top = 38
+      DataBinding.DataField = 'FolioPrincipal'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
       TabOrder = 1
       Width = 290
     end
     object cxTextFolio: TcxDBTextEdit
-      Left = 83
-      Top = 64
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Tag = -1
+      Left = 94
+      Top = 65
+      DataBinding.DataField = 'Folio'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
       TabOrder = 2
       Width = 121
     end
     object cxMaskTelefono: TcxDBMaskEdit
-      Left = 83
-      Top = 91
+      Tag = -1
+      Left = 94
+      Top = 92
+      DataBinding.DataField = 'Telefono'
+      DataBinding.DataSource = dsDatos
       Properties.EditMask = '!\(999\)000-0000;1;_'
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 3
       Width = 121
     end
-    object cxTextPrincipal: TcxDBTextEdit
-      Left = 83
-      Top = 199
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+    object cxTextSecundario: TcxDBTextEdit
+      Tag = -1
+      Left = 94
+      Top = 200
+      DataBinding.DataField = 'Secundario'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
       TabOrder = 7
       Width = 121
     end
-    object cxTextSecundario: TcxDBTextEdit
-      Left = 83
-      Top = 172
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
-      Style.HotTrack = False
-      TabOrder = 6
-      Width = 121
-    end
     object cxTextArea: TcxDBTextEdit
-      Left = 83
-      Top = 145
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Tag = -1
+      Left = 94
+      Top = 146
+      DataBinding.DataField = 'Area'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
       TabOrder = 5
       Width = 121
     end
     object cxTextNoVale: TcxDBTextEdit
-      Left = 83
-      Top = 118
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Tag = -1
+      Left = 94
+      Top = 119
+      DataBinding.DataField = 'NoVale'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
       TabOrder = 4
       Width = 121
     end
     object cxDateFecha: TcxDBDateEdit
-      Left = 83
-      Top = 10
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Tag = -1
+      Left = 94
+      Top = 11
+      DataBinding.DataField = 'FechaCreacion'
+      DataBinding.DataSource = dsDatos
       Style.HotTrack = False
-      Style.ButtonStyle = bts3D
-      Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 0
       Width = 121
     end
     object cbbEstatus: TcxDBComboBox
-      Left = 83
-      Top = 226
+      Tag = -1
+      Left = 94
+      Top = 227
+      DataBinding.DataField = 'Estatus'
+      DataBinding.DataSource = dsDatos
       Properties.Items.Strings = (
         'Liquidada'
         'Objetada'
         'Queja')
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      Style.ButtonStyle = bts3D
-      Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 8
+      Width = 121
+    end
+    object cxTextPrincipal: TcxDBTextEdit
+      Tag = -1
+      Left = 94
+      Top = 173
+      DataBinding.DataField = 'Principal'
+      DataBinding.DataSource = dsDatos
+      Style.HotTrack = False
+      TabOrder = 6
       Width = 121
     end
     object dxLayControl1Group_Root: TdxLayoutGroup
@@ -141,19 +150,12 @@ object FrmCapturaFolio: TFrmCapturaFolio
       ControlOptions.ShowBorder = False
       Index = 3
     end
-    object lyPrincipal: TdxLayoutItem
-      Parent = dxLayControl1Group_Root
-      CaptionOptions.Text = 'Principal:'
-      Control = cxTextPrincipal
-      ControlOptions.ShowBorder = False
-      Index = 7
-    end
     object lySecundario: TdxLayoutItem
       Parent = dxLayControl1Group_Root
       CaptionOptions.Text = 'Secundario:'
       Control = cxTextSecundario
       ControlOptions.ShowBorder = False
-      Index = 6
+      Index = 7
     end
     object lyArea: TdxLayoutItem
       Parent = dxLayControl1Group_Root
@@ -183,35 +185,48 @@ object FrmCapturaFolio: TFrmCapturaFolio
       ControlOptions.ShowBorder = False
       Index = 8
     end
+    object lyPrincipal: TdxLayoutItem
+      Parent = dxLayControl1Group_Root
+      CaptionOptions.Text = 'Principal:'
+      Control = cxTextPrincipal
+      ControlOptions.ShowBorder = False
+      Index = 6
+    end
   end
   object pnlBotonera: TPanel
     AlignWithMargins = True
     Left = 3
-    Top = 267
-    Width = 383
+    Top = 277
+    Width = 393
     Height = 34
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object btnGuardar: TcxButton
       AlignWithMargins = True
-      Left = 224
+      Left = 234
       Top = 3
       Width = 75
       Height = 28
       Align = alRight
       Caption = '&Guardar'
+      OptionsImage.ImageIndex = 8
+      OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 0
+      OnClick = btnGuardarClick
     end
     object btnCancelar: TcxButton
       AlignWithMargins = True
-      Left = 305
+      Left = 315
       Top = 3
       Width = 75
       Height = 28
       Align = alRight
       Caption = '&Cancelar'
+      OptionsImage.ImageIndex = 2
+      OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 1
+      OnClick = btnCancelarClick
     end
   end
   object dsDatos: TDataSource
@@ -226,12 +241,12 @@ object FrmCapturaFolio: TFrmCapturaFolio
   end
   object zMaterial: TZQuery
     Params = <>
-    Left = 192
-    Top = 160
+    Left = 176
+    Top = 256
   end
   object dsMaterial: TDataSource
     DataSet = zMaterial
-    Left = 200
-    Top = 168
+    Left = 136
+    Top = 256
   end
 end

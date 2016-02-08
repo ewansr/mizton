@@ -610,7 +610,7 @@ object FrmInicio: TFrmInicio
     SpeedButtonOptions.CanBeFocused = False
     SpeedButtonOptions.Flat = True
     SpeedButtonOptions.Transparent = True
-    TabOrder = 5
+    TabOrder = 1
     Visible = False
     DragMode = dmAutomatic
   end
@@ -622,12 +622,13 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 6
+    TabOrder = 2
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
+    ExplicitLeft = -6
     ExplicitTop = -6
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
@@ -678,7 +679,7 @@ object FrmInicio: TFrmInicio
       Action = actPersonal
     end
     object LinkCargos: TdxNavBarItem
-      Caption = 'Cargos (Puestos)'
+      Caption = 'Puestos'
       LargeImageIndex = 2
       SmallImageIndex = 2
     end
@@ -686,9 +687,7 @@ object FrmInicio: TFrmInicio
       Caption = 'Salarios'
     end
     object LinkFolios: TdxNavBarItem
-      Caption = 'Actividades (Folios)'
-      LargeImageIndex = 1
-      SmallImageIndex = 1
+      Action = actFolios
     end
     object LinkCiudad: TdxNavBarItem
       Caption = 'Ciudades'
@@ -713,8 +712,8 @@ object FrmInicio: TFrmInicio
     end
   end
   object cxImage1: TcxImage
-    Left = 844
-    Top = 305
+    Left = 1004
+    Top = 49
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D494844520000068A
       0000037D0806000000A44D2B1B000000206348524D00007A25000080830000F9
@@ -2266,14 +2265,11 @@ object FrmInicio: TFrmInicio
     Height = 100
     Width = 140
   end
-  object cxSplitter1: TcxSplitter
+  object cxspltrMenu: TcxSplitter
     Left = 281
     Top = 0
-    Width = 8
+    Width = 5
     Height = 607
-    ExplicitLeft = 624
-    ExplicitTop = 288
-    ExplicitHeight = 100
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -2849,6 +2845,7 @@ object FrmInicio: TFrmInicio
     TabProperties.CloseTabWithMiddleClick = True
     TabProperties.CustomButtons.Buttons = <>
     TabProperties.Focusable = True
+    TabProperties.TabPosition = tpBottom
     OnPageAdded = dxTabManager1PageAdded
     Left = 576
     Top = 272
@@ -2929,6 +2926,11 @@ object FrmInicio: TFrmInicio
       ImageIndex = 0
       OnExecute = actPersonalExecute
     end
+    object actFolios: TAction
+      Caption = 'Actividades (Folios por Expediente)'
+      ImageIndex = 1
+      OnExecute = actFoliosExecute
+    end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
     BarManager = dxBarManager1
@@ -2938,8 +2940,8 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 408
-    Top = 240
+    Left = 320
+    Top = 416
   end
   object dxPopup1: TdxBarPopupMenu
     BarManager = dxBarManager1

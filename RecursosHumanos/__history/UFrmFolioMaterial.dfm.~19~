@@ -2,8 +2,8 @@ object FrmFolioMaterial: TFrmFolioMaterial
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  Caption = 'Asiganar Material'
-  ClientHeight = 114
+  Caption = 'Asignar Material'
+  ClientHeight = 130
   ClientWidth = 346
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,77 +12,92 @@ object FrmFolioMaterial: TFrmFolioMaterial
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlBotonera: TPanel
     AlignWithMargins = True
     Left = 3
-    Top = 77
+    Top = 88
     Width = 340
-    Height = 34
+    Height = 39
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 267
-    ExplicitWidth = 383
     object btnGuardar: TcxButton
       AlignWithMargins = True
-      Left = 181
+      Left = 141
       Top = 3
-      Width = 75
-      Height = 28
+      Width = 95
+      Height = 33
       Align = alRight
-      Caption = '&Guardar'
+      Caption = '&Guardar y'#13#10' Cerrar'
       OptionsImage.ImageIndex = 8
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 0
-      ExplicitLeft = 234
+      OnClick = btnGuardarClick
     end
     object btnCancelar: TcxButton
       AlignWithMargins = True
-      Left = 262
+      Left = 242
       Top = 3
-      Width = 75
-      Height = 28
+      Width = 95
+      Height = 33
       Align = alRight
       Caption = '&Cancelar'
       OptionsImage.ImageIndex = 2
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 1
-      ExplicitLeft = 315
+      OnClick = btnCancelarClick
+    end
+    object btnGuardarNuevo: TcxButton
+      AlignWithMargins = True
+      Left = 40
+      Top = 3
+      Width = 95
+      Height = 33
+      Align = alRight
+      Caption = '&Guardar y'#13#10' a'#241'adir otro'
+      OptionsImage.ImageIndex = 8
+      OptionsImage.Images = UDMConection.cxImage16
+      TabOrder = 2
+      OnClick = btnGuardarNuevoClick
     end
   end
   object dxLayControl1: TdxLayoutControl
     Left = 0
     Top = 0
     Width = 346
-    Height = 74
+    Height = 85
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 389
-    ExplicitHeight = 264
+    LayoutLookAndFeel = UDMConection.dxStyleForms
     object cbbMaterial: TcxDBLookupComboBox
-      Left = 62
-      Top = 10
-      Properties.ListColumns = <>
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
+      Left = 70
+      Top = 11
+      DataBinding.DataField = 'IdMaterial'
+      DataBinding.DataSource = dsDatos
+      Properties.KeyFieldNames = 'IdServicio'
+      Properties.ListColumns = <
+        item
+          FieldName = 'servicio'
+        end>
+      Properties.ListOptions.SyncMode = True
+      Properties.ListSource = dsMaterial
       Style.HotTrack = False
-      Style.ButtonStyle = bts3D
-      Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 0
       Width = 267
     end
     object cxSpinCantidad: TcxDBSpinEdit
-      Left = 62
-      Top = 37
+      Left = 70
+      Top = 38
+      DataBinding.DataField = 'Cantidad'
+      DataBinding.DataSource = dsDatos
       Properties.AssignedValues.MinValue = True
       Properties.ValueType = vtFloat
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      Style.ButtonStyle = bts3D
       TabOrder = 1
       Width = 121
     end
@@ -111,13 +126,12 @@ object FrmFolioMaterial: TFrmFolioMaterial
   end
   object zMaterial: TZQuery
     Params = <>
-    Left = 40
-    Top = 72
+    Top = 88
   end
   object dsMaterial: TDataSource
     DataSet = zMaterial
-    Left = 80
-    Top = 72
+    Left = 8
+    Top = 40
   end
   object dsDatos: TDataSource
     DataSet = zDatos
@@ -126,7 +140,6 @@ object FrmFolioMaterial: TFrmFolioMaterial
   end
   object zDatos: TZQuery
     Params = <>
-    Left = 120
-    Top = 72
+    Top = 56
   end
 end

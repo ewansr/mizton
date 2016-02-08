@@ -167,12 +167,21 @@ uses UfrmCapturaFolio, UfrmFolioMAterial;
 procedure TFrmMaterialesxFolios.btnaddClick(Sender: TObject);
 begin
   try
-    application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
-    FrmFolioMaterial.Id := -9;
-    FrmFolioMaterial.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
-    FrmFolioMaterial.ShowModal;
-  finally
-    btnRefresh.Click;
+    if zDatos.FieldByName('Estatus').AsString <> 'Liquidada' then
+      raise eWarning.Create('No puedes asignar materiales a folios con estatus diferente de "Liquidada"');
+    try
+      application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
+      FrmFolioMaterial.Id := -9;
+      FrmFolioMaterial.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
+      FrmFolioMaterial.ShowModal;
+    finally
+      btnRefresh.Click;
+    end;
+  except
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+    end;
   end;
 end;
 
@@ -313,6 +322,7 @@ procedure TFrmMaterialesxFolios.dxBButtonEditarClick(Sender: TObject);
 begin
   try
     application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+    FrmCapturaFolio.lyEstatus.Enabled := (zmaterial.RecordCount = 0);
     FrmCapturaFolio.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
     FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
     FrmCapturaFolio.ShowModal;
@@ -422,18 +432,33 @@ begin
 
       ExApp.Range['B5:C5'] := 'DIVISION';
       ExApp.Range['B5:C5'].mergeCells := True;
+      ExApp.Range['D5:E5'].mergeCells := True;
+
       ExApp.Range['B6:C6'] := 'AREA';
       ExApp.Range['B6:C6'].mergeCells := True;
+      ExApp.Range['D6:E6'].mergeCells := True;
+
       ExApp.Range['B7:C7'] := 'CONTRATISTA';
       ExApp.Range['B7:C7'].mergeCells := True;
+      ExApp.Range['D7:E7'].mergeCells := True;
 
       ExApp.Range['B9:C9'] := 'No. VALE';
       ExApp.Range['B9:C9'].mergeCells := True;
+      ExApp.Range['D9:E9'].mergeCells := True;
+
       ExApp.Range['B10:C10'] := 'FECHA vALE';
       ExApp.Range['B10:C10'].mergeCells := True;
+      ExApp.Range['D10:E10'].mergeCells := True;
+
       ExApp.Range['B11:C11'] := 'DEL MES';
       ExApp.Range['B11:C11'].mergeCells := True;
+      ExApp.Range['D11:E11'].mergeCells := True;
+
+      SetBorders(Exapp.Range['B5:E7'], xlThin, xlContinuous);
+      SetBorders(Exapp.Range['B9:E11'], xlThin, xlContinuous);
+
       ExApp.Range['C12'] := 'FOLIO';
+      SetBorders(Exapp.Range['C12'], xlThin, xlContinuous);
 
       ExApp.Range['A13'] := 'NO.';
       ExApp.Range['B13'] := 'FOLIO';
@@ -484,8 +509,7 @@ begin
           zUMateriales.Next;
         end;
         //Bordes de Materiales
-        SetBorders(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(1)], xlContinuous, xlThin);
-
+        SetBorders(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(1)], xlThin, xlContinuous);
 
         //Agregando folios de la semana
         iniFila := 14;
@@ -499,9 +523,10 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 2) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Folio').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 3) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Telefono').AsString;
           ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Direccion').AsString;
-          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)]
-          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Principal').AsString;
-          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Secundario').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)].numberFormat := '@';
+          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)].FormulaR1C1 := zDatos.FieldByName('Principal').AsString + ' ';
+          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)].NumberFormat := '@';
+          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)].FormulaR1C1 := zDatos.FieldByName('Secundario').AsString + ' ';
 
           recCol := 0;
           zUMateriales.First;
@@ -526,29 +551,54 @@ begin
             finally
               zMaterial.Filtered := False;
             end;
-
             inc(RecCol);
             zUMateriales.Next;
           end;
-
           inc(RecFila);
           zDatos.Next;
         end;
-        //Sumatoria
-        ExApp.Range['F'+intToStr(RecFila)] := 'Total';
 
-        for i := 0 to zUMateriales.RecordCount do
+        //Colocar las Formulas Sumatoria
+        ExApp.Range['F'+intToStr(IniFila +RecFila)] := 'TOTAL';
+        for i := 0 to zUMateriales.RecordCount-1 do
         begin
           //=SUM(R[-5]C:R[-1]C)
-          ExApp.Range[ColumnaNombre(7+i) +intToStr(RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
-
+          ExApp.Range[ColumnaNombre(7+i) +intToStr(IniFila + RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
         end;
 
-
         //Borders a cuerpo del excel
-        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila-1)];
-        SetBorders(Rango, xlContinuous, xlThin);
-        FormatoTexto(Rango, 'Arial Narrow', 10, True, False);
+        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(6 + zUMateriales.RecordCount) + IntToStr(IniFila + recFila)];
+        SetBorders(Rango, xlThin, xlContinuous);
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
+
+        //Firmantes
+        Rango := ExApp.Range['D' + IntToStr(IniFila+recFila+2) + ':' + 'G' + IntToStr(IniFila + recFila + 6)];
+        Rango.MergeCells := True;
+        Rango := ExApp.Range['D' + IntToStr(IniFila+recFila + 7) + ':' + 'G' + IntToStr(IniFila + recFila + 7)];
+        Rango.MergeCells := True;
+        Rango.Value := 'NOMBRE Y FIRMA';
+        Rango := ExApp.Range['D' + IntToStr(IniFila+recFila+2) + ':' + 'G' + IntToStr(IniFila + recFila + 7)];
+        FormatoTexto(Rango, 'Arial Narrow', 10, True);
+        SetBorders(Rango, xlThin, xlContinuous);
+        Rango := ExApp.Range['D' + IntToStr(IniFila+recFila + 9) + ':' + 'G' + IntToStr(IniFila + recFila + 9)];
+        Rango.MergeCells := True;
+        Rango.Value := 'CONTRATISTA';
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
+
+        Rango := ExApp.Range['M' + IntToStr(IniFila+recFila+2) + ':' + 'R' + IntToStr(IniFila + recFila + 6)];
+        Rango.MergeCells := True;
+        Rango := ExApp.Range['M' + IntToStr(IniFila+recFila + 7) + ':' + 'R' + IntToStr(IniFila + recFila + 7)];
+        Rango.MergeCells := True;
+        Rango.Value := 'NOMBRE Y FIRMA';
+        Rango := ExApp.Range['M' + IntToStr(IniFila+recFila+2) + ':' + 'R' + IntToStr(IniFila + recFila + 7)];
+        FormatoTexto(Rango, 'Arial Narrow', 10, True);
+        SetBorders(Rango, xlThin, xlContinuous);
+        Rango := ExApp.Range['M' + IntToStr(IniFila+recFila + 9) + ':' + 'R' + IntToStr(IniFila + recFila + 9)];
+        Rango.MergeCells := True;
+        Rango.Value := 'SUPERVISOR';
+        FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
+
+        Exapp.range['G:Z'].Columnwidth := 6;
 
         ExApp.ActiveSheet.name := 'MATERIALES';
         ExApp.ActiveWindow.DisplayGridlines := False;

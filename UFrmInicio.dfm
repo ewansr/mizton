@@ -35,14 +35,16 @@ object FrmInicio: TFrmInicio
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Bevel = dxpbNone
+        Width = 100
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Text = 'Ubicaci'#243'n:'
-        Width = 60
+        Width = 50
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -51,6 +53,7 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
@@ -628,8 +631,6 @@ object FrmInicio: TFrmInicio
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
-    ExplicitLeft = -6
-    ExplicitTop = -6
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0

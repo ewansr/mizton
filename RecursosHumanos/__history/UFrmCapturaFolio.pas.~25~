@@ -53,12 +53,15 @@ type
     dsMaterial: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
 
     { Private declarations }
   public
     { Public declarations }
     IdFolio: Integer;
+    IdPersonal: Integer;
   end;
 
 var
@@ -68,14 +71,47 @@ implementation
 
 {$R *.dfm}
 
+procedure TFrmCapturaFolio.btnCancelarClick(Sender: TObject);
+begin
+  zDatos.Cancel;
+  Close;
+end;
+
+procedure TFrmCapturaFolio.btnGuardarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      screen.Cursor := crAppStart;
+      zDatos.Post;
+      Close;
+    finally
+      SCreen.Cursor := Cursor;
+    end;
+  Except
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+    end;
+
+    on e: exception do
+    begin
+      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      postMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
+
 procedure TFrmCapturaFolio.FormCreate(Sender: TObject);
 begin
   IdFolio := -9;
   if not AsignarSQL(zDatos, 'mt_foliosxtecnicos', pUpdate) then
     raise Exception.Create(pErrorConsulta + '[mt_foliosxtecnicos]');
 
-  if not AsignarSQL(zMaterial, 'factura_servicios', pReadOnly) then
-    raise Exception.Create(pErrorConsulta + '[Materiales]');
+//  if not AsignarSQL(zMaterial, 'factura_servicios', pReadOnly) then
+//    raise Exception.Create(pErrorConsulta + '[Materiales]');
 
 end;
 
@@ -87,7 +123,7 @@ begin
     Cursor := Screen.Cursor;
     try
       screen.Cursor := crAppStart;
-      if not FiltrarDataset(zDatos, 'IdFolio', [IdFolio]) then
+      if not FiltrarDataset(zDatos, 'IdFolio', [IntToStr(IdFolio)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
 
       if zDatos.Active then
@@ -95,13 +131,24 @@ begin
       else
         zDatos.Open;
 
-      if not FiltrarDataset(zMaterial, 'IdFolio', [IdFolio]) then
-        raise Exception.Create(pErrorFiltrar + '[Materiales]');
 
-      if zMaterial.Active then
-        zMaterial.Refresh
+      if IdFolio = -9 then
+      begin
+        zDatos.Append;
+        zDatos.FieldByName('IdFolio').AsInteger := 0;
+        zDatos.FieldByName('IdPersonal').AsInteger := IdPersonal;
+        zDatos.FieldByName('Estatus').AsString := 'Liquidada';
+      end
       else
-        zMaterial.Open;
+        zDatos.Edit;
+
+//      if not FiltrarDataset(zMaterial, 'IdFolio', [IdFolio]) then
+//        raise Exception.Create(pErrorFiltrar + '[Materiales]');
+//
+//      if zMaterial.Active then
+//        zMaterial.Refresh
+//      else
+//        zMaterial.Open;
 
     finally
       SCreen.Cursor := Cursor;
@@ -109,7 +156,7 @@ begin
   Except
     on e: exception do
     begin
-      MsgBox.ShowModal(pMensajeError + e.Message, cmtError, [cmbOK]);
+      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
       postMessage(self.Handle, WM_CLOSE, 0, 0);
     end;
   end;

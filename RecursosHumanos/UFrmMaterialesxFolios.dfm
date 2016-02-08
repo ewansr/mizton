@@ -22,7 +22,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Width = 1046
     Height = 544
     Align = alClient
-    ExplicitHeight = 493
     DockingType = 5
     OriginalWidth = 1046
     OriginalHeight = 544
@@ -31,7 +30,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Top = 0
       Width = 656
       Height = 544
-      ExplicitHeight = 493
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
@@ -68,9 +66,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
-          ExplicitLeft = 131
-          ExplicitTop = 164
-          ExplicitHeight = 457
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -170,7 +165,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      ExplicitHeight = 493
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -184,7 +178,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitHeight = 400
         ClientRectBottom = 445
         ClientRectLeft = 2
         ClientRectRight = 376
@@ -192,7 +185,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         object cxTsDatos: TcxTabSheet
           Caption = 'Materiales por Folio'
           ImageIndex = 0
-          ExplicitHeight = 367
           object dxLYCDatos: TdxLayoutControl
             Left = 0
             Top = 402
@@ -202,7 +194,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             TabOrder = 0
             Visible = False
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitTop = 351
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -220,7 +211,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Height = 396
             Align = alClient
             TabOrder = 1
-            ExplicitHeight = 345
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               DataController.DataSource = dsMaterial
@@ -275,7 +265,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Height = 544
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 493
     object cxGboxFiltro: TcxGroupBox
       AlignWithMargins = True
       Left = 11
@@ -317,7 +306,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Top = 65
           Width = 75
           Height = 25
-          Caption = '&Mostrar'
+          Caption = '&Mostrar Actividades'
           TabOrder = 2
           OnClick = btnAplicarClick
         end
@@ -364,7 +353,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Align = alClient
       Caption = 'Informaci'#243'n del t'#233'cnico'
       TabOrder = 1
-      ExplicitLeft = 16
       Height = 376
       Width = 267
       object dxLayoutControl1: TdxLayoutControl
@@ -375,7 +363,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
-        ExplicitHeight = 300
         object imgFoto: TcxDBImage
           Left = 11
           Top = 11

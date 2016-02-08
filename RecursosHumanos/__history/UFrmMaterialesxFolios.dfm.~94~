@@ -51,7 +51,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Height = 544
         AllowFloating = False
         AutoHide = False
-        Caption = 'Listado de Folios'
+        Caption = 'Actividades realizadas'
         CaptionButtons = []
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
@@ -128,10 +128,18 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               DataBinding.FieldName = 'NoVale'
               Width = 151
             end
+            object cxColEstatus: TcxGridDBColumn
+              Caption = 'Estatus'
+              DataBinding.FieldName = 'estatus'
+              Width = 136
+            end
           end
           object cxChartProductividad: TcxGridDBChartView
             DataController.DataSource = dsDatos
-            DiagramColumn.Active = True
+            DiagramPie.Active = True
+            DiagramPie.SeriesSites = True
+            DiagramPie.Values.CaptionPosition = pdvcpOutsideEndWithLeaderLines
+            DiagramPie.Values.CaptionItems = [pdvciCategory, pdvciValue, pdvciPercentage]
             ToolBox.DiagramSelector = True
             object cxDataEstatus: TcxGridDBChartDataGroup
               DataBinding.FieldName = 'estatus'
@@ -141,11 +149,11 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             end
           end
           object GridLevel1: TcxGridLevel
-            Caption = 'Informaci'#243'n detallada de Folios'
+            Caption = 'Informaci'#243'n detallada por folios'
             GridView = cxGridDatos
           end
           object cxLvlGrafico: TcxGridLevel
-            Caption = 'Gr'#225'fico de productividad'
+            Caption = 'Gr'#225'fico de productividad semanal'
             GridView = cxChartProductividad
           end
         end
@@ -158,7 +166,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Height = 544
       AllowFloating = True
       AutoHide = False
-      Caption = 'Insertar / Editar Registros'
+      Caption = 'Materiales asignados a cada folio'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
@@ -277,7 +285,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alTop
-      Caption = 'Semana:'
+      Caption = 'Semana de trabajo:'
       TabOrder = 0
       Height = 126
       Width = 267
@@ -354,9 +362,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Caption = 'Informaci'#243'n del Empleado:'
+      Caption = 'Informaci'#243'n del t'#233'cnico'
       TabOrder = 1
-      ExplicitHeight = 325
+      ExplicitLeft = 16
       Height = 376
       Width = 267
       object dxLayoutControl1: TdxLayoutControl
@@ -738,6 +746,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16464
+      OnClick = dxButtonExportarClick
     end
     object dxButtonOpcional: TdxBarLargeButton
       Caption = 'Opcional'
@@ -869,13 +878,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   end
   object zMaterial: TZQuery
     Params = <>
-    Left = 544
-    Top = 232
+    Left = 528
+    Top = 464
   end
   object dsMaterial: TDataSource
     DataSet = zMaterial
-    Left = 632
-    Top = 240
+    Left = 448
+    Top = 512
   end
   object zDeleteFolio: TZQuery
     Connection = UDMConection.conBD
@@ -896,5 +905,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdFolio'
         ParamType = ptUnknown
       end>
+  end
+  object zUMateriales: TZQuery
+    Params = <>
+    Left = 824
+    Top = 344
   end
 end
