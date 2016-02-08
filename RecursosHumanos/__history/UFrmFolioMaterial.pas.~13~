@@ -1,0 +1,148 @@
+unit UFrmFolioMaterial;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
+  cxContainer, cxEdit, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
+  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue, Menus,
+  dxSkinscxPCPainter, dxLayoutContainer, dxLayoutControl, StdCtrls, cxButtons,
+  ExtCtrls, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, cxDropDownEdit,
+  cxDBEdit, cxMaskEdit, cxTextEdit, dxLayoutcxEditAdapters, cxSpinEdit,
+  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, uConection, umsgBox ;
+
+type
+  TFrmFolioMaterial = class(TForm)
+    zMaterial: TZQuery;
+    dsMaterial: TDataSource;
+    dsDatos: TDataSource;
+    zDatos: TZQuery;
+    pnlBotonera: TPanel;
+    btnGuardar: TcxButton;
+    btnCancelar: TcxButton;
+    dxLayControl1: TdxLayoutControl;
+    dxLayControl1Group_Root: TdxLayoutGroup;
+    cbbMaterial: TcxDBLookupComboBox;
+    lyMaterial: TdxLayoutItem;
+    cxSpinCantidad: TcxDBSpinEdit;
+    lyCantidad: TdxLayoutItem;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    Id: Integer;
+    IdFolio: Integer;
+    { Public declarations }
+  end;
+
+var
+  FrmFolioMaterial: TFrmFolioMaterial;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmFolioMaterial.btnCancelarClick(Sender: TObject);
+begin
+  zDatos.Cancel;
+  Close;
+end;
+
+procedure TFrmFolioMaterial.btnGuardarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      screen.Cursor := crAppStart;
+      zDatos.Post;
+      Close;
+    finally
+      SCreen.Cursor := Cursor;
+    end;
+  Except
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+    end;
+
+    on e: exception do
+    begin
+      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      postMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
+
+procedure TFrmFolioMaterial.FormCreate(Sender: TObject);
+begin
+  if not AsignarSQL(zMaterial, 'factura_servicios', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[Materiales]');
+
+  if not AsignarSQL(zDatos, 'mt_materialxfolio', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[mt_materialxfolio]');
+end;
+
+procedure TFrmFolioMaterial.FormShow(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      screen.Cursor := crAppStart;
+      if not FiltrarDataset(zMaterial, 'Activo', ['-1']) then
+        raise Exception.Create(pErrorFiltrar + '[Materiales]');
+
+      if zMaterial.Active then
+        zMaterial.Refresh
+      else
+        zMaterial.Open;
+
+
+      if not FiltrarDataset(zDatos, 'IdMaterialxFolio', [intTostr(ID)]) then
+        raise Exception.Create(pErrorFiltrar + '[mt_materialxfolio]');
+
+      if zDatos.Active then
+        zDatos.Refresh
+      else
+        zDatos.Open;
+
+      if Id = -9 then
+      begin
+        zDatos.Append;
+        zDatos.FieldByName('IdMaterialxFolio').AsInteger := Id;
+        zDatos.FieldByName('IdFolio').AsInteger := IdFolio;
+      end
+      else
+        zDatos.Edit;
+
+    finally
+      SCreen.Cursor := Cursor;
+    end;
+  Except
+    on e: exception do
+    begin
+      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      postMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
+
+end.

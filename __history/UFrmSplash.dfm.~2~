@@ -1,0 +1,29 @@
+object FrmSplash: TFrmSplash
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'FrmSplash'
+  ClientHeight = 83
+  ClientWidth = 322
+  Color = clFuchsia
+  TransparentColor = True
+  TransparentColorValue = clFuchsia
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  GlassFrame.SheetOfGlass = True
+  OldCreateOrder = True
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object tmr1: TTimer
+    Interval = 2000
+    OnTimer = tmr1Timer
+    Left = 264
+    Top = 24
+  end
+end

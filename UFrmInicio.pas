@@ -200,7 +200,7 @@ begin
         SetRegistry('\Settings','\' + Mireg + '', 'MysqlPort', '3306');
         SetRegistry('\Settings','\' + Mireg + '', 'MysqlProtocol', 'mysql-5');
         SetRegistry('\Settings','\' + Mireg + '', 'Host', 'localhost');
-        SetRegistry('\Settings','\' + Mireg + '', 'Database', 'Noil');
+        SetRegistry('\Settings','\' + Mireg + '', 'Database', 'MIZTON');
         SetRegistry('\Settings','\' + Mireg + '', 'Description', 'Conexión creada automáticamente por el sistema');
         SetRegistry('\Settings','\' + Mireg + '', 'Default', 'True');
 
@@ -244,7 +244,7 @@ begin
 
       if zEmpresa.Active and (zEmpresa.RecordCount = 0) then
       begin
-        MessageDlg('NOIL FACTURACIÓN ® no detectó empresas definidas, para poder continuar es necesario crear una.', mtInformation, [mbOK], 0);
+        MessageDlg('MIZTON ® no detectó empresas definidas, para poder continuar es necesario crear una.', mtInformation, [mbOK], 0);
         Application.CreateForm(TFrmEmpresas, FrmEmpresas);
         If FrmEmpresas.ShowModal = mrAbort then
         begin
@@ -263,7 +263,7 @@ begin
       CargarImpuestosEmpresa(varGlobal.Elemento('IdEmpresa').AsInteger);
       zEmpresa.Locate('IdEmpresa', varGlobal.Elemento('IdEmpresa').AsInteger, []);
 
-      dxAlertSRV.Show('Información del sistema.','Bienvenido ' + varGlobal.Elemento('Usuario').AsString + ' a tu sistema NOIL FACTURACIÓN ® la base de datos con la que estarás trabajando es [' + UPPERCASE(varGlobal.Elemento('BaseDatos').AsString) + ']' , 8);
+      dxAlertSRV.Show('Información del sistema.','Bienvenido ' + varGlobal.Elemento('Usuario').AsString + ' a tu sistema MIZTON ® la base de datos con la que estarás trabajando es [' + UPPERCASE(varGlobal.Elemento('BaseDatos').AsString) + ']' , 8);
       dxStatusBarInicio.Panels.Items[1].Text := varGlobal.Elemento('Usuario').AsString;
       dxStatusBarInicio.Panels.Items[3].Text := varGlobal.Elemento('HostName').AsString;
       dxStatusBarInicio.Panels.Items[5].Text := varGlobal.Elemento('BaseDatos').AsString;

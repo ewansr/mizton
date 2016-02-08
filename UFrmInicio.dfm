@@ -622,12 +622,14 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 3
+    TabOrder = 2
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
+    ExplicitLeft = -6
+    ExplicitTop = -6
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0
@@ -677,7 +679,7 @@ object FrmInicio: TFrmInicio
       Action = actPersonal
     end
     object LinkCargos: TdxNavBarItem
-      Caption = 'Cargos (Puestos)'
+      Caption = 'Puestos'
       LargeImageIndex = 2
       SmallImageIndex = 2
     end
@@ -2938,8 +2940,8 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 408
-    Top = 240
+    Left = 320
+    Top = 416
   end
   object dxPopup1: TdxBarPopupMenu
     BarManager = dxBarManager1

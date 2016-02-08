@@ -44,7 +44,9 @@ uses
   UFrmPersonal in 'RecursosHumanos\UFrmPersonal.pas' {FrmPersonal},
   USelExpediente in 'USelExpediente.pas' {FrmSelExpediente},
   UFrmMaterialesxFolios in 'RecursosHumanos\UFrmMaterialesxFolios.pas' {FrmMaterialesxFolios},
-  UFrmCapturaFolio in 'RecursosHumanos\UFrmCapturaFolio.pas' {FrmCapturaFolio};
+  UFrmCapturaFolio in 'RecursosHumanos\UFrmCapturaFolio.pas' {FrmCapturaFolio},
+  UFrmFolioMaterial in 'RecursosHumanos\UFrmFolioMaterial.pas' {FrmFolioMaterial},
+  ExportaExcel in 'Generales\ExportaExcel.pas';
 
 {$R *.res}
 
@@ -56,6 +58,5 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
-  Application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
   Application.Run;
 end.

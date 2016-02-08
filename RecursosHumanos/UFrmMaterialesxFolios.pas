@@ -28,7 +28,8 @@ uses
   UConection, umsgbox, ExtCtrls, cxContainer, ComCtrls, dxCore, cxDateUtils,
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
-  cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView;
+  cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView,
+  ExportaExcel;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -85,9 +86,9 @@ type
     cxColArea: TcxGridDBColumn;
     cxColContratista: TcxGridDBColumn;
     cxColNoVale: TcxGridDBColumn;
-    cxGrid1: TcxGrid;
-    cxGridDBTableView1: TcxGridDBTableView;
-    cxGridLevel1: TcxGridLevel;
+    CxGrdMat: TcxGrid;
+    cxGridMateriales: TcxGridDBTableView;
+    cxLvl1: TcxGridLevel;
     cxColmaterial: TcxGridDBColumn;
     cxColUMedida: TcxGridDBColumn;
     cxColCantidad: TcxGridDBColumn;
@@ -119,12 +120,29 @@ type
     cxChartProductividad: TcxGridDBChartView;
     cxSerieProductividad: TcxGridDBChartSeries;
     cxDataEstatus: TcxGridDBChartDataGroup;
+    DbLblTelefono: TcxDBLabel;
+    lyTelefono: TdxLayoutItem;
+    DbLblCorreo: TcxDBLabel;
+    lyCorreo: TdxLayoutItem;
+    zDeleteFolio: TZQuery;
+    cxColEstatus: TcxGridDBColumn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnAplicarClick(Sender: TObject);
     procedure cxGridGralActiveTabChanged(Sender: TcxCustomGrid;
       ALevel: TcxGridLevel);
+    procedure dxButtonNuevoClick(Sender: TObject);
+    procedure dxButtonActualizarClick(Sender: TObject);
+    procedure dxBButtonEditarClick(Sender: TObject);
+    procedure dxBButtonBuscarClick(Sender: TObject);
+    procedure dxBButtonEliminarClick(Sender: TObject);
+    procedure cxDateDesdePropertiesChange(Sender: TObject);
+    procedure btnaddClick(Sender: TObject);
+    procedure btnEditClick(Sender: TObject);
+    procedure zDatosAfterScroll(DataSet: TDataSet);
+    procedure btnDeleteClick(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
   private
 
     { Private declarations }
@@ -141,6 +159,21 @@ implementation
 
 {$R *.dfm}
 
+uses UfrmCapturaFolio, UfrmFolioMAterial;
+
+
+procedure TFrmMaterialesxFolios.btnaddClick(Sender: TObject);
+begin
+  try
+    application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
+    FrmFolioMaterial.Id := -9;
+    FrmFolioMaterial.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
+    FrmFolioMaterial.ShowModal;
+  finally
+    btnRefresh.Click;
+  end;
+end;
+
 procedure TFrmMaterialesxFolios.btnAplicarClick(Sender: TObject);
 var
   Cursor: TCursor;
@@ -150,8 +183,9 @@ begin
     try
       Screen.Cursor := crAppStart;
 
-      if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [Idpersonal]) then
+       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+
 
       if zDatos.Active then
         zDatos.Refresh
@@ -169,6 +203,59 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.btnDeleteClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+      if (MsgBox.ShowModal('Confirmar acción.', '¿Está seguro que deseas eliminar este folio [' + zDatos.FieldByName('Folio').AsString + '] juntos con los materiales asignados?', cmtInformation, [cMbDelete, cMbNo]) = mrYes) then
+      begin
+        zDeleteFolio.SQL.Text := 'DELETE FROM mt_materialxfolio WHERE IdMaterialxFolio = :IdMaterialxFolio';
+        zDeleteFolio.ParamByName('IdMaterialxFolio').AsInteger := zMaterial.FieldByName('IdMaterialxFolio').AsInteger;
+        zDeleteFolio.ExecSQL;
+        btnRefresh.Click;
+      end;
+    finally
+      Screen.Cursor := Cursor;
+    end;
+  Except
+    on e: Exception do
+    begin
+      MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
+    end;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.btnEditClick(Sender: TObject);
+begin
+  try
+    application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
+    FrmFolioMaterial.Id := zMaterial.fieldByName('IdMaterialxFolio').asinteger;
+    FrmFolioMaterial.ShowModal;
+  finally
+    btnRefresh.Click;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.btnRefreshClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  Cursor := Screen.Cursor;
+  try
+    Screen.Cursor := crAppStart;
+    if zMaterial.Active then
+      zMaterial.Refresh
+    else
+      zMaterial.Open;
+  finally
+    Screen.Cursor := Cursor;
+  end;
+end;
+
 constructor TFrmMaterialesxFolios.CreateByParam(Personal: integer; Modal: Boolean = False);
 begin
   if Not Modal then
@@ -177,27 +264,137 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.cxDateDesdePropertiesChange(Sender: TObject);
+begin
+  cxDateDesde.Date := StartOfTheWeek(cxDateDesde.Date);
+  cxDateHasta.Date := EndOfTheWeek(cxDateDesde.Date);
+end;
+
 procedure TFrmMaterialesxFolios.cxGridGralActiveTabChanged(
   Sender: TcxCustomGrid; ALevel: TcxGridLevel);
+var
+   Cursor: TCursor;
 begin
   try
-    if cxGridGral.ActiveLevel = cxLvlGrafico then
-    begin
-      if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta,Grafica', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date), 'Si']) then
-        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
-    end
-    else
-    begin
-       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
-        raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
-    end;
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := CrAppstart;
+      if cxGridGral.ActiveLevel = cxLvlGrafico then
+      begin
+        if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta,Grafica', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date), 'Si']) then
+          raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+      end
+      else
+      begin
+         if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
+          raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+      end;
 
-    if zDatos.Active then
-      zDatos.Refresh
-    else
-      zDatos.Open;
+      if zDatos.Active then
+        zDatos.Refresh
+      else
+        zDatos.Open;
+    finally
+      Screen.Cursor := Cursor;
+    end;
   Except
     raise;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.dxBButtonBuscarClick(Sender: TObject);
+begin
+  cxgridDatos.FilterRow.Visible := Not cxGridDatos.FilterRow.Visible;
+end;
+
+procedure TFrmMaterialesxFolios.dxBButtonEditarClick(Sender: TObject);
+begin
+  try
+    application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+    FrmCapturaFolio.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
+    FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
+    FrmCapturaFolio.ShowModal;
+  finally
+    dxButtonActualizar.Click;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.dxBButtonEliminarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+      if (MsgBox.ShowModal('Confirmar acción.', '¿Está seguro que deseas eliminar este folio [' + zDatos.FieldByName('Folio').AsString + '] juntos con los materiales asignados?', cmtInformation, [cMbDelete, cMbNo]) = mrYes) then
+      begin
+        zDeleteFolio.Active := False;
+        zDeleteFolio.Connection.StartTransaction;
+        zDeleteFolio.SQL.Text := 'DELETE FROM mt_materialxfolio WHERE IdFolio = :IdFolio';
+
+
+        zDeleteFolio.ParamByName('IdFolio').AsInteger := zDatos.FieldByName('IdFolio').AsInteger;
+        zDeleteFolio.ExecSQL;
+
+        zDeleteFolio.SQL.Text := 'DELETE FROM mt_foliosxtecnicos WHERE IdFolio = :IdFolio';
+        zDeleteFolio.ParamByName('IdFolio').AsInteger := zDatos.FieldByName('IdFolio').AsInteger;
+        zDeleteFolio.ExecSQL;
+
+
+        zDeleteFolio.Connection.Commit;
+      end;
+    finally
+      If zDeleteFolio.Connection.InTransaction then
+        zDeleteFolio.Connection.Rollback;
+
+      Screen.Cursor := Cursor;
+    end;
+  Except
+    on e: Exception do
+    begin
+      If zDeleteFolio.Connection.InTransaction then
+        zDeleteFolio.Connection.Rollback;
+      MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
+      PostMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.dxButtonActualizarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      if zDatos.Active then
+        zDatos.Refresh
+      else
+        zDatos.Open;
+
+    finally
+      Screen.Cursor := Cursor;
+    end;
+  Except
+    on e: Exception do
+    begin
+      MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
+      PostMessage(self.Handle, WM_CLOSE, 0, 0);
+    end;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.dxButtonNuevoClick(Sender: TObject);
+begin
+  try
+    application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+    FrmCapturaFolio.IdFolio := -9;
+    FrmCapturaFolio.ShowModal;
+  finally
+    dxButtonActualizar.Click;
   end;
 end;
 
@@ -214,6 +411,9 @@ begin
 
   if NOT AsignarSQL(zDatos, 'mt_foliosxtecnicos', pReadOnly) then
     raise Exception.Create(pErrorConsulta + '[mt_foliosxtecnicos]');
+
+  if NOT AsignarSQL(zMaterial, 'mt_materialxfolio', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[mt_materialxfolio]');
 
 end;
 
@@ -245,6 +445,7 @@ begin
       else
         zDatos.Open;
 
+      self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
     finally
       AplicarTema(TForm(Self));
       AutoFocus(TForm(Self));
@@ -257,6 +458,17 @@ begin
       PostMessage(self.Handle, WM_CLOSE, 0, 0);
     end;
   end;
+end;
+
+procedure TFrmMaterialesxFolios.zDatosAfterScroll(DataSet: TDataSet);
+begin
+  if not FiltrarDataset(zMaterial, 'IdFolio', [zDatos.FieldByName('IdFOlio').AsString]) then
+    raise Exception.Create(pErrorFiltrar + '[mt_materialxfolio]');
+
+  if zMaterial.Active then
+    zMaterial.Refresh
+  else
+    zMaterial.Open;
 end;
 
 end.

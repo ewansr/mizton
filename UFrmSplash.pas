@@ -18,12 +18,13 @@ uses
   dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
   dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
   dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue, cxImage,
-  dxGDIPlusClasses, ExtCtrls;
+  dxGDIPlusClasses, ExtCtrls, AdvCircularProgress;
 
 type
   TFrmSplash = class(TForm)
-    img1: TcxImage;
     tmr1: TTimer;
+    advcrclrprgrs1: TAdvCircularProgress;
+    Panel1: TPanel;
     procedure tmr1Timer(Sender: TObject);
   private
     { Private declarations }

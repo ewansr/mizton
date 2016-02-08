@@ -1,6 +1,7 @@
 object FrmSelExpediente: TFrmSelExpediente
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Seleccionar Expediente'
   ClientHeight = 417
   ClientWidth = 476

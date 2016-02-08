@@ -146,6 +146,10 @@
 			<DCCReference Include="RecursosHumanos\UFrmCapturaFolio.pas">
 				<Form>FrmCapturaFolio</Form>
 			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmFolioMaterial.pas">
+				<Form>FrmFolioMaterial</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\ExportaExcel.pas"/>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
