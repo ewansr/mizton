@@ -35,14 +35,16 @@ object FrmInicio: TFrmInicio
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Bevel = dxpbNone
+        Width = 100
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Text = 'Ubicaci'#243'n:'
-        Width = 60
+        Width = 50
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -51,6 +53,7 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
@@ -622,7 +625,7 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 3
+    TabOrder = 2
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
@@ -644,6 +647,9 @@ object FrmInicio: TFrmInicio
         end
         item
           Item = LinkSalarios
+        end
+        item
+          Item = LinkVales
         end
         item
           Item = LinkFolios
@@ -677,7 +683,7 @@ object FrmInicio: TFrmInicio
       Action = actPersonal
     end
     object LinkCargos: TdxNavBarItem
-      Caption = 'Cargos (Puestos)'
+      Caption = 'Puestos'
       LargeImageIndex = 2
       SmallImageIndex = 2
     end
@@ -708,10 +714,13 @@ object FrmInicio: TFrmInicio
     object sepConfig: TdxNavBarSeparator
       Caption = 'sepConfig'
     end
+    object LinkVales: TdxNavBarItem
+      Action = actVales
+    end
   end
   object cxImage1: TcxImage
-    Left = 844
-    Top = 305
+    Left = 1004
+    Top = 49
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D494844520000068A
       0000037D0806000000A44D2B1B000000206348524D00007A25000080830000F9
@@ -2929,6 +2938,11 @@ object FrmInicio: TFrmInicio
       ImageIndex = 1
       OnExecute = actFoliosExecute
     end
+    object actVales: TAction
+      Caption = 'Cat'#225'logo de Vales '
+      ImageIndex = 1
+      OnExecute = actValesExecute
+    end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
     BarManager = dxBarManager1
@@ -2938,8 +2952,8 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 408
-    Top = 240
+    Left = 320
+    Top = 416
   end
   object dxPopup1: TdxBarPopupMenu
     BarManager = dxBarManager1

@@ -2277,6 +2277,7 @@ object FrmInicio: TFrmInicio
     Top = 0
     Width = 5
     Height = 607
+    HotZoneClassName = 'TcxMediaPlayer9Style'
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

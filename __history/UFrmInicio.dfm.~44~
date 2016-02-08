@@ -35,14 +35,16 @@ object FrmInicio: TFrmInicio
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Bevel = dxpbNone
+        Width = 100
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Text = 'Ubicaci'#243'n:'
-        Width = 60
+        Width = 50
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -51,6 +53,7 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
@@ -646,6 +649,9 @@ object FrmInicio: TFrmInicio
           Item = LinkSalarios
         end
         item
+          Item = LinkVales
+        end
+        item
           Item = LinkFolios
         end>
     end
@@ -677,7 +683,7 @@ object FrmInicio: TFrmInicio
       Action = actPersonal
     end
     object LinkCargos: TdxNavBarItem
-      Caption = 'Cargos (Puestos)'
+      Caption = 'Puestos'
       LargeImageIndex = 2
       SmallImageIndex = 2
     end
@@ -707,6 +713,9 @@ object FrmInicio: TFrmInicio
     end
     object sepConfig: TdxNavBarSeparator
       Caption = 'sepConfig'
+    end
+    object LinkVales: TdxNavBarItem
+      Action = actVales
     end
   end
   object cxImage1: TcxImage
@@ -2268,6 +2277,7 @@ object FrmInicio: TFrmInicio
     Top = 0
     Width = 5
     Height = 607
+    HotZoneClassName = 'TcxMediaPlayer9Style'
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -2929,6 +2939,11 @@ object FrmInicio: TFrmInicio
       ImageIndex = 1
       OnExecute = actFoliosExecute
     end
+    object actVales: TAction
+      Caption = 'Cat'#225'logo de Vales '
+      ImageIndex = 1
+      OnExecute = actValesExecute
+    end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
     BarManager = dxBarManager1
@@ -2938,8 +2953,8 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 408
-    Top = 240
+    Left = 320
+    Top = 416
   end
   object dxPopup1: TdxBarPopupMenu
     BarManager = dxBarManager1
