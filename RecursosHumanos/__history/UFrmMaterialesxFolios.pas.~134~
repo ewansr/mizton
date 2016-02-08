@@ -28,7 +28,8 @@ uses
   UConection, umsgbox, ExtCtrls, cxContainer, ComCtrls, dxCore, cxDateUtils,
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
-  cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView;
+  cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView,
+  ExportaExcel, ComObj, strUtils;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -124,6 +125,8 @@ type
     DbLblCorreo: TcxDBLabel;
     lyCorreo: TdxLayoutItem;
     zDeleteFolio: TZQuery;
+    cxColEstatus: TcxGridDBColumn;
+    zUMateriales: TZQuery;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -141,8 +144,9 @@ type
     procedure zDatosAfterScroll(DataSet: TDataSet);
     procedure btnDeleteClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
+    procedure dxButtonExportarClick(Sender: TObject);
   private
-
+    ExApp: Variant;
     { Private declarations }
   public
     IdPersonal: integer;
@@ -385,6 +389,155 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.dxButtonExportarClick(Sender: TObject);
+Var
+  cursor: TCursor;
+  Continuar: Boolean;
+  Rango: Variant;
+  zMat: TZQuery;
+  iniFila, iniCol, recFila, recCol: Integer;
+  ListaMaterial: TStringList;
+begin
+  try
+    Try
+      Continuar     := True;
+      ExApp := CreateOleObject('Excel.Application');
+      ExApp.Visible := True;
+      ExApp.DisplayAlerts := False;
+      ExApp.Workbooks.Add;
+    Except
+      on e:Exception do
+      begin
+        Continuar := False;
+        msgBox.ShowModal('Ha ocurrido un error.','Al parecer no el equipo no tiene instalado Microsoft Excel, Contacte a su administrador de sistema para poder utilizar esta característica', cmtError, [cmbOK]);
+      end;
+    End;
+
+    //Si no se vá al chorizo, continuar
+    if Continuar then
+    begin
+      //encabezado y datos generales
+      ExApp.Range['A2'] := 'EXP.';
+      FormatoTexto(ExApp.Range['A2'], 'Arial Narrow', 11, True, True);
+
+      ExApp.Range['B5:C5'] := 'DIVISION';
+      ExApp.Range['B5:C5'].mergeCells := True;
+      ExApp.Range['B6:C6'] := 'AREA';
+      ExApp.Range['B6:C6'].mergeCells := True;
+      ExApp.Range['B7:C7'] := 'CONTRATISTA';
+      ExApp.Range['B7:C7'].mergeCells := True;
+
+      ExApp.Range['B9:C9'] := 'No. VALE';
+      ExApp.Range['B9:C9'].mergeCells := True;
+      ExApp.Range['B10:C10'] := 'FECHA vALE';
+      ExApp.Range['B10:C10'].mergeCells := True;
+      ExApp.Range['B11:C11'] := 'DEL MES';
+      ExApp.Range['B11:C11'].mergeCells := True;
+      ExApp.Range['C12'] := 'FOLIO';
+
+      ExApp.Range['A13'] := 'NO.';
+      ExApp.Range['B13'] := 'FOLIO';
+      ExApp.Range['C13'] := 'TELEFONO';
+      ExApp.Range['D13'] := 'DIRECCION';
+      ExApp.Range['E13'] := 'PPRINC';
+      ExApp.Range['F13'] := 'PSEC';
+
+      Rango := EXApp.Range['A1:F13'];
+      FormatoTexto(Rango, 'Arial Narrow', 10, True, True);
+
+
+
+      Cursor := Screen.Cursor;
+      try
+        Screen.Cursor := crAppStart;
+
+        iniFila := 12;
+        InicOl := 7;
+        recFila := 0;
+        recCol := 0;
+
+        //UNiverso de materiales utilizados en la semana
+        if not FiltrarDataset(zUMateriales, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
+          raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+
+        if zUMateriales.Active then
+          zUMateriales.Refresh
+        else
+          zUMateriales.Open;
+
+        zUMateriales.First;
+        while not zUMateriales.Eof do
+        begin
+          //Material
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)] := zUMateriales.FieldByName('Material').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)].mergeCells := True;
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)].Orientation := 90;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)], 'Arial Narrow', 10, true, False);
+
+          //Unidad Medida
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)] := zUMateriales.FieldByName('Unidad').AsString;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)], 'Arial Narrow', 9, true, True);
+
+          inc(RecCol);
+          zUMateriales.Next;
+        end;
+
+        //Agregando folios de la semana
+        iniFila := 14;
+        InicOl := 0;
+        recFila := 0;
+
+        zDatos.First;
+        while Not zDatos.Eof do
+        begin
+          ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila + recFila)] := zDatos.recNo;
+          ExApp.Range[ColumnaNombre(IniCol + 2) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Folio').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 3) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Telefono').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Direccion').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Principal').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Secundario').AsString;
+
+          recCol := 0;
+          zUMateriales.First;
+          while not zUMateriales.Eof do
+          begin
+            //Cantidad de Material
+            try
+              //Filtrar por material seleccionado en el universo de materiales
+              zMaterial.Filtered := False;
+              zMaterial.Filter := 'IdMaterial=' + zUMateriales.FieldByName('IdMaterial').AsString;
+              zMaterial.Filtered := True;
+
+              zMaterial.First;
+              while not zMaterial.Eof do
+              begin
+                //Esto lo puse por si el ususario la cagotea se suman la cantidades que sean del mismo material
+                ExApp.Range[ColumnaNombre(7 + recCol) + IntToStr(IniFila + RecFila)].value :=  ExApp.Range[ColumnaNombre(7 + recCol) + IntToStr(IniFila + RecFila)].value +
+                                                                                               zMaterial.FieldByName('Cantidad').AsString;
+                zMaterial.Next;
+              end;
+
+            finally
+              zMaterial.Filtered := False;
+            end;
+
+            inc(RecCol);
+            zUMateriales.Next;
+          end;
+
+          inc(RecFila);
+          zDatos.Next;
+        end;
+        ExApp.ActiveSheet.name := 'MATERIALES'
+      finally
+        Screen.Cursor := Cursor;
+      end;
+    end;
+  finally
+
+  end;
+end;
+
 procedure TFrmMaterialesxFolios.dxButtonNuevoClick(Sender: TObject);
 begin
   try
@@ -412,6 +565,9 @@ begin
 
   if NOT AsignarSQL(zMaterial, 'mt_materialxfolio', pReadOnly) then
     raise Exception.Create(pErrorConsulta + '[mt_materialxfolio]');
+
+  if NOT AsignarSQL(zUMateriales, 'mt_universomateriales', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[mt_universomateriales]');
 
 end;
 
@@ -443,6 +599,7 @@ begin
       else
         zDatos.Open;
 
+      self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
     finally
       AplicarTema(TForm(Self));
       AutoFocus(TForm(Self));

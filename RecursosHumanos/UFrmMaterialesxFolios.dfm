@@ -746,6 +746,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16464
+      OnClick = dxButtonExportarClick
     end
     object dxButtonOpcional: TdxBarLargeButton
       Caption = 'Opcional'
@@ -904,5 +905,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdFolio'
         ParamType = ptUnknown
       end>
+  end
+  object zUMateriales: TZQuery
+    Params = <>
+    Left = 824
+    Top = 344
   end
 end

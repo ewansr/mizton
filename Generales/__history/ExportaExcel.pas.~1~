@@ -10,11 +10,6 @@ uses
   Function CadenaEntero (Cadena: String): Integer;
   function LetraColumna (x:integer):string;
   function ColumnaNombre(Numero:Integer):string;
-
-  Procedure FormatoTexto(Rango: Variant; Letra: String; tamano: Integer; Centrar: Boolean; Negrita: Boolean = False);
-  Procedure SetBorders(Rango: Variant; Grosor: Integer; Tipo: integer);
-
-
 type
   TBorderWeight = (bwHairline,bwMedium,bwThick,bwThin);
   TBorderLineStyle = (blContinuous, blDash, blDashDot, blDashDotDot,
@@ -516,35 +511,6 @@ begin
   Cad:=cad + Char(64 + Valor);
 
   Result:=Cad;
-end;
-
-Procedure FormatoTexto(Rango: Variant; Letra: String; tamano: Integer; Centrar: Boolean; Negrita: Boolean = False);
-begin
-  Rango.font.name := Letra;
-  Rango.font.Size := Tamano;
-  Rango.font.Bold := Negrita;
-  Rango.HorizontalAlignment := xlCenter;
-  Rango.VerticalAlignment := xlCenter;
-end;
-
-procedure SetBorders(Rango: Variant; Grosor,
-  Tipo: integer);
-begin
-  //Bordes
-  Rango.Borders[xlEdgeTop].lineStyle := Tipo;
-  Rango.Borders[xlEdgeLeft].lineStyle := Tipo;
-  Rango.Borders[xlEdgeBottom].lineStyle := Tipo;
-  Rango.Borders[xlEdgeRight].lineStyle := Tipo;
-  Rango.Borders[xlInsideVertical].lineStyle := Tipo;
-  Rango.Borders[xlInsideHorizontal].lineStyle := Tipo;
-
-  //Grosor de Linea
-  Rango.Borders[xlEdgeTop].Weight := Grosor;
-  Rango.Borders[xlEdgeLeft].Weight := Grosor;
-  Rango.Borders[xlEdgeBottom].Weight := Grosor;
-  Rango.Borders[xlEdgeRight].Weight := Grosor;
-  Rango.Borders[xlInsideVertical].Weight := Grosor;
-  Rango.Borders[xlInsideHorizontal].Weight := Grosor;
 end;
 
 end.
