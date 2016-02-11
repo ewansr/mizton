@@ -197,11 +197,18 @@ begin
        if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
 
+      try
+        zDatos.AfterScroll := Nil;
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
     finally
       Screen.Cursor := Cursor;
@@ -401,10 +408,18 @@ begin
     try
       Screen.Cursor := crAppStart;
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+      try
+        zDatos.AfterScroll := Nil;
+
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
     finally
       Screen.Cursor := Cursor;
@@ -699,10 +714,18 @@ begin
       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+      try
+        zDatos.AfterScroll := Nil;
+
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
     finally

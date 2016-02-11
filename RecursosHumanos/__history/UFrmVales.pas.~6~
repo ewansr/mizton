@@ -82,14 +82,8 @@ begin
   inherited;
   if assigned(frmMaterialesxfolios) then
   begin
-
     if FrmMaterialesxFolios.zDatos.Active then
-    try
-      FrmMaterialesxFolios.zDatos.afterScroll := Nil;
       FrmMaterialesxFolios.zDatos.Refresh;
-    finally
-      FrmMaterialesxFolios.zDatos.afterScroll := FrmMaterialesxFolios.zDatosAfterScroll;
-    end;
   end;
 end;
 

@@ -85,7 +85,7 @@ begin
 
     if FrmMaterialesxFolios.zDatos.Active then
     try
-      FrmMaterialesxFolios.zDatos.afterScroll := Nil;
+      FrmMaterialesxFolios.zDatos.afeterScroll := Nil;
       FrmMaterialesxFolios.zDatos.Refresh;
     finally
       FrmMaterialesxFolios.zDatos.afterScroll := FrmMaterialesxFolios.zDatosAfterScroll;
