@@ -428,6 +428,10 @@ Var
   ListaMaterial: TStringList;
 begin
   try
+    zDatos.Filtered := False;
+    zDatos.Filter := 'Estatus=' + QuotedStr('Liquidada');
+    zDatos.Filtered := True;
+
     Try
       Continuar     := True;
       ExApp := CreateOleObject('Excel.Application');
@@ -633,7 +637,7 @@ begin
       end;
     end;
   finally
-
+    zDatos.Filtered := False;
   end;
 end;
 

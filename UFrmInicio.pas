@@ -27,7 +27,7 @@ uses
   dxAlertWindow, dxScreenTip, dxCustomHint, cxHint, dxGDIPlusClasses, cxImage,
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
   dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
-  dxNavBarGroupItems, ActnList, cxSplitter;
+  dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds;
 
 type
   THackForm = class(TForm);
@@ -94,6 +94,12 @@ type
     actFolios: TAction;
     LinkVales: TdxNavBarItem;
     actVales: TAction;
+    actPais: TAction;
+    actEstado: TAction;
+    actCiudad: TAction;
+    actUnidadMedida: TAction;
+    LinkUsuarios: TdxNavBarItem;
+    actUsuarios: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -128,6 +134,11 @@ type
     procedure actPersonalExecute(Sender: TObject);
     procedure actFoliosExecute(Sender: TObject);
     procedure actValesExecute(Sender: TObject);
+    procedure actPaisExecute(Sender: TObject);
+    procedure actEstadoExecute(Sender: TObject);
+    procedure actCiudadExecute(Sender: TObject);
+    procedure actUnidadMedidaExecute(Sender: TObject);
+    procedure actUsuariosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -144,7 +155,7 @@ implementation
 {$R *.dfm}
 
 Uses
-  ULogin, UConsultasSQL, UConfigMYSQL, UFrmusuarios,
+  ULogin, UConsultasSQL, UConfigMYSQL,
   UfrmCiudad, UFrmEstado, UFrmMonedas,
   UFrmPais, UfrmEmpresas,
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
@@ -154,16 +165,46 @@ Uses
 
 { TForm1 }
 
+procedure TFrmInicio.actCiudadExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmCiudad, FrmCiudad);
+  FrmCiudad.ShowModal;
+end;
+
+procedure TFrmInicio.actEstadoExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmEstado, FrmEstado);
+  FrmEstado.ShowModal;
+end;
+
 procedure TFrmInicio.actFoliosExecute(Sender: TObject);
 begin
   Application.CreateForm(TFrmSelExpediente, FrmSelExpediente);
   FrmSelExpediente.ShowModal;
 end;
 
+procedure TFrmInicio.actPaisExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmPais, FrmPais);
+  FrmPais.ShowModal;
+end;
+
 procedure TFrmInicio.actPersonalExecute(Sender: TObject);
 begin
   Application.CreateForm(TFrmPersonal, FrmPersonal);
   FrmPersonal.Show;
+end;
+
+procedure TFrmInicio.actUnidadMedidaExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmUnidadMedida, FrmUnidadMedida);
+  FrmUnidadMedida.ShowModal;
+end;
+
+procedure TFrmInicio.actUsuariosExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFrmUsuario, FrmUsuario);
+  FrmUsuario.ShowModal;
 end;
 
 procedure TFrmInicio.actValesExecute(Sender: TObject);

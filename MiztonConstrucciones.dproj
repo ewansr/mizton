@@ -70,9 +70,6 @@
 			<DCCReference Include="Generales\UFrmMiniCatalogo.pas">
 				<Form>FrmMiniCatalogo</Form>
 			</DCCReference>
-			<DCCReference Include="Facturacion\UFrmUsuarios.pas">
-				<Form>FrmUsuarios</Form>
-			</DCCReference>
 			<DCCReference Include="UFrmInicio.pas">
 				<Form>FrmInicio</Form>
 			</DCCReference>

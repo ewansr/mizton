@@ -9,7 +9,6 @@ uses
   UConfigMySQL in 'Generales\UConfigMySQL.pas' {FrmConfigMySQL},
   UFrmCatalogo in 'Generales\UFrmCatalogo.pas' {FrmCatalogo},
   UFrmMiniCatalogo in 'Generales\UFrmMiniCatalogo.pas' {FrmMiniCatalogo},
-  UFrmUsuarios in 'Facturacion\UFrmUsuarios.pas' {FrmUsuarios},
   UFrmInicio in 'UFrmInicio.pas' {FrmInicio},
   UFrmPais in 'Generales\UFrmPais.pas' {FrmPais},
   UFrmCiudad in 'Generales\UFrmCiudad.pas' {FrmCiudad},

@@ -28,7 +28,7 @@ uses
   cxGridCustomLayoutView, cxGridLevel, cxGrid, UMsgBox,
   cxGridViewLayoutContainer, cxGridLayoutView, cxGridDBLayoutView, frxClass,
   frxDBSet, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxDBLabel;
+  cxDBLookupComboBox;
 
 type
   TFrmUsuario = class(TForm)
@@ -78,6 +78,7 @@ type
     dxLyLayoutControl1Group_Root: TdxLayoutGroup;
     dxlytmdxlytcntrl1Item1: TdxLayoutItem;
     pnl2: TPanel;
+    Lbl1: TcxLabel;
     Lbl2: TcxLabel;
     Lbl3: TcxLabel;
     cxTextUsuario: TcxDBTextEdit;
@@ -123,6 +124,7 @@ type
     dxlytm4: TdxLayoutItem;
     pnl4: TPanel;
     img2: TcxImage;
+    Lbl6: TcxLabel;
     Lbl7: TcxLabel;
     Lbl8: TcxLabel;
     img3: TcxDBImage;
@@ -139,8 +141,6 @@ type
     lyEmpleados: TdxLayoutItem;
     cbbEmpleadosA: TcxDBLookupComboBox;
     lyEmpleadosA: TdxLayoutItem;
-    DbLblUsuario: TcxDBLabel;
-    DbLblOtros: TcxDBLabel;
     procedure FormCreate(Sender: TObject);
     procedure cxTabMiUsuarioEnter(Sender: TObject);
     procedure cxTabOtrosEnter(Sender: TObject);
@@ -490,10 +490,10 @@ begin
        if not FiltrarDataset(zEmpleados, 'Activo', ['Si']) then
         raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
 
-      if zEmpleados.Active then
-        zEmpleados.Refresh
+      if zUsuario.Active then
+        zUsuario.Refresh
       else
-        zEmpleados.Open;
+        zUsuario.Open;
 
 
       if not FiltrarDataset(zUsuario, 'Usuario', [varGlobal.Elemento('Usuario').AsString]) then

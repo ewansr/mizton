@@ -677,6 +677,9 @@ object FrmInicio: TFrmInicio
         end
         item
           Item = LinkUMedida
+        end
+        item
+          Item = LinkUsuarios
         end>
     end
     object LinkPersonal: TdxNavBarItem
@@ -694,28 +697,25 @@ object FrmInicio: TFrmInicio
       Action = actFolios
     end
     object LinkCiudad: TdxNavBarItem
-      Caption = 'Ciudades'
-      LargeImageIndex = 7
-      SmallImageIndex = 7
+      Action = actCiudad
     end
     object LinkPais: TdxNavBarItem
-      Caption = 'Paises'
+      Action = actPais
     end
     object LinkEstado: TdxNavBarItem
-      Caption = 'Estados'
-      LargeImageIndex = 6
-      SmallImageIndex = 6
+      Action = actEstado
     end
     object LinkUMedida: TdxNavBarItem
-      Caption = 'Unidades de Medida'
-      LargeImageIndex = 8
-      SmallImageIndex = 8
+      Action = actUnidadMedida
     end
     object sepConfig: TdxNavBarSeparator
       Caption = 'sepConfig'
     end
     object LinkVales: TdxNavBarItem
       Action = actVales
+    end
+    object LinkUsuarios: TdxNavBarItem
+      Action = actUsuarios
     end
   end
   object cxImage1: TcxImage
@@ -2853,7 +2853,6 @@ object FrmInicio: TFrmInicio
     TabProperties.CloseTabWithMiddleClick = True
     TabProperties.CustomButtons.Buttons = <>
     TabProperties.Focusable = True
-    TabProperties.TabPosition = tpBottom
     OnPageAdded = dxTabManager1PageAdded
     Left = 576
     Top = 272
@@ -2944,6 +2943,31 @@ object FrmInicio: TFrmInicio
       ImageIndex = 1
       OnExecute = actValesExecute
     end
+    object actPais: TAction
+      Caption = 'Paises'
+      ImageIndex = 6
+      OnExecute = actPaisExecute
+    end
+    object actEstado: TAction
+      Caption = 'Estados'
+      ImageIndex = 7
+      OnExecute = actEstadoExecute
+    end
+    object actCiudad: TAction
+      Caption = 'Ciudades'
+      ImageIndex = 7
+      OnExecute = actCiudadExecute
+    end
+    object actUnidadMedida: TAction
+      Caption = 'Unidades de Medida'
+      ImageIndex = 8
+      OnExecute = actUnidadMedidaExecute
+    end
+    object actUsuarios: TAction
+      Caption = 'Usuarios'
+      ImageIndex = 0
+      OnExecute = actUsuariosExecute
+    end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
     BarManager = dxBarManager1
@@ -2964,7 +2988,7 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 336
-    Top = 296
+    Left = 464
+    Top = 424
   end
 end

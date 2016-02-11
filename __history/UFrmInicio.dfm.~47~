@@ -694,22 +694,16 @@ object FrmInicio: TFrmInicio
       Action = actFolios
     end
     object LinkCiudad: TdxNavBarItem
-      Caption = 'Ciudades'
-      LargeImageIndex = 7
-      SmallImageIndex = 7
+      Action = actCiudad
     end
     object LinkPais: TdxNavBarItem
-      Caption = 'Paises'
+      Action = actPais
     end
     object LinkEstado: TdxNavBarItem
-      Caption = 'Estados'
-      LargeImageIndex = 6
-      SmallImageIndex = 6
+      Action = actEstado
     end
     object LinkUMedida: TdxNavBarItem
-      Caption = 'Unidades de Medida'
-      LargeImageIndex = 8
-      SmallImageIndex = 8
+      Action = actUnidadMedida
     end
     object sepConfig: TdxNavBarSeparator
       Caption = 'sepConfig'
@@ -2277,6 +2271,7 @@ object FrmInicio: TFrmInicio
     Top = 0
     Width = 5
     Height = 607
+    HotZoneClassName = 'TcxMediaPlayer9Style'
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -2942,6 +2937,24 @@ object FrmInicio: TFrmInicio
       Caption = 'Cat'#225'logo de Vales '
       ImageIndex = 1
       OnExecute = actValesExecute
+    end
+    object actPais: TAction
+      Caption = 'Paises'
+      ImageIndex = 6
+      OnExecute = actPaisExecute
+    end
+    object actEstado: TAction
+      Caption = 'Estados'
+      ImageIndex = 7
+      OnExecute = actEstadoExecute
+    end
+    object actCiudad: TAction
+      Caption = 'Ciudades'
+      ImageIndex = 7
+    end
+    object actUnidadMedida: TAction
+      Caption = 'Unidades de Medida'
+      ImageIndex = 8
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

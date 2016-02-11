@@ -27,8 +27,7 @@ uses
   cxGridCustomTableView, cxGridCardView, cxGridDBCardView, cxGridCustomView,
   cxGridCustomLayoutView, cxGridLevel, cxGrid, UMsgBox,
   cxGridViewLayoutContainer, cxGridLayoutView, cxGridDBLayoutView, frxClass,
-  frxDBSet, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxDBLabel;
+  frxDBSet;
 
 type
   TFrmUsuario = class(TForm)
@@ -78,6 +77,7 @@ type
     dxLyLayoutControl1Group_Root: TdxLayoutGroup;
     dxlytmdxlytcntrl1Item1: TdxLayoutItem;
     pnl2: TPanel;
+    Lbl1: TcxLabel;
     Lbl2: TcxLabel;
     Lbl3: TcxLabel;
     cxTextUsuario: TcxDBTextEdit;
@@ -123,6 +123,7 @@ type
     dxlytm4: TdxLayoutItem;
     pnl4: TPanel;
     img2: TcxImage;
+    Lbl6: TcxLabel;
     Lbl7: TcxLabel;
     Lbl8: TcxLabel;
     img3: TcxDBImage;
@@ -133,14 +134,6 @@ type
     frxdbUsuario: TfrxDBDataset;
     dxbrlrgbImpReporte: TdxBarLargeButton;
     zEncr: TZQuery;
-    zEmpleados: TZQuery;
-    dsEmpleados: TDataSource;
-    cbbEmpleados: TcxDBLookupComboBox;
-    lyEmpleados: TdxLayoutItem;
-    cbbEmpleadosA: TcxDBLookupComboBox;
-    lyEmpleadosA: TdxLayoutItem;
-    DbLblUsuario: TcxDBLabel;
-    DbLblOtros: TcxDBLabel;
     procedure FormCreate(Sender: TObject);
     procedure cxTabMiUsuarioEnter(Sender: TObject);
     procedure cxTabOtrosEnter(Sender: TObject);
@@ -472,9 +465,6 @@ begin
 
   if not AsignarSQL(zUsuario, 'master_usuarios', pUpdate) then
     raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
-
-  if not AsignarSQL(zEmpleados, 'master_personal', pReadOnly) then
-    raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
 end;
 
 procedure TFrmUsuario.FormShow(Sender: TObject);
@@ -486,16 +476,6 @@ begin
     try
       Screen.Cursor := crAppStart;
       cxTextUsuario.Enabled := False;
-
-       if not FiltrarDataset(zEmpleados, 'Activo', ['Si']) then
-        raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
-
-      if zEmpleados.Active then
-        zEmpleados.Refresh
-      else
-        zEmpleados.Open;
-
-
       if not FiltrarDataset(zUsuario, 'Usuario', [varGlobal.Elemento('Usuario').AsString]) then
         raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
 
