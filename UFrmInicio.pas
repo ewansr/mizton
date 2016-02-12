@@ -111,6 +111,9 @@ type
     dxLayoutDockSite2: TdxLayoutDockSite;
     dxDockPanel2: TdxDockPanel;
     dxLayoutDockSite1: TdxLayoutDockSite;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
     navMenu: TdxNavBar;
     ItemRh: TdxNavBarGroup;
     ItemConfiguracion: TdxNavBarGroup;
@@ -125,11 +128,8 @@ type
     sepConfig: TdxNavBarSeparator;
     LinkVales: TdxNavBarItem;
     LinkUsuarios: TdxNavBarItem;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
-    advAviso1: TAdvSmoothSlider;
     cxLabel2: TcxLabel;
+    advAviso1: TAdvSmoothSlider;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

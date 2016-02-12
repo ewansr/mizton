@@ -1655,25 +1655,27 @@ object FrmInicio: TFrmInicio
     Width = 140
   end
   object cxspltrMenu: TcxSplitter
-    Left = 313
+    Left = 594
     Top = 0
     Width = 5
     Height = 607
     HotZoneClassName = 'TcxMediaPlayer9Style'
+    ExplicitLeft = 313
   end
   object dxDockSite1: TdxDockSite
     Left = 0
     Top = 0
     Width = 313
     Height = 607
+    Visible = False
     Align = alLeft
     DockingType = 5
     OriginalWidth = 313
     OriginalHeight = 607
     object dxLayoutDockSite1: TdxLayoutDockSite
-      Left = 0
+      Left = 185
       Top = 0
-      Width = 285
+      Width = 128
       Height = 607
       DockingType = 0
       OriginalWidth = 300
@@ -1681,8 +1683,9 @@ object FrmInicio: TFrmInicio
       object dxLayoutDockSite2: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 285
+        Width = 128
         Height = 607
+        ExplicitWidth = 285
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -1690,7 +1693,7 @@ object FrmInicio: TFrmInicio
       object dxDockPanel1: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 285
+        Width = 128
         Height = 607
         AllowDock = []
         AllowDockClients = []
@@ -1701,127 +1704,24 @@ object FrmInicio: TFrmInicio
         Dockable = False
         ShowCaption = False
         TabsProperties.CustomButtons.Buttons = <>
+        ExplicitWidth = 285
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
-        object navMenu: TdxNavBar
-          Left = 0
-          Top = 0
-          Width = 281
-          Height = 599
-          Align = alLeft
-          PopupMenu = dxPopup1
-          ActiveGroupIndex = 0
-          TabOrder = 0
-          View = 15
-          ViewStyle.SkinName = 'VS2010'
-          ViewStyle.SkinNameAssigned = True
-          OptionsImage.LargeImages = UDMConection.cxMizton32
-          OptionsImage.SmallImages = UDMConection.cxMizton16
-          ExplicitLeft = 3
-          ExplicitTop = -2
-          object ItemRh: TdxNavBarGroup
-            Caption = 'Recursos Humanos'
-            LargeImageIndex = 0
-            SelectedLinkIndex = -1
-            SmallImageIndex = 0
-            TopVisibleLinkIndex = 0
-            UseSmallImages = False
-            Links = <
-              item
-                Item = LinkPersonal
-              end
-              item
-                Item = LinkCargos
-              end
-              item
-                Item = LinkSalarios
-              end
-              item
-                Item = LinkVales
-              end
-              item
-                Item = LinkFolios
-              end>
-          end
-          object ItemConfiguracion: TdxNavBarGroup
-            Caption = 'Configuraci'#243'n de Sistema'
-            LargeImageIndex = 5
-            SelectedLinkIndex = -1
-            SmallImageIndex = 5
-            TopVisibleLinkIndex = 0
-            UseSmallImages = False
-            Links = <
-              item
-                Item = LinkPais
-              end
-              item
-                Item = LinkEstado
-              end
-              item
-                Item = LinkCiudad
-              end
-              item
-                Item = sepConfig
-              end
-              item
-                Item = LinkUMedida
-              end
-              item
-                Item = LinkUsuarios
-              end>
-          end
-          object LinkPersonal: TdxNavBarItem
-            Action = actPersonal
-          end
-          object LinkCargos: TdxNavBarItem
-            Caption = 'Puestos'
-            LargeImageIndex = 2
-            SmallImageIndex = 2
-          end
-          object LinkSalarios: TdxNavBarItem
-            Caption = 'Salarios'
-          end
-          object LinkFolios: TdxNavBarItem
-            Action = actFolios
-          end
-          object LinkCiudad: TdxNavBarItem
-            Action = actCiudad
-          end
-          object LinkPais: TdxNavBarItem
-            Action = actPais
-          end
-          object LinkEstado: TdxNavBarItem
-            Action = actEstado
-          end
-          object LinkUMedida: TdxNavBarItem
-            Action = actUnidadMedida
-          end
-          object sepConfig: TdxNavBarSeparator
-            Caption = 'sepConfig'
-          end
-          object LinkVales: TdxNavBarItem
-            Action = actVales
-          end
-          object LinkUsuarios: TdxNavBarItem
-            Action = actUsuarios
-          end
-        end
       end
     end
     object dxDockPanel2: TdxDockPanel
-      Left = -185
+      Left = 0
       Top = 0
       Width = 185
-      Height = 0
+      Height = 607
       Visible = False
       AllowFloating = True
-      AutoHide = True
+      AutoHide = False
       Caption = 'Actividades'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      AutoHidePosition = 0
       DockingType = 1
       OriginalWidth = 185
       OriginalHeight = 140
@@ -1829,7 +1729,7 @@ object FrmInicio: TFrmInicio
         Left = 0
         Top = 0
         Width = 177
-        Height = 0
+        Height = 577
         Align = alClient
         TabOrder = 0
         object cxGrid1DBTableView1: TcxGridDBTableView
@@ -1844,11 +1744,137 @@ object FrmInicio: TFrmInicio
       end
     end
   end
+  object navMenu: TdxNavBar
+    Left = 313
+    Top = 0
+    Width = 281
+    Height = 607
+    Align = alLeft
+    PopupMenu = dxPopup1
+    ActiveGroupIndex = 0
+    TabOrder = 8
+    View = 15
+    ViewStyle.SkinName = 'VS2010'
+    ViewStyle.SkinNameAssigned = True
+    OptionsImage.LargeImages = UDMConection.cxMizton32
+    OptionsImage.SmallImages = UDMConection.cxMizton16
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitHeight = 599
+    object ItemRh: TdxNavBarGroup
+      Caption = 'Recursos Humanos'
+      LargeImageIndex = 0
+      SelectedLinkIndex = -1
+      SmallImageIndex = 0
+      TopVisibleLinkIndex = 0
+      UseSmallImages = False
+      Links = <
+        item
+          Item = LinkPersonal
+        end
+        item
+          Item = LinkCargos
+        end
+        item
+          Item = LinkSalarios
+        end
+        item
+          Item = LinkVales
+        end
+        item
+          Item = LinkFolios
+        end>
+    end
+    object ItemConfiguracion: TdxNavBarGroup
+      Caption = 'Configuraci'#243'n de Sistema'
+      LargeImageIndex = 5
+      SelectedLinkIndex = -1
+      SmallImageIndex = 5
+      TopVisibleLinkIndex = 0
+      UseSmallImages = False
+      Links = <
+        item
+          Item = LinkPais
+        end
+        item
+          Item = LinkEstado
+        end
+        item
+          Item = LinkCiudad
+        end
+        item
+          Item = sepConfig
+        end
+        item
+          Item = LinkUMedida
+        end
+        item
+          Item = LinkUsuarios
+        end>
+    end
+    object LinkPersonal: TdxNavBarItem
+      Action = actPersonal
+    end
+    object LinkCargos: TdxNavBarItem
+      Caption = 'Puestos'
+      LargeImageIndex = 2
+      SmallImageIndex = 2
+    end
+    object LinkSalarios: TdxNavBarItem
+      Caption = 'Salarios'
+    end
+    object LinkFolios: TdxNavBarItem
+      Action = actFolios
+    end
+    object LinkCiudad: TdxNavBarItem
+      Action = actCiudad
+    end
+    object LinkPais: TdxNavBarItem
+      Action = actPais
+    end
+    object LinkEstado: TdxNavBarItem
+      Action = actEstado
+    end
+    object LinkUMedida: TdxNavBarItem
+      Action = actUnidadMedida
+    end
+    object sepConfig: TdxNavBarSeparator
+      Caption = 'sepConfig'
+    end
+    object LinkVales: TdxNavBarItem
+      Action = actVales
+    end
+    object LinkUsuarios: TdxNavBarItem
+      Action = actUsuarios
+    end
+  end
+  object cxLabel2: TcxLabel
+    Left = 1054
+    Top = 608
+    Anchors = [akLeft, akRight, akBottom]
+    Caption = 'Activar Avisos'
+    ParentColor = False
+    ParentFont = False
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.LookAndFeel.NativeStyle = True
+    Style.TextColor = clBlack
+    Style.TextStyle = [fsBold]
+    Style.IsFontAssigned = True
+    StyleDisabled.LookAndFeel.NativeStyle = True
+    StyleFocused.LookAndFeel.NativeStyle = True
+    StyleHot.LookAndFeel.NativeStyle = True
+    Transparent = True
+  end
   object advAviso1: TAdvSmoothSlider
-    Left = 186
-    Top = 568
+    Left = 1159
+    Top = 608
     Width = 80
-    Height = 26
+    Height = 20
     AppearanceOn.Fill.Color = 11196927
     AppearanceOn.Fill.ColorTo = 7257087
     AppearanceOn.Fill.ColorMirror = 4370174
@@ -1896,30 +1922,8 @@ object FrmInicio: TFrmInicio
     Fill.ShadowOffset = 0
     Fill.Glow = gmNone
     Anchors = [akLeft, akBottom]
-    TabOrder = 9
+    TabOrder = 10
     OnClick = advAviso1Click
-  end
-  object cxLabel2: TcxLabel
-    Left = 66
-    Top = 574
-    Anchors = [akLeft, akRight, akBottom]
-    Caption = 'Activar Avisos'
-    ParentColor = False
-    ParentFont = False
-    Style.Color = clWhite
-    Style.Font.Charset = DEFAULT_CHARSET
-    Style.Font.Color = clWindowText
-    Style.Font.Height = -13
-    Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
-    Style.LookAndFeel.NativeStyle = True
-    Style.TextColor = clWhite
-    Style.TextStyle = [fsBold]
-    Style.IsFontAssigned = True
-    StyleDisabled.LookAndFeel.NativeStyle = True
-    StyleFocused.LookAndFeel.NativeStyle = True
-    StyleHot.LookAndFeel.NativeStyle = True
-    Transparent = True
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
