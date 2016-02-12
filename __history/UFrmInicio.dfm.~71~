@@ -1,7 +1,7 @@
 object FrmInicio: TFrmInicio
   Left = 0
   Top = 0
-  Caption = 'Mizton Construcciones S.A. de C.V.'
+  Caption = 't'
   ClientHeight = 630
   ClientWidth = 1246
   Color = clBtnFace
@@ -14,11 +14,15 @@ object FrmInicio: TFrmInicio
   FormStyle = fsMDIForm
   OldCreateOrder = True
   WindowState = wsMaximized
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDragDrop = FormDragDrop
   OnDragOver = FormDragOver
   OnKeyDown = FormKeyDown
   OnShow = FormShow
+  DesignSize = (
+    1246
+    630)
   PixelsPerInch = 96
   TextHeight = 13
   object dxStatusBarInicio: TdxRibbonStatusBar
@@ -77,6 +81,11 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Width = 200
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
+        PanelStyle.Container = dxStatusBarInicioContainer9
       end>
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clDefault
@@ -84,6 +93,12 @@ object FrmInicio: TFrmInicio
     Font.Name = 'Tahoma'
     Font.Style = []
     ExplicitWidth = 1200
+    object dxStatusBarInicioContainer9: TdxStatusBarContainerControl
+      Left = 1000
+      Top = 0
+      Width = 227
+      Height = 23
+    end
   end
   object btnOrg: TcxButton
     Left = 907
@@ -677,6 +692,9 @@ object FrmInicio: TFrmInicio
         end
         item
           Item = LinkUMedida
+        end
+        item
+          Item = LinkUsuarios
         end>
     end
     object LinkPersonal: TdxNavBarItem
@@ -710,6 +728,9 @@ object FrmInicio: TFrmInicio
     end
     object LinkVales: TdxNavBarItem
       Action = actVales
+    end
+    object LinkUsuarios: TdxNavBarItem
+      Action = actUsuarios
     end
   end
   object cxImage1: TcxImage
@@ -2273,6 +2294,83 @@ object FrmInicio: TFrmInicio
     Height = 607
     HotZoneClassName = 'TcxMediaPlayer9Style'
   end
+  object cxLabel2: TcxLabel
+    Left = 34
+    Top = 575
+    Anchors = [akLeft, akRight, akBottom]
+    Caption = 'Activar Avisos'
+    ParentColor = False
+    ParentFont = False
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.LookAndFeel.NativeStyle = True
+    Style.TextColor = clWhite
+    Style.TextStyle = [fsBold]
+    Style.IsFontAssigned = True
+    StyleDisabled.LookAndFeel.NativeStyle = True
+    StyleFocused.LookAndFeel.NativeStyle = True
+    StyleHot.LookAndFeel.NativeStyle = True
+    Transparent = True
+  end
+  object advAviso1: TAdvSmoothSlider
+    Left = 154
+    Top = 575
+    Width = 80
+    Height = 26
+    AppearanceOn.Fill.Color = 11196927
+    AppearanceOn.Fill.ColorTo = 7257087
+    AppearanceOn.Fill.ColorMirror = 4370174
+    AppearanceOn.Fill.ColorMirrorTo = 8053246
+    AppearanceOn.Fill.GradientMirrorType = gtVertical
+    AppearanceOn.Fill.BorderColor = 4370174
+    AppearanceOn.Fill.Rounding = 4
+    AppearanceOn.Fill.RoundingType = rtLeft
+    AppearanceOn.Fill.ShadowOffset = 0
+    AppearanceOn.Fill.Glow = gmNone
+    AppearanceOn.Caption = 'On'
+    AppearanceOn.Font.Charset = DEFAULT_CHARSET
+    AppearanceOn.Font.Color = clWindowText
+    AppearanceOn.Font.Height = -11
+    AppearanceOn.Font.Name = 'Tahoma'
+    AppearanceOn.Font.Style = []
+    AppearanceOff.Fill.Color = 16773091
+    AppearanceOff.Fill.ColorTo = 16768452
+    AppearanceOff.Fill.ColorMirror = 16765357
+    AppearanceOff.Fill.ColorMirrorTo = 16767936
+    AppearanceOff.Fill.GradientMirrorType = gtVertical
+    AppearanceOff.Fill.BorderColor = clNone
+    AppearanceOff.Fill.Rounding = 4
+    AppearanceOff.Fill.RoundingType = rtRight
+    AppearanceOff.Fill.ShadowOffset = 0
+    AppearanceOff.Fill.Glow = gmNone
+    AppearanceOff.Caption = 'Off'
+    AppearanceOff.Font.Charset = DEFAULT_CHARSET
+    AppearanceOff.Font.Color = clWindowText
+    AppearanceOff.Font.Height = -11
+    AppearanceOff.Font.Name = 'Tahoma'
+    AppearanceOff.Font.Style = []
+    ButtonAppearance.Fill.Color = 16773091
+    ButtonAppearance.Fill.ColorTo = 16765615
+    ButtonAppearance.Fill.ColorMirror = clNone
+    ButtonAppearance.Fill.ColorMirrorTo = clNone
+    ButtonAppearance.Fill.BorderColor = 16765615
+    ButtonAppearance.Fill.Rounding = 4
+    ButtonAppearance.Fill.ShadowOffset = 0
+    ButtonAppearance.Fill.Glow = gmNone
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.BorderColor = clNone
+    Fill.Rounding = 4
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 10
+    OnClick = advAviso1Click
+  end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -2847,7 +2945,6 @@ object FrmInicio: TFrmInicio
     TabProperties.CloseTabWithMiddleClick = True
     TabProperties.CustomButtons.Buttons = <>
     TabProperties.Focusable = True
-    TabProperties.TabPosition = tpBottom
     OnPageAdded = dxTabManager1PageAdded
     Left = 576
     Top = 272
@@ -2951,10 +3048,17 @@ object FrmInicio: TFrmInicio
     object actCiudad: TAction
       Caption = 'Ciudades'
       ImageIndex = 7
+      OnExecute = actCiudadExecute
     end
     object actUnidadMedida: TAction
       Caption = 'Unidades de Medida'
       ImageIndex = 8
+      OnExecute = actUnidadMedidaExecute
+    end
+    object actUsuarios: TAction
+      Caption = 'Usuarios'
+      ImageIndex = 0
+      OnExecute = actUsuariosExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
@@ -2976,7 +3080,14 @@ object FrmInicio: TFrmInicio
         ItemName = 'dxSkingallery1'
       end>
     UseOwnFont = False
-    Left = 336
-    Top = 296
+    Left = 464
+    Top = 424
+  end
+  object tmr1: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = tmr1Timer
+    Left = 416
+    Top = 304
   end
 end

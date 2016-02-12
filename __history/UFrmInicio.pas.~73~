@@ -27,9 +27,26 @@ uses
   dxAlertWindow, dxScreenTip, dxCustomHint, cxHint, dxGDIPlusClasses, cxImage,
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
   dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
-  dxNavBarGroupItems, ActnList, cxSplitter;
+  dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
+  AdvSmoothSlider;
 
 type
+  ClaseHila = Class(TThread)
+  private
+    { Private delcarations}
+    CancelarHilo: Boolean;
+  protected
+    Procedure Execute; Override;
+    Function LeerFolios:Integer; Virtual; Abstract;
+  Public
+    Constructor Create;
+  End;
+
+  THilo = Class(ClaseHila)
+  Protected
+    Function LeerFolios:Integer;  Override;
+  End;
+
   THackForm = class(TForm);
   TFrmInicio = class(TdxRibbonForm)
     dxBarManager1: TdxBarManager;
@@ -62,7 +79,6 @@ type
     cxHintStyleController1: TcxHintStyleController;
     dxButtonUMedida: TdxBarLargeButton;
     dxButtonProductos: TdxBarLargeButton;
-    btnOrg: TcxButton;
     dxRadial1: TdxRibbonRadialMenu;
     dxButtonImpuesto: TdxBarLargeButton;
     zImpuestos: TZQuery;
@@ -98,6 +114,12 @@ type
     actEstado: TAction;
     actCiudad: TAction;
     actUnidadMedida: TAction;
+    LinkUsuarios: TdxNavBarItem;
+    actUsuarios: TAction;
+    tmr1: TTimer;
+    dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
+    cxLabel2: TcxLabel;
+    advAviso1: TAdvSmoothSlider;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -136,6 +158,11 @@ type
     procedure actEstadoExecute(Sender: TObject);
     procedure actCiudadExecute(Sender: TObject);
     procedure actUnidadMedidaExecute(Sender: TObject);
+    procedure actUsuariosExecute(Sender: TObject);
+    procedure tmr1Timer(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAvisosClick(Sender: TObject);
+    procedure advAviso1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -146,6 +173,9 @@ type
 
 var
   FrmInicio: TFrmInicio;
+
+  zHiloFolios: TzQuery;
+  OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
 
@@ -198,10 +228,30 @@ begin
   FrmUnidadMedida.ShowModal;
 end;
 
+procedure TFrmInicio.actUsuariosExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFrmUsuario, FrmUsuario);
+  FrmUsuario.ShowModal;
+end;
+
 procedure TFrmInicio.actValesExecute(Sender: TObject);
 begin
   application.CreateForm(TFrmVales, FrmVales);
   Frmvales.ShowModal;
+end;
+
+procedure TFrmInicio.advAviso1Click(Sender: TObject);
+begin
+  if Not (advAviso1.State = ssOn) then
+  begin
+    tmr1.Enabled := True;
+    cxLabel2.Caption := 'Desactivar Avisos';
+  end
+  else
+  begin
+    tmr1.Enabled := False;
+    cxLabel2.Caption := 'Activar Avisos';
+  end;
 end;
 
 procedure TFrmInicio.ArrancarSistema;
@@ -310,6 +360,10 @@ begin
       dxStatusBarInicio.Panels.Items[3].Text := varGlobal.Elemento('HostName').AsString;
       dxStatusBarInicio.Panels.Items[5].Text := varGlobal.Elemento('BaseDatos').AsString;
       dxStatusBarInicio.Panels.Items[8].Text := varGlobal.Elemento('NombreEmpresa').AsString;
+
+      OldCountFolio := 0;
+      NuevoCountFolio := 0;
+      tmr1.Enabled := True;
     finally
       ;
     end;
@@ -333,6 +387,11 @@ end;
 procedure TFrmInicio.btn1Click(Sender: TObject);
 begin
   //MsgBox.ShowModal('Confirmación', 'No se pudo conectar a la base de datoskgdfgjdgjdfjgkgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', cmtError, [cmbOK, cmbYes, cMbDelete], 0);
+end;
+
+procedure TFrmInicio.btnAvisosClick(Sender: TObject);
+begin
+  tmr1.Enabled := Not tmr1.Enabled;
 end;
 
 procedure TFrmInicio.btnConfigCorreoClick(Sender: TObject);
@@ -491,6 +550,13 @@ begin
   //dxRibbon1.ShowTabGroups := False;
 end;
 
+procedure TFrmInicio.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  tmr1.Enabled := false;
+  UDMConection.conBD.Disconnect;
+  UDMConection.conANSI.Disconnect;
+end;
+
 procedure TFrmInicio.FormCreate(Sender: TObject);
 begin
   DisableAero := True;
@@ -558,5 +624,71 @@ begin
 end;
 
 
+
+procedure TFrmInicio.tmr1Timer(Sender: TObject);
+var
+  hiloEjecucion: THilo;
+
+begin
+
+  hiloEjecucion := THilo.Create;
+  if OldCountFolio <> NuevoCountFolio then
+  begin
+    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',2);
+  end;
+end;
+
+{ ClaseHila }
+
+constructor ClaseHila.Create;
+begin
+  CancelarHilo := False;
+  FreeOnTerminate := true;
+  inherited Create(False);
+end;
+
+procedure ClaseHila.Execute;
+begin
+  LeerFolios;
+end;
+
+{ THilo }
+
+Function THilo.LeerFolios: Integer;
+
+begin
+  try
+    OldCountFolio := nuevoCountFolio;
+    if Not assigned(zHiloFolios) then
+    begin
+      UDMConection.inicializaConAnsi;
+      zHiloFolios := TZQuery.Create(Application.MainForm);
+      zHiloFolios.Connection := UDMConection.conANSI;
+      zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_materialxfolio'
+    end;
+
+    if zHiloFolios.Active then
+      zHiloFolios.Refresh
+    else
+     zHiloFolios.Open;
+
+    if NuevoCountFolio <> zHiloFolios.FieldByName('Folios').AsInteger then
+    begin
+      Result := zHiloFolios.FieldByName('Folios').asinteger;
+      NuevoCountFolio := Result;
+    end;
+
+  Except
+    try
+      if Not UDMConection.conANSI.Ping then
+        UDMConection.conAnsi.Reconnect;
+
+      if Not UDMConection.conANSI.Ping then
+        UDMConection.conAnsi.Reconnect;
+    Except
+      ;
+    end;
+  end;
+end;
 
 end.
