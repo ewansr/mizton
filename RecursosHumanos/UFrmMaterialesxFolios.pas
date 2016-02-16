@@ -661,6 +661,7 @@ begin
   try
     application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
     FrmCapturaFolio.IdFolio := -9;
+    FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
 
     If FrmCapturaFolio.ShowModal <> mrCancel then
       dxButtonActualizar.Click;

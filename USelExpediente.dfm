@@ -26,6 +26,7 @@ object FrmSelExpediente: TFrmSelExpediente
     LargeImages = UDMConection.cxMizton32
     SmallImages = UDMConection.cxMizton16
     TabOrder = 0
+    OnDblClick = lstExpedientesDblClick
   end
   object zPersonal: TZQuery
     Params = <>

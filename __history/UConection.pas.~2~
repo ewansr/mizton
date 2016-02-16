@@ -79,9 +79,6 @@ type
     { Private declarations }
 
     procedure gBeforePost(gDataset: TDataSet);
-    procedure gBeforeOpen(gDataset: TDataset);
-    procedure gBeforeRefresh(gDataset: TDataSet);
-
     procedure SetAutoFocus(Sender: TObject; var Key: Word;
           Shift: TShiftState);
     procedure SetEnterAutoColorFocus(Sender: TObject);
@@ -509,8 +506,6 @@ begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;
       end;
-      Dataset.BeforeOpen := gBeforeOpen;
-      Dataset.BeforeRefresh := gBeforeRefresh;
 
       Result := True;
     end;
@@ -527,12 +522,6 @@ begin
     Key:=#0;
 end;
 
-procedure TUDMConection.gBeforeOpen(gDataset: TDataset);
-begin
-  If Not TZQuery(gDataset).Connection.Ping then
-    TZQuery(gDataset).Connection.Reconnect;
-end;
-
 procedure TUDMConection.gBeforePost(gDataset: TDataSet);
 var
   zMaxId: TZQuery;
@@ -540,9 +529,6 @@ var
   I: Integer;
 begin
   try
-    If Not TZQuery(gDataset).Connection.Ping then
-      TZQuery(gDataset).Connection.Reconnect;
-
     //Aqui tiene que validar a huevos sea inserción o edición
     if zValidacion.Active and (zValidacion.RecordCount > 0) then
     begin
@@ -581,12 +567,6 @@ begin
   except
     raise;
   end;
-end;
-
-procedure TUDMConection.gBeforeRefresh(gDataset: TDataSet);
-begin
-  If Not TZQuery(gDataset).Connection.Ping then
-    TZQuery(gDataset).Connection.Reconnect;
 end;
 
 function TUDMConection.getLastId: Integer;
@@ -669,9 +649,6 @@ begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;
       end;
-
-      Dataset.BeforeOpen := gBeforeOpen;
-      Dataset.BeforeRefresh := gBeforeRefresh;
 
       Result := True;
     end;

@@ -365,7 +365,7 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
-      zOtros.FieldByName('Contrasena').AsString := cxTextOContrasena.Text;
+      zOtros.FieldByName('ContrasenaUpt').AsString := cxTextOContrasena.Text;
       zOtros.Post;
 
       zEncr.Close;
@@ -392,10 +392,9 @@ begin
   try
     try
       zOtros.insert;
-
       if Not (zOtros.State = dsInsert) then
         dxButtonNuevoClick(Sender);
-      zOtros.FieldByName('IdUsuario').asinteger := 0;
+
       cxPage2.ActivePage := cxTab2;
     finally
       ActionButtons;

@@ -669,9 +669,7 @@ begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;
       end;
-
-      Dataset.BeforeOpen := gBeforeOpen;
-      Dataset.BeforeRefresh := gBeforeRefresh;
+      Dataset.BeforeOpen :=
 
       Result := True;
     end;

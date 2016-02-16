@@ -185,7 +185,7 @@ procedure TFrmUsuario.EstadoComponentes;
 var
   Esta: Boolean;
 begin
-  //Esta := zOtros.Active and (zOtros.FieldByName('Editable').AsString = 'No') and (zOtros.State in [dsEdit]);
+  Esta := zOtros.Active and (zOtros.FieldByName('Editable').AsString = 'No') and (zOtros.State in [dsEdit]);
   cxTextUsuario.Enabled := Esta;
   cxTextOUsuario.Enabled := Esta;
 end;
@@ -365,7 +365,7 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
-      zOtros.FieldByName('Contrasena').AsString := cxTextOContrasena.Text;
+      zOtros.FieldByName('ContrasenaUpt').AsString := cxTextOContrasena.Text;
       zOtros.Post;
 
       zEncr.Close;
@@ -392,10 +392,9 @@ begin
   try
     try
       zOtros.insert;
-
       if Not (zOtros.State = dsInsert) then
         dxButtonNuevoClick(Sender);
-      zOtros.FieldByName('IdUsuario').asinteger := 0;
+
       cxPage2.ActivePage := cxTab2;
     finally
       ActionButtons;
@@ -430,7 +429,7 @@ begin
    try
      Screen.Cursor := crAppStart;
      YaLeido := False;
-     zUsuario.FieldByName('Contrasena').AsString := cxTextContrasena.Text;
+     zUsuario.FieldByName('ContrasenaUpt').AsString := cxTextContrasena.Text;
      zUsuario.Post;
 
      zEncr.Close;
@@ -468,7 +467,7 @@ procedure TFrmUsuario.FormCreate(Sender: TObject);
 begin
   YaLeido := False;
   ocultarOtros;
-  if not AsignarSQL(zOtros, 'master_usuarios', pUpdate) then
+  if not AsignarSQL(zOtros, 'master_usuarios', pReadOnly) then
     raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
 
   if not AsignarSQL(zUsuario, 'master_usuarios', pUpdate) then

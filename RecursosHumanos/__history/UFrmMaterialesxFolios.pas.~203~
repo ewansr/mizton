@@ -197,11 +197,18 @@ begin
        if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
 
+      try
+        zDatos.AfterScroll := Nil;
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
     finally
       Screen.Cursor := Cursor;
@@ -329,9 +336,10 @@ begin
       FrmCapturaFolio.lyEstatus.Enabled := (zmaterial.RecordCount = 0);
       FrmCapturaFolio.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
       FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
-      FrmCapturaFolio.ShowModal;
+      If FrmCapturaFolio.ShowModal <> mrCancel then
+        dxButtonActualizar.Click;
     finally
-      dxButtonActualizar.Click;
+
     end;
   Except
     on e: eWarning do
@@ -400,10 +408,18 @@ begin
     try
       Screen.Cursor := crAppStart;
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+      try
+        zDatos.AfterScroll := Nil;
+
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
     finally
       Screen.Cursor := Cursor;
@@ -427,6 +443,10 @@ Var
   ListaMaterial: TStringList;
 begin
   try
+    zDatos.Filtered := False;
+    zDatos.Filter := 'Estatus=' + QuotedStr('Liquidada');
+    zDatos.Filtered := True;
+
     Try
       Continuar     := True;
       ExApp := CreateOleObject('Excel.Application');
@@ -450,32 +470,39 @@ begin
 
       ExApp.Range['B5:C5'] := 'DIVISION';
       ExApp.Range['B5:C5'].mergeCells := True;
+      ExApp.Range['D5:E5'] := zDatos.FieldByName('Division').AsString;
       ExApp.Range['D5:E5'].mergeCells := True;
 
       ExApp.Range['B6:C6'] := 'AREA';
       ExApp.Range['B6:C6'].mergeCells := True;
+      ExApp.Range['D6:E6'] := zDatos.FieldByName('Area').AsString;
       ExApp.Range['D6:E6'].mergeCells := True;
 
       ExApp.Range['B7:C7'] := 'CONTRATISTA';
       ExApp.Range['B7:C7'].mergeCells := True;
+      ExApp.Range['D7:E7'] := zDatos.FieldByName('Contratista').AsString;
       ExApp.Range['D7:E7'].mergeCells := True;
 
       ExApp.Range['B9:C9'] := 'No. VALE';
       ExApp.Range['B9:C9'].mergeCells := True;
+      ExApp.Range['D9:E9'] := zDatos.FieldByName('NoVale').AsString;
       ExApp.Range['D9:E9'].mergeCells := True;
 
-      ExApp.Range['B10:C10'] := 'FECHA vALE';
+      ExApp.Range['B10:C10'] := 'FECHA VALE';
       ExApp.Range['B10:C10'].mergeCells := True;
+      ExApp.Range['D10:E10'] := zDatos.FieldByName('FechaVale').AsString;
       ExApp.Range['D10:E10'].mergeCells := True;
 
       ExApp.Range['B11:C11'] := 'DEL MES';
       ExApp.Range['B11:C11'].mergeCells := True;
+
       ExApp.Range['D11:E11'].mergeCells := True;
 
       SetBorders(Exapp.Range['B5:E7'], xlThin, xlContinuous);
       SetBorders(Exapp.Range['B9:E11'], xlThin, xlContinuous);
 
       ExApp.Range['C12'] := 'FOLIO';
+      ExApp.Range['D12'] :=  zDatos.FieldByName('FoliOPrincipal').AsString;
       SetBorders(Exapp.Range['C12'], xlThin, xlContinuous);
 
       ExApp.Range['A13'] := 'NO.';
@@ -625,7 +652,7 @@ begin
       end;
     end;
   finally
-
+    zDatos.Filtered := False;
   end;
 end;
 
@@ -687,10 +714,18 @@ begin
       if not FiltrarDataset(zDatos, 'IdPersonal,Desde,Hasta', [intTostr(Idpersonal), FechaSQl(cxDateDesde.Date), FechaSQL(cxDateHasta.Date)]) then
         raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
 
-      if zDatos.Active then
-        zDatos.Refresh
-      else
-        zDatos.Open;
+      try
+        zDatos.AfterScroll := Nil;
+
+        if zDatos.Active then
+          zDatos.Refresh
+        else
+          zDatos.Open;
+      finally
+        zDatos.AfterScroll := zDatosAfterScroll;
+        if zDatos.Active then
+          zdatos.first;
+      end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
     finally

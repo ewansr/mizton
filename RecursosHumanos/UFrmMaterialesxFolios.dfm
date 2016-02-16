@@ -455,7 +455,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         end
         object dxLayoutControl1Item1: TdxLayoutItem
           Parent = dxLayoutGroup1
-          CaptionOptions.Text = 'C'#243'digo:'
+          CaptionOptions.Text = 'Expediente:'
           Control = LblCodigo
           ControlOptions.ShowBorder = False
           Index = 1

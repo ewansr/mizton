@@ -42,7 +42,9 @@ type
     dxButtonDetalle: TdxBarLargeButton;
     btnAbrir: TdxBarLargeButton;
     procedure FormShow(Sender: TObject);
+    procedure btnAbrirClick(Sender: TObject);
   private
+    //fMat: TFrmMaterialesxFolios;
     { Private declarations }
     procedure CrearExpedientes;
   public
@@ -54,7 +56,19 @@ var
 
 implementation
 
+uses
+  UfrmMaterialesxFolios;
 {$R *.dfm}
+
+procedure TFrmSelExpediente.btnAbrirClick(Sender: TObject);
+begin
+  Application.CreateForm(TFrmMaterialesxFolios, FrmMaterialesxFolios);
+  //FrmMaterialesxFolios := TFrmMaterialesxFolios.CreateByParam(Integer(lstExpedientes.Selected.Data));
+  FrmMaterialesxFolios.IdPersonal := Integer(lstExpedientes.Selected.Data);
+  FrmMaterialesxFolios.FormStyle := fsMDIChild;
+  FrmMaterialesxFolios.visible := True;
+  FrmMaterialesxFolios.Show;
+end;
 
 procedure TFrmSelExpediente.CrearExpedientes;
 var
@@ -63,19 +77,16 @@ begin
   try
     if zPersonal.Active then
     begin
-      nombreCOmpleto := '[' +zPersonal.FieldByName('CodigoPersonal').AsString + '] ' + zPersonal.FieldByName('Nombre').AsString  + ' ' + zPersonal.FieldByName('Apaterno').AsString  + ' ' + zPersonal.FieldByName('AMaterno').AsString  ;
       lstExpedientes.Clear;
       zPersonal.First;
       while not zPersonal.Eof do
       begin
-        //lstExpedientes.AddItem(nombreCOmpleto, Integer(zPersonal.FieldByName('IdPersonal').AsInteger));
-
-
+        nombreCOmpleto := '[' +zPersonal.FieldByName('CodigoPersonal').AsString + '] ' + zPersonal.FieldByName('Nombre').AsString  + ' ' + zPersonal.FieldByName('Apaterno').AsString  + ' ' + zPersonal.FieldByName('AMaterno').AsString  ;
         with lstExpedientes.Items.Add do
         begin
           Caption := NombreCOmpleto;
           ImageIndex := 16;
-            := Integer(zPersonal.FieldByName('IdPersonal').AsInteger);
+          Data := Pointer(zPersonal.FieldByName('IdPersonal').AsInteger);
         end;
 
         zPersonal.Next;

@@ -1,9 +1,10 @@
 object FrmSelExpediente: TFrmSelExpediente
   Left = 0
   Top = 0
-  Caption = 'FrmSelExpediente'
-  ClientHeight = 350
-  ClientWidth = 440
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Seleccionar Expediente'
+  ClientHeight = 417
+  ClientWidth = 476
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,23 +12,20 @@ object FrmSelExpediente: TFrmSelExpediente
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lstExpedientes: TcxListView
     Left = 0
-    Top = 58
-    Width = 440
-    Height = 292
+    Top = 63
+    Width = 476
+    Height = 354
     Align = alClient
     Columns = <>
     LargeImages = UDMConection.cxMizton32
     SmallImages = UDMConection.cxMizton16
     TabOrder = 0
-    ExplicitLeft = 32
-    ExplicitTop = 96
-    ExplicitWidth = 121
-    ExplicitHeight = 97
   end
   object zPersonal: TZQuery
     Params = <>
@@ -48,7 +46,6 @@ object FrmSelExpediente: TFrmSelExpediente
       True)
     ImageOptions.Images = UDMConection.cxMizton16
     ImageOptions.LargeImages = UDMConection.cxMizton32
-    LookAndFeel.SkinName = ''
     PopupMenuLinks = <>
     UseSystemFont = True
     Left = 304
@@ -56,7 +53,7 @@ object FrmSelExpediente: TFrmSelExpediente
     DockControlHeights = (
       0
       0
-      58
+      63
       0)
     object dxbrManager1Bar: TdxBar
       Caption = 'Opciones'
@@ -239,6 +236,7 @@ object FrmSelExpediente: TFrmSelExpediente
       Hint = 'Abrir'
       Visible = ivAlways
       LargeImageIndex = 1
+      OnClick = btnAbrirClick
       AutoGrayScale = False
     end
   end

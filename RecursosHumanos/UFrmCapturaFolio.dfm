@@ -25,8 +25,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
     Align = alClient
     TabOrder = 0
     LayoutLookAndFeel = UDMConection.dxStyleForms
-    ExplicitWidth = 399
-    ExplicitHeight = 274
     object cxTextFolio: TcxDBTextEdit
       Tag = -1
       Left = 94
@@ -268,8 +266,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = 277
-    ExplicitWidth = 393
     object btnGuardar: TcxButton
       AlignWithMargins = True
       Left = 238
@@ -282,7 +278,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 0
       OnClick = btnGuardarClick
-      ExplicitLeft = 234
     end
     object btnCancelar: TcxButton
       AlignWithMargins = True
@@ -297,7 +292,6 @@ object FrmCapturaFolio: TFrmCapturaFolio
       OptionsImage.Images = UDMConection.cxImage16
       TabOrder = 1
       OnClick = btnCancelarClick
-      ExplicitLeft = 315
     end
   end
   object dsDatos: TDataSource

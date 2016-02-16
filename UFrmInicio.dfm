@@ -1660,7 +1660,6 @@ object FrmInicio: TFrmInicio
     Width = 5
     Height = 607
     HotZoneClassName = 'TcxMediaPlayer9Style'
-    ExplicitLeft = 313
   end
   object dxDockSite1: TdxDockSite
     Left = 0
@@ -1685,7 +1684,6 @@ object FrmInicio: TFrmInicio
         Top = 0
         Width = 128
         Height = 607
-        ExplicitWidth = 285
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -1704,7 +1702,6 @@ object FrmInicio: TFrmInicio
         Dockable = False
         ShowCaption = False
         TabsProperties.CustomButtons.Buttons = <>
-        ExplicitWidth = 285
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
@@ -1752,15 +1749,14 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 8
+    TabOrder = 7
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitHeight = 599
+    ExplicitLeft = 73
+    ExplicitTop = 15
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0
@@ -1822,6 +1818,7 @@ object FrmInicio: TFrmInicio
     end
     object LinkSalarios: TdxNavBarItem
       Caption = 'Salarios'
+      Visible = False
     end
     object LinkFolios: TdxNavBarItem
       Action = actFolios
@@ -2573,8 +2570,8 @@ object FrmInicio: TFrmInicio
   end
   object acListMenu: TActionList
     Images = UDMConection.cxMizton16
-    Left = 360
-    Top = 56
+    Left = 720
+    Top = 48
     object actPersonal: TAction
       Caption = 'Cat'#225'logo de Personal'
       ImageIndex = 0

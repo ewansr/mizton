@@ -43,6 +43,7 @@ type
     btnAbrir: TdxBarLargeButton;
     procedure FormShow(Sender: TObject);
     procedure btnAbrirClick(Sender: TObject);
+    procedure lstExpedientesDblClick(Sender: TObject);
   private
     //fMat: TFrmMaterialesxFolios;
     { Private declarations }
@@ -128,6 +129,11 @@ begin
       PostMessage(Self.Handle, WM_CLOSE, 0, 0);
     end;
   end;
+end;
+
+procedure TFrmSelExpediente.lstExpedientesDblClick(Sender: TObject);
+begin
+  btnAbrirClick(nil);
 end;
 
 end.
