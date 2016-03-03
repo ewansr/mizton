@@ -28,7 +28,9 @@ uses
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
   dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
   dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
-  AdvSmoothSlider;
+  AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
+  cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
 
 type
   ClaseHila = Class(TThread)
@@ -89,8 +91,30 @@ type
     btn1: TdxBarLargeButton;
     dxbrProductos: TdxBar;
     btnInventario: TdxBarLargeButton;
-    navMenu: TdxNavBar;
     cxImage1: TcxImage;
+    acListMenu: TActionList;
+    actPersonal: TAction;
+    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
+    dxPopup1: TdxBarPopupMenu;
+    cxspltrMenu: TcxSplitter;
+    actFolios: TAction;
+    actVales: TAction;
+    actPais: TAction;
+    actEstado: TAction;
+    actCiudad: TAction;
+    actUnidadMedida: TAction;
+    actUsuarios: TAction;
+    tmr1: TTimer;
+    dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
+    dxDockSite1: TdxDockSite;
+    dxDockPanel1: TdxDockPanel;
+    dxLayoutDockSite2: TdxLayoutDockSite;
+    dxDockPanel2: TdxDockPanel;
+    dxLayoutDockSite1: TdxLayoutDockSite;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    navMenu: TdxNavBar;
     ItemRh: TdxNavBarGroup;
     ItemConfiguracion: TdxNavBarGroup;
     LinkPersonal: TdxNavBarItem;
@@ -102,24 +126,11 @@ type
     LinkEstado: TdxNavBarItem;
     LinkUMedida: TdxNavBarItem;
     sepConfig: TdxNavBarSeparator;
-    acListMenu: TActionList;
-    actPersonal: TAction;
-    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
-    dxPopup1: TdxBarPopupMenu;
-    cxspltrMenu: TcxSplitter;
-    actFolios: TAction;
     LinkVales: TdxNavBarItem;
-    actVales: TAction;
-    actPais: TAction;
-    actEstado: TAction;
-    actCiudad: TAction;
-    actUnidadMedida: TAction;
     LinkUsuarios: TdxNavBarItem;
-    actUsuarios: TAction;
-    tmr1: TTimer;
-    dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
     cxLabel2: TcxLabel;
     advAviso1: TAdvSmoothSlider;
+    zHiloFolios: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -174,7 +185,7 @@ type
 var
   FrmInicio: TFrmInicio;
 
-  zHiloFolios: TzQuery;
+  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
@@ -634,7 +645,7 @@ begin
   hiloEjecucion := THilo.Create;
   if OldCountFolio <> NuevoCountFolio then
   begin
-    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',7);
+    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',2);
   end;
 end;
 
@@ -659,22 +670,22 @@ Function THilo.LeerFolios: Integer;
 begin
   try
     OldCountFolio := nuevoCountFolio;
-    if Not assigned(zHiloFolios) then
+    if Not assigned(FrmInicio.zHiloFolios) then
     begin
       UDMConection.inicializaConAnsi;
-      zHiloFolios := TZQuery.Create(Application.MainForm);
-      zHiloFolios.Connection := UDMConection.conANSI;
-      zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_materialxfolio'
+      //zHiloFolios := TZQuery.Create(Application.MainForm);
+      FrmInicio.zHiloFolios.Connection := UDMConection.conANSI;
+      FrmInicio.zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()'
     end;
 
-    if zHiloFolios.Active then
-      zHiloFolios.Refresh
+    if FrmInicio.zHiloFolios.Active then
+      FrmInicio.zHiloFolios.Refresh
     else
-     zHiloFolios.Open;
+     FrmInicio.zHiloFolios.Open;
 
-    if NuevoCountFolio <> zHiloFolios.FieldByName('Folios').AsInteger then
+    if NuevoCountFolio <> FrmInicio.zHiloFolios.FieldByName('Folios').AsInteger then
     begin
-      Result := zHiloFolios.FieldByName('Folios').asinteger;
+      Result := FrmInicio.zHiloFolios.FieldByName('Folios').asinteger;
       NuevoCountFolio := Result;
     end;
 

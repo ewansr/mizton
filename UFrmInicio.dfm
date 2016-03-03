@@ -1749,14 +1749,12 @@ object FrmInicio: TFrmInicio
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
-    TabOrder = 7
+    TabOrder = 6
     View = 15
     ViewStyle.SkinName = 'VS2010'
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
-    ExplicitLeft = 73
-    ExplicitTop = 15
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0

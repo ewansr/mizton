@@ -668,26 +668,29 @@ Function THilo.LeerFolios: Integer;
 
 begin
   try
-    OldCountFolio := nuevoCountFolio;
-    if Not assigned(zHiloFolios) then
-    begin
-      UDMConection.inicializaConAnsi;
-      zHiloFolios := TZQuery.Create(Application.MainForm);
-      zHiloFolios.Connection := UDMConection.conANSI;
-      zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()'
+    try
+      OldCountFolio := nuevoCountFolio;
+      //if Not assigned(zHiloFolios) then
+      //begin
+        UDMConection.inicializaConAnsi;
+        zHiloFolios := TZQuery.Create(nil);
+        zHiloFolios.Connection := UDMConection.conANSI;
+        zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()';
+      //end;
+
+      if zHiloFolios.Active then
+        zHiloFolios.Refresh
+      else
+       zHiloFolios.Open;
+
+      if NuevoCountFolio <> zHiloFolios.FieldByName('Folios').AsInteger then
+      begin
+        Result := zHiloFolios.FieldByName('Folios').asinteger;
+        NuevoCountFolio := Result;
+      end;
+    finally
+      zHiloFolios.free;
     end;
-
-    if zHiloFolios.Active then
-      zHiloFolios.Refresh
-    else
-     zHiloFolios.Open;
-
-    if NuevoCountFolio <> zHiloFolios.FieldByName('Folios').AsInteger then
-    begin
-      Result := zHiloFolios.FieldByName('Folios').asinteger;
-      NuevoCountFolio := Result;
-    end;
-
   Except
     try
       if Not UDMConection.conANSI.Ping then

@@ -28,7 +28,9 @@ uses
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
   dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
   dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
-  AdvSmoothSlider;
+  AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
+  cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
 
 type
   ClaseHila = Class(TThread)
@@ -79,7 +81,6 @@ type
     cxHintStyleController1: TcxHintStyleController;
     dxButtonUMedida: TdxBarLargeButton;
     dxButtonProductos: TdxBarLargeButton;
-    btnOrg: TcxButton;
     dxRadial1: TdxRibbonRadialMenu;
     dxButtonImpuesto: TdxBarLargeButton;
     zImpuestos: TZQuery;
@@ -90,8 +91,30 @@ type
     btn1: TdxBarLargeButton;
     dxbrProductos: TdxBar;
     btnInventario: TdxBarLargeButton;
-    navMenu: TdxNavBar;
     cxImage1: TcxImage;
+    acListMenu: TActionList;
+    actPersonal: TAction;
+    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
+    dxPopup1: TdxBarPopupMenu;
+    cxspltrMenu: TcxSplitter;
+    actFolios: TAction;
+    actVales: TAction;
+    actPais: TAction;
+    actEstado: TAction;
+    actCiudad: TAction;
+    actUnidadMedida: TAction;
+    actUsuarios: TAction;
+    tmr1: TTimer;
+    dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
+    dxDockSite1: TdxDockSite;
+    dxDockPanel1: TdxDockPanel;
+    dxLayoutDockSite2: TdxLayoutDockSite;
+    dxDockPanel2: TdxDockPanel;
+    dxLayoutDockSite1: TdxLayoutDockSite;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    navMenu: TdxNavBar;
     ItemRh: TdxNavBarGroup;
     ItemConfiguracion: TdxNavBarGroup;
     LinkPersonal: TdxNavBarItem;
@@ -103,24 +126,11 @@ type
     LinkEstado: TdxNavBarItem;
     LinkUMedida: TdxNavBarItem;
     sepConfig: TdxNavBarSeparator;
-    acListMenu: TActionList;
-    actPersonal: TAction;
-    dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
-    dxPopup1: TdxBarPopupMenu;
-    cxspltrMenu: TcxSplitter;
-    actFolios: TAction;
     LinkVales: TdxNavBarItem;
-    actVales: TAction;
-    actPais: TAction;
-    actEstado: TAction;
-    actCiudad: TAction;
-    actUnidadMedida: TAction;
     LinkUsuarios: TdxNavBarItem;
-    actUsuarios: TAction;
-    tmr1: TTimer;
-    dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
     cxLabel2: TcxLabel;
     advAviso1: TAdvSmoothSlider;
+    zHiloFolios: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -175,7 +185,7 @@ type
 var
   FrmInicio: TFrmInicio;
 
-  zHiloFolios: TzQuery;
+  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
@@ -243,7 +253,7 @@ end;
 
 procedure TFrmInicio.advAviso1Click(Sender: TObject);
 begin
-  if Not advAviso1.State = ssOn then
+  if Not (advAviso1.State = ssOn) then
   begin
     tmr1.Enabled := True;
     cxLabel2.Caption := 'Desactivar Avisos';
@@ -635,7 +645,7 @@ begin
   hiloEjecucion := THilo.Create;
   if OldCountFolio <> NuevoCountFolio then
   begin
-    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',7);
+    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',2);
   end;
 end;
 
@@ -660,12 +670,12 @@ Function THilo.LeerFolios: Integer;
 begin
   try
     OldCountFolio := nuevoCountFolio;
-    if Not assigned(zHiloFolios) then
+    if Not assigned(FrmInicio.zHiloFolios) then
     begin
       UDMConection.inicializaConAnsi;
-      zHiloFolios := TZQuery.Create(Application.MainForm);
+      //zHiloFolios := TZQuery.Create(Application.MainForm);
       zHiloFolios.Connection := UDMConection.conANSI;
-      zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_materialxfolio'
+      zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()'
     end;
 
     if zHiloFolios.Active then

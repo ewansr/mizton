@@ -28,7 +28,9 @@ uses
   Menus, StdCtrls, cxButtons, UMsgBox, dxRibbonRadialMenu,
   dxSkinsdxNavBarPainter, dxNavBar, dxNavBarBase, dxNavBarCollns,
   dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
-  AdvSmoothSlider, dxDockControl, dxDockPanel;
+  AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
+  cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
 
 type
   ClaseHila = Class(TThread)
@@ -104,13 +106,14 @@ type
     actUsuarios: TAction;
     tmr1: TTimer;
     dxStatusBarInicioContainer9: TdxStatusBarContainerControl;
-    cxLabel2: TcxLabel;
-    advAviso1: TAdvSmoothSlider;
     dxDockSite1: TdxDockSite;
     dxDockPanel1: TdxDockPanel;
     dxLayoutDockSite2: TdxLayoutDockSite;
     dxDockPanel2: TdxDockPanel;
     dxLayoutDockSite1: TdxLayoutDockSite;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
     navMenu: TdxNavBar;
     ItemRh: TdxNavBarGroup;
     ItemConfiguracion: TdxNavBarGroup;
@@ -125,6 +128,9 @@ type
     sepConfig: TdxNavBarSeparator;
     LinkVales: TdxNavBarItem;
     LinkUsuarios: TdxNavBarItem;
+    cxLabel2: TcxLabel;
+    advAviso1: TAdvSmoothSlider;
+    zHiloFolios: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -179,7 +185,7 @@ type
 var
   FrmInicio: TFrmInicio;
 
-  zHiloFolios: TzQuery;
+  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
