@@ -17,26 +17,29 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
-    Left = 289
+    Left = 294
     Top = 131
-    Width = 1046
+    Width = 1041
     Height = 544
     Align = alClient
+    ExplicitLeft = 289
+    ExplicitWidth = 1046
     DockingType = 5
-    OriginalWidth = 1046
+    OriginalWidth = 1041
     OriginalHeight = 544
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 656
+      Width = 651
       Height = 544
+      ExplicitWidth = 656
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 656
+        Width = 651
         Height = 544
         DockingType = 0
         OriginalWidth = 300
@@ -45,7 +48,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 656
+        Width = 651
         Height = 544
         AllowFloating = False
         AutoHide = False
@@ -60,12 +63,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 642
+          Width = 637
           Height = 508
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
+          ExplicitWidth = 642
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -160,7 +164,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = 656
+      Left = 651
       Top = 0
       Width = 390
       Height = 544
@@ -170,6 +174,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
+      ExplicitLeft = 656
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -556,6 +561,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         end>
       Index = 0
     end
+  end
+  object cxSplitter1: TcxSplitter
+    Left = 289
+    Top = 131
+    Width = 5
+    Height = 544
+    Hint = 'Mostrar/Ocultar datos del empleado y semana de trabajo'
+    HotZoneClassName = 'TcxMediaPlayer9Style'
+    ShowHint = True
+    ParentShowHint = False
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

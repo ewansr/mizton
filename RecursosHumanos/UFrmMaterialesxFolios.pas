@@ -29,7 +29,7 @@ uses
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
   cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView,
-  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate;
+  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate, cxSplitter;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -131,6 +131,7 @@ type
     zUptMateriales: TZUpdateSQL;
     pnl1: TPanel;
     btnSaveChanges: TcxButton;
+    cxSplitter1: TcxSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);

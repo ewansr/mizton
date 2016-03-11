@@ -213,11 +213,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Left = 3
             Top = 3
             Width = 368
-            Height = 396
+            Height = 358
             Align = alClient
             TabOrder = 1
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
+              OnEditKeyDown = cxGridMaterialesEditKeyDown
               DataController.DataSource = dsMaterial
               DataController.Summary.DefaultGroupSummaryItems = <>
               DataController.Summary.FooterSummaryItems = <>
@@ -238,16 +239,37 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               end
               object cxColmaterial: TcxGridDBColumn
                 DataBinding.FieldName = 'Material'
+                PropertiesClassName = 'TcxLabelProperties'
                 Width = 221
               end
               object cxColUMedida: TcxGridDBColumn
                 Caption = 'U. Medida'
                 DataBinding.FieldName = 'UnidadMedida'
+                PropertiesClassName = 'TcxLabelProperties'
                 Width = 80
               end
             end
             object cxLvl1: TcxGridLevel
               GridView = cxGridMateriales
+            end
+          end
+          object pnl1: TPanel
+            Left = 0
+            Top = 364
+            Width = 374
+            Height = 38
+            Align = alBottom
+            TabOrder = 2
+            Visible = False
+            object btnSaveChanges: TcxButton
+              AlignWithMargins = True
+              Left = 256
+              Top = 4
+              Width = 114
+              Height = 30
+              Align = alRight
+              Caption = 'Guardar Cambios'
+              TabOrder = 0
             end
           end
         end
@@ -868,11 +890,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Top = 448
   end
   object zMaterial: TZQuery
-    Connection = UDMConection.conBD
     UpdateObject = zUptMateriales
     Params = <>
-    Left = 1000
-    Top = 440
+    Left = 1200
+    Top = 400
   end
   object dsMaterial: TDataSource
     DataSet = zMaterial
@@ -901,12 +922,29 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   end
   object zUMateriales: TZQuery
     Params = <>
-    Left = 824
-    Top = 344
+    Left = 1200
+    Top = 296
   end
   object zUptMateriales: TZUpdateSQL
+    ModifySQL.Strings = (
+      'update '
+      '  mt_materialxfolio'
+      'set '
+      '  cantidad=:cantidad'
+      'where idMaterialxfolio=:IdMaterialxfolio')
     UseSequenceFieldForRefreshSQL = False
-    Left = 1088
+    Left = 1200
     Top = 344
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'IdMaterialxfolio'
+        ParamType = ptUnknown
+      end>
   end
 end

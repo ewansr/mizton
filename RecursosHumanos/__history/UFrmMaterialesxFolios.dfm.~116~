@@ -17,26 +17,29 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
-    Left = 289
+    Left = 294
     Top = 131
-    Width = 1046
+    Width = 1041
     Height = 544
     Align = alClient
+    ExplicitLeft = 289
+    ExplicitWidth = 1046
     DockingType = 5
-    OriginalWidth = 1046
+    OriginalWidth = 1041
     OriginalHeight = 544
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 656
+      Width = 651
       Height = 544
+      ExplicitWidth = 656
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 656
+        Width = 651
         Height = 544
         DockingType = 0
         OriginalWidth = 300
@@ -45,7 +48,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 656
+        Width = 651
         Height = 544
         AllowFloating = False
         AutoHide = False
@@ -60,12 +63,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 642
+          Width = 637
           Height = 508
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
+          ExplicitWidth = 642
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -160,7 +164,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = 656
+      Left = 651
       Top = 0
       Width = 390
       Height = 544
@@ -170,6 +174,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
+      ExplicitLeft = 656
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -213,11 +218,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Left = 3
             Top = 3
             Width = 368
-            Height = 396
+            Height = 358
             Align = alClient
             TabOrder = 1
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
+              OnEditKeyDown = cxGridMaterialesEditKeyDown
               DataController.DataSource = dsMaterial
               DataController.Summary.DefaultGroupSummaryItems = <>
               DataController.Summary.FooterSummaryItems = <>
@@ -238,16 +244,37 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               end
               object cxColmaterial: TcxGridDBColumn
                 DataBinding.FieldName = 'Material'
+                PropertiesClassName = 'TcxLabelProperties'
                 Width = 221
               end
               object cxColUMedida: TcxGridDBColumn
                 Caption = 'U. Medida'
                 DataBinding.FieldName = 'UnidadMedida'
+                PropertiesClassName = 'TcxLabelProperties'
                 Width = 80
               end
             end
             object cxLvl1: TcxGridLevel
               GridView = cxGridMateriales
+            end
+          end
+          object pnl1: TPanel
+            Left = 0
+            Top = 364
+            Width = 374
+            Height = 38
+            Align = alBottom
+            TabOrder = 2
+            Visible = False
+            object btnSaveChanges: TcxButton
+              AlignWithMargins = True
+              Left = 256
+              Top = 4
+              Width = 114
+              Height = 30
+              Align = alRight
+              Caption = 'Guardar Cambios'
+              TabOrder = 0
             end
           end
         end
@@ -534,6 +561,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         end>
       Index = 0
     end
+  end
+  object cxSplitter1: TcxSplitter
+    Left = 289
+    Top = 131
+    Width = 5
+    Height = 544
+    Hint = 'Mostrar/Ocultar datos del empleado y semana de trabajo'
+    HotZoneClassName = 'TcxSimpleStyle'
+    ShowHint = True
+    ParentShowHint = False
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -868,11 +905,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Top = 448
   end
   object zMaterial: TZQuery
-    Connection = UDMConection.conBD
     UpdateObject = zUptMateriales
     Params = <>
-    Left = 1000
-    Top = 440
+    Left = 1200
+    Top = 400
   end
   object dsMaterial: TDataSource
     DataSet = zMaterial
@@ -901,14 +937,29 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   end
   object zUMateriales: TZQuery
     Params = <>
-    Left = 824
-    Top = 344
+    Left = 1200
+    Top = 296
   end
   object zUptMateriales: TZUpdateSQL
     ModifySQL.Strings = (
-      'Select cantidad from mt_materialxfolio')
+      'update '
+      '  mt_materialxfolio'
+      'set '
+      '  cantidad=:cantidad'
+      'where idMaterialxfolio=:IdMaterialxfolio')
     UseSequenceFieldForRefreshSQL = False
-    Left = 1088
+    Left = 1200
     Top = 344
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'IdMaterialxfolio'
+        ParamType = ptUnknown
+      end>
   end
 end
