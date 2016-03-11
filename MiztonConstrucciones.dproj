@@ -150,6 +150,9 @@
 			<DCCReference Include="RecursosHumanos\UFrmVales.pas">
 				<Form>FrmVales</Form>
 			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmCatalogoAutomoviles.pas">
+				<Form>FrmCatalogoAutomoviles</Form>
+			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

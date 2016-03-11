@@ -200,7 +200,7 @@ Uses
 procedure TFrmInicio.actAutomovilesExecute(Sender: TObject);
 begin
   application.CreateForm(TFrmcatalogoAutomoviles, FrmCatalogoAutomoviles);
-  FrmCatalogoAutomoviles.Show;
+  FrmCatalogoAutomoviles.ShowModal;
 end;
 
 procedure TFrmInicio.actCiudadExecute(Sender: TObject);

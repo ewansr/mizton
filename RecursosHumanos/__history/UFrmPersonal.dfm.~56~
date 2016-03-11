@@ -116,7 +116,7 @@ inherited FrmPersonal: TFrmPersonal
         ClientRectBottom = 640
         ClientRectRight = 443
         inherited cxTsDatos: TcxTabSheet
-          Caption = ''
+          Caption = 'Informaci'#243'n detallada'
           ExplicitWidth = 441
           ExplicitHeight = 613
           inherited dxLYCDatos: TdxLayoutControl
@@ -344,16 +344,24 @@ inherited FrmPersonal: TFrmPersonal
             object cxTabDireccion: TcxTabSheet
               Caption = 'Direcci'#243'n / Contacto'
               ImageIndex = 0
+              ExplicitLeft = 3
+              ExplicitTop = 30
+              ExplicitWidth = 447
+              ExplicitHeight = 257
               object dxLayControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
                 Top = 3
                 Width = 405
-                Height = 302
+                Height = 334
                 Margins.Left = 5
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
+                ExplicitLeft = 48
+                ExplicitTop = 0
+                ExplicitWidth = 300
+                ExplicitHeight = 250
                 object cxMaskTel: TcxDBMaskEdit
                   Left = 74
                   Top = 11
@@ -756,8 +764,6 @@ inherited FrmPersonal: TFrmPersonal
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 153
       FloatClientHeight = 307
     end

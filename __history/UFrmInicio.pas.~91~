@@ -123,7 +123,6 @@ type
     cxLabel2: TcxLabel;
     advAviso1: TAdvSmoothSlider;
     actAutomoviles: TAction;
-    LinkAutos: TdxNavBarItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -167,7 +166,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAvisosClick(Sender: TObject);
     procedure advAviso1Click(Sender: TObject);
-    procedure actAutomovilesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -193,15 +191,9 @@ Uses
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
-  Ufrmvales, uFrmCatalogoAutomoviles;
+  Ufrmvales;
 
 { TForm1 }
-
-procedure TFrmInicio.actAutomovilesExecute(Sender: TObject);
-begin
-  application.CreateForm(TFrmcatalogoAutomoviles, FrmCatalogoAutomoviles);
-  FrmCatalogoAutomoviles.Show;
-end;
 
 procedure TFrmInicio.actCiudadExecute(Sender: TObject);
 begin

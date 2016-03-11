@@ -113,7 +113,6 @@ type
     cxDateaLTA: TcxDBDateEdit;
     lyaLTA: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -136,12 +135,6 @@ begin
   //Validar Registros duplicados
   pCondiciones := '~(IdPersonal)&(CodigoPersonal)';
   pCampos := 'IdPersonal,CodigoPersonal';
-end;
-
-procedure TFrmPersonal.FormShow(Sender: TObject);
-begin
-  inherited;
-  cxPagedatos.ActivePage := cxTsDatos;
 end;
 
 end.

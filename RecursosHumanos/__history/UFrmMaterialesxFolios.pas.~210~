@@ -149,9 +149,7 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure dxButtonExportarClick(Sender: TObject);
-    procedure cxGridMaterialesEditKeyDown(Sender: TcxCustomGridTableView;
-      AItem: TcxCustomGridTableItem; AEdit: TcxCustomEdit; var Key: Word;
-      Shift: TShiftState);
+    procedure cxColCantidadPropertiesChange(Sender: TObject);
   private
     ExApp: Variant;
     { Private declarations }
@@ -289,6 +287,13 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.cxColCantidadPropertiesChange(Sender: TObject);
+begin
+  zUptMateriales.Params.ParamByName('Cantidad').AsFloat := zMaterial.FieldByName('Cantidad').AsFloat;
+  zUptMateriales.Params.ParamByName('idMaterialxfolio').AsInteger := zMaterial.FieldByName('idMaterialxfolio').AsInteger;
+  zUptMateriales.SQL[ukModify];
+end;
+
 procedure TFrmMaterialesxFolios.cxDateDesdePropertiesChange(Sender: TObject);
 begin
   cxDateDesde.Date := StartOfTheWeek(cxDateDesde.Date);
@@ -324,22 +329,6 @@ begin
     end;
   Except
     raise;
-  end;
-end;
-
-procedure TFrmMaterialesxFolios.cxGridMaterialesEditKeyDown(
-  Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
-  AEdit: TcxCustomEdit; var Key: Word; Shift: TShiftState);
-begin
-  if key = 13 then
-  begin
-    zUptMateriales.Params.ParamByName('Cantidad').AsFloat := zMaterial.FieldByName('Cantidad').AsFloat;
-    zUptMateriales.Params.ParamByName('idMaterialxfolio').AsInteger := zMaterial.FieldByName('idMaterialxfolio').AsInteger;
-
-    if not zMaterial.Connection.Ping then
-      zMaterial.Connection.Reconnect;
-
-    zUptMateriales.SQL[ukModify];
   end;
 end;
 

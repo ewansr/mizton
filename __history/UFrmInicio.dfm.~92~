@@ -2541,7 +2541,6 @@ object FrmInicio: TFrmInicio
     object actAutomoviles: TAction
       Caption = 'Autom'#243'viles '
       ImageIndex = 18
-      OnExecute = actAutomovilesExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

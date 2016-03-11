@@ -216,6 +216,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Height = 358
             Align = alClient
             TabOrder = 1
+            ExplicitHeight = 396
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               OnEditKeyDown = cxGridMaterialesEditKeyDown
@@ -890,6 +891,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Top = 448
   end
   object zMaterial: TZQuery
+    Connection = UDMConection.conBD
     UpdateObject = zUptMateriales
     Params = <>
     Left = 1200

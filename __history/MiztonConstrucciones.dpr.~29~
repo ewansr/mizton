@@ -46,8 +46,7 @@ uses
   UFrmCapturaFolio in 'RecursosHumanos\UFrmCapturaFolio.pas' {FrmCapturaFolio},
   UFrmFolioMaterial in 'RecursosHumanos\UFrmFolioMaterial.pas' {FrmFolioMaterial},
   ExportaExcel in 'Generales\ExportaExcel.pas',
-  UFrmVales in 'RecursosHumanos\UFrmVales.pas' {FrmVales},
-  UFrmCatalogoAutomoviles in 'RecursosHumanos\UFrmCatalogoAutomoviles.pas' {FrmCatalogoAutomoviles};
+  UFrmVales in 'RecursosHumanos\UFrmVales.pas' {FrmVales};
 
 {$R *.res}
 

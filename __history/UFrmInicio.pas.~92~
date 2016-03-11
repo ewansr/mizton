@@ -167,7 +167,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAvisosClick(Sender: TObject);
     procedure advAviso1Click(Sender: TObject);
-    procedure actAutomovilesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -193,15 +192,9 @@ Uses
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
-  Ufrmvales, uFrmCatalogoAutomoviles;
+  Ufrmvales;
 
 { TForm1 }
-
-procedure TFrmInicio.actAutomovilesExecute(Sender: TObject);
-begin
-  application.CreateForm(TFrmcatalogoAutomoviles, FrmCatalogoAutomoviles);
-  FrmCatalogoAutomoviles.Show;
-end;
 
 procedure TFrmInicio.actCiudadExecute(Sender: TObject);
 begin

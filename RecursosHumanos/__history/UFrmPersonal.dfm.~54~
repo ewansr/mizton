@@ -9,44 +9,39 @@ inherited FrmPersonal: TFrmPersonal
   TextHeight = 13
   inherited dxDockSite1: TdxDockSite
     Width = 1297
-    Height = 676
-    ExplicitTop = 127
-    ExplicitWidth = 1297
-    ExplicitHeight = 676
+    Height = 708
     DockingType = 5
     OriginalWidth = 1297
-    OriginalHeight = 676
+    OriginalHeight = 708
     inherited dxLayoutDockSite1: TdxLayoutDockSite
       Width = 840
-      Height = 676
+      Height = 708
       ExplicitWidth = 840
-      ExplicitHeight = 676
+      ExplicitHeight = 708
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       inherited dxlytdckst1: TdxLayoutDockSite
         Width = 840
-        Height = 676
-        ExplicitWidth = 840
-        ExplicitHeight = 676
+        Height = 708
+        ExplicitWidth = 854
+        ExplicitHeight = 708
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
       end
       inherited dxDockGrid: TdxDockPanel
         Width = 840
-        Height = 676
+        Height = 708
         Caption = 'Cat'#225'logo de Personal'
-        ExplicitWidth = 840
-        ExplicitHeight = 676
+        ExplicitWidth = 854
+        ExplicitHeight = 708
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
         inherited cxGridGral: TcxGrid
           Width = 826
-          Height = 640
-          ExplicitWidth = 826
-          ExplicitHeight = 640
+          Height = 672
           inherited cxGridDatos: TcxGridDBTableView
             DataController.DataSource = dsDatos
             OptionsView.ColumnAutoWidth = False
@@ -100,25 +95,21 @@ inherited FrmPersonal: TFrmPersonal
     inherited dxDockDatos: TdxDockPanel
       Left = 840
       Width = 457
-      Height = 676
+      Height = 708
       AllowFloating = False
       ExplicitLeft = 840
       ExplicitWidth = 457
-      ExplicitHeight = 676
+      ExplicitHeight = 708
       DockingType = 3
       OriginalWidth = 457
       OriginalHeight = 140
       inherited cxPageDatos: TcxPageControl
         Width = 449
-        Height = 646
-        ExplicitWidth = 449
-        ExplicitHeight = 646
-        ClientRectBottom = 640
+        Height = 678
+        ClientRectBottom = 672
         ClientRectRight = 443
         inherited cxTsDatos: TcxTabSheet
-          Caption = ''
-          ExplicitWidth = 441
-          ExplicitHeight = 613
+          Caption = 'Informaci'#243'n detallada'
           inherited dxLYCDatos: TdxLayoutControl
             AlignWithMargins = True
             Left = 5
@@ -129,7 +120,7 @@ inherited FrmPersonal: TFrmPersonal
             Align = alTop
             ExplicitLeft = 5
             ExplicitTop = 3
-            ExplicitWidth = 433
+            ExplicitWidth = 419
             ExplicitHeight = 246
             object imgFoto: TcxDBImage [0]
               Left = 11
@@ -328,7 +319,7 @@ inherited FrmPersonal: TFrmPersonal
             Left = 10
             Top = 262
             Width = 421
-            Height = 341
+            Height = 373
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -337,23 +328,34 @@ inherited FrmPersonal: TFrmPersonal
             TabOrder = 1
             Properties.ActivePage = cxTabSheet2
             Properties.CustomButtons.Buttons = <>
-            ClientRectBottom = 335
+            ExplicitTop = 142
+            ExplicitWidth = 511
+            ExplicitHeight = 346
+            ClientRectBottom = 367
             ClientRectLeft = 2
             ClientRectRight = 415
             ClientRectTop = 27
             object cxTabDireccion: TcxTabSheet
               Caption = 'Direcci'#243'n / Contacto'
               ImageIndex = 0
+              ExplicitLeft = 3
+              ExplicitTop = 30
+              ExplicitWidth = 447
+              ExplicitHeight = 257
               object dxLayControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
                 Top = 3
                 Width = 405
-                Height = 302
+                Height = 334
                 Margins.Left = 5
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
+                ExplicitLeft = 48
+                ExplicitTop = 0
+                ExplicitWidth = 300
+                ExplicitHeight = 250
                 object cxMaskTel: TcxDBMaskEdit
                   Left = 74
                   Top = 11
@@ -570,16 +572,22 @@ inherited FrmPersonal: TFrmPersonal
             object cxTabSheet2: TcxTabSheet
               Caption = 'Datos para empleo'
               ImageIndex = 1
+              ExplicitWidth = 503
+              ExplicitHeight = 313
               object dxLayoutControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
                 Top = 3
                 Width = 405
-                Height = 302
+                Height = 334
                 Margins.Left = 5
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
+                ExplicitLeft = 3
+                ExplicitTop = 4
+                ExplicitWidth = 300
+                ExplicitHeight = 250
                 object cxTextCURP: TcxDBTextEdit
                   Left = 92
                   Top = 11
@@ -740,10 +748,7 @@ inherited FrmPersonal: TFrmPersonal
     end
   end
   inherited dxRibbon1: TdxRibbon
-    Width = 1291
-    ExplicitLeft = 3
-    ExplicitTop = 3
-    ExplicitWidth = 1291
+    Width = 1297
     inherited dxRibbon1Tab1: TdxRibbonTab
       Index = 0
     end
@@ -756,8 +761,6 @@ inherited FrmPersonal: TFrmPersonal
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 153
       FloatClientHeight = 307
     end

@@ -149,9 +149,6 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure dxButtonExportarClick(Sender: TObject);
-    procedure cxGridMaterialesEditKeyDown(Sender: TcxCustomGridTableView;
-      AItem: TcxCustomGridTableItem; AEdit: TcxCustomEdit; var Key: Word;
-      Shift: TShiftState);
   private
     ExApp: Variant;
     { Private declarations }
@@ -324,22 +321,6 @@ begin
     end;
   Except
     raise;
-  end;
-end;
-
-procedure TFrmMaterialesxFolios.cxGridMaterialesEditKeyDown(
-  Sender: TcxCustomGridTableView; AItem: TcxCustomGridTableItem;
-  AEdit: TcxCustomEdit; var Key: Word; Shift: TShiftState);
-begin
-  if key = 13 then
-  begin
-    zUptMateriales.Params.ParamByName('Cantidad').AsFloat := zMaterial.FieldByName('Cantidad').AsFloat;
-    zUptMateriales.Params.ParamByName('idMaterialxfolio').AsInteger := zMaterial.FieldByName('idMaterialxfolio').AsInteger;
-
-    if not zMaterial.Connection.Ping then
-      zMaterial.Connection.Reconnect;
-
-    zUptMateriales.SQL[ukModify];
   end;
 end;
 

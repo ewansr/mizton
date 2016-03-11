@@ -1686,9 +1686,6 @@ object FrmInicio: TFrmInicio
       UseSmallImages = False
       Links = <
         item
-          Item = LinkAutos
-        end
-        item
           Item = LinkPersonal
         end
         item
@@ -1766,9 +1763,6 @@ object FrmInicio: TFrmInicio
     end
     object LinkUsuarios: TdxNavBarItem
       Action = actUsuarios
-    end
-    object LinkAutos: TdxNavBarItem
-      Action = actAutomoviles
     end
   end
   object cxLabel2: TcxLabel
@@ -2537,11 +2531,6 @@ object FrmInicio: TFrmInicio
       Caption = 'Usuarios'
       ImageIndex = 0
       OnExecute = actUsuariosExecute
-    end
-    object actAutomoviles: TAction
-      Caption = 'Autom'#243'viles '
-      ImageIndex = 18
-      OnExecute = actAutomovilesExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

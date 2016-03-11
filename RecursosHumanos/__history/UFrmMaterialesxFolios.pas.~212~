@@ -335,10 +335,6 @@ begin
   begin
     zUptMateriales.Params.ParamByName('Cantidad').AsFloat := zMaterial.FieldByName('Cantidad').AsFloat;
     zUptMateriales.Params.ParamByName('idMaterialxfolio').AsInteger := zMaterial.FieldByName('idMaterialxfolio').AsInteger;
-
-    if not zMaterial.Connection.Ping then
-      zMaterial.Connection.Reconnect;
-
     zUptMateriales.SQL[ukModify];
   end;
 end;
