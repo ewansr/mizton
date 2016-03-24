@@ -10,7 +10,6 @@ inherited FrmPersonal: TFrmPersonal
   inherited dxDockSite1: TdxDockSite
     Width = 1297
     Height = 676
-    ExplicitTop = 127
     ExplicitWidth = 1297
     ExplicitHeight = 676
     DockingType = 5
@@ -116,7 +115,7 @@ inherited FrmPersonal: TFrmPersonal
         ClientRectBottom = 640
         ClientRectRight = 443
         inherited cxTsDatos: TcxTabSheet
-          Caption = ''
+          Caption = 'Informaci'#243'n detallada'
           ExplicitWidth = 441
           ExplicitHeight = 613
           inherited dxLYCDatos: TdxLayoutControl
@@ -335,7 +334,7 @@ inherited FrmPersonal: TFrmPersonal
             Margins.Bottom = 10
             Align = alClient
             TabOrder = 1
-            Properties.ActivePage = cxTabSheet2
+            Properties.ActivePage = cxTabAutomovil
             Properties.CustomButtons.Buttons = <>
             ClientRectBottom = 335
             ClientRectLeft = 2
@@ -361,20 +360,11 @@ inherited FrmPersonal: TFrmPersonal
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 0
-                  Width = 319
-                end
-                object cxMaskMovil: TcxDBMaskEdit
-                  Left = 74
-                  Top = 38
-                  DataBinding.DataField = 'Movil'
-                  DataBinding.DataSource = dsDatosUpt
-                  Style.HotTrack = False
-                  TabOrder = 1
-                  Width = 121
+                  Width = 127
                 end
                 object cxTextCorreo: TcxDBTextEdit
                   Left = 74
-                  Top = 65
+                  Top = 38
                   DataBinding.DataField = 'CorreoElectronico'
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
@@ -383,7 +373,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cbbPais: TcxDBLookupComboBox
                   Left = 74
-                  Top = 200
+                  Top = 146
                   DataBinding.DataField = 'IdPais'
                   DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
@@ -393,7 +383,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cbbEstado: TcxDBLookupComboBox
                   Left = 74
-                  Top = 227
+                  Top = 173
                   DataBinding.DataField = 'IdEstado'
                   DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
@@ -403,7 +393,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cbbCiudad: TcxDBLookupComboBox
                   Left = 74
-                  Top = 254
+                  Top = 200
                   DataBinding.DataField = 'IdCiudad'
                   DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
@@ -413,7 +403,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cxTextLocalidad: TcxDBTextEdit
                   Left = 74
-                  Top = 281
+                  Top = 227
                   DataBinding.DataField = 'Localidad'
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
@@ -422,7 +412,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cxTextCalle: TcxDBTextEdit
                   Left = 74
-                  Top = 92
+                  Top = 65
                   DataBinding.DataField = 'Calle'
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
@@ -431,7 +421,7 @@ inherited FrmPersonal: TFrmPersonal
                 end
                 object cbbColonia: TcxDBLookupComboBox
                   Left = 74
-                  Top = 119
+                  Top = 92
                   DataBinding.DataField = 'Colonia'
                   DataBinding.DataSource = dsDatosUpt
                   Properties.ListColumns = <>
@@ -439,18 +429,9 @@ inherited FrmPersonal: TFrmPersonal
                   TabOrder = 4
                   Width = 145
                 end
-                object cxSpinCP: TcxDBSpinEdit
-                  Left = 74
-                  Top = 146
-                  DataBinding.DataField = 'CP'
-                  DataBinding.DataSource = dsDatosUpt
-                  Style.HotTrack = False
-                  TabOrder = 5
-                  Width = 121
-                end
                 object cxTextExt: TcxDBTextEdit
                   Left = 74
-                  Top = 173
+                  Top = 119
                   DataBinding.DataField = 'NoExt'
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
@@ -458,12 +439,30 @@ inherited FrmPersonal: TFrmPersonal
                   Width = 121
                 end
                 object cxTextINt: TcxDBTextEdit
-                  Left = 272
-                  Top = 173
+                  Left = 266
+                  Top = 119
                   DataBinding.DataField = 'NoInt'
                   DataBinding.DataSource = dsDatosUpt
                   Style.HotTrack = False
                   TabOrder = 7
+                  Width = 121
+                end
+                object cxSpinCP: TcxDBSpinEdit
+                  Left = 266
+                  Top = 92
+                  DataBinding.DataField = 'CP'
+                  DataBinding.DataSource = dsDatosUpt
+                  Style.HotTrack = False
+                  TabOrder = 5
+                  Width = 121
+                end
+                object cxMaskMovil: TcxDBMaskEdit
+                  Left = 266
+                  Top = 11
+                  DataBinding.DataField = 'Movil'
+                  DataBinding.DataSource = dsDatosUpt
+                  Style.HotTrack = False
+                  TabOrder = 1
                   Width = 121
                 end
                 object dxLayControl1Group_Root: TdxLayoutGroup
@@ -475,74 +474,62 @@ inherited FrmPersonal: TFrmPersonal
                   Index = -1
                 end
                 object lyTel: TdxLayoutItem
-                  Parent = dxLayControl1Group_Root
+                  Parent = dxLayControl1Group3
+                  AlignHorz = ahClient
                   CaptionOptions.Text = 'Tel. Fijo:'
                   Control = cxMaskTel
                   ControlOptions.ShowBorder = False
                   Index = 0
-                end
-                object lyMovil: TdxLayoutItem
-                  Parent = dxLayControl1Group_Root
-                  CaptionOptions.Text = 'Tel. M'#243'vil:'
-                  Control = cxMaskMovil
-                  ControlOptions.ShowBorder = False
-                  Index = 1
                 end
                 object lyCOrreo: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Correo:'
                   Control = cxTextCorreo
                   ControlOptions.ShowBorder = False
-                  Index = 2
+                  Index = 1
                 end
                 object lyPais: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Pa'#237's:'
                   Control = cbbPais
                   ControlOptions.ShowBorder = False
-                  Index = 7
+                  Index = 5
                 end
                 object lyEstado: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Estado:'
                   Control = cbbEstado
                   ControlOptions.ShowBorder = False
-                  Index = 8
+                  Index = 6
                 end
                 object lyCiudad: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Ciudad:'
                   Control = cbbCiudad
                   ControlOptions.ShowBorder = False
-                  Index = 9
+                  Index = 7
                 end
                 object lyLocalidad: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Localidad:'
                   Control = cxTextLocalidad
                   ControlOptions.ShowBorder = False
-                  Index = 10
+                  Index = 8
                 end
                 object lyCalle: TdxLayoutItem
                   Parent = dxLayControl1Group_Root
                   CaptionOptions.Text = 'Calle:'
                   Control = cxTextCalle
                   ControlOptions.ShowBorder = False
-                  Index = 3
+                  Index = 2
                 end
                 object lyColona: TdxLayoutItem
-                  Parent = dxLayControl1Group_Root
+                  Parent = dxLayControl1Group2
+                  AlignHorz = ahClient
                   CaptionOptions.Text = 'Colonia:'
                   Control = cbbColonia
                   ControlOptions.ShowBorder = False
-                  Index = 4
-                end
-                object lyCp: TdxLayoutItem
-                  Parent = dxLayControl1Group_Root
-                  CaptionOptions.Text = 'C.P:'
-                  Control = cxSpinCP
-                  ControlOptions.ShowBorder = False
-                  Index = 5
+                  Index = 0
                 end
                 object lyExt: TdxLayoutItem
                   Parent = dxLayControl1Group1
@@ -562,7 +549,33 @@ inherited FrmPersonal: TFrmPersonal
                 object dxLayControl1Group1: TdxLayoutAutoCreatedGroup
                   Parent = dxLayControl1Group_Root
                   LayoutDirection = ldHorizontal
-                  Index = 6
+                  Index = 4
+                  AutoCreated = True
+                end
+                object lyCp: TdxLayoutItem
+                  Parent = dxLayControl1Group2
+                  CaptionOptions.Text = 'C.P:'
+                  Control = cxSpinCP
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object dxLayControl1Group2: TdxLayoutAutoCreatedGroup
+                  Parent = dxLayControl1Group_Root
+                  LayoutDirection = ldHorizontal
+                  Index = 3
+                  AutoCreated = True
+                end
+                object lyMovil: TdxLayoutItem
+                  Parent = dxLayControl1Group3
+                  CaptionOptions.Text = 'Tel. M'#243'vil:'
+                  Control = cxMaskMovil
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object dxLayControl1Group3: TdxLayoutAutoCreatedGroup
+                  Parent = dxLayControl1Group_Root
+                  LayoutDirection = ldHorizontal
+                  Index = 0
                   AutoCreated = True
                 end
               end
@@ -734,6 +747,179 @@ inherited FrmPersonal: TFrmPersonal
                 end
               end
             end
+            object cxTabAutomovil: TcxTabSheet
+              Caption = 'Autom'#243'vil'
+              ImageIndex = 2
+              OnShow = cxTabAutomovilShow
+              object dxLayoutControl2: TdxLayoutControl
+                AlignWithMargins = True
+                Left = 3
+                Top = 3
+                Width = 407
+                Height = 302
+                Align = alClient
+                TabOrder = 0
+                object DbLblMatricula: TcxDBLabel
+                  Left = 66
+                  Top = 190
+                  DataBinding.DataField = 'Placas'
+                  DataBinding.DataSource = dsAuto
+                  Style.HotTrack = False
+                  Height = 21
+                  Width = 121
+                end
+                object DbLblAutomovil: TcxDBLabel
+                  Left = 66
+                  Top = 217
+                  DataBinding.DataField = 'NombreModelo'
+                  DataBinding.DataSource = dsAuto
+                  Style.HotTrack = False
+                  Height = 21
+                  Width = 121
+                end
+                object DbLblModelo: TcxDBLabel
+                  Left = 66
+                  Top = 271
+                  DataBinding.DataField = 'Modelo'
+                  DataBinding.DataSource = dsAuto
+                  Style.HotTrack = False
+                  Height = 21
+                  Width = 121
+                end
+                object DbLblMarcar: TcxDBLabel
+                  Left = 66
+                  Top = 244
+                  DataBinding.DataField = 'Marca'
+                  DataBinding.DataSource = dsAuto
+                  Style.HotTrack = False
+                  Height = 21
+                  Width = 121
+                end
+                object imgCoche: TcxDBImage
+                  Left = 10
+                  Top = 41
+                  DataBinding.DataField = 'Imagen'
+                  DataBinding.DataSource = dsAuto
+                  Properties.GraphicClassName = 'TdxSmartImage'
+                  Style.BorderColor = clWindowFrame
+                  Style.BorderStyle = ebs3D
+                  Style.HotTrack = False
+                  TabOrder = 2
+                  Height = 143
+                  Width = 367
+                end
+                object Asignar: TcxButton
+                  Left = 10
+                  Top = 10
+                  Width = 151
+                  Height = 25
+                  Caption = 'Asignar autom'#243'vil'
+                  TabOrder = 0
+                  OnClick = AsignarClick
+                end
+                object btnQuitar: TcxButton
+                  Left = 200
+                  Top = 10
+                  Width = 177
+                  Height = 25
+                  Caption = 'Quitar autom'#243'vil'
+                  TabOrder = 1
+                  OnClick = btnQuitarClick
+                end
+                object DbLblColor: TcxDBLabel
+                  Left = 256
+                  Top = 271
+                  DataBinding.DataField = 'Color'
+                  DataBinding.DataSource = dsAuto
+                  Style.HotTrack = False
+                  Height = 21
+                  Width = 121
+                end
+                object dxLayoutControl2Group_Root: TdxLayoutGroup
+                  AlignHorz = ahLeft
+                  AlignVert = avTop
+                  ButtonOptions.Buttons = <>
+                  Hidden = True
+                  ShowBorder = False
+                  Index = -1
+                end
+                object lymatricula: TdxLayoutItem
+                  Parent = dxLayoutControl2Group_Root
+                  CaptionOptions.Text = 'Matr'#237'cula:'
+                  Control = DbLblMatricula
+                  ControlOptions.ShowBorder = False
+                  Index = 2
+                end
+                object lyAutomovil: TdxLayoutItem
+                  Parent = dxLayoutControl2Group_Root
+                  CaptionOptions.Text = 'Autom'#243'vil:'
+                  Control = DbLblAutomovil
+                  ControlOptions.ShowBorder = False
+                  Index = 3
+                end
+                object lyModelo: TdxLayoutItem
+                  Parent = dxLayoutControl2Group2
+                  AlignHorz = ahClient
+                  CaptionOptions.Text = 'Modelo:'
+                  Control = DbLblModelo
+                  ControlOptions.ShowBorder = False
+                  Index = 0
+                end
+                object lyMarca: TdxLayoutItem
+                  Parent = dxLayoutControl2Group_Root
+                  AlignHorz = ahClient
+                  CaptionOptions.Text = 'Marca:'
+                  Control = DbLblMarcar
+                  ControlOptions.ShowBorder = False
+                  Index = 4
+                end
+                object lyCoche: TdxLayoutItem
+                  Parent = dxLayoutControl2Group_Root
+                  AlignHorz = ahClient
+                  CaptionOptions.Text = 'cxDBImage1'
+                  CaptionOptions.Visible = False
+                  Control = imgCoche
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object lyAignar: TdxLayoutItem
+                  Parent = dxLayoutControl2Group1
+                  AlignHorz = ahClient
+                  CaptionOptions.Text = 'cxButton1'
+                  CaptionOptions.Visible = False
+                  Control = Asignar
+                  ControlOptions.ShowBorder = False
+                  Index = 0
+                end
+                object lyQuitar: TdxLayoutItem
+                  Parent = dxLayoutControl2Group1
+                  CaptionOptions.Text = 'cxButton1'
+                  CaptionOptions.Visible = False
+                  Control = btnQuitar
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object dxLayoutControl2Group1: TdxLayoutAutoCreatedGroup
+                  Parent = dxLayoutControl2Group_Root
+                  LayoutDirection = ldHorizontal
+                  Index = 0
+                  AutoCreated = True
+                end
+                object lyColor: TdxLayoutItem
+                  Parent = dxLayoutControl2Group2
+                  CaptionOptions.Text = 'Color:'
+                  Control = DbLblColor
+                  ControlOptions.ShowBorder = False
+                  Index = 1
+                end
+                object dxLayoutControl2Group2: TdxLayoutAutoCreatedGroup
+                  Parent = dxLayoutControl2Group_Root
+                  LayoutDirection = ldHorizontal
+                  Index = 5
+                  AutoCreated = True
+                end
+              end
+            end
           end
         end
       end
@@ -741,8 +927,6 @@ inherited FrmPersonal: TFrmPersonal
   end
   inherited dxRibbon1: TdxRibbon
     Width = 1291
-    ExplicitLeft = 3
-    ExplicitTop = 3
     ExplicitWidth = 1291
     inherited dxRibbon1Tab1: TdxRibbonTab
       Index = 0
@@ -756,14 +940,67 @@ inherited FrmPersonal: TFrmPersonal
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 153
-      FloatClientHeight = 307
+      FloatClientHeight = 339
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxButtonNuevo'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBButtonEditar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBButtonBuscar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBButtonEliminar'
+        end
+        item
+          Visible = True
+          ItemName = 'btnBaja'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonDetalle'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxButtonGuardar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonCancelar'
+        end
+        item
+          Visible = True
+          ItemName = 'dxButtonActualizar'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxButtonExportar'
+        end>
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8
     end
+    object btnBaja: TdxBarLargeButton
+      Caption = 'Generar Baja'
+      Category = 0
+      Hint = 'Generar Baja'
+      Visible = ivAlways
+      LargeImageIndex = 19
+      OnClick = btnBajaClick
+    end
+  end
+  inherited zDatos: TZQuery
+    AfterScroll = zDatosAfterScroll
   end
   inherited dxDockingManager1: TdxDockingManager
     PixelsPerInch = 96
@@ -771,5 +1008,15 @@ inherited FrmPersonal: TFrmPersonal
   inherited cxHintStyleController: TcxHintStyleController
     Left = 272
     Top = 376
+  end
+  object zAuto: TZQuery
+    Params = <>
+    Left = 688
+    Top = 512
+  end
+  object dsAuto: TDataSource
+    DataSet = zAuto
+    Left = 640
+    Top = 408
   end
 end

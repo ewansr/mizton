@@ -47,7 +47,12 @@ uses
   UFrmFolioMaterial in 'RecursosHumanos\UFrmFolioMaterial.pas' {FrmFolioMaterial},
   ExportaExcel in 'Generales\ExportaExcel.pas',
   UFrmVales in 'RecursosHumanos\UFrmVales.pas' {FrmVales},
-  UFrmCatalogoAutomoviles in 'RecursosHumanos\UFrmCatalogoAutomoviles.pas' {FrmCatalogoAutomoviles};
+  UFrmCatalogoAutomoviles in 'RecursosHumanos\UFrmCatalogoAutomoviles.pas' {FrmCatalogoAutomoviles},
+  UFrmAsignaAuto in 'RecursosHumanos\UFrmAsignaAuto.pas' {FrmAsignaAuto},
+  UFrmPuestos in 'RecursosHumanos\UFrmPuestos.pas' {FrmPuestos},
+  UFrmConsultas in 'RecursosHumanos\UFrmConsultas.pas' {Form1},
+  UFrmRT in 'RecursosHumanos\UFrmRT.pas' {FrmRT},
+  uLkJSON in 'lkJSON-1.07\uLkJSON.pas';
 
 {$R *.res}
 

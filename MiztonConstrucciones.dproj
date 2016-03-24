@@ -153,6 +153,19 @@
 			<DCCReference Include="RecursosHumanos\UFrmCatalogoAutomoviles.pas">
 				<Form>FrmCatalogoAutomoviles</Form>
 			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmAsignaAuto.pas">
+				<Form>FrmAsignaAuto</Form>
+			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmPuestos.pas">
+				<Form>FrmPuestos</Form>
+			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmConsultas.pas">
+				<Form>Form1</Form>
+			</DCCReference>
+			<DCCReference Include="RecursosHumanos\UFrmRT.pas">
+				<Form>FrmRT</Form>
+			</DCCReference>
+			<DCCReference Include="lkJSON-1.07\uLkJSON.pas"/>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

@@ -1,0 +1,63 @@
+inherited FrmPuestos: TFrmPuestos
+  Caption = 'Cat'#225'logo de puestos'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxRibbon1: TdxRibbon
+    inherited dxRibbon1Tab1: TdxRibbonTab
+      Caption = 'Puestos'
+      Index = 0
+    end
+  end
+  inherited cxGridGral: TcxGrid
+    ExplicitLeft = 8
+    ExplicitWidth = 832
+    ExplicitHeight = 264
+    inherited cxGridDatos: TcxGridDBTableView
+      object cxColCodigo: TcxGridDBColumn
+        Caption = 'C'#243'digo'
+        DataBinding.FieldName = 'Codigo'
+        Width = 106
+      end
+      object cxColPuesto: TcxGridDBColumn
+        Caption = 'Puesto'
+        DataBinding.FieldName = 'Titulo'
+        Width = 712
+      end
+    end
+  end
+  inherited pnlDatos: TPanel
+    inherited cxPageDatos: TcxPageControl
+      ExplicitHeight = 178
+      inherited cxTsDatos: TcxTabSheet
+        ExplicitWidth = 831
+        ExplicitHeight = 145
+        inherited dxLYCDatos: TdxLayoutControl
+          ExplicitWidth = 831
+          ExplicitHeight = 145
+          inherited dxLyDatos: TdxLayoutGroup
+            Index = -1
+          end
+        end
+      end
+    end
+  end
+  inherited cxSplitter1: TcxSplitter
+    ExplicitLeft = 0
+    ExplicitHeight = 270
+  end
+  inherited dxBarManager1: TdxBarManager
+    LookAndFeel.SkinName = ''
+    DockControlHeights = (
+      0
+      0
+      0
+      0)
+    inherited dxbrManager1Bar: TdxBar
+      FloatClientWidth = 97
+      FloatClientHeight = 307
+    end
+    inherited dxButtonGuardar: TdxBarLargeButton
+      ImageIndex = 9
+    end
+  end
+end

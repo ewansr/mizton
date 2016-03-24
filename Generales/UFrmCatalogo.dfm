@@ -16,6 +16,9 @@ object FrmCatalogo: TFrmCatalogo
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
+  DesignSize = (
+    1133
+    557)
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
@@ -24,24 +27,21 @@ object FrmCatalogo: TFrmCatalogo
     Width = 1133
     Height = 430
     Align = alClient
-    ExplicitTop = 95
-    ExplicitHeight = 462
     DockingType = 5
     OriginalWidth = 1133
     OriginalHeight = 430
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 743
+      Width = 1105
       Height = 430
-      ExplicitHeight = 462
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 743
+        Width = 1105
         Height = 430
         DockingType = 0
         OriginalWidth = 300
@@ -50,7 +50,7 @@ object FrmCatalogo: TFrmCatalogo
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 743
+        Width = 1105
         Height = 430
         AllowFloating = False
         AutoHide = False
@@ -65,11 +65,10 @@ object FrmCatalogo: TFrmCatalogo
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 729
+          Width = 1091
           Height = 394
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 426
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -98,14 +97,15 @@ object FrmCatalogo: TFrmCatalogo
       Left = 743
       Top = 0
       Width = 390
-      Height = 430
-      AllowFloating = True
-      AutoHide = False
+      Height = 140
+      Visible = False
+      AllowFloating = False
+      AutoHide = True
       Caption = 'Insertar / Editar Registros'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      ExplicitHeight = 462
+      AutoHidePosition = 2
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -119,7 +119,6 @@ object FrmCatalogo: TFrmCatalogo
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitHeight = 432
         ClientRectBottom = 394
         ClientRectLeft = 2
         ClientRectRight = 376
@@ -127,7 +126,10 @@ object FrmCatalogo: TFrmCatalogo
         object cxTsDatos: TcxTabSheet
           Caption = 'Datos'
           ImageIndex = 0
-          ExplicitHeight = 399
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLYCDatos: TdxLayoutControl
             Left = 0
             Top = 0
@@ -136,7 +138,6 @@ object FrmCatalogo: TFrmCatalogo
             Align = alClient
             TabOrder = 0
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitHeight = 399
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -163,9 +164,6 @@ object FrmCatalogo: TFrmCatalogo
     Contexts = <>
     TabOrder = 0
     TabStop = False
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 1133
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Inicio'
@@ -460,6 +458,9 @@ object FrmCatalogo: TFrmCatalogo
     Top = 384
   end
   object dxDockingManager1: TdxDockingManager
+    AutoHideInterval = 0
+    AutoHideMovingSize = 0
+    AutoShowInterval = 0
     Color = clBtnFace
     DefaultHorizContainerSiteProperties.CustomCaptionButtons.Buttons = <>
     DefaultHorizContainerSiteProperties.Dockable = True

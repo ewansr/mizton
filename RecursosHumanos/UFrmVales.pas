@@ -25,7 +25,7 @@ uses
   dxLayoutControl, cxPC, ExtCtrls, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxDBEdit, cxMaskEdit,
-  cxCalendar, cxTextEdit;
+  cxCalendar, cxTextEdit, cxSpinEdit, cxSplitter, DateUtils;
 
 type
   TFrmVales = class(TFrmMiniCatalogo)
@@ -45,22 +45,25 @@ type
     lyNoVale: TdxLayoutItem;
     cxDateVale: TcxDBDateEdit;
     lyFechaVale: TdxLayoutItem;
-    cxTextDivision: TcxDBTextEdit;
-    lyDivision: TdxLayoutItem;
-    cxTextArea: TcxDBTextEdit;
-    lyArea: TdxLayoutItem;
-    cxTextContratista: TcxDBTextEdit;
-    lyContratista: TdxLayoutItem;
-    cxTextFirmaContratista: TcxDBTextEdit;
-    lyFirmaContratista: TdxLayoutItem;
-    cxTextFirmaSupervisor: TcxDBTextEdit;
-    lyFirmaSupervisor: TdxLayoutItem;
     cbbEstatus: TcxDBComboBox;
     lyEstatus: TdxLayoutItem;
+    btnAbrir: TdxBarLargeButton;
+    btnCerrar: TdxBarLargeButton;
+    dxbrManager1Bar2: TdxBar;
+    btnGenerarAnual: TdxBarLargeButton;
+    cxDateInicio: TcxDBDateEdit;
+    lyInicio: TdxLayoutItem;
+    cxDateTermino: TcxDBDateEdit;
+    lyTermino: TdxLayoutItem;
+    cxSpinNoSemana: TcxDBSpinEdit;
+    lyNoSemana: TdxLayoutItem;
+    cxLvlFolios: TcxGridLevel;
+    cxGridFolios: TcxGridDBTableView;
     dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup;
     dxLYCDatosGroup2: TdxLayoutAutoCreatedGroup;
     procedure FormCreate(Sender: TObject);
     procedure dxButtonGuardarClick(Sender: TObject);
+    procedure cxDateValePropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,6 +79,14 @@ implementation
 
 uses
   ufrmMaterialesxFolios;
+
+procedure TFrmVales.cxDateValePropertiesChange(Sender: TObject);
+begin
+  inherited;
+  cxSpinNoSemana.Value := WeekOfTheYear(cxDateVale.Date);
+  cxDateInicio.date := StartOfTheWeek(cxDateVale.Date);
+  cxDateTermino.Date := EndOfTheWeek(cxDateVale.Date);
+end;
 
 procedure TFrmVales.dxButtonGuardarClick(Sender: TObject);
 begin

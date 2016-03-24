@@ -24,7 +24,7 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, ZAbstractRODataset, ZAbstractDataset, ZDataset,
   ExtCtrls, dxLayoutContainer, dxLayoutControl, dxBarBuiltInMenu, cxPC,
-  cxGridExportLink, ShellAPI;
+  cxGridExportLink, ShellAPI, cxSplitter;
 
 type
   TFrmMiniCatalogo = class(TForm)
@@ -57,6 +57,7 @@ type
     dxPopupGrid: TdxRibbonPopupMenu;
     dxButtonExportar: TdxBarLargeButton;
     dlgSave1: TSaveDialog;
+    cxSplitter1: TcxSplitter;
     procedure FormShow(Sender: TObject);
     procedure dxButtonSalirClick(Sender: TObject);
     procedure dxButtonNuevoClick(Sender: TObject);
@@ -107,7 +108,7 @@ begin
   dxButtonActualizar.Enabled := Estado;
   dxButtonNuevo.Enabled := Estado;
 
-  Estado := (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
+  Estado := (zDatosUpt.Active) and (zDatosUPT.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
   dxBButtonEditar.Enabled := Estado;
   dxBButtonEliminar.Enabled := Estado;
   dxBButtonBuscar.Enabled := Estado;

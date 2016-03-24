@@ -955,7 +955,6 @@ object FrmLogin: TFrmLogin
     Properties.GraphicClassName = 'TdxSmartImage'
     TabOrder = 8
     Transparent = True
-    ExplicitWidth = 438
     Height = 393
     Width = 450
   end

@@ -1,25 +1,38 @@
 inherited FrmVales: TFrmVales
+  Align = alCustom
   Caption = 'Cat'#225'logo de Vales'
-  ClientHeight = 551
-  ClientWidth = 797
+  ClientHeight = 651
+  ClientWidth = 985
   OnCreate = FormCreate
-  ExplicitWidth = 803
-  ExplicitHeight = 580
+  ExplicitWidth = 991
+  ExplicitHeight = 680
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
-    Width = 797
-    ExplicitWidth = 797
+    Width = 985
+    ExplicitWidth = 985
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
+      Groups = <
+        item
+        end
+        item
+          ToolbarName = 'dxbrManager1Bar'
+        end
+        item
+          Caption = 'Vales'
+          ToolbarName = 'dxbrManager1Bar2'
+        end>
       Index = 0
     end
   end
   inherited cxGridGral: TcxGrid
-    Width = 791
-    Height = 232
-    ExplicitWidth = 791
-    ExplicitHeight = 232
+    Left = 3
+    Width = 979
+    Height = 355
+    ExplicitLeft = 8
+    ExplicitWidth = 974
+    ExplicitHeight = 0
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       OptionsView.ColumnAutoWidth = False
@@ -75,43 +88,44 @@ inherited FrmVales: TFrmVales
         Width = 106
       end
     end
+    object cxGridFolios: TcxGridDBTableView [1]
+      Navigator.Buttons.CustomButtons = <>
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+    end
+    inherited GridLevel1: TcxGridLevel
+      object cxLvlFolios: TcxGridLevel
+        GridView = cxGridFolios
+      end
+    end
   end
   inherited pnlDatos: TPanel
-    Top = 360
-    Width = 797
-    Height = 191
-    ExplicitTop = 360
-    ExplicitWidth = 797
-    ExplicitHeight = 191
+    Top = 488
+    Width = 985
+    Height = 163
+    ExplicitTop = 488
+    ExplicitWidth = 985
+    ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
-      Width = 793
-      Height = 187
-      ExplicitWidth = 793
-      ExplicitHeight = 187
-      ClientRectBottom = 181
-      ClientRectRight = 787
+      Width = 981
+      Height = 159
+      ExplicitWidth = 981
+      ExplicitHeight = 247
+      ClientRectBottom = 153
+      ClientRectRight = 975
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
-        ExplicitWidth = 785
-        ExplicitHeight = 154
+        ExplicitWidth = 973
+        ExplicitHeight = 492
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 785
-          Height = 154
-          ExplicitWidth = 785
-          ExplicitHeight = 154
-          object cxTextFolio: TcxDBTextEdit [0]
+          Width = 973
+          Height = 126
+          ExplicitWidth = 973
+          ExplicitHeight = 492
+          object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
-            Left = 94
-            Top = 11
-            DataBinding.DataField = 'FolioMaestro'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 0
-            Width = 235
-          end
-          object cxTextNoVale: TcxDBTextEdit [1]
-            Tag = -1
-            Left = 94
+            Left = 66
             Top = 38
             DataBinding.DataField = 'NoVale'
             DataBinding.DataSource = dsDatosUpt
@@ -119,89 +133,73 @@ inherited FrmVales: TFrmVales
             TabOrder = 1
             Width = 121
           end
-          object cxDateVale: TcxDBDateEdit [2]
+          object cxTextFolio: TcxDBTextEdit [1]
             Tag = -1
-            Left = 94
-            Top = 65
-            DataBinding.DataField = 'FechaVale'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 2
-            Width = 121
-          end
-          object cxTextDivision: TcxDBTextEdit [3]
-            Tag = -1
-            Left = 94
-            Top = 92
-            DataBinding.DataField = 'Division'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 3
-            Width = 121
-          end
-          object cxTextArea: TcxDBTextEdit [4]
-            Tag = -1
-            Left = 94
-            Top = 119
-            DataBinding.DataField = 'Area'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 4
-            Width = 121
-          end
-          object cxTextContratista: TcxDBTextEdit [5]
-            Tag = -1
-            Left = 456
+            Left = 66
             Top = 11
-            DataBinding.DataField = 'Contratista'
+            DataBinding.DataField = 'Codigo'
             DataBinding.DataSource = dsDatosUpt
             Style.HotTrack = False
-            TabOrder = 5
-            Width = 305
+            TabOrder = 0
+            Width = 235
           end
-          object cxTextFirmaContratista: TcxDBTextEdit [6]
+          object cbbEstatus: TcxDBComboBox [2]
             Tag = -1
-            Left = 456
-            Top = 38
-            DataBinding.DataField = 'FirmaContratista'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 6
-            Width = 121
-          end
-          object cxTextFirmaSupervisor: TcxDBTextEdit [7]
-            Tag = -1
-            Left = 456
+            Left = 66
             Top = 65
-            DataBinding.DataField = 'FirmaSupervisor'
-            DataBinding.DataSource = dsDatosUpt
-            Style.HotTrack = False
-            TabOrder = 7
-            Width = 121
-          end
-          object cbbEstatus: TcxDBComboBox [8]
-            Tag = -1
-            Left = 456
-            Top = 92
             DataBinding.DataField = 'estatus'
             DataBinding.DataSource = dsDatosUpt
             Properties.Items.Strings = (
               'Abierto'
               'Cerrado')
             Style.HotTrack = False
-            TabOrder = 8
+            TabOrder = 2
+            Width = 121
+          end
+          object cxDateVale: TcxDBDateEdit [3]
+            Tag = -1
+            Left = 385
+            Top = 11
+            DataBinding.DataField = 'FechaVale'
+            DataBinding.DataSource = dsDatosUpt
+            Properties.OnChange = cxDateValePropertiesChange
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 184
+          end
+          object cxSpinNoSemana: TcxDBSpinEdit [4]
+            Left = 385
+            Top = 38
+            DataBinding.DataField = 'NoSemana'
+            DataBinding.DataSource = dsDatosUpt
+            Enabled = False
+            Style.HotTrack = False
+            TabOrder = 4
+            Width = 121
+          end
+          object cxDateInicio: TcxDBDateEdit [5]
+            Left = 385
+            Top = 65
+            DataBinding.DataField = 'Inicio'
+            DataBinding.DataSource = dsDatosUpt
+            Enabled = False
+            Style.HotTrack = False
+            TabOrder = 5
+            Width = 121
+          end
+          object cxDateTermino: TcxDBDateEdit [6]
+            Left = 385
+            Top = 92
+            DataBinding.DataField = 'Termino'
+            DataBinding.DataSource = dsDatosUpt
+            Enabled = False
+            Style.HotTrack = False
+            TabOrder = 6
             Width = 121
           end
           inherited dxLyDatos: TdxLayoutGroup
             LayoutDirection = ldHorizontal
             Index = -1
-          end
-          object lyFolio: TdxLayoutItem
-            Parent = dxLYCDatosGroup1
-            CaptionOptions.Text = 'Folio Maestro:'
-            Control = cxTextFolio
-            ControlOptions.ShowBorder = False
-            Index = 0
           end
           object lyNoVale: TdxLayoutItem
             Parent = dxLYCDatosGroup1
@@ -210,31 +208,24 @@ inherited FrmVales: TFrmVales
             ControlOptions.ShowBorder = False
             Index = 1
           end
-          object lyFechaVale: TdxLayoutItem
+          object lyFolio: TdxLayoutItem
             Parent = dxLYCDatosGroup1
-            CaptionOptions.Text = 'Fecha Vale:'
-            Control = cxDateVale
+            CaptionOptions.Text = 'C'#243'digo:'
+            Control = cxTextFolio
+            ControlOptions.ShowBorder = False
+            Index = 0
+          end
+          object lyEstatus: TdxLayoutItem
+            Parent = dxLYCDatosGroup1
+            CaptionOptions.Text = 'Estatus:'
+            Control = cbbEstatus
             ControlOptions.ShowBorder = False
             Index = 2
           end
-          object lyDivision: TdxLayoutItem
-            Parent = dxLYCDatosGroup1
-            CaptionOptions.Text = 'Divisi'#243'n:'
-            Control = cxTextDivision
-            ControlOptions.ShowBorder = False
-            Index = 3
-          end
-          object lyArea: TdxLayoutItem
-            Parent = dxLYCDatosGroup1
-            CaptionOptions.Text = 'Area:'
-            Control = cxTextArea
-            ControlOptions.ShowBorder = False
-            Index = 4
-          end
-          object lyContratista: TdxLayoutItem
+          object lyFechaVale: TdxLayoutItem
             Parent = dxLYCDatosGroup2
-            CaptionOptions.Text = 'Contratista:'
-            Control = cxTextContratista
+            CaptionOptions.Text = 'Fecha:'
+            Control = cxDateVale
             ControlOptions.ShowBorder = False
             Index = 0
           end
@@ -243,11 +234,12 @@ inherited FrmVales: TFrmVales
             Index = 0
             AutoCreated = True
           end
-          object lyFirmaContratista: TdxLayoutItem
+          object lyNoSemana: TdxLayoutItem
             Parent = dxLYCDatosGroup2
-            CaptionOptions.Text = 'Firmante Contratista:'
-            Control = cxTextFirmaContratista
+            CaptionOptions.Text = 'No. Semana:'
+            Control = cxSpinNoSemana
             ControlOptions.ShowBorder = False
+            Enabled = False
             Index = 1
           end
           object dxLYCDatosGroup2: TdxLayoutAutoCreatedGroup
@@ -255,42 +247,122 @@ inherited FrmVales: TFrmVales
             Index = 1
             AutoCreated = True
           end
-          object lyFirmaSupervisor: TdxLayoutItem
+          object lyInicio: TdxLayoutItem
             Parent = dxLYCDatosGroup2
-            CaptionOptions.Text = 'Firmante Supervisor:'
-            Control = cxTextFirmaSupervisor
+            CaptionOptions.Text = 'Inicio:'
+            Control = cxDateInicio
             ControlOptions.ShowBorder = False
+            Enabled = False
             Index = 2
           end
-          object lyEstatus: TdxLayoutItem
+          object lyTermino: TdxLayoutItem
             Parent = dxLYCDatosGroup2
-            CaptionOptions.Text = 'Estatus:'
-            Control = cbbEstatus
+            CaptionOptions.Text = 'Termino:'
+            Control = cxDateTermino
             ControlOptions.ShowBorder = False
+            Enabled = False
             Index = 3
           end
         end
       end
     end
   end
+  inherited cxSplitter1: TcxSplitter
+    Top = 483
+    Width = 985
+    Height = 5
+    AlignSplitter = salBottom
+    ExplicitLeft = 0
+    ExplicitHeight = 0
+  end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
+    Left = 640
+    Top = 40
     DockControlHeights = (
       0
       0
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
+      OneOnRow = False
+    end
+    object dxbrManager1Bar2: TdxBar [2]
+      Caption = 'Custom 2'
+      CaptionButtons = <>
+      DockedLeft = 399
+      DockedTop = 0
+      FloatLeft = 995
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'btnGenerarAnual'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'btnAbrir'
+        end
+        item
+          Visible = True
+          ItemName = 'btnCerrar'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8
     end
+    object btnAbrir: TdxBarLargeButton
+      Caption = '&Abrir'#13#10'Vales'
+      Category = 0
+      Hint = 'Abrir'#13#10'Vales'
+      Visible = ivAlways
+    end
+    object btnCerrar: TdxBarLargeButton
+      Caption = '&Cerrar'#13#10'Vales'
+      Category = 0
+      Hint = 'Cerrar'#13#10'Vales'
+      Visible = ivAlways
+    end
+    object btnGenerarAnual: TdxBarLargeButton
+      Caption = '&Generar vales del todo el a'#241'o'
+      Category = 0
+      Hint = 'Generar vales del todo el a'#241'o'
+      Visible = ivAlways
+    end
   end
   inherited dsDatos: TDataSource
     DataSet = zDatos
+    Left = 736
+    Top = 80
+  end
+  inherited zDatos: TZQuery
+    Left = 888
+    Top = 24
+  end
+  inherited zDatosUpt: TZQuery
+    Left = 800
+    Top = 8
+  end
+  inherited dsDatosUpt: TDataSource
+    Left = 744
+    Top = 16
+  end
+  inherited dxPopupGrid: TdxRibbonPopupMenu
+    Left = 784
+    Top = 72
+  end
+  inherited dlgSave1: TSaveDialog
+    Left = 832
+    Top = 56
   end
 end

@@ -24,7 +24,7 @@ uses
   dxRibbon, ZAbstractRODataset, ZAbstractDataset, ZDataset, dxLayoutContainer,
   dxLayoutControl, cxPC, ExtCtrls, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  cxContainer, dxLayoutcxEditAdapters, cxTextEdit, cxDBEdit, cxImage;
+  cxContainer, dxLayoutcxEditAdapters, cxTextEdit, cxDBEdit, cxImage, cxSplitter;
 
 type
   TFrmPais = class(TFrmMiniCatalogo)

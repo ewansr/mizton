@@ -27,7 +27,8 @@ uses
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
   cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxCalendar, cxDBEdit,
   cxMaskEdit, cxTextEdit, cxImage, UConection, cxSpinEdit, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox;
+  cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters, Menus, StdCtrls,
+  cxButtons, cxLabel, cxDBLabel, UMsgBox;
 
 type
   TFrmPersonal = class(TFrmCatalogo)
@@ -112,8 +113,40 @@ type
     lyFin: TdxLayoutItem;
     cxDateaLTA: TcxDBDateEdit;
     lyaLTA: TdxLayoutItem;
+    btnBaja: TdxBarLargeButton;
+    cxTabAutomovil: TcxTabSheet;
+    dxLayoutControl2Group_Root: TdxLayoutGroup;
+    dxLayoutControl2: TdxLayoutControl;
+    imgCoche: TcxDBImage;
+    lyCoche: TdxLayoutItem;
+    Asignar: TcxButton;
+    lyAignar: TdxLayoutItem;
+    btnQuitar: TcxButton;
+    lyQuitar: TdxLayoutItem;
+    DbLblMatricula: TcxDBLabel;
+    lymatricula: TdxLayoutItem;
+    DbLblAutomovil: TcxDBLabel;
+    lyAutomovil: TdxLayoutItem;
+    DbLblMarcar: TcxDBLabel;
+    lyMarca: TdxLayoutItem;
+    DbLblModelo: TcxDBLabel;
+    lyModelo: TdxLayoutItem;
+    DbLblColor: TcxDBLabel;
+    lyColor: TdxLayoutItem;
+    dxLayoutControl2Group1: TdxLayoutAutoCreatedGroup;
+    dxLayoutControl2Group2: TdxLayoutAutoCreatedGroup;
+    dxLayControl1Group2: TdxLayoutAutoCreatedGroup;
+    dxLayControl1Group3: TdxLayoutAutoCreatedGroup;
+    zAuto: TZQuery;
+    dsAuto: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure AsignarClick(Sender: TObject);
+    procedure zDatosAfterScroll(DataSet: TDataSet);
+    procedure cxTabAutomovilShow(Sender: TObject);
+    procedure btnQuitarClick(Sender: TObject);
+    procedure btnBajaClick(Sender: TObject);
+    procedure dxBButtonEliminarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -125,23 +158,119 @@ var
 
 implementation
 
+uses
+  UfrmAsignaAuto;
+
 {$R *.dfm}
+
+procedure TFrmPersonal.AsignarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Application.CreateForm(TFrmAsignaAuto, FrmAsignaAuto);
+    FrmAsignaAuto.idPersonal := zDatos.FieldByName('IdPersonal').AsInteger;
+    FrmAsignaAuto.ShowModal;
+  finally
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      zDatosAfterScroll(nil);
+    finally
+      screen.Cursor := Cursor;
+    end;
+  end;
+end;
+
+procedure TFrmPersonal.btnBajaClick(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+  if zAuto.RecordCount > 0 then
+  begin
+    msgbox.ShowModal('Aviso', 'El sistema no puede generar este movimiento, debido a que empleado que intentas dar de baja aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [cmbOK]);
+  end;
+end;
+
+procedure TFrmPersonal.btnQuitarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Application.CreateForm(TFrmAsignaAuto, FrmAsignaAuto);
+    FrmAsignaAuto.idPersonal := zDatos.FieldByName('IdPersonal').AsInteger;
+    FrmAsignaAuto.idAuto := zAuto.FieldByName('IdAuto').AsInteger;
+    FrmAsignaAuto.Quitar := true;
+    FrmAsignaAuto.ShowModal;
+  finally
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      zDatosAfterScroll(nil);
+    finally
+      screen.Cursor := Cursor;
+    end;
+  end;
+end;
+
+procedure TFrmPersonal.cxTabAutomovilShow(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+end;
+
+procedure TFrmPersonal.dxBButtonEliminarClick(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+  if zAuto.RecordCount > 0 then
+  begin
+    msgbox.ShowModal('Aviso', 'El sistema no puede generar este movimiento, debido a que empleado que intentas eliminar aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [cmbOK]);
+  end
+  else
+    inherited;
+end;
 
 procedure TFrmPersonal.FormCreate(Sender: TObject);
 begin
   inherited;
+  cxPageControl1.ActivePage := cxTabDireccion;
   QueryName := 'master_personal';
   PKField := 'IdPersonal';
   CampoMostrar := 'CodigoPersonal';
   //Validar Registros duplicados
   pCondiciones := '~(IdPersonal)&(CodigoPersonal)';
   pCampos := 'IdPersonal,CodigoPersonal';
+  AsignarSQL(zAuto, 'mt_automovil', pReadOnly);
 end;
 
 procedure TFrmPersonal.FormShow(Sender: TObject);
 begin
   inherited;
   cxPagedatos.ActivePage := cxTsDatos;
+end;
+
+procedure TFrmPersonal.zDatosAfterScroll(DataSet: TDataSet);
+var
+  cursor: tCursor;
+begin
+  cursor := Screen.Cursor;
+  try
+    Screen.Cursor := crAppStart;
+    if cxTabAutomovil.Showing then
+    begin
+
+      FiltrarDataset(zAuto, 'IdPersonal,NoLibres', [zDatos.FieldByName('IdPersonal').AsInteger, 'Si']);
+      if zAuto.Active then
+        zAuto.Refresh
+      else
+        zAuto.Open;
+
+      Asignar.Enabled := (zAuto.RecordCount = 0);
+      btnQuitar.Enabled := (zAuto.RecordCount > 0);
+    end;
+  finally
+    Screen.Cursor := Cursor;
+  end;
 end;
 
 end.

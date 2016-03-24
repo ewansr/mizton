@@ -1,0 +1,264 @@
+unit UFrmPersonal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, UFrmCatalogo, cxPC, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
+  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue,
+  dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit,
+  cxNavigator, DB, cxDBData, dxBarBuiltInMenu, dxRibbonSkins,
+  dxSkinsdxRibbonPainter, dxRibbonCustomizationForm, dxSkinsdxBarPainter,
+  dxSkinsdxDockControlPainter, dxScreenTip, dxCustomHint, cxHint, cxClasses,
+  dxDockControl, dxBar, dxRibbon, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset, dxLayoutContainer, dxLayoutControl, cxGridLevel, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
+  cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxCalendar, cxDBEdit,
+  cxMaskEdit, cxTextEdit, cxImage, UConection, cxSpinEdit, cxLookupEdit,
+  cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters, Menus, StdCtrls,
+  cxButtons, cxLabel, cxDBLabel, UMsgBox;
+
+type
+  TFrmPersonal = class(TFrmCatalogo)
+    cxColCodigoPersonal: TcxGridDBColumn;
+    cxColAPaterno: TcxGridDBColumn;
+    cxColAMaterno: TcxGridDBColumn;
+    cxColTelFijo: TcxGridDBColumn;
+    cxColTelMovil: TcxGridDBColumn;
+    cxColCorreo: TcxGridDBColumn;
+    cxColCurp: TcxGridDBColumn;
+    cxColRfc: TcxGridDBColumn;
+    cxColNSS: TcxGridDBColumn;
+    imgFoto: TcxDBImage;
+    lyLYCDatosItem1: TdxLayoutItem;
+    cxTextCodigoPersonal: TcxDBTextEdit;
+    lyCodigoPersonal: TdxLayoutItem;
+    cxTextNombre: TcxDBTextEdit;
+    lyNombre: TdxLayoutItem;
+    dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup;
+    cxTextAPaterno: TcxDBTextEdit;
+    lyAPaterno: TdxLayoutItem;
+    cxTextAMaterno: TcxDBTextEdit;
+    lyAMaterno: TdxLayoutItem;
+    cxPageControl1: TcxPageControl;
+    cxTabDireccion: TcxTabSheet;
+    cxTabSheet2: TcxTabSheet;
+    cbbSexo: TcxDBComboBox;
+    lySexo: TdxLayoutItem;
+    dxLYCDatosGroup2: TdxLayoutAutoCreatedGroup;
+    cxDateNacimiento: TcxDBDateEdit;
+    lyNacimiento: TdxLayoutItem;
+    dxLYCDatosGroup3: TdxLayoutAutoCreatedGroup;
+    cbbEdoCivil: TcxDBComboBox;
+    lyEdoCivil: TdxLayoutItem;
+    dxLayoutControl1: TdxLayoutControl;
+    cxTextCURP: TcxDBTextEdit;
+    cxTextRFC: TcxDBTextEdit;
+    dxLayoutControl1Group_Root: TdxLayoutGroup;
+    lyCurp: TdxLayoutItem;
+    lyRFC: TdxLayoutItem;
+    cxTextNSS: TcxDBTextEdit;
+    lyNSS: TdxLayoutItem;
+    cxTextInfonavit: TcxDBTextEdit;
+    lyInfonavit: TdxLayoutItem;
+    cbbTipoInfonavit: TcxDBComboBox;
+    lytipoInfonavit: TdxLayoutItem;
+    cxSpinFactor: TcxDBSpinEdit;
+    lyFactor: TdxLayoutItem;
+    dxLayoutControl1Group1: TdxLayoutAutoCreatedGroup;
+    dxLayControl1Group_Root: TdxLayoutGroup;
+    dxLayControl1: TdxLayoutControl;
+    cxMaskTel: TcxDBMaskEdit;
+    lyTel: TdxLayoutItem;
+    cxMaskMovil: TcxDBMaskEdit;
+    lyMovil: TdxLayoutItem;
+    cxTextCorreo: TcxDBTextEdit;
+    lyCOrreo: TdxLayoutItem;
+    cbbPais: TcxDBLookupComboBox;
+    lyPais: TdxLayoutItem;
+    cbbEstado: TcxDBLookupComboBox;
+    lyEstado: TdxLayoutItem;
+    cbbCiudad: TcxDBLookupComboBox;
+    lyCiudad: TdxLayoutItem;
+    cxTextCalle: TcxDBTextEdit;
+    lyCalle: TdxLayoutItem;
+    cbbColonia: TcxDBLookupComboBox;
+    lyColona: TdxLayoutItem;
+    cxSpinCP: TcxDBSpinEdit;
+    lyCp: TdxLayoutItem;
+    cxTextINt: TcxDBTextEdit;
+    lyINt: TdxLayoutItem;
+    cxTextExt: TcxDBTextEdit;
+    lyExt: TdxLayoutItem;
+    cxTextLocalidad: TcxDBTextEdit;
+    lyLocalidad: TdxLayoutItem;
+    dxLayControl1Group1: TdxLayoutAutoCreatedGroup;
+    cxTextSangre: TcxDBTextEdit;
+    lySangre: TdxLayoutItem;
+    cxDateInicio: TcxDBDateEdit;
+    lyInicio: TdxLayoutItem;
+    cxDateFin: TcxDBDateEdit;
+    lyFin: TdxLayoutItem;
+    cxDateaLTA: TcxDBDateEdit;
+    lyaLTA: TdxLayoutItem;
+    btnBaja: TdxBarLargeButton;
+    cxTabAutomovil: TcxTabSheet;
+    dxLayoutControl2Group_Root: TdxLayoutGroup;
+    dxLayoutControl2: TdxLayoutControl;
+    imgCoche: TcxDBImage;
+    lyCoche: TdxLayoutItem;
+    Asignar: TcxButton;
+    lyAignar: TdxLayoutItem;
+    btnQuitar: TcxButton;
+    lyQuitar: TdxLayoutItem;
+    DbLblMatricula: TcxDBLabel;
+    lymatricula: TdxLayoutItem;
+    DbLblAutomovil: TcxDBLabel;
+    lyAutomovil: TdxLayoutItem;
+    DbLblMarcar: TcxDBLabel;
+    lyMarca: TdxLayoutItem;
+    DbLblModelo: TcxDBLabel;
+    lyModelo: TdxLayoutItem;
+    DbLblColor: TcxDBLabel;
+    lyColor: TdxLayoutItem;
+    dxLayoutControl2Group1: TdxLayoutAutoCreatedGroup;
+    dxLayoutControl2Group2: TdxLayoutAutoCreatedGroup;
+    dxLayControl1Group2: TdxLayoutAutoCreatedGroup;
+    dxLayControl1Group3: TdxLayoutAutoCreatedGroup;
+    zAuto: TZQuery;
+    dsAuto: TDataSource;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure AsignarClick(Sender: TObject);
+    procedure zDatosAfterScroll(DataSet: TDataSet);
+    procedure cxTabAutomovilShow(Sender: TObject);
+    procedure btnQuitarClick(Sender: TObject);
+    procedure btnBajaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPersonal: TFrmPersonal;
+
+implementation
+
+uses
+  UfrmAsignaAuto;
+
+{$R *.dfm}
+
+procedure TFrmPersonal.AsignarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Application.CreateForm(TFrmAsignaAuto, FrmAsignaAuto);
+    FrmAsignaAuto.idPersonal := zDatos.FieldByName('IdPersonal').AsInteger;
+    FrmAsignaAuto.ShowModal;
+  finally
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      zDatosAfterScroll(nil);
+    finally
+      screen.Cursor := Cursor;
+    end;
+  end;
+end;
+
+procedure TFrmPersonal.btnBajaClick(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+  if zAuto.RecordCount > 0 then
+  begin
+    msgbox.ShowModal('Aviso', 'El sistema no puede generar registrar este movimiento, debido a que empleado que intentas dar de baja aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [mbOK]);
+  end;
+end;
+
+procedure TFrmPersonal.btnQuitarClick(Sender: TObject);
+var
+  Cursor: TCursor;
+begin
+  try
+    Application.CreateForm(TFrmAsignaAuto, FrmAsignaAuto);
+    FrmAsignaAuto.idPersonal := zDatos.FieldByName('IdPersonal').AsInteger;
+    FrmAsignaAuto.idAuto := zAuto.FieldByName('IdAuto').AsInteger;
+    FrmAsignaAuto.Quitar := true;
+    FrmAsignaAuto.ShowModal;
+  finally
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+      zDatosAfterScroll(nil);
+    finally
+      screen.Cursor := Cursor;
+    end;
+  end;
+end;
+
+procedure TFrmPersonal.cxTabAutomovilShow(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+end;
+
+procedure TFrmPersonal.FormCreate(Sender: TObject);
+begin
+  inherited;
+  cxPageControl1.ActivePage := cxTabDireccion;
+  QueryName := 'master_personal';
+  PKField := 'IdPersonal';
+  CampoMostrar := 'CodigoPersonal';
+  //Validar Registros duplicados
+  pCondiciones := '~(IdPersonal)&(CodigoPersonal)';
+  pCampos := 'IdPersonal,CodigoPersonal';
+  AsignarSQL(zAuto, 'mt_automovil', pReadOnly);
+end;
+
+procedure TFrmPersonal.FormShow(Sender: TObject);
+begin
+  inherited;
+  cxPagedatos.ActivePage := cxTsDatos;
+end;
+
+procedure TFrmPersonal.zDatosAfterScroll(DataSet: TDataSet);
+var
+  cursor: tCursor;
+begin
+  cursor := Screen.Cursor;
+  try
+    Screen.Cursor := crAppStart;
+    if cxTabAutomovil.Showing then
+    begin
+
+      FiltrarDataset(zAuto, 'IdPersonal,NoLibres', [zDatos.FieldByName('IdPersonal').AsInteger, 'Si']);
+      if zAuto.Active then
+        zAuto.Refresh
+      else
+        zAuto.Open;
+
+      Asignar.Enabled := (zAuto.RecordCount = 0);
+      btnQuitar.Enabled := (zAuto.RecordCount > 0);
+    end;
+  finally
+    Screen.Cursor := Cursor;
+  end;
+end;
+
+end.

@@ -3,7 +3,7 @@ unit UFrmInicio;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, 
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs,
   dxBar, dxRibbon, dxRibbonForm, dxRibbonSkins, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxClasses, dxRibbonBackstageView, dxSkinsCore,
   dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
@@ -30,7 +30,8 @@ uses
   dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
   AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxGroupBox,
+  Grids, DBGrids;
 
 type
   ClaseHila = Class(TThread)
@@ -124,6 +125,28 @@ type
     advAviso1: TAdvSmoothSlider;
     actAutomoviles: TAction;
     LinkAutos: TdxNavBarItem;
+    actPuestos: TAction;
+    zHiloFolio: TZQuery;
+    dsHiloFolio: TDataSource;
+    dxDockPanel1: TdxDockPanel;
+    dxFloatDockSite1: TdxFloatDockSite;
+    cxspltr1: TcxSplitter;
+    cxGboxDatos: TcxGroupBox;
+    dbGridDatos: TDBGrid;
+    cxspltr2: TcxSplitter;
+    Panel1: TPanel;
+    cxGboxTotal: TcxGroupBox;
+    cxImage3: TcxImage;
+    cxLabel1: TcxLabel;
+    cxGboxLiquidadas: TcxGroupBox;
+    cxImage2: TcxImage;
+    cxLabel3: TcxLabel;
+    cxGboxQuejas: TcxGroupBox;
+    cxGboxObjetadas: TcxGroupBox;
+    cxLabel5: TcxLabel;
+    cxImage4: TcxImage;
+    img1: TcxImage;
+    cxLabel4: TcxLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -168,6 +191,9 @@ type
     procedure btnAvisosClick(Sender: TObject);
     procedure advAviso1Click(Sender: TObject);
     procedure actAutomovilesExecute(Sender: TObject);
+    procedure actPuestosExecute(Sender: TObject);
+    procedure zHiloFolioBeforeOpen(DataSet: TDataSet);
+    procedure zHiloFolioBeforeRefresh(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -179,7 +205,7 @@ type
 var
   FrmInicio: TFrmInicio;
 
-  zHiloFolios: TzQuery;
+  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
@@ -193,7 +219,7 @@ Uses
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
-  Ufrmvales, uFrmCatalogoAutomoviles;
+  Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos;
 
 { TForm1 }
 
@@ -231,6 +257,12 @@ procedure TFrmInicio.actPersonalExecute(Sender: TObject);
 begin
   Application.CreateForm(TFrmPersonal, FrmPersonal);
   FrmPersonal.Show;
+end;
+
+procedure TFrmInicio.actPuestosExecute(Sender: TObject);
+begin
+  application.CreateForm(TfrmPuestos, FrmPuestos);
+  frmPuestos.ShowModal;
 end;
 
 procedure TFrmInicio.actUnidadMedidaExecute(Sender: TObject);
@@ -625,6 +657,8 @@ begin
 //      zDatos.Refresh
 //    else
 //      zDatos.Open;
+
+    UDMConection.inicializaConAnsi;
   except
     on e: Exception do
     begin
@@ -649,6 +683,18 @@ begin
   end;
 end;
 
+procedure TFrmInicio.zHiloFolioBeforeOpen(DataSet: TDataSet);
+begin
+  if Not UDMConection.conANSI.Ping then
+    UDMConection.conAnsi.Reconnect;
+end;
+
+procedure TFrmInicio.zHiloFolioBeforeRefresh(DataSet: TDataSet);
+begin
+  if Not UDMConection.conANSI.Ping then
+    UDMConection.conAnsi.Reconnect;
+end;
+
 { ClaseHila }
 
 constructor ClaseHila.Create;
@@ -670,38 +716,44 @@ Function THilo.LeerFolios: Integer;
 begin
   try
     try
-      OldCountFolio := nuevoCountFolio;
+
       //if Not assigned(zHiloFolios) then
       //begin
-        UDMConection.inicializaConAnsi;
-        zHiloFolios := TZQuery.Create(nil);
-        zHiloFolios.Connection := UDMConection.conANSI;
-        zHiloFolios.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()';
+       // UDMConection.inicializaConAnsi;
+        //FrmInicio.zHiloFolio := TZQuery.Create(nil);
+        //FrmInicio.zHiloFolio := UDMConection.conANSI;
+        //FrmInicio.zHiloFolio.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()';
       //end;
 
-      if zHiloFolios.Active then
-        zHiloFolios.Refresh
-      else
-       zHiloFolios.Open;
 
-      if NuevoCountFolio <> zHiloFolios.FieldByName('Folios').AsInteger then
-      begin
-        Result := zHiloFolios.FieldByName('Folios').asinteger;
-        NuevoCountFolio := Result;
-      end;
+      FrmInicio.zHiloFolio.Close;
+
+      if FrmInicio.zHiloFolio.Active then
+        FrmInicio.zHiloFolio.Refresh
+      else
+       FrmInicio.zHiloFolio.Open;
+
+//      if NuevoCountFolio <> FrmInicio.zHiloFolio.FieldByName('Folios').AsInteger then
+//      begin
+//        Result := FrmInicio.zHiloFolio.FieldByName('Folios').asinteger;
+//        NuevoCountFolio := Result;
+//      end;
     finally
-      zHiloFolios.free;
+      //zHiloFolios.free;
     end;
   Except
-    try
-      if Not UDMConection.conANSI.Ping then
-        UDMConection.conAnsi.Reconnect;
-
-      if Not UDMConection.conANSI.Ping then
-        UDMConection.conAnsi.Reconnect;
-    Except
       ;
-    end;
+      //showmessage(e.Message);
+
+//    try
+//      if Not UDMConection.conANSI.Ping then
+//        UDMConection.conAnsi.Reconnect;
+//
+//      if Not UDMConection.conANSI.Ping then
+//        UDMConection.conAnsi.Reconnect;
+//    Except
+//      ;
+//    end;
   end;
 end;
 

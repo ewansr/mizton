@@ -4,7 +4,7 @@ inherited FrmPais: TFrmPais
   ClientWidth = 594
   OnCreate = FormCreate
   ExplicitWidth = 600
-  ExplicitHeight = 550
+  ExplicitHeight = 551
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
@@ -16,9 +16,9 @@ inherited FrmPais: TFrmPais
     end
   end
   inherited cxGridGral: TcxGrid
-    Width = 588
+    Width = 583
     Height = 249
-    ExplicitWidth = 588
+    ExplicitWidth = 583
     ExplicitHeight = 249
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
@@ -61,20 +61,20 @@ inherited FrmPais: TFrmPais
       Height = 141
       ExplicitWidth = 590
       ExplicitHeight = 141
-      ClientRectBottom = 139
-      ClientRectRight = 588
+      ClientRectBottom = 135
+      ClientRectRight = 584
       inherited cxTsDatos: TcxTabSheet
-        ExplicitWidth = 586
-        ExplicitHeight = 111
+        ExplicitWidth = 582
+        ExplicitHeight = 108
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 586
-          Height = 111
-          ExplicitWidth = 586
-          ExplicitHeight = 111
+          Width = 582
+          Height = 108
+          ExplicitWidth = 582
+          ExplicitHeight = 108
           object cxtextCodigo: TcxDBTextEdit [0]
             Tag = -1
-            Left = 56
-            Top = 10
+            Left = 57
+            Top = 11
             DataBinding.DataField = 'Codigo'
             DataBinding.DataSource = dsDatosUpt
             Properties.MaxLength = 20
@@ -84,8 +84,8 @@ inherited FrmPais: TFrmPais
           end
           object cxtextPais: TcxDBTextEdit [1]
             Tag = -1
-            Left = 56
-            Top = 37
+            Left = 57
+            Top = 38
             DataBinding.DataField = 'Pais'
             DataBinding.DataSource = dsDatosUpt
             Properties.MaxLength = 50
@@ -96,8 +96,8 @@ inherited FrmPais: TFrmPais
           object imgPaisBandera: TcxDBImage [2]
             Tag = -1
             AlignWithMargins = True
-            Left = 343
-            Top = 10
+            Left = 344
+            Top = 11
             DataBinding.DataField = 'ImagenP'
             DataBinding.DataSource = dsDatosUpt
             Properties.Caption = '<Doble clic para cargar Imagen>'
@@ -145,6 +145,9 @@ inherited FrmPais: TFrmPais
       end
     end
   end
+  inherited cxSplitter1: TcxSplitter
+    Height = 255
+  end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
     DockControlHeights = (
@@ -156,7 +159,7 @@ inherited FrmPais: TFrmPais
       DockedDockControl = nil
       DockedDockingStyle = dsNone
       FloatClientWidth = 97
-      FloatClientHeight = 366
+      FloatClientHeight = 307
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8

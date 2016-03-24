@@ -26,7 +26,8 @@ uses
   ZDataset, dxLayoutContainer, dxLayoutControl, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxDockPanel,
   cxContainer, dxLayoutcxEditAdapters, cxImage, cxDBEdit, cxDropDownEdit,
-  cxCalendar, cxTextEdit, cxMaskEdit, cxSpinEdit;
+  cxCalendar, cxTextEdit, cxMaskEdit, cxSpinEdit, cxDBLookupComboBox, cxLabel,
+  cxDBLabel;
 
 type
   TFrmCatalogoAutomoviles = class(TFrmCatalogo)
@@ -51,6 +52,9 @@ type
     cxSpinModelo: TcxDBSpinEdit;
     lyModelo: TdxLayoutItem;
     cxColestatus: TcxGridDBColumn;
+    btnAsignar: TdxBarLargeButton;
+    DbLblEstatus: TcxDBLabel;
+    lyLYCDatosItem1: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
