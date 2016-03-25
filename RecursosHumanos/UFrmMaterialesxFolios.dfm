@@ -17,29 +17,26 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
-    Left = 294
+    Left = 300
     Top = 131
-    Width = 1041
+    Width = 1035
     Height = 544
     Align = alClient
-    ExplicitLeft = 289
-    ExplicitWidth = 1046
     DockingType = 5
-    OriginalWidth = 1041
+    OriginalWidth = 1035
     OriginalHeight = 544
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 651
+      Width = 645
       Height = 544
-      ExplicitWidth = 656
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 651
+        Width = 645
         Height = 544
         DockingType = 0
         OriginalWidth = 300
@@ -48,7 +45,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 651
+        Width = 645
         Height = 544
         AllowFloating = False
         AutoHide = False
@@ -63,13 +60,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 637
+          Width = 631
           Height = 508
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
-          ExplicitWidth = 642
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -84,6 +80,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             OptionsData.Editing = False
             OptionsData.Inserting = False
             OptionsView.NoDataToDisplayInfoText = '<No hay informaci'#243'n disponible>'
+            OptionsView.GroupByBox = False
             OptionsView.GroupRowHeight = 25
             OptionsView.GroupRowStyle = grsOffice11
             OptionsView.Indicator = True
@@ -99,43 +96,66 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             object cxColCreado: TcxGridDBColumn
               Caption = 'Fecha y Hora Creaci'#243'n'
               DataBinding.FieldName = 'FechaCreacion'
-              Width = 159
+              PropertiesClassName = 'TcxDateEditProperties'
+              Properties.ReadOnly = True
+              Width = 141
             end
             object cxColFolio: TcxGridDBColumn
               DataBinding.FieldName = 'Folio'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 117
             end
             object cxColTelefono: TcxGridDBColumn
               Caption = 'Tel'#233'fono'
               DataBinding.FieldName = 'Telefono'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 123
             end
             object cxColPrincipal: TcxGridDBColumn
               DataBinding.FieldName = 'Principal'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 85
             end
             object cxColSecundario: TcxGridDBColumn
               DataBinding.FieldName = 'Secundario'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 87
-            end
-            object cxColArea: TcxGridDBColumn
-              Caption = #193'rea'
-              DataBinding.FieldName = 'Area'
-              Width = 135
             end
             object cxColContratista: TcxGridDBColumn
               DataBinding.FieldName = 'Contratista'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 125
             end
             object cxColNoVale: TcxGridDBColumn
               Caption = 'No. Vale'
               DataBinding.FieldName = 'NoVale'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 151
             end
             object cxColEstatus: TcxGridDBColumn
               Caption = 'Estatus'
               DataBinding.FieldName = 'estatus'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 136
+            end
+            object cxColTipoInstalacion: TcxGridDBColumn
+              Caption = 'Tipo Instalaci'#243'n'
+              DataBinding.FieldName = 'TipoInstalacion'
+              Visible = False
+              GroupIndex = 1
+            end
+            object cxColCostoCobrar: TcxGridDBColumn
+              Caption = 'Pago'
+              DataBinding.FieldName = 'CostoCobrar'
+              PropertiesClassName = 'TcxCurrencyEditProperties'
+              Properties.ReadOnly = True
             end
           end
           object cxChartProductividad: TcxGridDBChartView
@@ -164,7 +184,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = 651
+      Left = 645
       Top = 0
       Width = 390
       Height = 544
@@ -174,7 +194,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      ExplicitLeft = 656
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -292,7 +311,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   object pnlFiltro: TPanel
     Left = 0
     Top = 131
-    Width = 289
+    Width = 295
     Height = 544
     Align = alLeft
     TabOrder = 1
@@ -307,13 +326,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Align = alTop
       Caption = 'Semana de trabajo:'
       TabOrder = 0
-      Height = 126
-      Width = 267
+      Height = 142
+      Width = 273
       object dxLayControl1: TdxLayoutControl
         Left = 3
         Top = 15
-        Width = 261
-        Height = 101
+        Width = 267
+        Height = 117
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -376,7 +395,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     object cxGroupBox1: TcxGroupBox
       AlignWithMargins = True
       Left = 11
-      Top = 157
+      Top = 173
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
@@ -384,13 +403,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Align = alClient
       Caption = 'Informaci'#243'n del t'#233'cnico'
       TabOrder = 1
-      Height = 376
-      Width = 267
+      Height = 360
+      Width = 273
       object dxLayoutControl1: TdxLayoutControl
         Left = 3
         Top = 15
-        Width = 261
-        Height = 351
+        Width = 267
+        Height = 335
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -563,7 +582,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     end
   end
   object cxSplitter1: TcxSplitter
-    Left = 289
+    Left = 295
     Top = 131
     Width = 5
     Height = 544
@@ -588,8 +607,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     ImageOptions.LargeImages = UDMConection.cxMizton32
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 600
-    Top = 432
+    Left = 592
+    Top = 504
     DockControlHeights = (
       0
       0
@@ -643,6 +662,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           BeginGroup = True
           Visible = True
           ItemName = 'dxButtonExportar'
+        end
+        item
+          Visible = True
+          ItemName = 'btnExport2'
         end>
       OneOnRow = True
       Row = 0
@@ -768,9 +791,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
     end
     object dxButtonExportar: TdxBarLargeButton
-      Caption = '&Exportar a Excel'
+      Caption = '&Generar reporte de Materiales'
       Category = 0
-      Hint = 'Exportar a Excel'
+      Hint = 'Generar reporte de Materiales'
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16464
@@ -825,6 +848,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OnClick = btnRefreshClick
       AutoGrayScale = False
     end
+    object btnExport2: TdxBarLargeButton
+      Caption = '&Exportar Grilla a Excel'
+      Category = 0
+      Hint = 'Exportar Grilla a Excel'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      OnClick = btnExport2Click
+      SyncImageIndex = False
+      ImageIndex = 15
+    end
   end
   object dsDatos: TDataSource
     DataSet = zDatos
@@ -855,13 +888,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end>
     Ribbon = dxRibbon1
     UseOwnFont = False
-    Left = 680
-    Top = 384
+    Left = 352
+    Top = 568
   end
   object dlgSave1: TSaveDialog
     Filter = 'Documento de Microsoft Excel|*.xls'
-    Left = 600
-    Top = 384
+    Left = 384
+    Top = 504
   end
   object dxDockingManager1: TdxDockingManager
     Color = clBtnFace
@@ -891,8 +924,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       end>
     HintStyle.ScreenTipActionLinks = <>
     HintHidePause = 10000
-    Left = 472
-    Top = 320
+    Left = 496
+    Top = 504
   end
   object zPersonal: TZQuery
     Params = <>
@@ -926,8 +959,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdFolio'
         ParamType = ptUnknown
       end>
-    Left = 664
-    Top = 320
+    Left = 512
+    Top = 416
     ParamData = <
       item
         DataType = ftUnknown

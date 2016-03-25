@@ -25,19 +25,12 @@ uses
   dxLayoutControl, cxPC, ExtCtrls, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxDBEdit, cxMaskEdit,
-  cxCalendar, cxTextEdit, cxSpinEdit, cxSplitter, DateUtils;
+  cxCalendar, cxTextEdit, cxSpinEdit, cxSplitter, DateUtils, UConection;
 
 type
   TFrmVales = class(TFrmMiniCatalogo)
-    cxColFolio: TcxGridDBColumn;
+    cxColCodigo: TcxGridDBColumn;
     cxColNoVale: TcxGridDBColumn;
-    cxColFecha: TcxGridDBColumn;
-    cxColDivision: TcxGridDBColumn;
-    cxColArea: TcxGridDBColumn;
-    cxColContratista: TcxGridDBColumn;
-    cxColFirmaContratista: TcxGridDBColumn;
-    cxColFirmaSupervisor: TcxGridDBColumn;
-    cxColCreacion: TcxGridDBColumn;
     cxColEstatus: TcxGridDBColumn;
     cxTextFolio: TcxDBTextEdit;
     lyFolio: TdxLayoutItem;
@@ -49,7 +42,6 @@ type
     lyEstatus: TdxLayoutItem;
     btnAbrir: TdxBarLargeButton;
     btnCerrar: TdxBarLargeButton;
-    dxbrManager1Bar2: TdxBar;
     btnGenerarAnual: TdxBarLargeButton;
     cxDateInicio: TcxDBDateEdit;
     lyInicio: TdxLayoutItem;
@@ -61,9 +53,22 @@ type
     cxGridFolios: TcxGridDBTableView;
     dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup;
     dxLYCDatosGroup2: TdxLayoutAutoCreatedGroup;
+    cxColNoSemana: TcxGridDBColumn;
+    cxColInicio: TcxGridDBColumn;
+    cxColTermino: TcxGridDBColumn;
+    zFolios: TZQuery;
+    dsFolios: TDataSource;
+    cxColFecha: TcxGridDBColumn;
+    cxColFolio: TcxGridDBColumn;
+    cxColExpediente: TcxGridDBColumn;
+    cxColTipo: TcxGridDBColumn;
+    cxColestatus2: TcxGridDBColumn;
+    cxColPago: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure dxButtonGuardarClick(Sender: TObject);
     procedure cxDateValePropertiesChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dxButtonActualizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -88,19 +93,51 @@ begin
   cxDateTermino.Date := EndOfTheWeek(cxDateVale.Date);
 end;
 
-procedure TFrmVales.dxButtonGuardarClick(Sender: TObject);
+procedure TFrmVales.dxButtonActualizarClick(Sender: TObject);
+var cursor: TCursor;
 begin
-  inherited;
-  if assigned(frmMaterialesxfolios) then
-  begin
+  Cursor := Screen.Cursor;
 
-    if FrmMaterialesxFolios.zDatos.Active then
-    try
-      FrmMaterialesxFolios.zDatos.afterScroll := Nil;
-      FrmMaterialesxFolios.zDatos.Refresh;
-    finally
-      FrmMaterialesxFolios.zDatos.afterScroll := FrmMaterialesxFolios.zDatosAfterScroll;
+  try
+    sCreen.Cursor := crAppStart;
+    inherited;
+
+    if zFolios.Active then
+      zFolios.Refresh
+    else
+      zFolios.Open;
+  finally
+    screen.Cursor := Cursor;
+  end;
+
+end;
+
+procedure TFrmVales.dxButtonGuardarClick(Sender: TObject);
+var cursor: TCursor;
+begin
+  Cursor := Screen.Cursor;
+
+  try
+    sCreen.Cursor := crAppStart;
+    inherited;
+    if assigned(frmMaterialesxfolios) then
+    begin
+
+      if FrmMaterialesxFolios.zDatos.Active then
+      try
+        FrmMaterialesxFolios.zDatos.afterScroll := Nil;
+        FrmMaterialesxFolios.zDatos.Refresh;
+
+        if zFolios.Active then
+          zFolios.Refresh
+        else
+          zFolios.Open;
+      finally
+        FrmMaterialesxFolios.zDatos.afterScroll := FrmMaterialesxFolios.zDatosAfterScroll;
+      end;
     end;
+  finally
+    screen.Cursor := Cursor;
   end;
 end;
 
@@ -113,6 +150,18 @@ begin
    //Validar Registros duplicados
    pCondiciones := '~(IdVale)&(NoVale)';
    pCampos := 'IdVale,NoVale';
+end;
+
+procedure TFrmVales.FormShow(Sender: TObject);
+begin
+  inherited;
+  AsignarSQL(zFolios, 'mt_foliosxtecnicos', pReadOnly);
+  FiltrarDataset(zFolios, 'IdPersonal,Desde,Hasta', ['-1', '-1', '-1']) ;
+
+  if zFolios.Active then
+    zFolios.Refresh
+  else
+    zFolios.Open;
 end;
 
 end.

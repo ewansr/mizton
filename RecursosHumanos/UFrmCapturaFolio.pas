@@ -28,8 +28,6 @@ type
     dxLayControl1Group_Root: TdxLayoutGroup;
     dxLayControl1: TdxLayoutControl;
     pnlBotonera: TPanel;
-    cxTextFolioPrincipal: TcxDBTextEdit;
-    lyFolioPrincipal: TdxLayoutItem;
     cxTextFolio: TcxDBTextEdit;
     lyFolio: TdxLayoutItem;
     cxMaskTelefono: TcxDBMaskEdit;
@@ -38,8 +36,6 @@ type
     lyPrincipal: TdxLayoutItem;
     cxTextSecundario: TcxDBTextEdit;
     lySecundario: TdxLayoutItem;
-    cxTextArea: TcxDBTextEdit;
-    lyArea: TdxLayoutItem;
     cxDateFecha: TcxDBDateEdit;
     lyFecha: TdxLayoutItem;
     cbbEstatus: TcxDBComboBox;
@@ -50,16 +46,8 @@ type
     zDatos: TZQuery;
     zMaterial: TZQuery;
     dsMaterial: TDataSource;
-    cbbVale: TcxDBLookupComboBox;
-    lyVale: TdxLayoutItem;
     zVales: TZQuery;
     dsVales: TDataSource;
-    cxTextDivision: TcxDBTextEdit;
-    lyDivision: TdxLayoutItem;
-    cxTextContratista: TcxDBTextEdit;
-    lyContratista: TdxLayoutItem;
-    cxDateFechaVale: TcxDBDateEdit;
-    lyFechaVale: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);

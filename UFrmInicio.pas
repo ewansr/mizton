@@ -147,6 +147,8 @@ type
     cxImage4: TcxImage;
     img1: TcxImage;
     cxLabel4: TcxLabel;
+    actMateriales: TAction;
+    LinkMateriales: TdxNavBarItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -194,6 +196,7 @@ type
     procedure actPuestosExecute(Sender: TObject);
     procedure zHiloFolioBeforeOpen(DataSet: TDataSet);
     procedure zHiloFolioBeforeRefresh(DataSet: TDataSet);
+    procedure actMaterialesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -219,7 +222,8 @@ Uses
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
-  Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos;
+  Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos,
+  UfrmCatalogoMateriales;
 
 { TForm1 }
 
@@ -245,6 +249,12 @@ procedure TFrmInicio.actFoliosExecute(Sender: TObject);
 begin
   Application.CreateForm(TFrmSelExpediente, FrmSelExpediente);
   FrmSelExpediente.ShowModal;
+end;
+
+procedure TFrmInicio.actMaterialesExecute(Sender: TObject);
+begin
+  application.CreateForm(TfrmCatalogoMateriales, FrmCatalogoMateriales);
+  FrmCatalogoMateriales.ShowModal;
 end;
 
 procedure TFrmInicio.actPaisExecute(Sender: TObject);

@@ -52,7 +52,8 @@ uses
   UFrmPuestos in 'RecursosHumanos\UFrmPuestos.pas' {FrmPuestos},
   UFrmConsultas in 'RecursosHumanos\UFrmConsultas.pas' {Form1},
   UFrmRT in 'RecursosHumanos\UFrmRT.pas' {FrmRT},
-  uLkJSON in 'lkJSON-1.07\uLkJSON.pas';
+  uLkJSON in 'lkJSON-1.07\uLkJSON.pas',
+  UFrmCatalogoMateriales in 'RecursosHumanos\UFrmCatalogoMateriales.pas' {FrmCatalogoMateriales};
 
 {$R *.res}
 
@@ -64,5 +65,6 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
+  Application.CreateForm(TFrmCatalogoMateriales, FrmCatalogoMateriales);
   Application.Run;
 end.

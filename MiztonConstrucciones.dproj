@@ -166,6 +166,9 @@
 				<Form>FrmRT</Form>
 			</DCCReference>
 			<DCCReference Include="lkJSON-1.07\uLkJSON.pas"/>
+			<DCCReference Include="RecursosHumanos\UFrmCatalogoMateriales.pas">
+				<Form>FrmCatalogoMateriales</Form>
+			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

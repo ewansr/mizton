@@ -1,0 +1,147 @@
+inherited FrmCatalogoMateriales: TFrmCatalogoMateriales
+  Caption = 'Cat'#225'logo de Materiales'
+  ClientWidth = 524
+  ExplicitWidth = 530
+  ExplicitHeight = 603
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxRibbon1: TdxRibbon
+    Width = 524
+    inherited dxRibbon1Tab1: TdxRibbonTab
+      Caption = 'Inicio'
+      Index = 0
+    end
+  end
+  inherited cxGridGral: TcxGrid
+    Width = 513
+    Height = 232
+    ExplicitLeft = 8
+    ExplicitWidth = 832
+    ExplicitHeight = 264
+    inherited cxGridDatos: TcxGridDBTableView
+      DataController.DataSource = dsDatos
+      object cxColCodigo: TcxGridDBColumn
+        DataBinding.FieldName = 'Codigo'
+        Width = 76
+      end
+      object cxColMaterial: TcxGridDBColumn
+        Caption = 'Material'
+        DataBinding.FieldName = 'Servicio'
+        Width = 183
+      end
+      object cxColUMedida: TcxGridDBColumn
+        DataBinding.FieldName = 'Unidad'
+        Width = 114
+      end
+      object cxColFecha: TcxGridDBColumn
+        DataBinding.FieldName = 'FechaRegistro'
+        Width = 126
+      end
+    end
+  end
+  inherited pnlDatos: TPanel
+    Top = 360
+    Width = 524
+    Height = 214
+    ExplicitTop = 360
+    ExplicitHeight = 214
+    inherited cxPageDatos: TcxPageControl
+      Width = 520
+      Height = 210
+      ExplicitHeight = 178
+      ClientRectBottom = 204
+      ClientRectRight = 514
+      inherited cxTsDatos: TcxTabSheet
+        inherited dxLYCDatos: TdxLayoutControl
+          Width = 512
+          Height = 177
+          object cxTextCodigo: TcxDBTextEdit [0]
+            Left = 72
+            Top = 38
+            Style.HotTrack = False
+            TabOrder = 1
+            Width = 425
+          end
+          object cxTextMaterial: TcxDBTextEdit [1]
+            Left = 72
+            Top = 65
+            Style.HotTrack = False
+            TabOrder = 2
+            Width = 121
+          end
+          object cbbUMedida: TcxDBLookupComboBox [2]
+            Left = 72
+            Top = 92
+            Properties.ListColumns = <>
+            Style.HotTrack = False
+            TabOrder = 3
+            Width = 145
+          end
+          object cxDateFecha: TcxDBDateEdit [3]
+            Left = 72
+            Top = 11
+            Enabled = False
+            Style.HotTrack = False
+            TabOrder = 0
+            Width = 121
+          end
+          inherited dxLyDatos: TdxLayoutGroup
+            Index = -1
+          end
+          object lyCodigo: TdxLayoutItem
+            Parent = dxLyDatos
+            CaptionOptions.Text = 'C'#243'digo:'
+            Control = cxTextCodigo
+            ControlOptions.ShowBorder = False
+            Index = 1
+          end
+          object lyMaterial: TdxLayoutItem
+            Parent = dxLyDatos
+            CaptionOptions.Text = 'Material:'
+            Control = cxTextMaterial
+            ControlOptions.ShowBorder = False
+            Index = 2
+          end
+          object lyUMedida: TdxLayoutItem
+            Parent = dxLyDatos
+            CaptionOptions.Text = 'U. Medida'
+            Control = cbbUMedida
+            ControlOptions.ShowBorder = False
+            Index = 3
+          end
+          object lyFecha: TdxLayoutItem
+            Parent = dxLyDatos
+            CaptionOptions.Text = 'Registro:'
+            Control = cxDateFecha
+            ControlOptions.ShowBorder = False
+            Enabled = False
+            Index = 0
+          end
+        end
+      end
+    end
+  end
+  inherited cxSplitter1: TcxSplitter
+    Height = 238
+    ExplicitLeft = 0
+    ExplicitHeight = 270
+  end
+  inherited dxBarManager1: TdxBarManager
+    LookAndFeel.SkinName = ''
+    DockControlHeights = (
+      0
+      0
+      0
+      0)
+    inherited dxbrManager1Bar: TdxBar
+      FloatClientWidth = 97
+      FloatClientHeight = 307
+    end
+    inherited dxButtonGuardar: TdxBarLargeButton
+      ImageIndex = 9
+    end
+  end
+  inherited dsDatos: TDataSource
+    DataSet = zDatos
+  end
+end

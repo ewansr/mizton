@@ -1,85 +1,50 @@
 inherited FrmVales: TFrmVales
   Align = alCustom
   Caption = 'Cat'#225'logo de Vales'
-  ClientHeight = 651
-  ClientWidth = 985
+  ClientHeight = 756
+  ClientWidth = 622
   OnCreate = FormCreate
-  ExplicitWidth = 991
-  ExplicitHeight = 680
+  ExplicitWidth = 628
+  ExplicitHeight = 785
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
-    Width = 985
+    Width = 622
     ExplicitWidth = 985
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
-      Groups = <
-        item
-        end
-        item
-          ToolbarName = 'dxbrManager1Bar'
-        end
-        item
-          Caption = 'Vales'
-          ToolbarName = 'dxbrManager1Bar2'
-        end>
       Index = 0
     end
   end
   inherited cxGridGral: TcxGrid
     Left = 3
-    Width = 979
-    Height = 355
-    ExplicitLeft = 8
-    ExplicitWidth = 974
-    ExplicitHeight = 0
+    Width = 616
+    Height = 460
+    ExplicitLeft = -2
+    ExplicitTop = 122
+    ExplicitWidth = 957
+    ExplicitHeight = 460
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
+      DataController.DetailKeyFieldNames = 'IdVale'
+      DataController.KeyFieldNames = 'IdVale'
+      DataController.MasterKeyFieldNames = 'IdVale'
       OptionsView.ColumnAutoWidth = False
       OptionsView.GroupByBox = True
-      object cxColFolio: TcxGridDBColumn
-        Caption = 'Folio Maestro'
-        DataBinding.FieldName = 'FolioMaestro'
-        Width = 112
-      end
       object cxColNoVale: TcxGridDBColumn
         Caption = 'No. Vale'
         DataBinding.FieldName = 'NoVale'
         Width = 75
       end
-      object cxColFecha: TcxGridDBColumn
-        Caption = 'Fecha Vale'
-        DataBinding.FieldName = 'FechaVale'
-        Width = 95
+      object cxColCodigo: TcxGridDBColumn
+        Caption = 'C'#243'digo'
+        DataBinding.FieldName = 'Codigo'
+        Width = 112
       end
-      object cxColDivision: TcxGridDBColumn
-        Caption = 'Divisi'#243'n'
-        DataBinding.FieldName = 'Division'
-        Width = 117
-      end
-      object cxColArea: TcxGridDBColumn
-        Caption = #193'rea'
-        DataBinding.FieldName = 'Area'
-        Width = 103
-      end
-      object cxColContratista: TcxGridDBColumn
-        DataBinding.FieldName = 'Contratista'
-        Width = 160
-      end
-      object cxColFirmaContratista: TcxGridDBColumn
-        Caption = 'Firmante Contratista'
-        DataBinding.FieldName = 'FirmaContratista'
-        Width = 160
-      end
-      object cxColFirmaSupervisor: TcxGridDBColumn
-        Caption = 'Firmante Supervisor'
-        DataBinding.FieldName = 'FirmaSupervisor'
-        Width = 160
-      end
-      object cxColCreacion: TcxGridDBColumn
-        Caption = 'Fecha de Creaci'#243'n'
-        DataBinding.FieldName = 'FechaCreacion'
-        Width = 131
+      object cxColNoSemana: TcxGridDBColumn
+        Caption = 'No. Semana'
+        DataBinding.FieldName = 'NoSemana'
+        Width = 112
       end
       object cxColEstatus: TcxGridDBColumn
         DataBinding.FieldName = 'Estatus'
@@ -87,12 +52,60 @@ inherited FrmVales: TFrmVales
         GroupIndex = 0
         Width = 106
       end
+      object cxColInicio: TcxGridDBColumn
+        DataBinding.FieldName = 'Inicio'
+        Width = 107
+      end
+      object cxColTermino: TcxGridDBColumn
+        Caption = 'T'#233'rmino'
+        DataBinding.FieldName = 'Termino'
+        Width = 123
+      end
     end
     object cxGridFolios: TcxGridDBTableView [1]
       Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsFolios
+      DataController.DetailKeyFieldNames = 'IdVale'
+      DataController.KeyFieldNames = 'IdVale'
+      DataController.MasterKeyFieldNames = 'IdVale'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsData.CancelOnExit = False
+      OptionsData.Deleting = False
+      OptionsData.DeletingConfirmation = False
+      OptionsData.Editing = False
+      OptionsData.Inserting = False
+      OptionsView.GroupByBox = False
+      object cxColFecha: TcxGridDBColumn
+        Caption = 'Fecha'
+        DataBinding.FieldName = 'FechaCreacion'
+        Width = 98
+      end
+      object cxColExpediente: TcxGridDBColumn
+        Caption = 'Expediente'
+        DataBinding.FieldName = 'CodigoPersonal'
+        Width = 104
+      end
+      object cxColFolio: TcxGridDBColumn
+        DataBinding.FieldName = 'Folio'
+        Width = 86
+      end
+      object cxColTipo: TcxGridDBColumn
+        Caption = 'Tipo de Instalaci'#243'n'
+        DataBinding.FieldName = 'tipoInstalacion'
+        Visible = False
+        GroupIndex = 0
+      end
+      object cxColestatus2: TcxGridDBColumn
+        DataBinding.FieldName = 'Estatus'
+        Width = 114
+      end
+      object cxColPago: TcxGridDBColumn
+        Caption = 'Pago'
+        DataBinding.FieldName = 'CostoCobrar'
+        Width = 123
+      end
     end
     inherited GridLevel1: TcxGridLevel
       object cxLvlFolios: TcxGridLevel
@@ -101,28 +114,28 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited pnlDatos: TPanel
-    Top = 488
-    Width = 985
+    Top = 593
+    Width = 622
     Height = 163
     ExplicitTop = 488
     ExplicitWidth = 985
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
-      Width = 981
+      Width = 618
       Height = 159
       ExplicitWidth = 981
-      ExplicitHeight = 247
+      ExplicitHeight = 159
       ClientRectBottom = 153
-      ClientRectRight = 975
+      ClientRectRight = 612
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
         ExplicitWidth = 973
-        ExplicitHeight = 492
+        ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 973
+          Width = 610
           Height = 126
           ExplicitWidth = 973
-          ExplicitHeight = 492
+          ExplicitHeight = 126
           object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
             Left = 66
@@ -165,7 +178,7 @@ inherited FrmVales: TFrmVales
             Properties.OnChange = cxDateValePropertiesChange
             Style.HotTrack = False
             TabOrder = 3
-            Width = 184
+            Width = 200
           end
           object cxSpinNoSemana: TcxDBSpinEdit [4]
             Left = 385
@@ -268,16 +281,18 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited cxSplitter1: TcxSplitter
-    Top = 483
-    Width = 985
+    Top = 588
+    Width = 622
     Height = 5
     AlignSplitter = salBottom
     ExplicitLeft = 0
-    ExplicitHeight = 0
+    ExplicitTop = 483
+    ExplicitWidth = 985
+    ExplicitHeight = 5
   end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
-    Left = 640
+    Left = 544
     Top = 40
     DockControlHeights = (
       0
@@ -287,36 +302,6 @@ inherited FrmVales: TFrmVales
     inherited dxbrManager1Bar: TdxBar
       FloatClientWidth = 97
       FloatClientHeight = 307
-      OneOnRow = False
-    end
-    object dxbrManager1Bar2: TdxBar [2]
-      Caption = 'Custom 2'
-      CaptionButtons = <>
-      DockedLeft = 399
-      DockedTop = 0
-      FloatLeft = 995
-      FloatTop = 8
-      FloatClientWidth = 0
-      FloatClientHeight = 0
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'btnGenerarAnual'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'btnAbrir'
-        end
-        item
-          Visible = True
-          ItemName = 'btnCerrar'
-        end>
-      OneOnRow = False
-      Row = 0
-      UseOwnFont = False
-      Visible = True
-      WholeRow = False
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8
@@ -342,27 +327,37 @@ inherited FrmVales: TFrmVales
   end
   inherited dsDatos: TDataSource
     DataSet = zDatos
-    Left = 736
-    Top = 80
+    Left = 456
+    Top = 32
   end
   inherited zDatos: TZQuery
-    Left = 888
-    Top = 24
+    Left = 432
+    Top = 88
   end
   inherited zDatosUpt: TZQuery
-    Left = 800
-    Top = 8
-  end
-  inherited dsDatosUpt: TDataSource
-    Left = 744
+    Left = 472
     Top = 16
   end
-  inherited dxPopupGrid: TdxRibbonPopupMenu
-    Left = 784
+  inherited dsDatosUpt: TDataSource
+    Left = 480
     Top = 72
   end
+  inherited dxPopupGrid: TdxRibbonPopupMenu
+    Left = 512
+    Top = 24
+  end
   inherited dlgSave1: TSaveDialog
-    Left = 832
-    Top = 56
+    Left = 528
+    Top = 80
+  end
+  object zFolios: TZQuery
+    Params = <>
+    Left = 240
+    Top = 272
+  end
+  object dsFolios: TDataSource
+    DataSet = zFolios
+    Left = 192
+    Top = 272
   end
 end

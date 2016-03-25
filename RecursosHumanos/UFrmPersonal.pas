@@ -139,6 +139,10 @@ type
     dxLayControl1Group3: TdxLayoutAutoCreatedGroup;
     zAuto: TZQuery;
     dsAuto: TDataSource;
+    cbbPuesto: TcxDBLookupComboBox;
+    lyPuesto: TdxLayoutItem;
+    zPuestos: TZQuery;
+    dsPuestos: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure AsignarClick(Sender: TObject);
@@ -247,6 +251,16 @@ procedure TFrmPersonal.FormShow(Sender: TObject);
 begin
   inherited;
   cxPagedatos.ActivePage := cxTsDatos;
+
+
+  AsignarSQL(zPuestos, 'mt_puestos', pReadOnly);
+  FiltrarDataset(zPuestos, 'IdPuesto', ['-1']);
+
+  if zPuestos.Active then
+    zPuestos.Refresh
+  else
+    zPuestos.Open;
+
 end;
 
 procedure TFrmPersonal.zDatosAfterScroll(DataSet: TDataSet);
