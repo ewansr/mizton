@@ -111,6 +111,8 @@ inherited FrmTipoOrden: TFrmTipoOrden
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end

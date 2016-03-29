@@ -56,8 +56,8 @@ begin
   PKField := 'Idtipo';
   CampoMostrar := 'tipoorden';
 
-  pCondiciones := '';
-  pCampos := '';
+  pCondiciones := '~(IdTipo)&(TipoOrden)';
+  pCampos := 'IdTipo,TipoOrden';
 end;
 
 end.

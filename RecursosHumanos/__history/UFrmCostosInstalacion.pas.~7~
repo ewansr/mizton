@@ -1,4 +1,4 @@
-unit UFrmTipoOrden;
+unit UFrmCostosInstalacion;
 
 interface
 
@@ -20,21 +20,36 @@ uses
   dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue,
   dxSkinsdxRibbonPainter, dxRibbonCustomizationForm, cxStyles,
   dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit,
-  cxNavigator, DB, cxDBData, dxBarBuiltInMenu, dxSkinsdxBarPainter,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, dxBar, dxRibbon,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset, cxSplitter, dxLayoutContainer,
-  dxLayoutControl, cxPC, ExtCtrls, cxGridLevel, cxClasses, cxGridCustomView,
-  cxGrid, cxContainer, dxLayoutcxEditAdapters, cxDBEdit, cxTextEdit, cxMaskEdit,
-  cxDropDownEdit;
+  cxNavigator, DB, cxDBData, dxBarBuiltInMenu, dxSkinsdxBarPainter, dxBar,
+  dxRibbon, ZAbstractRODataset, ZAbstractDataset, ZDataset, cxSplitter,
+  dxLayoutContainer, dxLayoutControl, cxPC, ExtCtrls, cxGridLevel, cxClasses,
+  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  cxGrid, cxContainer, dxLayoutcxEditAdapters, cxCurrencyEdit, cxDBEdit,
+  cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit,
+  cxMaskEdit, cxCalendar;
 
 type
-  TFrmTipoOrden = class(TFrmMiniCatalogo)
-    cxColTipoInstalacion: TcxGridDBColumn;
+  TFrmCostosInstalacion = class(TFrmMiniCatalogo)
+    cxColFecha: TcxGridDBColumn;
     cxColTipoOrden: TcxGridDBColumn;
-    cbbTipo: TcxDBComboBox;
-    lyTipo: TdxLayoutItem;
-    cxTextTipoOrden: TcxDBTextEdit;
+    cxColCostoLocal: TcxGridDBColumn;
+    cxColCostoForaneo: TcxGridDBColumn;
+    cxDateFecha: TcxDBDateEdit;
+    lyFecha: TdxLayoutItem;
+    cbbTipoOrden: TcxDBLookupComboBox;
     lyTipoOrden: TdxLayoutItem;
+    cxCurrencyLocal: TcxDBCurrencyEdit;
+    lyLocal: TdxLayoutItem;
+    cxCurrencyForaneo: TcxDBCurrencyEdit;
+    lyForaneo: TdxLayoutItem;
+    cxCurrencyEmpLocal: TcxDBCurrencyEdit;
+    lyEmpLocal: TdxLayoutItem;
+    cxCurrencyEmpForaneo: TcxDBCurrencyEdit;
+    lyEmpForaneo: TdxLayoutItem;
+    cxColEmpLocal: TcxGridDBColumn;
+    cxColEmpForaneo: TcxGridDBColumn;
+    dxLYCDatosGroup3: TdxLayoutAutoCreatedGroup;
+    dxLYCDatosGroup4: TdxLayoutAutoCreatedGroup;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -43,21 +58,21 @@ type
   end;
 
 var
-  FrmTipoOrden: TFrmTipoOrden;
+  FrmCostosInstalacion: TFrmCostosInstalacion;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFrmTipoOrden.FormCreate(Sender: TObject);
+procedure TFrmCostosInstalacion.FormCreate(Sender: TObject);
 begin
   inherited;
-  QueryName := 'mt_tipoorden';
-  PKField := 'Idtipo';
+  QueryName := 'mt_costos';
+  PKField := 'Idcosto';
   CampoMostrar := 'tipoorden';
 
-  pCondiciones := '';
-  pCampos := '';
+  pCondiciones := '~(IdCosto)&(TipoOrden)&(Vigencia)';
+  pCampos := 'IdCosto,TipoOrden,vigencia';
 end;
 
 end.

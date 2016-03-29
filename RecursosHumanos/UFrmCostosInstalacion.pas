@@ -71,8 +71,8 @@ begin
   PKField := 'Idcosto';
   CampoMostrar := 'tipoorden';
 
-  pCondiciones := '~(IdCosto)&(TipoOrden)&(Vigencia)';
-  pCampos := 'IdCosto,TipoOrden,vigencia';
+  pCondiciones := '';
+  pCampos := '';
 end;
 
 end.

@@ -315,32 +315,28 @@ begin
         if zDatosUpt.state = dsInsert then
           zDatosUpt.FieldByName(PKField).AsInteger := 0;
 
-        if pCondiciones <> '' then
+        Tabla := String(TZQuery(zDatosUpt).Properties.Objects[0]);
+        Lista.Delimiter := ',';
+        Lista.DelimitedText := pCampos;
+
+        i := 0;
+        pValores := '';
+        While i < Lista.Count do
         begin
+          if i = (Lista.Count -1) then
+            pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#'
+          else
+            pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#,';
+          Inc(i);
+        end;
 
-          Tabla := String(TZQuery(zDatosUpt).Properties.Objects[0]);
-          Lista.Delimiter := ',';
-          Lista.DelimitedText := pCampos;
+        //Le paso una variable por referenciar llamada Reactivado, esta me debe retornar con un valor True o False
+        //Siendo true, indicando que hubo una reactivación de este registro y así evitar hacer un post
+        VerificarExiste(tabla, pCondiciones, pValores, Reactivado);
 
-          i := 0;
-          pValores := '';
-          While i < Lista.Count do
-          begin
-            if i = (Lista.Count -1) then
-              pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#'
-            else
-              pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#,';
-            Inc(i);
-          end;
-
-          //Le paso una variable por referenciar llamada Reactivado, esta me debe retornar con un valor True o False
-          //Siendo true, indicando que hubo una reactivación de este registro y así evitar hacer un post
-          VerificarExiste(tabla, pCondiciones, pValores, Reactivado);
-
-          if Reactivado then
-          begin
-            dxButtonCancelarClick(nil);
-          end;
+        if Reactivado then
+        begin
+          dxButtonCancelarClick(nil);
         end;
 
         if zDatosUpt.State in [dsEdit, dsInsert] then
