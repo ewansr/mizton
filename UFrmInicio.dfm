@@ -1688,6 +1688,12 @@ object FrmInicio: TFrmInicio
           Item = LinkAutos
         end
         item
+          Item = LinkTipoOrden
+        end
+        item
+          Item = LinkCostos
+        end
+        item
           Item = LinkPersonal
         end
         item
@@ -1772,6 +1778,12 @@ object FrmInicio: TFrmInicio
     end
     object LinkMateriales: TdxNavBarItem
       Action = actMateriales
+    end
+    object LinkTipoOrden: TdxNavBarItem
+      Action = actTipoOrden
+    end
+    object LinkCostos: TdxNavBarItem
+      Action = actAdminCostos
     end
   end
   object cxLabel2: TcxLabel
@@ -3678,7 +3690,7 @@ object FrmInicio: TFrmInicio
     Left = 704
     Top = 56
     object actPersonal: TAction
-      Caption = 'Cat'#225'logo de Personal'
+      Caption = 'Listado de Personal'
       ImageIndex = 0
       OnExecute = actPersonalExecute
     end
@@ -3688,7 +3700,7 @@ object FrmInicio: TFrmInicio
       OnExecute = actFoliosExecute
     end
     object actVales: TAction
-      Caption = 'Cat'#225'logo de Vales '
+      Caption = 'Listado de Vales '
       ImageIndex = 1
       OnExecute = actValesExecute
     end
@@ -3723,14 +3735,24 @@ object FrmInicio: TFrmInicio
       OnExecute = actAutomovilesExecute
     end
     object actPuestos: TAction
-      Caption = 'Cat'#225'logo de Puestos'
+      Caption = 'Listado de Puestos'
       ImageIndex = 2
       OnExecute = actPuestosExecute
     end
     object actMateriales: TAction
-      Caption = 'Cat'#225'logo de Materiales'
+      Caption = 'Listado de Materiales'
       ImageIndex = 17
       OnExecute = actMaterialesExecute
+    end
+    object actTipoOrden: TAction
+      Caption = 'Tipos de Orden'
+      ImageIndex = 15
+      OnExecute = actTipoOrdenExecute
+    end
+    object actAdminCostos: TAction
+      Caption = 'Administrar Costos'
+      ImageIndex = 8
+      OnExecute = actAdminCostosExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery

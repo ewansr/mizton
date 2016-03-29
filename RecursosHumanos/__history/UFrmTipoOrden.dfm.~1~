@@ -1,0 +1,71 @@
+inherited FrmMiniCatalogo1: TFrmMiniCatalogo1
+  Caption = 'Cat'#225'logo Tipos de Ordenes'
+  ClientWidth = 468
+  ExplicitWidth = 474
+  ExplicitHeight = 603
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dxRibbon1: TdxRibbon
+    Width = 468
+    inherited dxRibbon1Tab1: TdxRibbonTab
+      Caption = 'Inicio'
+      Index = 0
+    end
+  end
+  inherited cxGridGral: TcxGrid
+    Width = 457
+    ExplicitLeft = 8
+    ExplicitWidth = 832
+    ExplicitHeight = 264
+    inherited cxGridDatos: TcxGridDBTableView
+      OptionsView.GroupByBox = True
+      object cxColTipoInstalacion: TcxGridDBColumn
+        Caption = 'Tipo Instalaci'#243'n'
+        DataBinding.FieldName = 'TipoInstalacion'
+        Visible = False
+        GroupIndex = 0
+      end
+      object cxColTipoOrden: TcxGridDBColumn
+        Caption = 'Tipo Orden'
+        DataBinding.FieldName = 'TipoOrden'
+      end
+    end
+  end
+  inherited pnlDatos: TPanel
+    Width = 468
+    inherited cxPageDatos: TcxPageControl
+      Width = 464
+      ExplicitHeight = 178
+      ClientRectRight = 458
+      inherited cxTsDatos: TcxTabSheet
+        inherited dxLYCDatos: TdxLayoutControl
+          Width = 456
+          inherited dxLyDatos: TdxLayoutGroup
+            Index = -1
+          end
+        end
+      end
+    end
+  end
+  inherited cxSplitter1: TcxSplitter
+    ExplicitLeft = 0
+    ExplicitHeight = 270
+  end
+  inherited dxBarManager1: TdxBarManager
+    LookAndFeel.SkinName = ''
+    DockControlHeights = (
+      0
+      0
+      0
+      0)
+    inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
+      FloatClientWidth = 97
+      FloatClientHeight = 307
+    end
+    inherited dxButtonGuardar: TdxBarLargeButton
+      ImageIndex = 9
+    end
+  end
+end

@@ -49,6 +49,9 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
     Height = 264
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = 313
+    ExplicitWidth = 527
+    ExplicitHeight = 446
     object cxGridDatos: TcxGridDBTableView
       PopupMenu = dxPopupGrid
       OnKeyDown = cxGridDatosKeyDown
@@ -95,6 +98,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Properties.ActivateFocusedTab = False
       Properties.CustomButtons.Buttons = <>
       Properties.NavigatorPosition = npRightBottom
+      ExplicitHeight = 301
       ClientRectBottom = 172
       ClientRectLeft = 2
       ClientRectRight = 833
@@ -102,6 +106,8 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       object cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de registro.'
         ImageIndex = 0
+        ExplicitWidth = 293
+        ExplicitHeight = 415
         object dxLYCDatos: TdxLayoutControl
           Left = 0
           Top = 0
@@ -110,6 +116,8 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
           Align = alClient
           TabOrder = 0
           LayoutLookAndFeel = UDMConection.dxStyleForms
+          ExplicitWidth = 293
+          ExplicitHeight = 415
           object dxLyDatos: TdxLayoutGroup
             AlignHorz = ahLeft
             AlignVert = avTop
@@ -128,6 +136,8 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
     Width = 5
     Height = 270
     HotZoneClassName = 'TcxMediaPlayer9Style'
+    ExplicitLeft = 305
+    ExplicitHeight = 452
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET

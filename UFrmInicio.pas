@@ -149,6 +149,10 @@ type
     cxLabel4: TcxLabel;
     actMateriales: TAction;
     LinkMateriales: TdxNavBarItem;
+    actTipoOrden: TAction;
+    LinkTipoOrden: TdxNavBarItem;
+    actAdminCostos: TAction;
+    LinkCostos: TdxNavBarItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -197,6 +201,8 @@ type
     procedure zHiloFolioBeforeOpen(DataSet: TDataSet);
     procedure zHiloFolioBeforeRefresh(DataSet: TDataSet);
     procedure actMaterialesExecute(Sender: TObject);
+    procedure actTipoOrdenExecute(Sender: TObject);
+    procedure actAdminCostosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -223,9 +229,15 @@ Uses
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
   Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos,
-  UfrmCatalogoMateriales;
+  UfrmCatalogoMateriales, UFrmtipoOrden, ufrmCostosInstalacion;
 
 { TForm1 }
+
+procedure TFrmInicio.actAdminCostosExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmCostosInstalacion, FrmCostosInstalacion);
+  FrmCostosInstalacion.Show;
+end;
 
 procedure TFrmInicio.actAutomovilesExecute(Sender: TObject);
 begin
@@ -273,6 +285,12 @@ procedure TFrmInicio.actPuestosExecute(Sender: TObject);
 begin
   application.CreateForm(TfrmPuestos, FrmPuestos);
   frmPuestos.ShowModal;
+end;
+
+procedure TFrmInicio.actTipoOrdenExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmTipoOrden, FrmtipoOrden);
+  FrmtipoOrden.ShowModal;
 end;
 
 procedure TFrmInicio.actUnidadMedidaExecute(Sender: TObject);

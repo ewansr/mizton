@@ -53,7 +53,9 @@ uses
   UFrmConsultas in 'RecursosHumanos\UFrmConsultas.pas' {Form1},
   UFrmRT in 'RecursosHumanos\UFrmRT.pas' {FrmRT},
   uLkJSON in 'lkJSON-1.07\uLkJSON.pas',
-  UFrmCatalogoMateriales in 'RecursosHumanos\UFrmCatalogoMateriales.pas' {FrmCatalogoMateriales};
+  UFrmCatalogoMateriales in 'RecursosHumanos\UFrmCatalogoMateriales.pas' {FrmCatalogoMateriales},
+  UFrmTipoOrden in 'RecursosHumanos\UFrmTipoOrden.pas' {FrmTipoOrden},
+  UFrmCostosInstalacion in 'RecursosHumanos\UFrmCostosInstalacion.pas' {FrmCostosInstalacion};
 
 {$R *.res}
 
@@ -66,5 +68,7 @@ begin
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
   Application.CreateForm(TFrmCatalogoMateriales, FrmCatalogoMateriales);
+  Application.CreateForm(TFrmTipoOrden, FrmTipoOrden);
+  Application.CreateForm(TFrmCostosInstalacion, FrmCostosInstalacion);
   Application.Run;
 end.

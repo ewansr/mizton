@@ -30,7 +30,8 @@ uses
   dxNavBarGroupItems, ActnList, cxSplitter, JvBackgrounds, ExtCtrls,
   AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxGroupBox,
+  Grids, DBGrids;
 
 type
   ClaseHila = Class(TThread)
@@ -129,20 +130,27 @@ type
     dsHiloFolio: TDataSource;
     dxDockPanel1: TdxDockPanel;
     dxFloatDockSite1: TdxFloatDockSite;
+    cxspltr1: TcxSplitter;
+    cxGboxDatos: TcxGroupBox;
+    dbGridDatos: TDBGrid;
+    cxspltr2: TcxSplitter;
     Panel1: TPanel;
-    pnlLiquidadas: TPanel;
-    cxImage2: TcxImage;
-    cxLabel3: TcxLabel;
-    pnlTotal: TPanel;
+    cxGboxTotal: TcxGroupBox;
     cxImage3: TcxImage;
     cxLabel1: TcxLabel;
-    pnlObjetadas: TPanel;
+    cxGboxLiquidadas: TcxGroupBox;
+    cxImage2: TcxImage;
+    cxLabel3: TcxLabel;
+    cxGboxQuejas: TcxGroupBox;
+    cxGboxObjetadas: TcxGroupBox;
+    cxLabel5: TcxLabel;
+    cxImage4: TcxImage;
     img1: TcxImage;
     cxLabel4: TcxLabel;
-    pnlQuejas: TPanel;
-    cxImage4: TcxImage;
-    cxLabel5: TcxLabel;
-    cxspltr1: TcxSplitter;
+    actMateriales: TAction;
+    LinkMateriales: TdxNavBarItem;
+    actTipoOrden: TAction;
+    LinkTipoOrden: TdxNavBarItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -190,6 +198,8 @@ type
     procedure actPuestosExecute(Sender: TObject);
     procedure zHiloFolioBeforeOpen(DataSet: TDataSet);
     procedure zHiloFolioBeforeRefresh(DataSet: TDataSet);
+    procedure actMaterialesExecute(Sender: TObject);
+    procedure actTipoOrdenExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -215,7 +225,8 @@ Uses
   UFrmUnidadMedida, UFrmAbrirEmpresa, UFrmSplash,
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
-  Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos;
+  Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos,
+  UfrmCatalogoMateriales, UFrmtipoOrden;
 
 { TForm1 }
 
@@ -243,6 +254,12 @@ begin
   FrmSelExpediente.ShowModal;
 end;
 
+procedure TFrmInicio.actMaterialesExecute(Sender: TObject);
+begin
+  application.CreateForm(TfrmCatalogoMateriales, FrmCatalogoMateriales);
+  FrmCatalogoMateriales.ShowModal;
+end;
+
 procedure TFrmInicio.actPaisExecute(Sender: TObject);
 begin
   application.CreateForm(TFrmPais, FrmPais);
@@ -259,6 +276,12 @@ procedure TFrmInicio.actPuestosExecute(Sender: TObject);
 begin
   application.CreateForm(TfrmPuestos, FrmPuestos);
   frmPuestos.ShowModal;
+end;
+
+procedure TFrmInicio.actTipoOrdenExecute(Sender: TObject);
+begin
+  application.CreateForm(TFrmTipoOrden, FrmtipoOrden);
+  FrmtipoOrden.ShowModal;
 end;
 
 procedure TFrmInicio.actUnidadMedidaExecute(Sender: TObject);

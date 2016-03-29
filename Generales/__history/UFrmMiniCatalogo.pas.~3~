@@ -108,7 +108,7 @@ begin
   dxButtonActualizar.Enabled := Estado;
   dxButtonNuevo.Enabled := Estado;
 
-  Estado := (zDatos.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
+  Estado := (zDatosUpt.Active) and (zDatosUPT.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
   dxBButtonEditar.Enabled := Estado;
   dxBButtonEliminar.Enabled := Estado;
   dxBButtonBuscar.Enabled := Estado;

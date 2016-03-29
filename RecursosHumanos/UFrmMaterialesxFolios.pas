@@ -728,8 +728,9 @@ end;
 procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  //self.Destroy;
   action := Cafree;
-  self.destroy;
+  //self.destroy;
 end;
 
 procedure TFrmMaterialesxFolios.FormCreate(Sender: TObject);
