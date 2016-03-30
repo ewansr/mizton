@@ -2,15 +2,15 @@ inherited FrmVales: TFrmVales
   Align = alCustom
   Caption = 'Cat'#225'logo de Vales'
   ClientHeight = 756
-  ClientWidth = 963
+  ClientWidth = 622
   OnCreate = FormCreate
-  ExplicitWidth = 969
+  ExplicitWidth = 628
   ExplicitHeight = 785
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
-    Width = 963
-    ExplicitWidth = 985
+    Width = 622
+    ExplicitWidth = 622
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -18,11 +18,11 @@ inherited FrmVales: TFrmVales
   end
   inherited cxGridGral: TcxGrid
     Left = 3
-    Width = 957
+    Width = 616
     Height = 460
     ExplicitLeft = 3
-    ExplicitWidth = 979
-    ExplicitHeight = 355
+    ExplicitWidth = 616
+    ExplicitHeight = 460
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       DataController.DetailKeyFieldNames = 'IdVale'
@@ -63,23 +63,47 @@ inherited FrmVales: TFrmVales
     end
     object cxGridFolios: TcxGridDBTableView [1]
       Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsFolios
       DataController.DetailKeyFieldNames = 'IdVale'
       DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
+      OptionsData.CancelOnExit = False
+      OptionsData.Deleting = False
+      OptionsData.DeletingConfirmation = False
+      OptionsData.Editing = False
+      OptionsData.Inserting = False
+      OptionsView.GroupByBox = False
       object cxColFecha: TcxGridDBColumn
-      end
-      object cxColFolio: TcxGridDBColumn
+        Caption = 'Fecha'
+        DataBinding.FieldName = 'FechaCreacion'
+        Width = 98
       end
       object cxColExpediente: TcxGridDBColumn
+        Caption = 'Expediente'
+        DataBinding.FieldName = 'CodigoPersonal'
+        Width = 104
+      end
+      object cxColFolio: TcxGridDBColumn
+        DataBinding.FieldName = 'Folio'
+        Width = 86
       end
       object cxColTipo: TcxGridDBColumn
+        Caption = 'Tipo de Instalaci'#243'n'
+        DataBinding.FieldName = 'tipoInstalacion'
+        Visible = False
+        GroupIndex = 0
       end
       object cxColestatus2: TcxGridDBColumn
+        DataBinding.FieldName = 'Estatus'
+        Width = 114
       end
       object cxColPago: TcxGridDBColumn
+        Caption = 'Pago'
+        DataBinding.FieldName = 'CostoCobrar'
+        Width = 123
       end
     end
     inherited GridLevel1: TcxGridLevel
@@ -90,26 +114,26 @@ inherited FrmVales: TFrmVales
   end
   inherited pnlDatos: TPanel
     Top = 593
-    Width = 963
+    Width = 622
     Height = 163
-    ExplicitTop = 488
-    ExplicitWidth = 985
+    ExplicitTop = 593
+    ExplicitWidth = 622
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
-      Width = 959
+      Width = 618
       Height = 159
-      ExplicitWidth = 981
+      ExplicitWidth = 618
       ExplicitHeight = 159
       ClientRectBottom = 153
-      ClientRectRight = 953
+      ClientRectRight = 612
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
-        ExplicitWidth = 973
+        ExplicitWidth = 610
         ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 951
+          Width = 610
           Height = 126
-          ExplicitWidth = 973
+          ExplicitWidth = 610
           ExplicitHeight = 126
           object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
@@ -153,7 +177,7 @@ inherited FrmVales: TFrmVales
             Properties.OnChange = cxDateValePropertiesChange
             Style.HotTrack = False
             TabOrder = 3
-            Width = 184
+            Width = 200
           end
           object cxSpinNoSemana: TcxDBSpinEdit [4]
             Left = 385
@@ -257,12 +281,11 @@ inherited FrmVales: TFrmVales
   end
   inherited cxSplitter1: TcxSplitter
     Top = 588
-    Width = 963
+    Width = 622
     Height = 5
     AlignSplitter = salBottom
-    ExplicitLeft = 0
-    ExplicitTop = 483
-    ExplicitWidth = 985
+    ExplicitTop = 588
+    ExplicitWidth = 622
     ExplicitHeight = 5
   end
   inherited dxBarManager1: TdxBarManager
@@ -306,8 +329,8 @@ inherited FrmVales: TFrmVales
     Top = 32
   end
   inherited zDatos: TZQuery
-    Left = 392
-    Top = 96
+    Left = 432
+    Top = 88
   end
   inherited zDatosUpt: TZQuery
     Left = 472

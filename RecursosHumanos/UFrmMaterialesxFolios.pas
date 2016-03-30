@@ -842,7 +842,7 @@ begin
 
     dxbrMateriales.Visible := Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
     cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
-    LblLeyendaVale.Visible :=  Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
+    LblLeyendaVale.Visible :=   (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
 
 
   finally
