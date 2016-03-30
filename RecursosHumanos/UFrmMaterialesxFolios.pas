@@ -141,6 +141,7 @@ type
     cxGboxLeyendas: TcxGroupBox;
     Panel1: TPanel;
     LblSinpago: TcxLabel;
+    LblLeyendaVale: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -840,8 +841,8 @@ begin
 
 
     dxbrMateriales.Visible := Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
-    cxColCantidad.Properties.ReadOnly := Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
-
+    cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
+    LblLeyendaVale.Visible :=  Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
 
 
   finally

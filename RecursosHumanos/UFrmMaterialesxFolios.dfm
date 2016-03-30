@@ -215,6 +215,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Align = alLeft
             Caption = 'Sin informaci'#243'n de pago'
           end
+          object LblLeyendaVale: TcxLabel
+            Left = 301
+            Top = 15
+            Align = alRight
+            Caption = '*El vale est'#225' cerrado no se puede realizar ninguna edici'#243'n.'
+            ParentFont = False
+            Style.Font.Charset = DEFAULT_CHARSET
+            Style.Font.Color = clWindowText
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold, fsItalic]
+            Style.IsFontAssigned = True
+            ExplicitLeft = 304
+          end
         end
       end
     end
