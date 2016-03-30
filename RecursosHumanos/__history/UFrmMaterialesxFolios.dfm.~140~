@@ -59,13 +59,15 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
-          Top = 3
+          Top = 52
           Width = 631
-          Height = 508
+          Height = 459
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
+          ExplicitTop = 3
+          ExplicitHeight = 508
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -80,10 +82,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             OptionsData.Editing = False
             OptionsData.Inserting = False
             OptionsView.NoDataToDisplayInfoText = '<No hay informaci'#243'n disponible>'
+            OptionsView.GroupByBox = False
             OptionsView.GroupRowHeight = 25
             OptionsView.GroupRowStyle = grsOffice11
             OptionsView.Indicator = True
             Styles.Content = UDMConection.cxstylContent
+            Styles.OnGetContentStyle = cxGridDatosStylesGetContentStyle
             Styles.Header = UDMConection.cxstylHeader
             object cxColFolioPrincipal: TcxGridDBColumn
               Caption = 'Folio Maestro'
@@ -95,49 +99,71 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             object cxColCreado: TcxGridDBColumn
               Caption = 'Fecha y Hora Creaci'#243'n'
               DataBinding.FieldName = 'FechaCreacion'
+              PropertiesClassName = 'TcxDateEditProperties'
+              Properties.ReadOnly = True
               Width = 141
             end
             object cxColFolio: TcxGridDBColumn
               DataBinding.FieldName = 'Folio'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 117
             end
             object cxColTelefono: TcxGridDBColumn
               Caption = 'Tel'#233'fono'
               DataBinding.FieldName = 'Telefono'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 123
             end
             object cxColPrincipal: TcxGridDBColumn
               DataBinding.FieldName = 'Principal'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 85
             end
             object cxColSecundario: TcxGridDBColumn
               DataBinding.FieldName = 'Secundario'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 87
-            end
-            object cxColArea: TcxGridDBColumn
-              Caption = #193'rea'
-              DataBinding.FieldName = 'Area'
-              Width = 135
             end
             object cxColContratista: TcxGridDBColumn
               DataBinding.FieldName = 'Contratista'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 125
             end
             object cxColNoVale: TcxGridDBColumn
               Caption = 'No. Vale'
               DataBinding.FieldName = 'NoVale'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 151
             end
             object cxColEstatus: TcxGridDBColumn
               Caption = 'Estatus'
               DataBinding.FieldName = 'estatus'
-              Width = 136
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
+              Width = 115
             end
             object cxColTipoInstalacion: TcxGridDBColumn
               Caption = 'Tipo Instalaci'#243'n'
               DataBinding.FieldName = 'TipoInstalacion'
               Visible = False
               GroupIndex = 1
+            end
+            object cxColTipo: TcxGridDBColumn
+              Caption = 'Tipo'
+              DataBinding.FieldName = 'Ubicacion'
+              Width = 93
+            end
+            object cxColCostoCobrar: TcxGridDBColumn
+              Caption = 'Pago'
+              DataBinding.FieldName = 'CostoCobrar'
+              PropertiesClassName = 'TcxCurrencyEditProperties'
+              Properties.ReadOnly = True
             end
           end
           object cxChartProductividad: TcxGridDBChartView
@@ -161,6 +187,36 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           object cxLvlGrafico: TcxGridLevel
             Caption = 'Gr'#225'fico de productividad semanal'
             GridView = cxChartProductividad
+          end
+        end
+        object cxGboxLeyendas: TcxGroupBox
+          Left = 0
+          Top = 0
+          Align = alTop
+          Caption = 'Informaci'#243'n de apoyo'
+          TabOrder = 1
+          ExplicitLeft = 2
+          ExplicitTop = -3
+          Height = 49
+          Width = 637
+          object Panel1: TPanel
+            AlignWithMargins = True
+            Left = 6
+            Top = 18
+            Width = 19
+            Height = 18
+            Align = alLeft
+            BevelOuter = bvNone
+            BorderStyle = bsSingle
+            Color = 13553407
+            ParentBackground = False
+            TabOrder = 0
+          end
+          object LblSinpago: TcxLabel
+            Left = 28
+            Top = 15
+            Align = alLeft
+            Caption = 'Sin informaci'#243'n de pago'
           end
         end
       end
@@ -644,6 +700,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           BeginGroup = True
           Visible = True
           ItemName = 'dxButtonExportar'
+        end
+        item
+          Visible = True
+          ItemName = 'btnExport2'
         end>
       OneOnRow = True
       Row = 0
@@ -769,9 +829,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
     end
     object dxButtonExportar: TdxBarLargeButton
-      Caption = '&Exportar a Excel'
+      Caption = '&Generar reporte de Materiales'
       Category = 0
-      Hint = 'Exportar a Excel'
+      Hint = 'Generar reporte de Materiales'
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16464
@@ -825,6 +885,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       LargeImageIndex = 12
       OnClick = btnRefreshClick
       AutoGrayScale = False
+    end
+    object btnExport2: TdxBarLargeButton
+      Caption = '&Exportar Grilla a Excel'
+      Category = 0
+      Hint = 'Exportar Grilla a Excel'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      OnClick = btnExport2Click
+      SyncImageIndex = False
+      ImageIndex = 15
     end
   end
   object dsDatos: TDataSource
@@ -962,5 +1032,14 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdMaterialxfolio'
         ParamType = ptUnknown
       end>
+  end
+  object cxStyleRepository1: TcxStyleRepository
+    Left = 664
+    Top = 344
+    PixelsPerInch = 96
+    object cxstylSPago: TcxStyle
+      AssignedValues = [svColor]
+      Color = 13553407
+    end
   end
 end

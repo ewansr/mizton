@@ -135,6 +135,10 @@ type
     cxColTipoInstalacion: TcxGridDBColumn;
     cxColCostoCobrar: TcxGridDBColumn;
     btnExport2: TdxBarLargeButton;
+    cxColTipo: TcxGridDBColumn;
+    cxStyleRepository1: TcxStyleRepository;
+    cxstylSPago: TcxStyle;
+    cxGboxLeyendas: TcxGroupBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -728,6 +732,7 @@ end;
 procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  //self.Destroy;
   action := Cafree;
   //self.destroy;
 end;

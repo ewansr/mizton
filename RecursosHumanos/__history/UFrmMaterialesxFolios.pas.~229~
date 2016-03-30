@@ -29,7 +29,8 @@ uses
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
   cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView,
-  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate, cxSplitter;
+  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate, cxSplitter, cxGridExportLink,
+  ShellAPI, cxCurrencyEdit;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -155,6 +156,7 @@ type
     procedure cxGridMaterialesEditKeyDown(Sender: TcxCustomGridTableView;
       AItem: TcxCustomGridTableItem; AEdit: TcxCustomEdit; var Key: Word;
       Shift: TShiftState);
+    procedure btnExport2Click(Sender: TObject);
   private
     ExApp: Variant;
     { Private declarations }
@@ -265,6 +267,23 @@ begin
     FrmFolioMaterial.ShowModal;
   finally
     btnRefresh.Click;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.btnExport2Click(Sender: TObject);
+var
+  rutaArchivo: string;
+  Excel, Sheet: Variant;
+begin
+  dlgSave1.FileName := '';
+  if dlgSave1.Execute then
+  begin
+    rutaArchivo := dlgSave1.FileName + '.xls';
+    ExportGridToExcel(rutaArchivo, cxGridGral);
+
+
+     if MsgBox.ShowModal('Confirmación.','¿Desea abrir el documento exportado?', cmtConfirmation, [cMbOpen, cmbNo]) = mrYes then
+        ShellExecute(Self.Handle, Nil, PChar(rutaArchivo), '', '', SW_SHOWNORMAL);
   end;
 end;
 
@@ -709,8 +728,9 @@ end;
 procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  //self.Destroy;
   action := Cafree;
-  self.destroy;
+  //self.destroy;
 end;
 
 procedure TFrmMaterialesxFolios.FormCreate(Sender: TObject);

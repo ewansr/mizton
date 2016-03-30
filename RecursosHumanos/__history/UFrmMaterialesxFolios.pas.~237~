@@ -135,6 +135,12 @@ type
     cxColTipoInstalacion: TcxGridDBColumn;
     cxColCostoCobrar: TcxGridDBColumn;
     btnExport2: TdxBarLargeButton;
+    cxColTipo: TcxGridDBColumn;
+    cxStyleRepository1: TcxStyleRepository;
+    cxstylSPago: TcxStyle;
+    cxGboxLeyendas: TcxGroupBox;
+    Panel1: TPanel;
+    LblSinpago: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -157,6 +163,9 @@ type
       AItem: TcxCustomGridTableItem; AEdit: TcxCustomEdit; var Key: Word;
       Shift: TShiftState);
     procedure btnExport2Click(Sender: TObject);
+    procedure cxGridDatosStylesGetContentStyle(Sender: TcxCustomGridTableView;
+      ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
+      var AStyle: TcxStyle);
   private
     ExApp: Variant;
     { Private declarations }
@@ -315,6 +324,18 @@ procedure TFrmMaterialesxFolios.cxDateDesdePropertiesChange(Sender: TObject);
 begin
   cxDateDesde.Date := StartOfTheWeek(cxDateDesde.Date);
   cxDateHasta.Date := EndOfTheWeek(cxDateDesde.Date);
+end;
+
+procedure TFrmMaterialesxFolios.cxGridDatosStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
+begin
+  try
+    if ARecord.values[cxColCostoCobrar.Index] = 'S/P' then
+      AStyle := cxstylSPago;
+  except
+    ;
+  end;
 end;
 
 procedure TFrmMaterialesxFolios.cxGridGralActiveTabChanged(
@@ -728,8 +749,9 @@ end;
 procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  //self.Destroy;
   action := Cafree;
-  self.destroy;
+  //self.destroy;
 end;
 
 procedure TFrmMaterialesxFolios.FormCreate(Sender: TObject);

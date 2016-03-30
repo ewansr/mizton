@@ -96,38 +96,54 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             object cxColCreado: TcxGridDBColumn
               Caption = 'Fecha y Hora Creaci'#243'n'
               DataBinding.FieldName = 'FechaCreacion'
+              PropertiesClassName = 'TcxDateEditProperties'
+              Properties.ReadOnly = True
               Width = 141
             end
             object cxColFolio: TcxGridDBColumn
               DataBinding.FieldName = 'Folio'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 117
             end
             object cxColTelefono: TcxGridDBColumn
               Caption = 'Tel'#233'fono'
               DataBinding.FieldName = 'Telefono'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 123
             end
             object cxColPrincipal: TcxGridDBColumn
               DataBinding.FieldName = 'Principal'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 85
             end
             object cxColSecundario: TcxGridDBColumn
               DataBinding.FieldName = 'Secundario'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 87
             end
             object cxColContratista: TcxGridDBColumn
               DataBinding.FieldName = 'Contratista'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 125
             end
             object cxColNoVale: TcxGridDBColumn
               Caption = 'No. Vale'
               DataBinding.FieldName = 'NoVale'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 151
             end
             object cxColEstatus: TcxGridDBColumn
               Caption = 'Estatus'
               DataBinding.FieldName = 'estatus'
-              Width = 136
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
+              Width = 115
             end
             object cxColTipoInstalacion: TcxGridDBColumn
               Caption = 'Tipo Instalaci'#243'n'
@@ -135,9 +151,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               Visible = False
               GroupIndex = 1
             end
+            object cxColTipo: TcxGridDBColumn
+              Caption = 'Tipo'
+              DataBinding.FieldName = 'Ubicacion'
+              Width = 93
+            end
             object cxColCostoCobrar: TcxGridDBColumn
               Caption = 'Pago'
               DataBinding.FieldName = 'CostoCobrar'
+              PropertiesClassName = 'TcxCurrencyEditProperties'
+              Properties.ReadOnly = True
             end
           end
           object cxChartProductividad: TcxGridDBChartView
@@ -836,6 +859,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Hint = 'Exportar Grilla a Excel'
       Visible = ivAlways
       LargeImageIndex = 15
+      OnClick = btnExport2Click
       SyncImageIndex = False
       ImageIndex = 15
     end
@@ -975,5 +999,14 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdMaterialxfolio'
         ParamType = ptUnknown
       end>
+  end
+  object cxStyleRepository1: TcxStyleRepository
+    Left = 664
+    Top = 344
+    PixelsPerInch = 96
+    object cxstylSPago: TcxStyle
+      AssignedValues = [svColor]
+      Color = 13553407
+    end
   end
 end

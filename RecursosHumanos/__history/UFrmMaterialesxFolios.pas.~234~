@@ -29,7 +29,8 @@ uses
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar,
   cxGroupBox, dxLayoutControlAdapters, Menus, StdCtrls, cxButtons, DateUtils,
   cxImage, cxDBEdit, cxLabel, cxDBLabel, cxGridChartView, cxGridDBChartView,
-  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate, cxSplitter;
+  ExportaExcel, ComObj, strUtils, cxSpinEdit, ZSqlUpdate, cxSplitter, cxGridExportLink,
+  ShellAPI, cxCurrencyEdit;
 
 type
   TFrmMaterialesxFolios = class(TForm)
@@ -83,7 +84,6 @@ type
     cxColTelefono: TcxGridDBColumn;
     cxColPrincipal: TcxGridDBColumn;
     cxColSecundario: TcxGridDBColumn;
-    cxColArea: TcxGridDBColumn;
     cxColContratista: TcxGridDBColumn;
     cxColNoVale: TcxGridDBColumn;
     CxGrdMat: TcxGrid;
@@ -133,6 +133,14 @@ type
     btnSaveChanges: TcxButton;
     cxSplitter1: TcxSplitter;
     cxColTipoInstalacion: TcxGridDBColumn;
+    cxColCostoCobrar: TcxGridDBColumn;
+    btnExport2: TdxBarLargeButton;
+    cxColTipo: TcxGridDBColumn;
+    cxStyleRepository1: TcxStyleRepository;
+    cxstylSPago: TcxStyle;
+    cxGboxLeyendas: TcxGroupBox;
+    Panel1: TPanel;
+    LblSinpago: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -154,6 +162,10 @@ type
     procedure cxGridMaterialesEditKeyDown(Sender: TcxCustomGridTableView;
       AItem: TcxCustomGridTableItem; AEdit: TcxCustomEdit; var Key: Word;
       Shift: TShiftState);
+    procedure btnExport2Click(Sender: TObject);
+    procedure cxGridDatosStylesGetContentStyle(Sender: TcxCustomGridTableView;
+      ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
+      var AStyle: TcxStyle);
   private
     ExApp: Variant;
     { Private declarations }
@@ -267,6 +279,23 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.btnExport2Click(Sender: TObject);
+var
+  rutaArchivo: string;
+  Excel, Sheet: Variant;
+begin
+  dlgSave1.FileName := '';
+  if dlgSave1.Execute then
+  begin
+    rutaArchivo := dlgSave1.FileName + '.xls';
+    ExportGridToExcel(rutaArchivo, cxGridGral);
+
+
+     if MsgBox.ShowModal('Confirmación.','¿Desea abrir el documento exportado?', cmtConfirmation, [cMbOpen, cmbNo]) = mrYes then
+        ShellExecute(Self.Handle, Nil, PChar(rutaArchivo), '', '', SW_SHOWNORMAL);
+  end;
+end;
+
 procedure TFrmMaterialesxFolios.btnRefreshClick(Sender: TObject);
 var
   Cursor: TCursor;
@@ -295,6 +324,14 @@ procedure TFrmMaterialesxFolios.cxDateDesdePropertiesChange(Sender: TObject);
 begin
   cxDateDesde.Date := StartOfTheWeek(cxDateDesde.Date);
   cxDateHasta.Date := EndOfTheWeek(cxDateDesde.Date);
+end;
+
+procedure TFrmMaterialesxFolios.cxGridDatosStylesGetContentStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
+begin
+  if ARecord.Values then
+
 end;
 
 procedure TFrmMaterialesxFolios.cxGridGralActiveTabChanged(
@@ -708,7 +745,9 @@ end;
 procedure TFrmMaterialesxFolios.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  //self.Destroy;
   action := Cafree;
+  //self.destroy;
 end;
 
 procedure TFrmMaterialesxFolios.FormCreate(Sender: TObject);

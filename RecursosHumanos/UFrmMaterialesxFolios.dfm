@@ -59,9 +59,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
-          Top = 3
+          Top = 52
           Width = 631
-          Height = 508
+          Height = 459
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
@@ -80,11 +80,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             OptionsData.Editing = False
             OptionsData.Inserting = False
             OptionsView.NoDataToDisplayInfoText = '<No hay informaci'#243'n disponible>'
+            OptionsView.Footer = True
             OptionsView.GroupByBox = False
             OptionsView.GroupRowHeight = 25
             OptionsView.GroupRowStyle = grsOffice11
             OptionsView.Indicator = True
             Styles.Content = UDMConection.cxstylContent
+            Styles.OnGetContentStyle = cxGridDatosStylesGetContentStyle
             Styles.Header = UDMConection.cxstylHeader
             object cxColFolioPrincipal: TcxGridDBColumn
               Caption = 'Folio Maestro'
@@ -143,13 +145,18 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               DataBinding.FieldName = 'estatus'
               PropertiesClassName = 'TcxTextEditProperties'
               Properties.ReadOnly = True
-              Width = 136
+              Width = 115
             end
             object cxColTipoInstalacion: TcxGridDBColumn
               Caption = 'Tipo Instalaci'#243'n'
               DataBinding.FieldName = 'TipoInstalacion'
               Visible = False
               GroupIndex = 1
+            end
+            object cxColTipo: TcxGridDBColumn
+              Caption = 'Tipo'
+              DataBinding.FieldName = 'Ubicacion'
+              Width = 93
             end
             object cxColCostoCobrar: TcxGridDBColumn
               Caption = 'Pago'
@@ -179,6 +186,34 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           object cxLvlGrafico: TcxGridLevel
             Caption = 'Gr'#225'fico de productividad semanal'
             GridView = cxChartProductividad
+          end
+        end
+        object cxGboxLeyendas: TcxGroupBox
+          Left = 0
+          Top = 0
+          Align = alTop
+          Caption = 'Informaci'#243'n de apoyo'
+          TabOrder = 1
+          Height = 49
+          Width = 637
+          object Panel1: TPanel
+            AlignWithMargins = True
+            Left = 6
+            Top = 18
+            Width = 19
+            Height = 18
+            Align = alLeft
+            BevelOuter = bvNone
+            BorderStyle = bsSingle
+            Color = 13553407
+            ParentBackground = False
+            TabOrder = 0
+          end
+          object LblSinpago: TcxLabel
+            Left = 28
+            Top = 15
+            Align = alLeft
+            Caption = 'Sin informaci'#243'n de pago'
           end
         end
       end
@@ -673,7 +708,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = True
       WholeRow = False
     end
-    object dxbrManager1Bar1: TdxBar
+    object dxbrMateriales: TdxBar
       Caption = 'Materiales'
       CaptionButtons = <>
       DockControl = dxDockBar1
@@ -994,5 +1029,14 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Name = 'IdMaterialxfolio'
         ParamType = ptUnknown
       end>
+  end
+  object cxStyleRepository1: TcxStyleRepository
+    Left = 664
+    Top = 344
+    PixelsPerInch = 96
+    object cxstylSPago: TcxStyle
+      AssignedValues = [svColor]
+      Color = 13553407
+    end
   end
 end

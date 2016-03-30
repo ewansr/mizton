@@ -10,7 +10,7 @@ inherited FrmVales: TFrmVales
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     Width = 622
-    ExplicitWidth = 985
+    ExplicitWidth = 622
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -20,9 +20,8 @@ inherited FrmVales: TFrmVales
     Left = 3
     Width = 616
     Height = 460
-    ExplicitLeft = -2
-    ExplicitTop = 122
-    ExplicitWidth = 957
+    ExplicitLeft = 3
+    ExplicitWidth = 616
     ExplicitHeight = 460
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
@@ -117,24 +116,24 @@ inherited FrmVales: TFrmVales
     Top = 593
     Width = 622
     Height = 163
-    ExplicitTop = 488
-    ExplicitWidth = 985
+    ExplicitTop = 593
+    ExplicitWidth = 622
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
       Width = 618
       Height = 159
-      ExplicitWidth = 981
+      ExplicitWidth = 618
       ExplicitHeight = 159
       ClientRectBottom = 153
       ClientRectRight = 612
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
-        ExplicitWidth = 973
+        ExplicitWidth = 610
         ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
           Width = 610
           Height = 126
-          ExplicitWidth = 973
+          ExplicitWidth = 610
           ExplicitHeight = 126
           object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
@@ -285,9 +284,8 @@ inherited FrmVales: TFrmVales
     Width = 622
     Height = 5
     AlignSplitter = salBottom
-    ExplicitLeft = 0
-    ExplicitTop = 483
-    ExplicitWidth = 985
+    ExplicitTop = 588
+    ExplicitWidth = 622
     ExplicitHeight = 5
   end
   inherited dxBarManager1: TdxBarManager

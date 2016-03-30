@@ -96,42 +96,53 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             object cxColCreado: TcxGridDBColumn
               Caption = 'Fecha y Hora Creaci'#243'n'
               DataBinding.FieldName = 'FechaCreacion'
+              PropertiesClassName = 'TcxDateEditProperties'
+              Properties.ReadOnly = True
               Width = 141
             end
             object cxColFolio: TcxGridDBColumn
               DataBinding.FieldName = 'Folio'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 117
             end
             object cxColTelefono: TcxGridDBColumn
               Caption = 'Tel'#233'fono'
               DataBinding.FieldName = 'Telefono'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 123
             end
             object cxColPrincipal: TcxGridDBColumn
               DataBinding.FieldName = 'Principal'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 85
             end
             object cxColSecundario: TcxGridDBColumn
               DataBinding.FieldName = 'Secundario'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 87
-            end
-            object cxColArea: TcxGridDBColumn
-              Caption = #193'rea'
-              DataBinding.FieldName = 'Area'
-              Width = 135
             end
             object cxColContratista: TcxGridDBColumn
               DataBinding.FieldName = 'Contratista'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 125
             end
             object cxColNoVale: TcxGridDBColumn
               Caption = 'No. Vale'
               DataBinding.FieldName = 'NoVale'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 151
             end
             object cxColEstatus: TcxGridDBColumn
               Caption = 'Estatus'
               DataBinding.FieldName = 'estatus'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.ReadOnly = True
               Width = 136
             end
             object cxColTipoInstalacion: TcxGridDBColumn
@@ -139,6 +150,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
               DataBinding.FieldName = 'TipoInstalacion'
               Visible = False
               GroupIndex = 1
+            end
+            object cxColTipo: TcxGridDBColumn
+              Caption = 'Tipo'
+              DataBinding.FieldName = 'Ubicacion'
+            end
+            object cxColCostoCobrar: TcxGridDBColumn
+              Caption = 'Pago'
+              DataBinding.FieldName = 'CostoCobrar'
+              PropertiesClassName = 'TcxCurrencyEditProperties'
+              Properties.ReadOnly = True
             end
           end
           object cxChartProductividad: TcxGridDBChartView
@@ -645,6 +666,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           BeginGroup = True
           Visible = True
           ItemName = 'dxButtonExportar'
+        end
+        item
+          Visible = True
+          ItemName = 'btnExport2'
         end>
       OneOnRow = True
       Row = 0
@@ -770,9 +795,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
     end
     object dxButtonExportar: TdxBarLargeButton
-      Caption = '&Exportar a Excel'
+      Caption = '&Generar reporte de Materiales'
       Category = 0
-      Hint = 'Exportar a Excel'
+      Hint = 'Generar reporte de Materiales'
       Visible = ivAlways
       LargeImageIndex = 15
       ShortCut = 16464
@@ -826,6 +851,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       LargeImageIndex = 12
       OnClick = btnRefreshClick
       AutoGrayScale = False
+    end
+    object btnExport2: TdxBarLargeButton
+      Caption = '&Exportar Grilla a Excel'
+      Category = 0
+      Hint = 'Exportar Grilla a Excel'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      OnClick = btnExport2Click
+      SyncImageIndex = False
+      ImageIndex = 15
     end
   end
   object dsDatos: TDataSource
