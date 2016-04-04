@@ -227,7 +227,13 @@ end;
 
 procedure TFrmPersonal.dxBButtonEliminarClick(Sender: TObject);
 begin
-  zDatosAfterScroll(nil);
+  FiltrarDataset(zAuto, 'IdPersonal,NoLibres', [zDatos.FieldByName('IdPersonal').AsInteger, 'Si']);
+  if zAuto.Active then
+    zAuto.Refresh
+  else
+    zAuto.Open;
+
+
   if zAuto.RecordCount > 0 then
   begin
     msgbox.ShowModal('Aviso', 'El sistema no puede generar este movimiento, debido a que empleado que intentas eliminar aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [cmbOK]);

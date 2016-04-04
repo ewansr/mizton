@@ -28,7 +28,7 @@ uses
   cxContainer, dxLayoutcxEditAdapters, cxDropDownEdit, cxCalendar, cxDBEdit,
   cxMaskEdit, cxTextEdit, cxImage, UConection, cxSpinEdit, cxLookupEdit,
   cxDBLookupEdit, cxDBLookupComboBox, dxLayoutControlAdapters, Menus, StdCtrls,
-  cxButtons, cxLabel, cxDBLabel;
+  cxButtons, cxLabel, cxDBLabel, UMsgBox;
 
 type
   TFrmPersonal = class(TFrmCatalogo)
@@ -139,12 +139,20 @@ type
     dxLayControl1Group3: TdxLayoutAutoCreatedGroup;
     zAuto: TZQuery;
     dsAuto: TDataSource;
+    cbbPuesto: TcxDBLookupComboBox;
+    lyPuesto: TdxLayoutItem;
+    zPuestos: TZQuery;
+    dsPuestos: TDataSource;
+    cxTextExpTelmex: TcxDBTextEdit;
+    lyExpTelmex: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure AsignarClick(Sender: TObject);
     procedure zDatosAfterScroll(DataSet: TDataSet);
     procedure cxTabAutomovilShow(Sender: TObject);
     procedure btnQuitarClick(Sender: TObject);
+    procedure btnBajaClick(Sender: TObject);
+    procedure dxBButtonEliminarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -181,6 +189,15 @@ begin
   end;
 end;
 
+procedure TFrmPersonal.btnBajaClick(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+  if zAuto.RecordCount > 0 then
+  begin
+    msgbox.ShowModal('Aviso', 'El sistema no puede generar este movimiento, debido a que empleado que intentas dar de baja aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [cmbOK]);
+  end;
+end;
+
 procedure TFrmPersonal.btnQuitarClick(Sender: TObject);
 var
   Cursor: TCursor;
@@ -208,6 +225,17 @@ begin
   zDatosAfterScroll(nil);
 end;
 
+procedure TFrmPersonal.dxBButtonEliminarClick(Sender: TObject);
+begin
+  zDatosAfterScroll(nil);
+  if zAuto.RecordCount > 0 then
+  begin
+    msgbox.ShowModal('Aviso', 'El sistema no puede generar este movimiento, debido a que empleado que intentas eliminar aun tiene registrado un vehiculo en su poder, asegúrate que haya entregado las llaves del automóvil a la empresa y de revisar el estado del mismo.', cmtInformation, [cmbOK]);
+  end
+  else
+    inherited;
+end;
+
 procedure TFrmPersonal.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -225,6 +253,16 @@ procedure TFrmPersonal.FormShow(Sender: TObject);
 begin
   inherited;
   cxPagedatos.ActivePage := cxTsDatos;
+
+
+  AsignarSQL(zPuestos, 'mt_puestos', pReadOnly);
+  FiltrarDataset(zPuestos, 'IdPuesto', ['-1']);
+
+  if zPuestos.Active then
+    zPuestos.Refresh
+  else
+    zPuestos.Open;
+
 end;
 
 procedure TFrmPersonal.zDatosAfterScroll(DataSet: TDataSet);
@@ -237,14 +275,14 @@ begin
     if cxTabAutomovil.Showing then
     begin
 
-      FiltrarDataset(zAuto, 'IdPersonal', [zDatos.FieldByName('IdPersonal').AsInteger]);
+      FiltrarDataset(zAuto, 'IdPersonal,NoLibres', [zDatos.FieldByName('IdPersonal').AsInteger, 'Si']);
       if zAuto.Active then
         zAuto.Refresh
       else
         zAuto.Open;
 
-      Asignar.Enabled := (zAuto.RecordCount = 0) or ((zAuto.RecordCount > 0) and (zAuto.FieldByName('Estatus').AsString = 'Libre'));
-      btnQuitar.Enabled := (zAuto.RecordCount > 0) or ((zAuto.RecordCount > 0) and (zAuto.FieldByName('Estatus').AsString <> 'Libre'));
+      Asignar.Enabled := (zAuto.RecordCount = 0);
+      btnQuitar.Enabled := (zAuto.RecordCount > 0);
     end;
   finally
     Screen.Cursor := Cursor;

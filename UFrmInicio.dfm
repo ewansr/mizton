@@ -3926,13 +3926,16 @@ object FrmInicio: TFrmInicio
     Top = 296
   end
   object dxFloatDockSite1: TdxFloatDockSite
-    Left = 0
+    Left = 286
     Top = 0
-    Width = 853
-    Height = 561
+    Width = 709
+    Height = 765
     Visible = False
     FloatLeft = 564
     FloatTop = 236
+    ExplicitLeft = 0
+    ExplicitWidth = 853
+    ExplicitHeight = 561
     DockingType = 0
     OriginalWidth = 853
     OriginalHeight = 561

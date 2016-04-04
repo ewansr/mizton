@@ -351,8 +351,6 @@ inherited FrmPersonal: TFrmPersonal
             TabOrder = 1
             Properties.ActivePage = cxTabDireccion
             Properties.CustomButtons.Buttons = <>
-            ExplicitTop = 262
-            ExplicitHeight = 341
             ClientRectBottom = 311
             ClientRectLeft = 2
             ClientRectRight = 415
@@ -360,7 +358,6 @@ inherited FrmPersonal: TFrmPersonal
             object cxTabDireccion: TcxTabSheet
               Caption = 'Direcci'#243'n / Contacto'
               ImageIndex = 0
-              ExplicitHeight = 308
               object dxLayControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
@@ -371,7 +368,6 @@ inherited FrmPersonal: TFrmPersonal
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
-                ExplicitHeight = 302
                 object cxMaskTel: TcxDBMaskEdit
                   Left = 74
                   Top = 11
@@ -602,7 +598,6 @@ inherited FrmPersonal: TFrmPersonal
             object cxTabSheet2: TcxTabSheet
               Caption = 'Datos para empleo'
               ImageIndex = 1
-              ExplicitHeight = 308
               object dxLayoutControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
@@ -613,7 +608,6 @@ inherited FrmPersonal: TFrmPersonal
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
-                ExplicitHeight = 302
                 object cxTextCURP: TcxDBTextEdit
                   Left = 92
                   Top = 38
@@ -794,7 +788,6 @@ inherited FrmPersonal: TFrmPersonal
               Caption = 'Autom'#243'vil'
               ImageIndex = 2
               OnShow = cxTabAutomovilShow
-              ExplicitHeight = 308
               object dxLayoutControl2: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 3
@@ -803,7 +796,6 @@ inherited FrmPersonal: TFrmPersonal
                 Height = 278
                 Align = alClient
                 TabOrder = 0
-                ExplicitHeight = 302
                 object DbLblMatricula: TcxDBLabel
                   Left = 66
                   Top = 190
@@ -985,6 +977,8 @@ inherited FrmPersonal: TFrmPersonal
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 153
       FloatClientHeight = 339
       ItemLinks = <
@@ -1039,7 +1033,7 @@ inherited FrmPersonal: TFrmPersonal
       Caption = 'Generar Baja'
       Category = 0
       Hint = 'Generar Baja'
-      Visible = ivAlways
+      Visible = ivNever
       LargeImageIndex = 19
       OnClick = btnBajaClick
     end
