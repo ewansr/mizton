@@ -12187,7 +12187,7 @@ object UDMConection: TUDMConection
     Height = 32
     Width = 32
     FormatVersion = 1
-    DesignInfo = 12058920
+    DesignInfo = 14680360
     ImageInfo = <
       item
         Image.Data = {
@@ -14852,7 +14852,7 @@ object UDMConection: TUDMConection
   end
   object cxMizton16: TcxImageList
     FormatVersion = 1
-    DesignInfo = 8913192
+    DesignInfo = 10486056
     ImageInfo = <
       item
         Image.Data = {
@@ -15594,10 +15594,5 @@ object UDMConection: TUDMConection
           0000000000000000000003040F1018195C5F3534BDC24342F0F64342F0F63534
           BDC218195C5E03040F1000000000000000000000000000000000}
       end>
-  end
-  object zKardex: TZQuery
-    Params = <>
-    Left = 352
-    Top = 168
   end
 end

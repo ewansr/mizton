@@ -31,7 +31,7 @@ uses
   AdvSmoothSlider, dxDockControl, dxDockPanel, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxNavigator, cxDBData, cxGridLevel, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, cxGroupBox,
-  Grids, DBGrids, cxDBLabel;
+  Grids, DBGrids;
 
 type
   ClaseHila = Class(TThread)
@@ -155,10 +155,6 @@ type
     LinkCostos: TdxNavBarItem;
     actConsultarOrd: TAction;
     LinkConsultaOrdenes: TdxNavBarItem;
-    DbLblLiquidadas: TcxDBLabel;
-    DbLblObjetadas: TcxDBLabel;
-    DbLblQuejas: TcxDBLabel;
-    DbLblTotal: TcxDBLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -210,8 +206,6 @@ type
     procedure actTipoOrdenExecute(Sender: TObject);
     procedure actAdminCostosExecute(Sender: TObject);
     procedure actConsultarOrdExecute(Sender: TObject);
-    procedure zHiloFolioAfterOpen(DataSet: TDataSet);
-    procedure zHiloFolioAfterRefresh(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -311,15 +305,10 @@ end;
 
 procedure TFrmInicio.actualizarFolios;
 begin
-  try
-    if zHiloFolio.Active then
-      zHiloFolio.Refresh
-    else
-      zHiloFolio.Open;
-  except
-    on e: exception do
-      ;
-  end;
+  if zHiloFolio.Active then
+    zHiloFolio.Refresh
+  else
+    zHiloFolio.Open;
 end;
 
 procedure TFrmInicio.actUnidadMedidaExecute(Sender: TObject);
@@ -740,28 +729,16 @@ begin
   end;
 end;
 
-procedure TFrmInicio.zHiloFolioAfterOpen(DataSet: TDataSet);
-begin
-    if Not UDMConection.conBd.Ping then
-    UDMConection.conBd.Reconnect;
-end;
-
-procedure TFrmInicio.zHiloFolioAfterRefresh(DataSet: TDataSet);
-begin
-    if Not UDMConection.conBd.Ping then
-    UDMConection.conBd.Reconnect;
-end;
-
 procedure TFrmInicio.zHiloFolioBeforeOpen(DataSet: TDataSet);
 begin
-  if Not UDMConection.conBd.Ping then
-    UDMConection.conBd.Reconnect;
+  if Not UDMConection.conANSI.Ping then
+    UDMConection.conAnsi.Reconnect;
 end;
 
 procedure TFrmInicio.zHiloFolioBeforeRefresh(DataSet: TDataSet);
 begin
-  if Not UDMConection.conBd.Ping then
-    UDMConection.conBd.Reconnect;
+  if Not UDMConection.conANSI.Ping then
+    UDMConection.conAnsi.Reconnect;
 end;
 
 { ClaseHila }
@@ -784,10 +761,39 @@ Function THilo.LeerFolios: Integer;
 
 begin
   try
-    Frminicio.actualizarFolios;
+    try
+
+      //if Not assigned(zHiloFolios) then
+      //begin
+       // UDMConection.inicializaConAnsi;
+        //FrmInicio.zHiloFolio := TZQuery.Create(nil);
+        //FrmInicio.zHiloFolio := UDMConection.conANSI;
+        //FrmInicio.zHiloFolio.SQL.Text := 'Select count(*) as Folios from mt_foliosxtecnicos where fechaCreacion = CurDate()';
+      //end;
+
+
+
+//      if NuevoCountFolio <> FrmInicio.zHiloFolio.FieldByName('Folios').AsInteger then
+//      begin
+//        Result := FrmInicio.zHiloFolio.FieldByName('Folios').asinteger;
+//        NuevoCountFolio := Result;
+//      end;
+    finally
+      //zHiloFolios.free;
+    end;
   Except
-    ON E: exception do
       ;
+      //showmessage(e.Message);
+
+//    try
+//      if Not UDMConection.conANSI.Ping then
+//        UDMConection.conAnsi.Reconnect;
+//
+//      if Not UDMConection.conANSI.Ping then
+//        UDMConection.conAnsi.Reconnect;
+//    Except
+//      ;
+//    end;
   end;
 end;
 

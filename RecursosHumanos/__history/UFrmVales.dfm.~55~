@@ -1,5 +1,4 @@
 inherited FrmVales: TFrmVales
-  BorderIcons = [biSystemMenu, biMinimize, biMaximize]
   BorderStyle = bsSizeable
   Caption = 'Cat'#225'logo de Vales'
   ClientHeight = 549

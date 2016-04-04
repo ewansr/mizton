@@ -78,7 +78,6 @@ type
     procedure btnReporteClick(Sender: TObject);
     procedure cxCheckOrignPropertiesChange(Sender: TObject);
     procedure cxCheckExpedientePropertiesChange(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -162,7 +161,7 @@ end;
 
 procedure TFrmConsultas.cxCheckExpedientePropertiesChange(Sender: TObject);
 begin
-  lyExpediente.Enabled :=  cxCheckExpediente.Checked;
+  lyExpediente.Enabled := cxCheckExpediente.Checked;
 end;
 
 procedure TFrmConsultas.cxCheckOrignPropertiesChange(Sender: TObject);
@@ -172,11 +171,6 @@ begin
 
 end;
 
-procedure TFrmConsultas.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  action := Cafree;
-end;
-
 procedure TFrmConsultas.FormShow(Sender: TObject);
 begin
   AsignarSQL(zDatos, 'mt_foliosxtecnicos', pReadOnly);
@@ -184,6 +178,7 @@ begin
 
   cxDatedesde.date := StartOfTheWeek(Now);
   cxDateHasta.date := EndOfTheWeek(now);
+
 end;
 
 end.

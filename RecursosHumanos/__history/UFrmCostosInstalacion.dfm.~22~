@@ -101,12 +101,7 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
             Top = 11
             DataBinding.DataField = 'IdTipoOrden'
             DataBinding.DataSource = dsDatosUpt
-            Properties.KeyFieldNames = 'Idtipo'
-            Properties.ListColumns = <
-              item
-                FieldName = 'TipoOrden'
-              end>
-            Properties.ListSource = dsTO
+            Properties.ListColumns = <>
             Style.HotTrack = False
             TabOrder = 3
             Width = 145

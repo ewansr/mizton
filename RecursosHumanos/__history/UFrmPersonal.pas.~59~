@@ -143,8 +143,6 @@ type
     lyPuesto: TdxLayoutItem;
     zPuestos: TZQuery;
     dsPuestos: TDataSource;
-    cxTextExpTelmex: TcxDBTextEdit;
-    lyExpTelmex: TdxLayoutItem;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure AsignarClick(Sender: TObject);

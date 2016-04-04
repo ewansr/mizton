@@ -76,9 +76,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnReporteClick(Sender: TObject);
-    procedure cxCheckOrignPropertiesChange(Sender: TObject);
-    procedure cxCheckExpedientePropertiesChange(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -129,52 +126,11 @@ begin
 end;
 
 procedure TFrmConsultas.btnReporteClick(Sender: TObject);
-var
-  Inicio: String;
-  Termino: String;
-  Expediente: String;
 begin
-  if cxCheckOrign.Checked then
-  begin
-    Inicio := '-1';
-    Termino := '-1';
-  end
-  else
-  begin
-    Inicio := fechaSQL(cxDateDesde.date);
-    Termino := fechaSQL(cxDateHasta.date);
-  end;
-
-  if  cxCheckExpediente.Checked then
-    Expediente := cxTextExpediente.Text
-  else
-    Expediente := '-1';
-
-  FiltrarDataset(zDatos, 'IdFolio,Expediente,Desde,Hasta', ['-1',Expediente,Inicio,Termino]);
-
-
-
   if zDatos.Active then
     zDatos.Refresh
   else
     zDatos.Open;
-end;
-
-procedure TFrmConsultas.cxCheckExpedientePropertiesChange(Sender: TObject);
-begin
-  lyExpediente.Enabled :=  cxCheckExpediente.Checked;
-end;
-
-procedure TFrmConsultas.cxCheckOrignPropertiesChange(Sender: TObject);
-begin
-  lyDesde.Enabled := Not cxCheckOrign.Checked;
-  lyHasta.Enabled := Not cxCheckOrign.Checked;
-
-end;
-
-procedure TFrmConsultas.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  action := Cafree;
 end;
 
 procedure TFrmConsultas.FormShow(Sender: TObject);
@@ -182,8 +138,8 @@ begin
   AsignarSQL(zDatos, 'mt_foliosxtecnicos', pReadOnly);
   FiltrarDataset(zDatos, 'IdFolio', ['-1']);
 
-  cxDatedesde.date := StartOfTheWeek(Now);
-  cxDateHasta.date := EndOfTheWeek(now);
+  cxd
+
 end;
 
 end.

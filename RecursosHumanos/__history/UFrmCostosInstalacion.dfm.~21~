@@ -101,12 +101,7 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
             Top = 11
             DataBinding.DataField = 'IdTipoOrden'
             DataBinding.DataSource = dsDatosUpt
-            Properties.KeyFieldNames = 'Idtipo'
-            Properties.ListColumns = <
-              item
-                FieldName = 'TipoOrden'
-              end>
-            Properties.ListSource = dsTO
+            Properties.ListColumns = <>
             Style.HotTrack = False
             TabOrder = 3
             Width = 145
@@ -253,15 +248,5 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   inherited dlgSave1: TSaveDialog
     Left = 192
     Top = 280
-  end
-  object zTO: TZQuery
-    Params = <>
-    Left = 352
-    Top = 288
-  end
-  object dsTO: TDataSource
-    DataSet = zTO
-    Left = 360
-    Top = 296
   end
 end

@@ -19,7 +19,6 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
       OriginalHeight = 200
       inherited dxlytdckst1: TdxLayoutDockSite
         Height = 594
-        ExplicitWidth = 743
         ExplicitHeight = 594
         DockingType = 0
         OriginalWidth = 300
@@ -33,8 +32,7 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
         OriginalWidth = 185
         OriginalHeight = 140
         inherited cxGridGral: TcxGrid
-          Height = 560
-          ExplicitWidth = 729
+          Height = 558
           ExplicitHeight = 558
           inherited cxGridDatos: TcxGridDBTableView
             DataController.DataSource = dsDatos
@@ -69,7 +67,6 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
             end
             object cxColestatus: TcxGridDBColumn
               Caption = 'Estatus'
-              DataBinding.FieldName = 'estatus'
               Width = 101
             end
           end
@@ -83,9 +80,9 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
       OriginalWidth = 390
       OriginalHeight = 140
       inherited cxPageDatos: TcxPageControl
-        Height = 566
+        Height = 564
         ExplicitHeight = 564
-        ClientRectBottom = 562
+        ClientRectBottom = 558
         inherited cxTsDatos: TcxTabSheet
           Caption = 'Informaci'#243'n detallada'
           ExplicitHeight = 531
@@ -93,12 +90,9 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 372
-            Height = 532
-            ExplicitLeft = 3
-            ExplicitTop = 3
-            ExplicitWidth = 368
-            ExplicitHeight = 525
+            Width = 368
+            Height = 525
+            ExplicitHeight = 531
             object imgAuto: TcxDBImage [0]
               Left = 11
               Top = 38
@@ -258,7 +252,7 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
       DockedDockControl = nil
       DockedDockingStyle = dsNone
       FloatClientWidth = 153
-      FloatClientHeight = 309
+      FloatClientHeight = 307
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8

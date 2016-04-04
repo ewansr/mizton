@@ -1878,17 +1878,17 @@ object FrmInicio: TFrmInicio
     AlignSplitter = salRight
   end
   object cxGboxDatos: TcxGroupBox
-    Left = 1000
+    Left = 1054
     Top = 0
     Align = alRight
     Caption = 'Registro de actividades'
     TabOrder = 11
     Height = 765
-    Width = 301
+    Width = 247
     object dbGridDatos: TDBGrid
       Left = 3
       Top = 345
-      Width = 295
+      Width = 241
       Height = 410
       Align = alClient
       DataSource = dsHiloFolio
@@ -1901,16 +1901,16 @@ object FrmInicio: TFrmInicio
       Columns = <
         item
           Expanded = False
-          FieldName = 'CodigoPersonal'
+          FieldName = 'Expediente'
           ReadOnly = True
-          Width = 93
+          Width = 83
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'Folio'
           ReadOnly = True
-          Width = 103
+          Width = 85
           Visible = True
         end
         item
@@ -1923,7 +1923,7 @@ object FrmInicio: TFrmInicio
     object Panel1: TPanel
       Left = 3
       Top = 15
-      Width = 295
+      Width = 241
       Height = 330
       Align = alTop
       TabOrder = 1
@@ -1935,7 +1935,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Total'
         TabOrder = 0
         Height = 73
-        Width = 287
+        Width = 233
         object cxImage3: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -2155,10 +2155,8 @@ object FrmInicio: TFrmInicio
           Transparent = True
         end
         object DbLblTotal: TcxDBLabel
-          AlignWithMargins = True
-          Left = 143
-          Top = 18
-          Margins.Right = 10
+          Left = 99
+          Top = 15
           Align = alRight
           DataBinding.DataField = 'Total'
           DataBinding.DataSource = dsHiloFolio
@@ -2169,8 +2167,9 @@ object FrmInicio: TFrmInicio
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
-          Transparent = True
-          Height = 42
+          ExplicitLeft = 56
+          ExplicitTop = 24
+          Height = 48
           Width = 131
         end
       end
@@ -2182,7 +2181,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Liquidadas'
         TabOrder = 1
         Height = 73
-        Width = 287
+        Width = 233
         object cxImage2: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -2349,10 +2348,8 @@ object FrmInicio: TFrmInicio
           Transparent = True
         end
         object DbLblLiquidadas: TcxDBLabel
-          AlignWithMargins = True
-          Left = 169
-          Top = 18
-          Margins.Right = 10
+          Left = 125
+          Top = 15
           Align = alRight
           DataBinding.DataField = 'Liquidadas'
           DataBinding.DataSource = dsHiloFolio
@@ -2363,8 +2360,8 @@ object FrmInicio: TFrmInicio
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
-          Transparent = True
-          Height = 42
+          ExplicitLeft = 129
+          Height = 48
           Width = 105
         end
       end
@@ -2376,7 +2373,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Quejas'
         TabOrder = 2
         Height = 73
-        Width = 287
+        Width = 233
         object cxLabel5: TcxLabel
           Left = 46
           Top = 15
@@ -2685,10 +2682,8 @@ object FrmInicio: TFrmInicio
           Width = 37
         end
         object DbLblQuejas: TcxDBLabel
-          AlignWithMargins = True
-          Left = 143
-          Top = 18
-          Margins.Right = 10
+          Left = 99
+          Top = 15
           Align = alRight
           DataBinding.DataField = 'Quejas'
           DataBinding.DataSource = dsHiloFolio
@@ -2699,8 +2694,9 @@ object FrmInicio: TFrmInicio
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
-          Transparent = True
-          Height = 42
+          ExplicitLeft = 56
+          ExplicitTop = 24
+          Height = 48
           Width = 131
         end
       end
@@ -2712,7 +2708,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Objetadas'
         TabOrder = 3
         Height = 73
-        Width = 287
+        Width = 233
         object img1: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -3092,10 +3088,8 @@ object FrmInicio: TFrmInicio
           Transparent = True
         end
         object DbLblObjetadas: TcxDBLabel
-          AlignWithMargins = True
-          Left = 165
-          Top = 18
-          Margins.Right = 10
+          Left = 121
+          Top = 15
           Align = alRight
           DataBinding.DataField = 'Objetadas'
           DataBinding.DataSource = dsHiloFolio
@@ -3106,15 +3100,16 @@ object FrmInicio: TFrmInicio
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
-          Transparent = True
-          Height = 42
+          ExplicitLeft = 56
+          ExplicitTop = 24
+          Height = 48
           Width = 109
         end
       end
     end
   end
   object cxspltr2: TcxSplitter
-    Left = 995
+    Left = 1049
     Top = 0
     Width = 5
     Height = 765
@@ -3866,7 +3861,7 @@ object FrmInicio: TFrmInicio
   end
   object tmr1: TTimer
     Enabled = False
-    Interval = 30000
+    Interval = 5000
     OnTimer = tmr1Timer
     Left = 736
     Top = 152
@@ -3891,10 +3886,7 @@ object FrmInicio: TFrmInicio
       
         ' (Select Count(*) from mt_foliosxtecnicos where DATE(fechacreaci' +
         'on) =  DATE(NOW())) as Total,'
-      '  p.CodigoPersonal as Expediente, '
-      
-        '  concat("[",p.CodigoPersonal,"] ", p.Nombre, " ", p.APaterno, "' +
-        ' ", p.AMaterno) as CodigoPersonal,'
+      '  p.CodigoPersonal as Expediente,'
       #9'ft.*,'
       '  tr.*,'
       '  c.Codigo,'#9#9#9

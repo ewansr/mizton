@@ -1,16 +1,15 @@
 inherited FrmVales: TFrmVales
-  BorderIcons = [biSystemMenu, biMinimize, biMaximize]
-  BorderStyle = bsSizeable
+  Align = alCustom
   Caption = 'Cat'#225'logo de Vales'
-  ClientHeight = 549
-  ClientWidth = 612
+  ClientHeight = 756
+  ClientWidth = 622
   OnCreate = FormCreate
   ExplicitWidth = 628
-  ExplicitHeight = 588
+  ExplicitHeight = 785
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
-    Width = 612
+    Width = 622
     ExplicitWidth = 622
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
@@ -19,11 +18,11 @@ inherited FrmVales: TFrmVales
   end
   inherited cxGridGral: TcxGrid
     Left = 3
-    Width = 606
-    Height = 253
+    Width = 616
+    Height = 460
     ExplicitLeft = 3
     ExplicitWidth = 616
-    ExplicitHeight = 244
+    ExplicitHeight = 460
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       DataController.DetailKeyFieldNames = 'IdVale'
@@ -114,25 +113,25 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited pnlDatos: TPanel
-    Top = 386
-    Width = 612
+    Top = 593
+    Width = 622
     Height = 163
     ExplicitTop = 593
     ExplicitWidth = 622
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
-      Width = 608
+      Width = 618
       Height = 159
       ExplicitWidth = 618
       ExplicitHeight = 159
       ClientRectBottom = 153
-      ClientRectRight = 602
+      ClientRectRight = 612
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
         ExplicitWidth = 610
         ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 600
+          Width = 610
           Height = 126
           ExplicitWidth = 610
           ExplicitHeight = 126
@@ -281,12 +280,11 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited cxSplitter1: TcxSplitter
-    Top = 381
-    Width = 612
+    Top = 588
+    Width = 622
     Height = 5
     AlignSplitter = salBottom
-    ExplicitLeft = 24
-    ExplicitTop = 420
+    ExplicitTop = 588
     ExplicitWidth = 622
     ExplicitHeight = 5
   end
@@ -300,6 +298,8 @@ inherited FrmVales: TFrmVales
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end

@@ -16,35 +16,35 @@ inherited FrmPersonal: TFrmPersonal
     OriginalWidth = 1297
     OriginalHeight = 676
     inherited dxLayoutDockSite1: TdxLayoutDockSite
-      Width = 840
+      Width = 1269
       Height = 676
-      ExplicitWidth = 840
+      ExplicitWidth = 1269
       ExplicitHeight = 676
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
       inherited dxlytdckst1: TdxLayoutDockSite
-        Width = 840
+        Width = 1269
         Height = 676
-        ExplicitWidth = 840
+        ExplicitWidth = 1269
         ExplicitHeight = 676
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
       end
       inherited dxDockGrid: TdxDockPanel
-        Width = 840
+        Width = 1269
         Height = 676
         Caption = 'Cat'#225'logo de Personal'
-        ExplicitWidth = 840
+        ExplicitWidth = 1269
         ExplicitHeight = 676
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
         inherited cxGridGral: TcxGrid
-          Width = 826
+          Width = 1255
           Height = 640
-          ExplicitWidth = 826
+          ExplicitWidth = 1255
           ExplicitHeight = 640
           inherited cxGridDatos: TcxGridDBTableView
             DataController.DataSource = dsDatos
@@ -97,12 +97,12 @@ inherited FrmPersonal: TFrmPersonal
       end
     end
     inherited dxDockDatos: TdxDockPanel
-      Left = 840
       Width = 457
       Height = 676
-      ExplicitLeft = 840
+      Visible = True
       ExplicitWidth = 457
       ExplicitHeight = 676
+      AutoHidePosition = 2
       DockingType = 3
       OriginalWidth = 457
       OriginalHeight = 140
@@ -112,9 +112,13 @@ inherited FrmPersonal: TFrmPersonal
         ExplicitWidth = 449
         ExplicitHeight = 646
         ClientRectBottom = 640
+        ClientRectLeft = 2
         ClientRectRight = 443
+        ClientRectTop = 27
         inherited cxTsDatos: TcxTabSheet
           Caption = 'Informaci'#243'n detallada'
+          ExplicitLeft = 2
+          ExplicitTop = 27
           ExplicitWidth = 441
           ExplicitHeight = 613
           inherited dxLYCDatos: TdxLayoutControl
@@ -122,13 +126,13 @@ inherited FrmPersonal: TFrmPersonal
             Left = 5
             Top = 3
             Width = 433
-            Height = 270
+            Height = 246
             Margins.Left = 5
             Align = alTop
             ExplicitLeft = 5
             ExplicitTop = 3
             ExplicitWidth = 433
-            ExplicitHeight = 270
+            ExplicitHeight = 246
             object imgFoto: TcxDBImage [0]
               Left = 11
               Top = 11
@@ -141,56 +145,56 @@ inherited FrmPersonal: TFrmPersonal
               Width = 102
             end
             object cxTextCodigoPersonal: TcxDBTextEdit [1]
-              Left = 194
-              Top = 65
+              Left = 192
+              Top = 38
               DataBinding.DataField = 'CodigoPersonal'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 3
-              Width = 164
+              TabOrder = 2
+              Width = 224
             end
             object cxTextNombre: TcxDBTextEdit [2]
-              Left = 194
-              Top = 92
+              Left = 192
+              Top = 65
               DataBinding.DataField = 'Nombre'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 4
-              Width = 180
+              TabOrder = 3
+              Width = 224
             end
             object cxTextAPaterno: TcxDBTextEdit [3]
-              Left = 194
-              Top = 119
+              Left = 192
+              Top = 92
               DataBinding.DataField = 'APaterno'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 5
-              Width = 180
+              TabOrder = 4
+              Width = 224
             end
             object cxTextAMaterno: TcxDBTextEdit [4]
-              Left = 194
-              Top = 146
+              Left = 192
+              Top = 119
               DataBinding.DataField = 'AMaterno'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 6
-              Width = 220
+              TabOrder = 5
+              Width = 224
             end
             object cbbSexo: TcxDBComboBox [5]
               Left = 117
-              Top = 173
+              Top = 146
               DataBinding.DataField = 'Sexo'
               DataBinding.DataSource = dsDatosUpt
               Properties.Items.Strings = (
                 'Hombre'
                 'Mujer')
               Style.HotTrack = False
-              TabOrder = 7
+              TabOrder = 6
               Width = 138
             end
             object cbbEdoCivil: TcxDBComboBox [6]
               Left = 321
-              Top = 173
+              Top = 146
               DataBinding.DataField = 'EstadoCivil'
               DataBinding.DataSource = dsDatosUpt
               Properties.Items.Strings = (
@@ -198,44 +202,35 @@ inherited FrmPersonal: TFrmPersonal
                 'Casado'
                 'Viudo')
               Style.HotTrack = False
-              TabOrder = 8
+              TabOrder = 7
               Width = 95
             end
             object cxDateNacimiento: TcxDBDateEdit [7]
               Left = 117
-              Top = 200
+              Top = 173
               DataBinding.DataField = 'FechaNacimiento'
+              DataBinding.DataSource = dsDatosUpt
+              Style.HotTrack = False
+              TabOrder = 8
+              Width = 299
+            end
+            object cxTextSangre: TcxDBTextEdit [8]
+              Left = 117
+              Top = 200
+              DataBinding.DataField = 'GrupoSanguineo'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 9
               Width = 299
             end
-            object cxTextSangre: TcxDBTextEdit [8]
-              Left = 117
-              Top = 227
-              DataBinding.DataField = 'GrupoSanguineo'
-              DataBinding.DataSource = dsDatosUpt
-              Style.HotTrack = False
-              TabOrder = 10
-              Width = 299
-            end
             object cxDateaLTA: TcxDBDateEdit [9]
-              Left = 194
+              Left = 192
               Top = 11
               DataBinding.DataField = 'fechaAlta'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
               TabOrder = 1
-              Width = 156
-            end
-            object cxTextExpTelmex: TcxDBTextEdit [10]
-              Left = 194
-              Top = 38
-              DataBinding.DataField = 'FolioTelmex'
-              DataBinding.DataSource = dsDatosUpt
-              Style.HotTrack = False
-              TabOrder = 2
-              Width = 164
+              Width = 224
             end
             inherited dxLyDatos: TdxLayoutGroup
               Index = -1
@@ -253,14 +248,14 @@ inherited FrmPersonal: TFrmPersonal
               CaptionOptions.Text = 'Expediente:'
               Control = cxTextCodigoPersonal
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
             object lyNombre: TdxLayoutItem
               Parent = dxLYCDatosGroup1
               CaptionOptions.Text = 'Nombre:'
               Control = cxTextNombre
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 2
             end
             object dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLYCDatosGroup2
@@ -272,14 +267,14 @@ inherited FrmPersonal: TFrmPersonal
               CaptionOptions.Text = 'Ap. Paterno:'
               Control = cxTextAPaterno
               ControlOptions.ShowBorder = False
-              Index = 4
+              Index = 3
             end
             object lyAMaterno: TdxLayoutItem
               Parent = dxLYCDatosGroup1
               CaptionOptions.Text = 'Ap. Materno:'
               Control = cxTextAMaterno
               ControlOptions.ShowBorder = False
-              Index = 5
+              Index = 4
             end
             object lySexo: TdxLayoutItem
               Parent = dxLYCDatosGroup3
@@ -329,20 +324,13 @@ inherited FrmPersonal: TFrmPersonal
               ControlOptions.ShowBorder = False
               Index = 0
             end
-            object lyExpTelmex: TdxLayoutItem
-              Parent = dxLYCDatosGroup1
-              CaptionOptions.Text = 'Exp. Telmex:'
-              Control = cxTextExpTelmex
-              ControlOptions.ShowBorder = False
-              Index = 1
-            end
           end
           object cxPageControl1: TcxPageControl
             AlignWithMargins = True
             Left = 10
-            Top = 286
+            Top = 262
             Width = 421
-            Height = 317
+            Height = 341
             Margins.Left = 10
             Margins.Top = 10
             Margins.Right = 10
@@ -351,27 +339,23 @@ inherited FrmPersonal: TFrmPersonal
             TabOrder = 1
             Properties.ActivePage = cxTabDireccion
             Properties.CustomButtons.Buttons = <>
-            ExplicitTop = 262
-            ExplicitHeight = 341
-            ClientRectBottom = 311
+            ClientRectBottom = 335
             ClientRectLeft = 2
             ClientRectRight = 415
             ClientRectTop = 27
             object cxTabDireccion: TcxTabSheet
               Caption = 'Direcci'#243'n / Contacto'
               ImageIndex = 0
-              ExplicitHeight = 308
               object dxLayControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
                 Top = 3
                 Width = 405
-                Height = 278
+                Height = 302
                 Margins.Left = 5
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
-                ExplicitHeight = 302
                 object cxMaskTel: TcxDBMaskEdit
                   Left = 74
                   Top = 11
@@ -602,18 +586,16 @@ inherited FrmPersonal: TFrmPersonal
             object cxTabSheet2: TcxTabSheet
               Caption = 'Datos para empleo'
               ImageIndex = 1
-              ExplicitHeight = 308
               object dxLayoutControl1: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 5
                 Top = 3
                 Width = 405
-                Height = 278
+                Height = 302
                 Margins.Left = 5
                 Align = alClient
                 TabOrder = 0
                 LayoutLookAndFeel = UDMConection.dxStyleForms
-                ExplicitHeight = 302
                 object cxTextCURP: TcxDBTextEdit
                   Left = 92
                   Top = 38
@@ -794,16 +776,14 @@ inherited FrmPersonal: TFrmPersonal
               Caption = 'Autom'#243'vil'
               ImageIndex = 2
               OnShow = cxTabAutomovilShow
-              ExplicitHeight = 308
               object dxLayoutControl2: TdxLayoutControl
                 AlignWithMargins = True
                 Left = 3
                 Top = 3
                 Width = 407
-                Height = 278
+                Height = 302
                 Align = alClient
                 TabOrder = 0
-                ExplicitHeight = 302
                 object DbLblMatricula: TcxDBLabel
                   Left = 66
                   Top = 190
@@ -985,6 +965,8 @@ inherited FrmPersonal: TFrmPersonal
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 153
       FloatClientHeight = 339
       ItemLinks = <

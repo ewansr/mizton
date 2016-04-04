@@ -16,6 +16,9 @@ object FrmCatalogo: TFrmCatalogo
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
+  DesignSize = (
+    1133
+    557)
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
@@ -30,7 +33,7 @@ object FrmCatalogo: TFrmCatalogo
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 743
+      Width = 1105
       Height = 430
       DockingType = 0
       OriginalWidth = 300
@@ -38,9 +41,8 @@ object FrmCatalogo: TFrmCatalogo
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 743
+        Width = 1105
         Height = 430
-        ExplicitWidth = 1105
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -48,7 +50,7 @@ object FrmCatalogo: TFrmCatalogo
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 743
+        Width = 1105
         Height = 430
         AllowFloating = False
         AutoHide = False
@@ -56,7 +58,6 @@ object FrmCatalogo: TFrmCatalogo
         CaptionButtons = []
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
-        ExplicitWidth = 1105
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
@@ -64,11 +65,10 @@ object FrmCatalogo: TFrmCatalogo
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 729
+          Width = 1091
           Height = 394
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1091
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -97,14 +97,15 @@ object FrmCatalogo: TFrmCatalogo
       Left = 743
       Top = 0
       Width = 390
-      Height = 430
-      AllowFloating = True
-      AutoHide = False
+      Height = 140
+      Visible = False
+      AllowFloating = False
+      AutoHide = True
       Caption = 'Insertar / Editar Registros'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
-      Dockable = False
       TabsProperties.CustomButtons.Buttons = <>
+      AutoHidePosition = 2
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -125,6 +126,10 @@ object FrmCatalogo: TFrmCatalogo
         object cxTsDatos: TcxTabSheet
           Caption = 'Datos'
           ImageIndex = 0
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object dxLYCDatos: TdxLayoutControl
             Left = 0
             Top = 0
@@ -454,7 +459,6 @@ object FrmCatalogo: TFrmCatalogo
   end
   object dxDockingManager1: TdxDockingManager
     AutoHideInterval = 0
-    AutoHideMovingInterval = 0
     AutoHideMovingSize = 0
     AutoShowInterval = 0
     Color = clBtnFace

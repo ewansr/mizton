@@ -26,7 +26,7 @@ uses
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, cxContainer, dxLayoutcxEditAdapters, cxCurrencyEdit, cxDBEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit,
-  cxMaskEdit, cxCalendar, uconection;
+  cxMaskEdit, cxCalendar;
 
 type
   TFrmCostosInstalacion = class(TFrmMiniCatalogo)
@@ -50,10 +50,7 @@ type
     cxColEmpForaneo: TcxGridDBColumn;
     dxLYCDatosGroup3: TdxLayoutAutoCreatedGroup;
     dxLYCDatosGroup4: TdxLayoutAutoCreatedGroup;
-    zTO: TZQuery;
-    dsTO: TDataSource;
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,19 +73,6 @@ begin
 
   pCondiciones := '';
   pCampos := '';
-end;
-
-procedure TFrmCostosInstalacion.FormShow(Sender: TObject);
-begin
-  inherited;
-  AsignarSQL(zto, 'mt_tipoorden', preadOnly);
-  FiltrarDataset(zTO, 'IdTipo', ['-1']);
-
-  if  zTO.Active then
-    zTO.Refresh
-  else
-    zTO.Open;
-
 end;
 
 end.

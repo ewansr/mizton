@@ -3891,10 +3891,7 @@ object FrmInicio: TFrmInicio
       
         ' (Select Count(*) from mt_foliosxtecnicos where DATE(fechacreaci' +
         'on) =  DATE(NOW())) as Total,'
-      '  p.CodigoPersonal as Expediente, '
-      
-        '  concat("[",p.CodigoPersonal,"] ", p.Nombre, " ", p.APaterno, "' +
-        ' ", p.AMaterno) as CodigoPersonal,'
+      '  p.CodigoPersonal as Expediente,'
       #9'ft.*,'
       '  tr.*,'
       '  c.Codigo,'#9#9#9

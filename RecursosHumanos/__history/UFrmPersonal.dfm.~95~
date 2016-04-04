@@ -142,29 +142,29 @@ inherited FrmPersonal: TFrmPersonal
             end
             object cxTextCodigoPersonal: TcxDBTextEdit [1]
               Left = 194
-              Top = 65
+              Top = 38
               DataBinding.DataField = 'CodigoPersonal'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 3
+              TabOrder = 2
               Width = 164
             end
             object cxTextNombre: TcxDBTextEdit [2]
               Left = 194
-              Top = 92
+              Top = 65
               DataBinding.DataField = 'Nombre'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 4
+              TabOrder = 3
               Width = 180
             end
             object cxTextAPaterno: TcxDBTextEdit [3]
               Left = 194
-              Top = 119
+              Top = 92
               DataBinding.DataField = 'APaterno'
               DataBinding.DataSource = dsDatosUpt
               Style.HotTrack = False
-              TabOrder = 5
+              TabOrder = 4
               Width = 180
             end
             object cxTextAMaterno: TcxDBTextEdit [4]
@@ -230,11 +230,9 @@ inherited FrmPersonal: TFrmPersonal
             end
             object cxTextExpTelmex: TcxDBTextEdit [10]
               Left = 194
-              Top = 38
-              DataBinding.DataField = 'FolioTelmex'
-              DataBinding.DataSource = dsDatosUpt
+              Top = 119
               Style.HotTrack = False
-              TabOrder = 2
+              TabOrder = 5
               Width = 164
             end
             inherited dxLyDatos: TdxLayoutGroup
@@ -253,14 +251,14 @@ inherited FrmPersonal: TFrmPersonal
               CaptionOptions.Text = 'Expediente:'
               Control = cxTextCodigoPersonal
               ControlOptions.ShowBorder = False
-              Index = 2
+              Index = 1
             end
             object lyNombre: TdxLayoutItem
               Parent = dxLYCDatosGroup1
               CaptionOptions.Text = 'Nombre:'
               Control = cxTextNombre
               ControlOptions.ShowBorder = False
-              Index = 3
+              Index = 2
             end
             object dxLYCDatosGroup1: TdxLayoutAutoCreatedGroup
               Parent = dxLYCDatosGroup2
@@ -272,7 +270,7 @@ inherited FrmPersonal: TFrmPersonal
               CaptionOptions.Text = 'Ap. Paterno:'
               Control = cxTextAPaterno
               ControlOptions.ShowBorder = False
-              Index = 4
+              Index = 3
             end
             object lyAMaterno: TdxLayoutItem
               Parent = dxLYCDatosGroup1
@@ -334,7 +332,7 @@ inherited FrmPersonal: TFrmPersonal
               CaptionOptions.Text = 'Exp. Telmex:'
               Control = cxTextExpTelmex
               ControlOptions.ShowBorder = False
-              Index = 1
+              Index = 4
             end
           end
           object cxPageControl1: TcxPageControl

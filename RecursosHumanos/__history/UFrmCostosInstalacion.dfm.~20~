@@ -3,12 +3,10 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   ClientWidth = 728
   OnCreate = FormCreate
   ExplicitWidth = 734
-  ExplicitHeight = 603
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     Width = 728
-    ExplicitWidth = 728
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -17,8 +15,6 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   inherited cxGridGral: TcxGrid
     Width = 717
     Height = 296
-    ExplicitWidth = 717
-    ExplicitHeight = 296
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       OptionsView.GroupByBox = True
@@ -75,18 +71,16 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
     inherited cxPageDatos: TcxPageControl
       Width = 724
       Height = 146
+      ExplicitLeft = -1
+      ExplicitTop = 1
       ExplicitWidth = 724
-      ExplicitHeight = 146
+      ExplicitHeight = 234
       ClientRectBottom = 140
       ClientRectRight = 718
       inherited cxTsDatos: TcxTabSheet
-        ExplicitWidth = 716
-        ExplicitHeight = 113
         inherited dxLYCDatos: TdxLayoutControl
           Width = 716
           Height = 113
-          ExplicitWidth = 716
-          ExplicitHeight = 113
           object cxDateFecha: TcxDBDateEdit [0]
             Left = 119
             Top = 11
@@ -101,12 +95,7 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
             Top = 11
             DataBinding.DataField = 'IdTipoOrden'
             DataBinding.DataSource = dsDatosUpt
-            Properties.KeyFieldNames = 'Idtipo'
-            Properties.ListColumns = <
-              item
-                FieldName = 'TipoOrden'
-              end>
-            Properties.ListSource = dsTO
+            Properties.ListColumns = <>
             Style.HotTrack = False
             TabOrder = 3
             Width = 145
@@ -213,7 +202,6 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   end
   inherited cxSplitter1: TcxSplitter
     Height = 302
-    ExplicitHeight = 302
   end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
@@ -224,6 +212,8 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end
@@ -238,11 +228,11 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   end
   inherited zDatos: TZQuery
     Left = 24
-    Top = 312
+    Top = 264
   end
   inherited zDatosUpt: TZQuery
-    Left = 88
-    Top = 312
+    Left = 104
+    Top = 280
   end
   inherited dsDatosUpt: TDataSource
     Top = 240
@@ -253,15 +243,5 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
   inherited dlgSave1: TSaveDialog
     Left = 192
     Top = 280
-  end
-  object zTO: TZQuery
-    Params = <>
-    Left = 352
-    Top = 288
-  end
-  object dsTO: TDataSource
-    DataSet = zTO
-    Left = 360
-    Top = 296
   end
 end

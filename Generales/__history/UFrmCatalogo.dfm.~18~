@@ -103,7 +103,6 @@ object FrmCatalogo: TFrmCatalogo
       Caption = 'Insertar / Editar Registros'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
-      Dockable = False
       TabsProperties.CustomButtons.Buttons = <>
       DockingType = 3
       OriginalWidth = 390
@@ -454,7 +453,6 @@ object FrmCatalogo: TFrmCatalogo
   end
   object dxDockingManager1: TdxDockingManager
     AutoHideInterval = 0
-    AutoHideMovingInterval = 0
     AutoHideMovingSize = 0
     AutoShowInterval = 0
     Color = clBtnFace

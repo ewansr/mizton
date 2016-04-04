@@ -160,7 +160,7 @@
 				<Form>FrmPuestos</Form>
 			</DCCReference>
 			<DCCReference Include="RecursosHumanos\UFrmConsultas.pas">
-				<Form>Form1</Form>
+				<Form>FrmConsultas</Form>
 			</DCCReference>
 			<DCCReference Include="RecursosHumanos\UFrmRT.pas">
 				<Form>FrmRT</Form>

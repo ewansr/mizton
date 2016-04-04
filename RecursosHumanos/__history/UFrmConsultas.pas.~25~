@@ -76,9 +76,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnReporteClick(Sender: TObject);
-    procedure cxCheckOrignPropertiesChange(Sender: TObject);
-    procedure cxCheckExpedientePropertiesChange(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -150,31 +147,11 @@ begin
   else
     Expediente := '-1';
 
-  FiltrarDataset(zDatos, 'IdFolio,Expediente,Desde,Hasta', ['-1',Expediente,Inicio,Termino]);
-
-
 
   if zDatos.Active then
     zDatos.Refresh
   else
     zDatos.Open;
-end;
-
-procedure TFrmConsultas.cxCheckExpedientePropertiesChange(Sender: TObject);
-begin
-  lyExpediente.Enabled :=  cxCheckExpediente.Checked;
-end;
-
-procedure TFrmConsultas.cxCheckOrignPropertiesChange(Sender: TObject);
-begin
-  lyDesde.Enabled := Not cxCheckOrign.Checked;
-  lyHasta.Enabled := Not cxCheckOrign.Checked;
-
-end;
-
-procedure TFrmConsultas.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  action := Cafree;
 end;
 
 procedure TFrmConsultas.FormShow(Sender: TObject);
@@ -184,6 +161,7 @@ begin
 
   cxDatedesde.date := StartOfTheWeek(Now);
   cxDateHasta.date := EndOfTheWeek(now);
+
 end;
 
 end.
