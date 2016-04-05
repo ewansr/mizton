@@ -62,14 +62,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
-          Top = 52
+          Top = 49
           Width = 630
-          Height = 459
+          Height = 462
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
+          ExplicitTop = 52
           ExplicitWidth = 631
+          ExplicitHeight = 459
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -159,14 +161,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             end
             object cxColTipo: TcxGridDBColumn
               Caption = 'Tipo'
-              DataBinding.FieldName = 'Ubicacion'
+              DataBinding.FieldName = 'tipoOrden'
               Width = 93
             end
             object cxColCostoCobrar: TcxGridDBColumn
-              Caption = 'Pago'
+              Caption = 'Pago T'#233'cnico'
               DataBinding.FieldName = 'CostoCobrar'
               PropertiesClassName = 'TcxCurrencyEditProperties'
               Properties.ReadOnly = True
+              Width = 103
+            end
+            object cxColestatusCobro: TcxGridDBColumn
+              Caption = 'Estatus Cobro'
+              DataBinding.FieldName = 'estatusCobro'
+              Width = 102
             end
           end
           object cxChartProductividad: TcxGridDBChartView
@@ -198,27 +206,33 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Align = alTop
           Caption = 'Informaci'#243'n de apoyo'
           TabOrder = 1
-          ExplicitWidth = 637
-          Height = 49
+          Height = 46
           Width = 636
           object Panel1: TPanel
             AlignWithMargins = True
-            Left = 6
+            Left = 92
             Top = 18
             Width = 19
-            Height = 18
+            Height = 15
             Align = alLeft
             BevelOuter = bvNone
-            BorderStyle = bsSingle
-            Color = 13553407
+            Color = 3054090
             ParentBackground = False
             TabOrder = 0
           end
           object LblSinpago: TcxLabel
-            Left = 28
+            Left = 114
             Top = 15
             Align = alLeft
-            Caption = 'Sin informaci'#243'n de pago'
+            Caption = 'Autorizada(Solo Lectura)'
+            ParentFont = False
+            Style.Font.Charset = DEFAULT_CHARSET
+            Style.Font.Color = clWindowText
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
+            Transparent = True
           end
           object LblLeyendaVale: TcxLabel
             Left = 300
@@ -232,7 +246,37 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Style.Font.Name = 'Tahoma'
             Style.Font.Style = [fsBold, fsItalic]
             Style.IsFontAssigned = True
+            Transparent = True
             ExplicitLeft = 301
+            ExplicitHeight = 24
+          end
+          object Panel2: TPanel
+            AlignWithMargins = True
+            Left = 6
+            Top = 18
+            Width = 19
+            Height = 15
+            Align = alLeft
+            BevelOuter = bvNone
+            Color = 8421631
+            ParentBackground = False
+            TabOrder = 3
+            ExplicitHeight = 18
+          end
+          object cxLabel1: TcxLabel
+            Left = 28
+            Top = 15
+            Align = alLeft
+            Caption = 'Pendiente'
+            ParentFont = False
+            Style.Font.Charset = DEFAULT_CHARSET
+            Style.Font.Color = clWindowText
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
+            Transparent = True
+            ExplicitHeight = 24
           end
         end
       end
@@ -1075,6 +1119,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     object cxstylSPago: TcxStyle
       AssignedValues = [svColor]
       Color = 13553407
+    end
+  end
+  object cxStyleRepository2: TcxStyleRepository
+    Left = 440
+    Top = 296
+    PixelsPerInch = 96
+    object cxstylPendiente: TcxStyle
+      AssignedValues = [svColor]
+      Color = 8421631
+    end
+    object cxstylAutorizada: TcxStyle
+      AssignedValues = [svColor, svTextColor]
+      Color = 3054090
+      TextColor = clWhite
     end
   end
 end

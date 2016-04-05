@@ -109,11 +109,7 @@ begin
   Cursor := Screen.Cursor;
   try
     Screen.Cursor := crAppStart;
-//    for idx := 0 to cxGridFolios.Controller.SelectedRowCount - 1 do
-//    begin
-//      LstFolios := LstFolios + VarToStr(cxGridFolios.Controller.SelectedRows[idx].Values[cxColId.Index]);
-//    end;                                                                                                 
- 
+
     zUptEstatusCobro.Params.ParamByName('IdFolio').AsString := zFolios.FieldByName('idFolio').AsString;
     zUptEstatusCobro.Params.ParamByName('EstatusCobro').asString := 'Pendiente';
 

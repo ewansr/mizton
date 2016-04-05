@@ -143,6 +143,12 @@ type
     LblSinpago: TcxLabel;
     LblLeyendaVale: TcxLabel;
     btnParElectricos: TdxBarLargeButton;
+    cxColestatusCobro: TcxGridDBColumn;
+    cxStyleRepository2: TcxStyleRepository;
+    cxstylPendiente: TcxStyle;
+    cxstylAutorizada: TcxStyle;
+    Panel2: TPanel;
+    cxLabel1: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -193,6 +199,10 @@ begin
   try
     if zDatos.FieldByName('Estatus').AsString <> 'Liquidada' then
       raise eWarning.Create('No puedes asignar materiales a folios con estatus diferente de "Liquidada"');
+
+    if zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado' then
+      raise eWarning.Create('No está permitido editar una orden que ya esté autorizada.');
+
     try
       application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
       FrmFolioMaterial.Id := -9;
@@ -251,6 +261,13 @@ var
 begin
   try
     Cursor := Screen.Cursor;
+
+    if zDatos.FieldByName('Estatus').AsString <> 'Liquidada' then
+      raise eWarning.Create('No puedes asignar materiales a folios con estatus diferente de "Liquidada"');
+
+    if zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado' then
+      raise eWarning.Create('No está permitido editar una orden que ya esté autorizada.');
+
     try
       Screen.Cursor := crAppStart;
       if (MsgBox.ShowModal('Confirmar acción.', '¿Está seguro que deseas eliminar este folio [' + zDatos.FieldByName('Folio').AsString + '] juntos con los materiales asignados?', cmtInformation, [cMbDelete, cMbNo]) = mrYes) then
@@ -264,6 +281,11 @@ begin
       Screen.Cursor := Cursor;
     end;
   Except
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+    end;
+
     on e: Exception do
     begin
       MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
@@ -274,11 +296,25 @@ end;
 procedure TFrmMaterialesxFolios.btnEditClick(Sender: TObject);
 begin
   try
-    application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
-    FrmFolioMaterial.Id := zMaterial.fieldByName('IdMaterialxFolio').asinteger;
-    FrmFolioMaterial.ShowModal;
-  finally
-    btnRefresh.Click;
+    if zDatos.FieldByName('Estatus').AsString <> 'Liquidada' then
+      raise eWarning.Create('No puedes asignar materiales a folios con estatus diferente de "Liquidada"');
+
+    if zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado' then
+      raise eWarning.Create('No está permitido editar una orden que ya esté autorizada.');
+
+    try
+      application.CreateForm(TFrmFolioMaterial, FrmFolioMaterial);
+      FrmFolioMaterial.Id := zMaterial.fieldByName('IdMaterialxFolio').asinteger;
+      FrmFolioMaterial.ShowModal;
+    finally
+      btnRefresh.Click;
+    end;
+
+  except
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+    end;
   end;
 end;
 
@@ -507,8 +543,6 @@ begin
         SetBorders(ExApp.Range['k' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
         FormatoTexto(ExApp.Range['K' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)],'Arial', 11, True, True);
 
-
-
         ExApp.ActiveSheet.name := 'PARÁMETROS ELÉCTRICOS';
         ExApp.ActiveWindow.DisplayGridlines := False;
       finally
@@ -555,8 +589,10 @@ procedure TFrmMaterialesxFolios.cxGridDatosStylesGetContentStyle(
   AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
 begin
   try
-    if ARecord.values[cxColCostoCobrar.Index] = 'S/P' then
-      AStyle := cxstylSPago;
+    if VarTostr(ARecord.values[cxColestatusCobro.Index]) = 'Pendiente' then
+      AStyle := cxstylPendiente
+    else
+      AStyle := cxstylAutorizada;
   except
     ;
   end;
@@ -635,7 +671,10 @@ procedure TFrmMaterialesxFolios.dxBButtonEditarClick(Sender: TObject);
 begin
   try
     if zDatos.FieldByName('EstatusVale').AsString <> 'Abierto' then
-      raise eWarning.Create('No está permitido editar un folio cuyo vale ya ha sido cerrado.');
+      raise eWarning.Create('No está permitido editar una orden cuyo vale ya ha sido cerrado.');
+
+    if zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado' then
+      raise eWarning.Create('No está permitido editar una orden que ya esté autorizada.');
 
     try
       application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
@@ -662,8 +701,11 @@ begin
   try
     Cursor := Screen.Cursor;
 
-    if zDatos.FieldByName('EstatusVale').AsString <> 'Abierto' then
-      raise eWarning.Create('No está permitido eliminar un folio cuyo vale ya ha sido cerrado.');
+    if zDatos.FieldByName('Estatus').AsString <> 'Liquidada' then
+      raise eWarning.Create('No puedes asignar materiales a folios con estatus diferente de "Liquidada"');
+
+    if zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado' then
+      raise eWarning.Create('No está permitido editar una orden que ya esté autorizada.');
 
     try
       Screen.Cursor := crAppStart;
@@ -1069,8 +1111,8 @@ begin
       zMaterial.Open;
 
 
-    dxbrMateriales.Visible := Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
-    cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
+    dxbrMateriales.Visible := (Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')));
+    cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')) or (zDatos.Active and (zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado'));
     LblLeyendaVale.Visible :=   (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
 
 

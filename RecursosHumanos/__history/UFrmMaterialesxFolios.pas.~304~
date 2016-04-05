@@ -143,6 +143,12 @@ type
     LblSinpago: TcxLabel;
     LblLeyendaVale: TcxLabel;
     btnParElectricos: TdxBarLargeButton;
+    cxColestatusCobro: TcxGridDBColumn;
+    cxStyleRepository2: TcxStyleRepository;
+    cxstylPendiente: TcxStyle;
+    cxstylAutorizada: TcxStyle;
+    Panel2: TPanel;
+    cxLabel1: TcxLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -463,12 +469,15 @@ begin
         ExApp.selection.Borders[xlInsideHorizontal].lineStyle := xlNone;
 
         ExApp.Range['A'+ IntToStr(IniFila + recFila+3)] := 'NOMBRE Y FIRMA DE QUIEN RECIBE Y AUTORIZA LOS TRABAJOS EJECUTADOS (TELMEX)';
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+3) + ':I'+ IntToStr(IniFila + recFila+3)].mergeCells := True;
+
+        FormatoTexto(ExApp.Range['A'+ IntToStr(IniFila + recFila+3)],'Arial', 9, False, True);
 
         ExApp.Range['A'+ IntToStr(IniFila + recFila+5)+':' +'A' +IntToStr(IniFila + recFila+5)] := 'NOMBRE';
         ExApp.Range['B'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].select;
         ExApp.Selection.mergeCells := True;
 
-        ExApp.Range['F'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+5)].MergeCells := True;
 
         ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'H' +IntToStr(IniFila + recFila+5)].MergeCells := True;
         ExApp.Range['A'+ IntToStr(IniFila + recFila+6)+':' +'A' +IntToStr(IniFila + recFila+6)] := 'PUESTO';
@@ -489,7 +498,8 @@ begin
         ExApp.Range['L'+ IntToStr(IniFila + recFila+5)+':' +'O' +IntToStr(IniFila + recFila+5)].select;
         ExApp.Selection.mergeCells := True;
 
-        ExApp.Range['F'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+5)] := 'NO. EXP.';
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+5)].MergeCells := True;
 
         ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'H' +IntToStr(IniFila + recFila+5)].MergeCells := True;
         ExApp.Range['K'+ IntToStr(IniFila + recFila+6)+':' +'K' +IntToStr(IniFila + recFila+6)] := 'PUESTO';
@@ -500,10 +510,8 @@ begin
 
         ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
 
-        SetBorders(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
-        FormatoTexto(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)],'Arial', 11, True, True);
-
-
+        SetBorders(ExApp.Range['k' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
+        FormatoTexto(ExApp.Range['K' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)],'Arial', 11, True, True);
 
         ExApp.ActiveSheet.name := 'PARÁMETROS ELÉCTRICOS';
         ExApp.ActiveWindow.DisplayGridlines := False;
@@ -551,8 +559,10 @@ procedure TFrmMaterialesxFolios.cxGridDatosStylesGetContentStyle(
   AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
 begin
   try
-    if ARecord.values[cxColCostoCobrar.Index] = 'S/P' then
-      AStyle := cxstylSPago;
+    if VarTostr(ARecord.values[cxColestatusCobro.Index]) = 'Pendiente' then
+      AStyle := cxstylPendiente
+    else
+      AStyle := cxstylAutorizada;
   except
     ;
   end;
@@ -631,7 +641,11 @@ procedure TFrmMaterialesxFolios.dxBButtonEditarClick(Sender: TObject);
 begin
   try
     if zDatos.FieldByName('EstatusVale').AsString <> 'Abierto' then
-      raise eWarning.Create('No está permitido editar un folio cuyo vale ya ha sido cerrado.');
+      raise eWarning.Create('No está permitido editar una orden cuyo vale ya ha sido cerrado.');
+
+    if zDatos.FieldByName('EstatusCobro').AsString <> 'Pendiente' then
+      raise eWarning.Create('No está permitido editar una orden cuyo estatus de cobro  ya ha sido cerrado.');
+
 
     try
       application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
