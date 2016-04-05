@@ -351,6 +351,7 @@ begin
 
       ExApp.Range['D4:D5'] := 'TIPO DE TRABAJO';
       ExApp.Range['D4:D5'].mergeCells := true;
+      ExApp.Range['D4:D5'].wraptext := True;
 
       ExApp.Range['E4:G4'] := 'VOLTAJE';
       ExApp.Range['E4:G4'].mergeCells := true;
@@ -375,9 +376,9 @@ begin
       ExApp.Range['K4:M4'].mergeCells := true;
 
       //A-B	A-T	B-T
-      ExApp.Range['H5:H5'] := 'A-B';
-      ExApp.Range['I5:I5'] := 'A-T';
-      ExApp.Range['J5:J5'] := 'B-T';
+      ExApp.Range['K5:K5'] := 'A-B';
+      ExApp.Range['L5:L5'] := 'A-T';
+      ExApp.Range['M5:M5'] := 'B-T';
 
 
       ExApp.Range['N4:N5'] := 'PLANO';
@@ -416,7 +417,7 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 3) + IntToStr(IniFila + recFila)+ ':' + ColumnaNombre(IniCol+3) + IntToStr(IniFila + recFila+1)].mergeCells := True;
 
           ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := '';
-          ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)+ ':' + ColumnaNombre(IniCol+3) + IntToStr(IniFila + recFila+1)].mergeCells := True;
+          ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)+ ':' + ColumnaNombre(IniCol+4) + IntToStr(IniFila + recFila+1)].mergeCells := True;
 
           //Voltaje
 
@@ -436,24 +437,50 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 10) + IntToStr(IniFila + recFila+1)] := 99;
 
 
-          ExApp.Range[ColumnaNombre(IniCol + 15) + IntToStr(IniFila + recFila+1)] := 'PAR BUENO';
-
-
-
-
-
-
-//          ExApp.Range[ColumnaNombre(IniCol + 4) + IntToStr(IniFila + recFila)] := zDatos.FieldByName('Direccion').AsString;
-//          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)].numberFormat := '@';
-//          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)].FormulaR1C1 := Chr(39) +  zDatos.FieldByName('Principal').AsString ;
-//          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)].NumberFormat := '@';
-//          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)].FormulaR1C1 := Chr(39)  + zDatos.FieldByName('Secundario').AsString + ' ';
+          ExApp.Range[ColumnaNombre(IniCol + 16) + IntToStr(IniFila + recFila)] := 'PAR BUENO';
+          ExApp.Range[ColumnaNombre(IniCol + 16) + IntToStr(IniFila + recFila)+ ':' + ColumnaNombre(IniCol+17) + IntToStr(IniFila + recFila)].mergeCells := True;
+          ExApp.Range[ColumnaNombre(IniCol + 16) + IntToStr(IniFila + recFila+1)] := 'PAR BUENO';
+          ExApp.Range[ColumnaNombre(IniCol + 16) + IntToStr(IniFila + recFila+1)+ ':' + ColumnaNombre(IniCol+17) + IntToStr(IniFila + recFila+1)].mergeCells := True;
 
           inc(RecFila,2);
           zDatos.Next;
         end;
 
         SetBorders(ExApp.Range['A4:Q'+inttostr((zDatos.RecordCount*2) +5)], xlThin, xlContinuous);
+
+        //pie de pagina
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+2)+':' +'I' +IntToStr(IniFila + recFila+2)].select;
+        ExApp.selection.Borders[xlDiagonalDown].lineStyle := xlNone;
+        ExApp.selection.Borders[xlDiagonalUp].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeLeft].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeTop].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeBottom].lineStyle := xlContinuous;
+        ExApp.selection.Borders[xlEdgeBottom].weight := xlThin;
+
+        ExApp.selection.Borders[xlEdgeRight].lineStyle := xlNone;
+        ExApp.selection.Borders[xlInsideVertical].lineStyle := xlNone;
+        ExApp.selection.Borders[xlInsideHorizontal].lineStyle := xlNone;
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+3)] := 'NOMBRE Y FIRMA DE QUIEN RECIBE Y AUTORIZA LOS TRABAJOS EJECUTADOS (TELMEX)';
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+5)+':' +'A' +IntToStr(IniFila + recFila+5)] := 'NOMBRE';
+        ExApp.Range['B'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].select;
+        ExApp.Selection.mergeCells := True;
+
+        ExApp.Range['F'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'H' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+6)+':' +'A' +IntToStr(IniFila + recFila+6)] := 'PUESTO';
+        ExApp.Range['B'+ IntToStr(IniFila + recFila+6)+':' +'E' +IntToStr(IniFila + recFila+6)].mergeCells := True;
+        ExApp.Range['F'+ IntToStr(IniFila + recFila+6)+':' +'G' +IntToStr(IniFila + recFila+6)] := 'FECHA';
+        ExApp.Range['F'+ IntToStr(IniFila + recFila+6)+':' +'G' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+        SetBorders(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
+        FormatoTexto(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)],'Arial', 11, True, True);
 
         ExApp.ActiveSheet.name := 'PARÁMETROS ELÉCTRICOS';
         ExApp.ActiveWindow.DisplayGridlines := False;
