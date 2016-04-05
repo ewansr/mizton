@@ -119,12 +119,17 @@ begin
           Excel.Selection.EntireRow.Insert;
           Excel.Range['A1'].Select;
           Excel.ActiveCell.FormulaR1C1 := 'CONCENTRADO DEL # AL #';
-          Excel.Range['A7:E8'].MergeCells := true;
+//
+//          Excel.Range['B3:'+'E'+IntToStr(9+zDatos.RecordCount)].select;
+//          Excel.selection.autofilter;
+//          Excel.Range['F3:'+'H'+IntToStr(9+zDatos.RecordCount)].Select;
+//          Excel.selection.autofilter;
+//          Excel.Range['I3:'+'J'+IntToStr(9+zDatos.RecordCount)].Select;
+//          Excel.Selection.autofilter;
 
-
-          Excel.Range['A7:'+'L'+IntToStr(9+zDatos.RecordCount)].select;//advancedFilter(Action:=1,Unique:=False);
+          Excel.Range['F7:'+'H'+IntToStr(9+zDatos.RecordCount)].select;//advancedFilter(Action:=1,Unique:=False);
           Excel.Selection.AutoFilter;
-          Excel.Columns['E:E'].ColumnWidth := 17.29;
+
 
         finally
           Excel.DisplayAlerts:= 0;

@@ -1658,7 +1658,7 @@ object FrmInicio: TFrmInicio
   object cxspltrMenu: TcxSplitter
     Left = 281
     Top = 0
-    Width = 6
+    Width = 5
     Height = 765
     HotZoneClassName = 'TcxMediaPlayer9Style'
   end
@@ -1870,21 +1870,19 @@ object FrmInicio: TFrmInicio
     OnClick = advAviso1Click
   end
   object cxspltr1: TcxSplitter
-    Left = 1300
+    Left = 1301
     Top = 0
-    Width = 6
+    Width = 5
     Height = 765
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salRight
-    ExplicitLeft = 1301
   end
   object cxGboxDatos: TcxGroupBox
-    Left = 999
+    Left = 1000
     Top = 0
     Align = alRight
     Caption = 'Registro de actividades'
     TabOrder = 11
-    ExplicitLeft = 1000
     Height = 765
     Width = 301
     object dbGridDatos: TDBGrid
@@ -3116,13 +3114,12 @@ object FrmInicio: TFrmInicio
     end
   end
   object cxspltr2: TcxSplitter
-    Left = 993
+    Left = 995
     Top = 0
-    Width = 6
+    Width = 5
     Height = 765
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salRight
-    ExplicitLeft = 994
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -3680,7 +3677,7 @@ object FrmInicio: TFrmInicio
   object dxSkinController1: TdxSkinController
     Kind = lfOffice11
     NativeStyle = False
-    SkinName = 'Office2010Blue'
+    SkinName = 'DevExpressStyle'
     UseImageSet = imsOriginal
     Left = 728
     Top = 232
@@ -3688,7 +3685,7 @@ object FrmInicio: TFrmInicio
   object cxlkndflcntrlr1: TcxLookAndFeelController
     Kind = lfOffice11
     NativeStyle = False
-    SkinName = 'Office2010Blue'
+    SkinName = 'DevExpressStyle'
     Left = 664
     Top = 136
   end
@@ -3929,13 +3926,16 @@ object FrmInicio: TFrmInicio
     Top = 296
   end
   object dxFloatDockSite1: TdxFloatDockSite
-    Left = 0
+    Left = 286
     Top = 0
-    Width = 853
-    Height = 561
+    Width = 709
+    Height = 765
     Visible = False
     FloatLeft = 564
     FloatTop = 236
+    ExplicitLeft = 0
+    ExplicitWidth = 853
+    ExplicitHeight = 561
     DockingType = 0
     OriginalWidth = 853
     OriginalHeight = 561

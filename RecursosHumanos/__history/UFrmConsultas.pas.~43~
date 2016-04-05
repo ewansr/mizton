@@ -124,7 +124,7 @@ begin
 
           Excel.Range['A7:'+'L'+IntToStr(9+zDatos.RecordCount)].select;//advancedFilter(Action:=1,Unique:=False);
           Excel.Selection.AutoFilter;
-          Excel.Columns['E:E'].ColumnWidth := 17.29;
+          Excel.Columns['E:E'].ColumnWidth = 17.29;
 
         finally
           Excel.DisplayAlerts:= 0;

@@ -67,7 +67,7 @@ inherited FrmVales: TFrmVales
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsFolios
       DataController.DetailKeyFieldNames = 'IdVale'
-      DataController.KeyFieldNames = 'IdFolio'
+      DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>

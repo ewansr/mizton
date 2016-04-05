@@ -351,7 +351,6 @@ begin
 
       ExApp.Range['D4:D5'] := 'TIPO DE TRABAJO';
       ExApp.Range['D4:D5'].mergeCells := true;
-      ExApp.Range['D4:D5'].wraptext := True;
 
       ExApp.Range['E4:G4'] := 'VOLTAJE';
       ExApp.Range['E4:G4'].mergeCells := true;
@@ -436,9 +435,6 @@ begin
           ExApp.Range[ColumnaNombre(IniCol + 10) + IntToStr(IniFila + recFila)] := 99;
           ExApp.Range[ColumnaNombre(IniCol + 10) + IntToStr(IniFila + recFila+1)] := 99;
 
-
-          ExApp.Range[ColumnaNombre(IniCol + 15) + IntToStr(IniFila + recFila+1)] := 'PAR BUENO';
-          ExApp.Range[ColumnaNombre(IniCol + 15) + IntToStr(IniFila + recFila)+ ':' + ColumnaNombre(IniCol+16) + IntToStr(IniFila + recFila)].mergeCells := True;
 
 
 

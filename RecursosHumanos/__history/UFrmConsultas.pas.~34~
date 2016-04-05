@@ -103,38 +103,28 @@ begin
     dlgSave1.FileName := '';
     if dlgSave1.Execute then
     begin
-      try
-        try
+
+      rutaArchivo := dlgSave1.FileName + '.xls';
+      cxExportPivotGridToExcel(rutaArchivo, cxpivotFolios);
+
+      Excel := CreateOleObject('Excel.Application');
+      Excel.workbooks.Open(rutaArchivo);
+
+      Excel.Range['A1'].Select;
+      Excel.Selection.EntireRow.Insert;
+      Excel.Selection.EntireRow.Insert;
+      Excel.Selection.EntireRow.Insert;
+      Excel.Range['A1'].Select;
+      Excel.ActiveCell.FormulaR1C1 := 'CONCENTRADO DEL # AL #';
+
+      Excel.Range['B7:'+'E'+IntToStr(8+zDatos.RecordCount)].autofilter;
+      Excel.Range['F7:'+'H'+IntToStr(8+zDatos.RecordCount)].autofilter;
+      Excel.Range['I7:'+'J'+IntToStr(8+zDatos.RecordCount)].autofilter;
+      Excel.Range['K7:'+'L'+IntToStr(8+zDatos.RecordCount)].autofilter;
 
 
-          rutaArchivo := dlgSave1.FileName + '.xls';
-          cxExportPivotGridToExcel(rutaArchivo, cxpivotFolios);
 
-          Excel := CreateOleObject('Excel.Application');
-          Excel.workbooks.Open(rutaArchivo);
-
-          Excel.Range['A1'].Select;
-          Excel.Selection.EntireRow.Insert;
-          Excel.Selection.EntireRow.Insert;
-          Excel.Selection.EntireRow.Insert;
-          Excel.Range['A1'].Select;
-          Excel.ActiveCell.FormulaR1C1 := 'CONCENTRADO DEL # AL #';
-          Excel.Range['A7:E8'].MergeCells := true;
-
-
-          Excel.Range['A7:'+'L'+IntToStr(9+zDatos.RecordCount)].select;//advancedFilter(Action:=1,Unique:=False);
-          Excel.Selection.AutoFilter;
-          Excel.Columns['E:E'].ColumnWidth := 17.29;
-
-        finally
-          Excel.DisplayAlerts:= 0;
-          Excel.ActiveWorkBook.Save;
-          Excel.ActiveWorkBook.Close(SaveChanges:= 1);
-        End;
-      Finally
-        Excel.Quit;
-        Excel:= UnAssigned;
-      end;
+      Excel.ActiveWorkBook.Save;
 
        if MsgBox.ShowModal('Aviso', '¿Desea abrir el documento exportado?', cmtConfirmation, [cmbOpen, cmbNo]) = mrYes then
           ShellExecute(Self.Handle, Nil, PChar(rutaArchivo), '', '', SW_SHOWNORMAL);

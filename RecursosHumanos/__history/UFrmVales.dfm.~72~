@@ -67,7 +67,7 @@ inherited FrmVales: TFrmVales
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsFolios
       DataController.DetailKeyFieldNames = 'IdVale'
-      DataController.KeyFieldNames = 'IdFolio'
+      DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
@@ -77,6 +77,9 @@ inherited FrmVales: TFrmVales
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsSelection.InvertSelect = False
+      OptionsSelection.MultiSelect = True
+      OptionsSelection.CellMultiSelect = True
       OptionsView.GroupByBox = False
       Styles.OnGetContentStyle = cxGridFoliosStylesGetContentStyle
       object cxColFecha: TcxGridDBColumn
@@ -309,8 +312,6 @@ inherited FrmVales: TFrmVales
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end

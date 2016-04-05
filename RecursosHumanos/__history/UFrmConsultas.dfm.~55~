@@ -322,12 +322,11 @@ object FrmConsultas: TFrmConsultas
       UniqueName = 'Folio'
     end
     object cxPGFieldTelefono: TcxDBPivotGridField
-      Area = faRow
+      Area = faData
       AreaIndex = 3
       IsCaptionAssigned = True
       Caption = 'Tel'#233'fono'
       DataBinding.FieldName = 'Telefono'
-      GroupExpanded = False
       Visible = True
       UniqueName = 'Tel'#233'fono'
     end
@@ -342,12 +341,11 @@ object FrmConsultas: TFrmConsultas
       UniqueName = 'CostoCobrar'
     end
     object cxPGFieldFecha: TcxDBPivotGridField
-      Area = faRow
+      Area = faData
       AreaIndex = 2
       IsCaptionAssigned = True
       Caption = 'Fecha'
       DataBinding.FieldName = 'FechaCreacion'
-      GroupExpanded = False
       Visible = True
       UniqueName = 'FechaCreacion'
     end

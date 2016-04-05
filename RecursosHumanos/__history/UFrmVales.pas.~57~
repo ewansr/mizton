@@ -147,7 +147,7 @@ begin
 //      cxGridFolios.ViewData.GridView.Controller.SelectedRecordCount;
     //end;
     
-    zUptEstatusCobro.Params.ParamByName('IdFolio').AsString := zFolios.FieldByName('IdFolio').AsString;
+    zUptEstatusCobro.Params.ParamByName('IdFolio').AsString := zDatos.FieldByName('IdFolio').AsString;
     zUptEstatusCobro.Params.ParamByName('EstatusCobro').asString := 'Autorizado';
 
     if not zUptEstatusCobro.Connection.Ping then

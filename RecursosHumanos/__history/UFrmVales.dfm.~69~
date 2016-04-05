@@ -20,7 +20,7 @@ inherited FrmVales: TFrmVales
   inherited cxGridGral: TcxGrid
     Left = 3
     Width = 716
-    Height = 252
+    Height = 253
     ExplicitLeft = 3
     ExplicitWidth = 606
     ExplicitHeight = 253
@@ -67,7 +67,7 @@ inherited FrmVales: TFrmVales
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsFolios
       DataController.DetailKeyFieldNames = 'IdVale'
-      DataController.KeyFieldNames = 'IdFolio'
+      DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
@@ -111,10 +111,6 @@ inherited FrmVales: TFrmVales
       object cxColEstatusCobro: TcxGridDBColumn
         Caption = 'Estatus Cobro TELMEX'
         DataBinding.FieldName = 'EstatusCobro'
-      end
-      object cxColId: TcxGridDBColumn
-        DataBinding.FieldName = 'IdFolio'
-        Visible = False
       end
     end
     inherited GridLevel1: TcxGridLevel
@@ -291,13 +287,13 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited cxSplitter1: TcxSplitter
-    Top = 380
+    Top = 381
     Width = 722
-    Height = 6
+    Height = 5
     AlignSplitter = salBottom
     ExplicitTop = 381
-    ExplicitWidth = 722
-    ExplicitHeight = 6
+    ExplicitWidth = 612
+    ExplicitHeight = 5
   end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
@@ -309,8 +305,6 @@ inherited FrmVales: TFrmVales
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end
@@ -748,7 +742,6 @@ inherited FrmVales: TFrmVales
     Top = 336
   end
   object zUptEstatusCobro: TZQuery
-    Connection = UDMConection.conBD
     SQL.Strings = (
       #9'update '
       #9'  mt_foliosxtecnicos'

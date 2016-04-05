@@ -924,12 +924,11 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       ImageIndex = 15
     end
     object btnParElectricos: TdxBarLargeButton
-      Caption = '&Generar plantilla Par'#225'metros El'#233'ctricos'
+      Caption = '&Generar reporte Par'#225'metro El'#233'ctricos'
       Category = 0
-      Hint = 'Generar plantilla Par'#225'metros El'#233'ctricos'
+      Hint = 'Generar reporte Par'#225'metro El'#233'ctricos'
       Visible = ivAlways
       LargeImageIndex = 15
-      OnClick = btnParElectricosClick
     end
   end
   object dsDatos: TDataSource
