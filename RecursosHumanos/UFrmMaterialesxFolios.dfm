@@ -192,7 +192,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             end
           end
           object GridLevel1: TcxGridLevel
-            Caption = 'Informaci'#243'n detallada por folios'
+            Caption = 'Informaci'#243'n detallada por '#243'rden'
             GridView = cxGridDatos
           end
           object cxLvlGrafico: TcxGridLevel
@@ -288,7 +288,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Height = 544
       AllowFloating = True
       AutoHide = False
-      Caption = 'Materiales asignados a cada folio'
+      Caption = 'Materiales asignados a cada Orden'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
@@ -313,7 +313,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         ClientRectRight = 376
         ClientRectTop = 27
         object cxTsDatos: TcxTabSheet
-          Caption = 'Materiales por Folio'
+          Caption = 'Materiales por Orden'
           ImageIndex = 0
           ExplicitHeight = 418
           object dxLYCDatos: TdxLayoutControl
@@ -461,7 +461,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Top = 65
           Width = 75
           Height = 25
-          Caption = '&Mostrar Actividades'
+          Caption = '&Mostrar '#211'rdenes'
           TabOrder = 2
           OnClick = btnAplicarClick
         end
@@ -821,18 +821,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       WholeRow = False
     end
     object dxButtonNuevo: TdxBarLargeButton
-      Caption = '&Nuevo'#13#10'Folio'
+      Caption = '&Nueva Orden'
       Category = 0
-      Hint = 'Nuevo'#13#10'Folio'
+      Hint = 'Nueva Orden'
       Visible = ivAlways
+      ButtonStyle = bsDropDown
+      DropDownMenu = dxPopupTipo
       LargeImageIndex = 4
       ShortCut = 16462
       OnClick = dxButtonNuevoClick
     end
     object dxBButtonEditar: TdxBarButton
-      Caption = '&Editar Folio'
+      Caption = '&Editar Orden'
       Category = 0
-      Hint = 'Editar Folio'
+      Hint = 'Editar Orden'
       Visible = ivAlways
       ImageIndex = 3
       LargeImageIndex = 3
@@ -840,18 +842,18 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OnClick = dxBButtonEditarClick
     end
     object dxBButtonBuscar: TdxBarButton
-      Caption = '&Buscar Folio'
+      Caption = '&Buscar Orden'
       Category = 0
-      Hint = 'Buscar Folio'
+      Hint = 'Buscar Orden'
       Visible = ivAlways
       ImageIndex = 10
       ShortCut = 16450
       OnClick = dxBButtonBuscarClick
     end
     object dxBButtonEliminar: TdxBarButton
-      Caption = 'Eli&minar Folio'
+      Caption = 'Eli&minar Orden'
       Category = 0
-      Hint = 'Eliminar Folio'
+      Hint = 'Eliminar Orden'
       Visible = ivAlways
       ImageIndex = 11
       LargeImageIndex = 11
@@ -859,9 +861,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OnClick = dxBButtonEliminarClick
     end
     object dxButtonGuardar: TdxBarLargeButton
-      Caption = '&Guardar Folio'
+      Caption = '&Guardar Orden'
       Category = 0
-      Hint = 'Guardar Folio'
+      Hint = 'Guardar Orden'
       Visible = ivNever
       LargeImageIndex = 9
       ShortCut = 16455
@@ -974,6 +976,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       LargeImageIndex = 15
       OnClick = btnParElectricosClick
+    end
+    object dxButtonCObre: TdxBarButton
+      Caption = '&Cobre'
+      Category = 0
+      Hint = 'Cobre'
+      Visible = ivAlways
+      OnClick = dxButtonCObreClick
+    end
+    object dxButtonFIBRa: TdxBarButton
+      Caption = 'Fibra '#243'ptica'
+      Category = 0
+      Hint = 'Fibra '#243'ptica'
+      Visible = ivAlways
+      OnClick = dxButtonFIBRaClick
     end
   end
   object dsDatos: TDataSource
@@ -1134,5 +1150,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Color = 3054090
       TextColor = clWhite
     end
+  end
+  object dxPopupTipo: TdxBarPopupMenu
+    BarManager = dxBarManager1
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxButtonCObre'
+      end
+      item
+        Visible = True
+        ItemName = 'dxButtonFIBRa'
+      end>
+    UseOwnFont = False
+    Left = 320
+    Top = 304
   end
 end

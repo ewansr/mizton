@@ -1,0 +1,364 @@
+unit ULogin;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
+  cxContainer, cxEdit, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
+  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
+  dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue, cxLabel,
+  cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
+  cxDBLookupComboBox, dxdbtrel, DB, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset, Menus, StdCtrls, cxButtons, UConection, UnitRegistroWindows, StrUtils,
+  dxSkinsdxBarPainter, cxClasses, dxBar, cxImage, dxGDIPlusClasses, UMsgBox;
+
+type
+  TFrmLogin = class(TForm)
+    cxlbl1: TcxLabel;
+    cbbBaseDatos: TcxLookupComboBox;
+    cxlbl4: TcxLabel;
+    cxTextUsuario: TcxTextEdit;
+    cxTextContrasena: TcxTextEdit;
+    cbbDireccionesIP: TcxComboBox;
+    zBaseDatos: TZQuery;
+    zEmpresas: TZQuery;
+    btnLogin: TcxButton;
+    btnCancelar: TcxButton;
+    dsBaseDatos: TDataSource;
+    dxBarManager1: TdxBarManager;
+    img1: TcxImage;
+    btn1: TcxButton;
+    cxlbl3: TcxLabel;
+    LblDescripcion: TcxLabel;
+    procedure cbbDireccionesIPExit(Sender: TObject);
+    procedure btnLoginClick(Sender: TObject);
+    procedure dxLookUpEmpresasExit(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    procedure VentanaConfigMYSQL;
+    function VerificarUsuario: Boolean;
+    { Private declarations }
+  public
+    { Public declarations }
+    defaultConnectionName: String;
+    procedure buscarConexionDefault;
+  end;
+
+var
+  FrmLogin: TFrmLogin;
+
+implementation
+
+{$R *.dfm}
+Uses
+  UConfigMySQL, UFrmInicio, UHostManager;
+
+procedure TFrmLogin.btn1Click(Sender: TObject);
+begin
+  application.CreateForm(TFrmHostManager, FrmhostManager);
+  FrmHostManager.ShowModal;
+  buscarConexionDefault;
+end;
+
+procedure TFrmLogin.btnLoginClick(Sender: TObject);
+var
+  HuboError: Boolean;
+  ObligaCerrar: Boolean;
+begin
+  try
+    HuboError := False;
+    ObligaCerrar := True;
+    if Length(Trim(cxTextUsuario.Text)) = 0 then
+    begin
+      if cxTextUsuario.CanFocus then
+        cxTextUsuario.SetFocus;
+
+      raise eWarning.Create('Escribe el nombre del usuario.');
+    end;
+
+    with varGlobal do
+    begin
+      SetValue('ConnectionName', VarRegistry('\Settings','\'+ defaultConnectionName +'', 'ConnectionName'));
+      SetValue('HostName', VarRegistry('\Settings','\'+ defaultConnectionName +'', 'Host'));
+      SetValue('Usuario', cxTextUsuario.Text);
+      SetValue('Contrasena', cxTextContrasena.Text);
+      SetValue('BaseDatos', VarRegistry('\Settings','\'+ defaultConnectionName +'', 'Database'));
+      SetValue('IDEmpresa', -1);
+      SetValue('NombreEmpresa', 'SIN EMPRESA');
+    end;
+
+    try
+      if UDMConection.conBD.Connected then
+        UDMConection.conBD.Disconnect;
+
+      with UDMConection.conBD do
+      begin
+        Database := VarRegistry('\Settings','\'+ defaultConnectionName +'', 'Database');
+        HostName := VarRegistry('\Settings','\'+ defaultConnectionName +'', 'Host');
+        User := VarRegistry('\Settings','\'+ defaultConnectionName +'', 'MysqlUser');
+        Password := VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlPass');
+        Port := StrToInt(VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlPort'));
+        Connect;
+      end;
+
+      RecargarConsultasSQL;
+    except
+      on e: exception do
+        if e.message <> '***' then
+        begin
+          HuboError := True;
+          If  msgBox.ShowModal('Error al conectar.','No se ha podido establecer la conexión debido al siguiente error: ' + e.Message, cmtConection, [cMbcancel, cMbReconfig]) = mrYes then
+          begin
+            VentanaConfigMYSQL;
+          end;
+
+          ObligaCerrar := False;
+        end;
+    end;
+
+
+    if (Not HuboError) and (Not VerificarUsuario) then
+    begin
+      //cbbDireccionesIPExit(nil);
+
+      if cxTextUsuario.CanFocus then
+        cxTextUsuario.SetFocus;
+
+      raise eWarning.Create('El nombre de usuario o contraseña es incorrecto. Por favor intentalo nuevamente.');
+    end;
+
+    if ObligaCerrar then
+      Self.Close;
+  except
+    on e: eException do
+    begin
+      MsgBox.ShowModal('Aviso', 'El sistema se cerrará.', cmtWarning, [cmbOK]);
+      PostMessage(Self.Handle, WM_CLOSE, 0, 0);
+    end;
+
+    on e: eWarning do
+    begin
+      MsgBox.ShowModal('Aviso', e.Message, cmtWarning, [cmbOK]);
+    end;
+
+    on e: Exception do
+    begin
+      MsgBox.ShowModal('Error', pMensajeError + e.Message, cmtError, [cmbOK]);
+    end;
+  end;
+end;
+
+procedure TFrmLogin.buscarConexionDefault;
+var
+  Lista: TStringList;
+  i: Integer;
+begin
+  i := 0;
+  Lista := LeerGrupos('\Settings');
+  while i < Lista.Count do
+  begin
+    if StrToBool(VarRegistry('\Settings','\'+ Lista[i] +'', 'default')) then
+    begin
+      defaultConnectionName := VarRegistry('\Settings','\' + Lista[i] + '', 'ConnectionName');
+    end;
+    inc(i);
+  end;
+  LblDescripcion.Caption := VarRegistry('\Settings','\'+ defaultConnectionName +'', 'Database') + ' en '  + VarRegistry('\Settings','\'+ defaultConnectionName +'', 'host')
+
+end;
+
+procedure TFrmLogin.cbbDireccionesIPExit(Sender: TObject);
+var
+  Cursor : TCursor;
+  Existe: Boolean;
+  ASkinName: string;
+begin
+  try
+    Cursor := Screen.Cursor;
+    try
+      Screen.Cursor := crAppStart;
+
+//      Existe := False;
+//      VarRegistry('\Settings','\' + cbbDireccionesIP.Text + '', 'MysqlUser', Existe);
+//      if Not Existe then
+//      begin
+//        If MessageDlg('Este Host [ ' + cbbDireccionesIP.Text + ' ] no se encuentra registrado, ¿Deseas hacerlo ahora y configurar sus parametros de MYSQL?', mtConfirmation, [mbYes, MbNo], 0) = mrNo then
+//        begin
+//          cbbDireccionesIP.ItemIndex := 0;
+//          if cbbDireccionesIP.CanFocus then
+//            cbbDireccionesIP.SetFocus;
+//          raise Exception.Create('***');
+//        end;
+//        VentanaConfigMYSQL;
+//      end;
+
+      try
+        if UDMConection.conBD.Connected then
+          UDMConection.conBD.Disconnect;
+
+        with UDMConection.conBD do
+        begin
+          Database := '';
+          HostName := VarRegistry('\Settings','\'+ cbbDireccionesIP.Text +'', 'Host');
+          User := VarRegistry('\Settings','\'+ cbbDireccionesIP.Text +'', 'MysqlUser');
+          Password := VarRegistry('\Settings','\' + cbbDireccionesIP.Text + '', 'MysqlPass');
+          Port := StrToInt(VarRegistry('\Settings','\' + cbbDireccionesIP.Text + '', 'MysqlPort'));
+          Connect;
+        end;
+
+        zBaseDatos.Active := False;
+        zBaseDatos.Connection := UDMConection.conBD;
+        zBaseDatos.SQL.Text := 'Show Databases;';
+        zBaseDatos.Open;
+      except
+        on e: exception do
+          if e.message <> '***' then
+            If  msgBox.ShowModal('Error al conectar.','No se ha podido establecer la conexión debido al siguiente error: ' + e.Message, cmtConection, [cmbOK, cMbReconfig]) = mrYes then
+            begin
+              VentanaConfigMYSQL;
+            end;
+      end;
+
+      try
+        ASkinName :=  VarRegistry('\Settings','\' + cbbDireccionesIP.Text, 'SkinName');
+      except
+        ASkinName := 'Office2013White';
+      end;
+
+      if Assigned(FrmInicio) then
+      begin
+        //FrmInicio.dxRibbon1.ColorSchemeName := ASkinName;   //ribbon
+        FrmInicio.dxSkinController1.SkinName := ASkinName;   //SkinController
+        FrmInicio.dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
+      end;
+    finally
+      Screen.Cursor := Cursor;
+    end;
+  except
+    on e: Exception do
+     if e.Message <> '***' then
+       MsgBox.ShowModal('Error', pMensajeError + e.Message, cmtError, [cmbOK]);
+  end;
+end;
+
+
+procedure TFrmLogin.dxLookUpEmpresasExit(Sender: TObject);
+begin
+  try
+    if not AsignarSQL(zEmpresas, 'master_empresas', pReadOnly) then
+      raise Exception.Create('');
+  except
+    raise;
+  end;
+end;
+
+procedure TFrmLogin.FormCreate(Sender: TObject);
+var
+  Lista: TstringList;
+  i: Integer;
+begin
+//  Lista:= LeerGrupos('\Settings');
+//  cbbDireccionesIP.Properties.Items.Clear;
+//  for i := 0 to Lista.Count - 1 do
+//  begin
+//    cbbDireccionesIP.Properties.Items.Add(Lista[i]);
+//  end;
+  //cbbDireccionesIP.ItemIndex := 0;
+end;
+
+procedure TFrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = VK_F11 then
+  begin
+    VentanaConfigMYSQL;
+  end;
+end;
+
+procedure TFrmLogin.FormShow(Sender: TObject);
+begin
+  try
+    buscarConexionDefault;
+  finally
+    AutoFocus(TForm(Self));
+  end;
+end;
+
+procedure TFrmLogin.VentanaConfigMYSQL;
+begin
+  try
+    try
+      Application.CreateForm(TFrmConfigMySQL, FrmConfigMySQL);
+      FrmConfigMySQL.Host := VarRegistry('\Settings','\' + defaultConnectionName + '', 'ConnectionName');
+      if FrmConfigMySQL.ShowModal = mrAbort then
+        raise Exception.Create('***');
+
+      buscarConexionDefault;
+
+      UDMConection.conBD.User := VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlUser');
+      UDMConection.conBD.Password := VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlPass');
+      UDMConection.conBD.Port := StrToInt(VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlPort'));
+      UDMConection.conBD.Protocol := VarRegistry('\Settings','\' + defaultConnectionName + '', 'MysqlProtocol');
+
+    Finally
+      if cbbDireccionesIP.CanFocus then
+        cbbDireccionesIP.SetFocus;
+    end;
+  except
+    on e: Exception do
+      if e.Message <> '***' then
+        MsgBox.ShowModal('Error', pMensajeError + e.Message, cmtError, [cmbOK]);
+  end;
+end;
+
+function TFrmLogin.VerificarUsuario: Boolean;
+var
+  zUsuario: TZQuery;
+begin
+  try
+    try
+      Result := False;
+      zUsuario := TZQuery.Create(Self);
+
+      if not AsignarSQL(zUsuario, 'master_usuarios', pReadOnly) then
+        raise Exception.Create('No se encuentra la Consulta [Master_Usuarios] en la base de datos seleccionada');
+
+      if not FiltrarDataset(zUsuario, 'Usuario', [cxTextUsuario.Text]) then
+        raise Exception.Create('No se pudo filtrar el Dataset usando la consulta [Master_Usuarios]');
+
+      if zUsuario.Active then
+        zUsuario.Refresh
+      else
+        zUsuario.Open;
+
+      if (zUsuario.recordcount = 1) and ((zUsuario.FieldByName('Contrasena').AsString) = cxTextContrasena.Text) then
+      begin
+        varGlobal.SetValue('IdPerfil', zUsuario.fieldByName('IdPerfil').AsString);
+        Result := True
+      end
+      else
+        Result := False;
+    finally
+      zUsuario.Free;
+    end;
+  except
+    raise;
+  end;
+end;
+
+end.
+

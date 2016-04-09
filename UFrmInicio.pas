@@ -92,7 +92,6 @@ type
     btn1: TdxBarLargeButton;
     dxbrProductos: TdxBar;
     btnInventario: TdxBarLargeButton;
-    cxImage1: TcxImage;
     acListMenu: TActionList;
     actPersonal: TAction;
     dxrbndrpdwnglry1: TdxRibbonDropDownGallery;
@@ -132,7 +131,6 @@ type
     dxFloatDockSite1: TdxFloatDockSite;
     cxspltr1: TcxSplitter;
     cxGboxDatos: TcxGroupBox;
-    dbGridDatos: TDBGrid;
     cxspltr2: TcxSplitter;
     Panel1: TPanel;
     cxGboxTotal: TcxGroupBox;
@@ -159,6 +157,10 @@ type
     DbLblObjetadas: TcxDBLabel;
     DbLblQuejas: TcxDBLabel;
     DbLblTotal: TcxDBLabel;
+    dbGridDatos: TDBGrid;
+    actPerfiles: TAction;
+    LinkPerfiles: TdxNavBarItem;
+    zModulos: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -212,12 +214,14 @@ type
     procedure actConsultarOrdExecute(Sender: TObject);
     procedure zHiloFolioAfterOpen(DataSet: TDataSet);
     procedure zHiloFolioAfterRefresh(DataSet: TDataSet);
+    procedure actPerfilesExecute(Sender: TObject);
   private
     { Private declarations }
   public
     procedure ArrancarSistema;
     procedure CargarImpuestosEmpresa(EmpresaSel: Integer);
     Procedure actualizarFolios;
+    Procedure actualizarPermisoModulos;
     { Public declarations }
   end;
 
@@ -239,7 +243,8 @@ Uses
   UFrmUsuario, UFrmAEmpresas, ufrmPersonal,
   UFrmConfigCorreo, uFrmEnviarCorreo, uselExpediente,
   Ufrmvales, uFrmCatalogoAutomoviles, Ufrmpuestos,
-  UfrmCatalogoMateriales, UFrmtipoOrden, ufrmCostosInstalacion, UfrmConsultas;
+  UfrmCatalogoMateriales, UFrmtipoOrden, ufrmCostosInstalacion, UfrmConsultas,
+  UfrmPerfiles;
 
 { TForm1 }
 
@@ -291,6 +296,12 @@ begin
   FrmPais.ShowModal;
 end;
 
+procedure TFrmInicio.actPerfilesExecute(Sender: TObject);
+begin
+  application.CreateForm(TfrmPerfiles, FrmPerfiles);
+  FrmPerfiles.ShowModal;
+end;
+
 procedure TFrmInicio.actPersonalExecute(Sender: TObject);
 begin
   Application.CreateForm(TFrmPersonal, FrmPersonal);
@@ -319,6 +330,24 @@ begin
   except
     on e: exception do
       ;
+  end;
+end;
+
+procedure TFrmInicio.actualizarPermisoModulos;
+var
+  i: integer;
+begin
+  if zModulos.Active then
+  begin
+    for i := 0 to acListMenu.ActionCount -1 do
+    begin
+      if zModulos.Locate('NombreForm', acListMenu.Actions[i].Name, [loCaseInsensitive]) then
+      begin
+        Taction(acListMenu.Actions[i]).Enabled := True;
+      end
+      else
+        Taction(acListMenu.Actions[i]).Enabled := False;
+    end;
   end;
 end;
 
@@ -421,8 +450,25 @@ begin
       dxSkinController1.SkinName := ASkinName;   //SkinController
       dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
 
-      //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
+      //leer permisos de usuarios
+      if Not AsignarSQL(zModulos, 'master_modulos', pUpdate) then
+        raise Exception.Create(pErrorConsulta + '[master_modulos]');
 
+      if not FiltrarDataset(zModulos, 'IdPerfil', [varGlobal.Elemento('IdPerfil').AsString]) then
+        raise Exception.Create(pErrorFiltrar + '[Master_Modulos]');
+
+      if zModulos.Active then
+        zModulos.Refresh
+      else
+        zModulos.Open;
+
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') and (zModulos.RecordCount = 0) then
+        MsgBox.ShowModal('aviso', 'No tienes acceso a ningún modulo de Mizton Desk contacta a tu administrador del sistema', cmtInformation, [cmbOK, cmbCancel]);
+
+      if (UpperCase(varGlobal.Elemento('usuario').AsString <> 'ADMIN')) then
+        actualizarPermisoModulos;
+
+      //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
       if Not AsignarSQL(zEmpresa, 'master_empresa', pReadOnly) then
         raise Exception.Create(pErrorConsulta + '[Master_Empresa]');
 
@@ -702,7 +748,7 @@ procedure TFrmInicio.FormShow(Sender: TObject);
 begin
   Try
     ArrancarSistema;
-    Self.Brush.Bitmap := cxImage1.Picture.Bitmap;
+    //Self.Brush.Bitmap := cxImage1.Picture.Bitmap;
 
 //    if Not AsignarSQL(zDatos,'master_contactos', pReadOnly) then
 //      raise Exception.Create('La Consulta SQL [master_contacto] no se ha creado');

@@ -1028,7 +1028,6 @@ object FrmLogin: TFrmLogin
     StyleHot.LookAndFeel.SkinName = 'Whiteprint'
     TabOrder = 0
     OnKeyDown = FormKeyDown
-    ExplicitLeft = 101
     Height = 28
     Width = 274
   end
@@ -1048,7 +1047,6 @@ object FrmLogin: TFrmLogin
     StyleHot.LookAndFeel.SkinName = 'Whiteprint'
     TabOrder = 1
     OnKeyDown = FormKeyDown
-    ExplicitLeft = 102
     Height = 28
     Width = 274
   end

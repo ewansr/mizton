@@ -149,6 +149,9 @@ type
     cxstylAutorizada: TcxStyle;
     Panel2: TPanel;
     cxLabel1: TcxLabel;
+    dxPopupTipo: TdxBarPopupMenu;
+    dxButtonCObre: TdxBarButton;
+    dxButtonFIBRa: TdxBarButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -175,6 +178,8 @@ type
       ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
       var AStyle: TcxStyle);
     procedure btnParElectricosClick(Sender: TObject);
+    procedure dxButtonCObreClick(Sender: TObject);
+    procedure dxButtonFIBRaClick(Sender: TObject);
   private
     ExApp: Variant;
     { Private declarations }
@@ -781,6 +786,16 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.dxButtonCObreClick(Sender: TObject);
+begin
+  application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+  FrmCapturaFolio.IdFolio := -9;
+  FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
+
+  If FrmCapturaFolio.ShowModal <> mrCancel then
+    dxButtonActualizar.Click;
+end;
+
 procedure TFrmMaterialesxFolios.dxButtonExportarClick(Sender: TObject);
 Var
   cursor: TCursor;
@@ -1004,15 +1019,21 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.dxButtonFIBRaClick(Sender: TObject);
+begin
+  application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+  FrmCapturaFolio.IdFolio := -9;
+  FrmCapturaFolio.TipoInstalacion := 2;
+  FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
+
+  If FrmCapturaFolio.ShowModal <> mrCancel then
+    dxButtonActualizar.Click;
+end;
+
 procedure TFrmMaterialesxFolios.dxButtonNuevoClick(Sender: TObject);
 begin
   try
-    application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
-    FrmCapturaFolio.IdFolio := -9;
-    FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
 
-    If FrmCapturaFolio.ShowModal <> mrCancel then
-      dxButtonActualizar.Click;
   finally
 
   end;

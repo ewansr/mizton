@@ -74,6 +74,8 @@ type
     dxPopupFolio: TdxRibbonPopupMenu;
     zUptEstatusCobro: TZQuery;
     cxColId: TcxGridDBColumn;
+    cxColComentariosSistema: TcxGridDBColumn;
+    cxstylAvisos: TcxStyle;
     procedure FormCreate(Sender: TObject);
     procedure dxButtonGuardarClick(Sender: TObject);
     procedure cxDateValePropertiesChange(Sender: TObject);

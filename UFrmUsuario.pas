@@ -141,6 +141,12 @@ type
     lyEmpleadosA: TdxLayoutItem;
     DbLblUsuario: TcxDBLabel;
     DbLblOtros: TcxDBLabel;
+    cbbPerfil: TcxDBLookupComboBox;
+    lyPerfil: TdxLayoutItem;
+    zPerfil: TZQuery;
+    dsPerfil: TDataSource;
+    lyOPerfil: TdxLayoutItem;
+    cbbOPerfil: TcxDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure cxTabMiUsuarioEnter(Sender: TObject);
     procedure cxTabOtrosEnter(Sender: TObject);
@@ -476,6 +482,8 @@ begin
 
   if not AsignarSQL(zEmpleados, 'master_personal', pReadOnly) then
     raise Exception.Create(pErrorConsulta + '[' + 'Master_usuarios' + ']');
+
+  AsignarSQL(zPerfil, 'master_perfiles', pReadOnly);
 end;
 
 procedure TFrmUsuario.FormShow(Sender: TObject);
@@ -509,6 +517,15 @@ begin
       cxTextContrasena.Text := zUsuario.FieldByName('Contrasena').AsString;
 
       img1.Visible := zUsuario.FieldByName('ImagenCuenta').IsNull;
+
+
+
+      FiltrarDataset(zPerfil, 'Idperfil',  [-1]);
+      if zPerfil.Active then
+        zPerfil.Refresh
+      else
+        zPerfil.Open;
+
 
       if cxTextUsuario.CanFocus then
         cxTextUsuario.SetFocus;

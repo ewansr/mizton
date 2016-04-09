@@ -2,16 +2,16 @@ inherited FrmVales: TFrmVales
   BorderIcons = [biSystemMenu, biMinimize, biMaximize]
   BorderStyle = bsSizeable
   Caption = 'Cat'#225'logo de Vales'
-  ClientHeight = 549
-  ClientWidth = 722
+  ClientHeight = 624
+  ClientWidth = 1374
   OnCreate = FormCreate
-  ExplicitWidth = 738
-  ExplicitHeight = 588
+  ExplicitWidth = 1390
+  ExplicitHeight = 663
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
-    Width = 722
-    ExplicitWidth = 612
+    Width = 1374
+    ExplicitWidth = 722
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -19,17 +19,16 @@ inherited FrmVales: TFrmVales
   end
   inherited cxGridGral: TcxGrid
     Left = 3
-    Width = 716
-    Height = 252
+    Width = 1368
+    Height = 327
     ExplicitLeft = 3
-    ExplicitWidth = 606
-    ExplicitHeight = 253
+    ExplicitWidth = 716
+    ExplicitHeight = 252
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       DataController.DetailKeyFieldNames = 'IdVale'
       DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
-      OptionsView.ColumnAutoWidth = False
       OptionsView.GroupByBox = True
       object cxColNoVale: TcxGridDBColumn
         Caption = 'No. Vale'
@@ -77,6 +76,7 @@ inherited FrmVales: TFrmVales
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
       Styles.OnGetContentStyle = cxGridFoliosStylesGetContentStyle
       object cxColFecha: TcxGridDBColumn
@@ -116,6 +116,46 @@ inherited FrmVales: TFrmVales
         DataBinding.FieldName = 'IdFolio'
         Visible = False
       end
+      object cxColComentariosSistema: TcxGridDBColumn
+        Caption = 'Avisos del sistema'
+        DataBinding.FieldName = 'ComentariosSistema'
+        HeaderGlyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000020000000800000011000000110000
+          0008000000020000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000007291F1B607D5E53ED77574DED2319
+          1663000000080000000000000000000000000000000000000000000000000000
+          00000000000000000000000000010000000F85685CEAD1C2BBFFB2998CFF7556
+          4CEB000000120000000100000000000000000000000000000000000000000000
+          00000000000000000000000000020F0C0B2CA28376FFDACCC6FFB69E93FF8D6B
+          5FFF0C0908300000000200000000000000000000000000000000000000000000
+          00000000000000000000000000043026225FB3998CFFD9CCC6FFB69E93FF9979
+          6CFF281E1B630000000600000000000000000000000000000000000000000000
+          0000000000000000000000000007114069921681DAFF1695E9FF0976DFFF1480
+          D9FF0D3C66960000000A00000000000000000000000000000000000000000000
+          000000000000000000010000000E1D67A8D51E94E5FF26A2ECFF1284E3FF1D93
+          E4FF1761A3D80000001300000003000000000000000000000000000000000000
+          0000000000010000000714446E912E9BE1FF2EADEEFF26A8EDFF26A8EDFF2DAC
+          EEFF2C9AE1FF104676A40000000D000000010000000000000000000000000000
+          0000000000030B21354A3397DDFF4AC8F4FF38C0F2FF38C0F2FF38C0F2FF38C0
+          F2FF48C7F3FF3097DBFF0A2B486D000000060000000000000000000000000000
+          000000000005246AA5C859CBF1FF4FD8F7FF60DEF9FF4ED8F7FF4ED8F7FF60DE
+          F9FF4FD8F7FF56C8EFFF185E9DCC0000000B0000000000000000000000000000
+          0000000000052E82CDF173E2F7FF52DDF7FF77E5FAFF8AEBFBFF89EBFBFF78E6
+          F9FF51DCF7FF75E4F8FF1F7BCAFA0000000C0000000000000000000000000000
+          0000000000043185CEF179DAF5FF51CFF4FF71D8F5FF8BDFF7FF8BDFF7FF72D9
+          F5FF50CEF3FF7ADDF7FF217DCBFA0000000B0000000000000000000000000000
+          000000000003296EA9C66DC7F0FF7BD1F4FFBBE7F9FFBAE7F9FFBAE7F9FFBAE7
+          F9FF7AD0F4FF69C3EEFF1D62A1CA000000080000000000000000000000000000
+          0000000000010E243743489FE0FD9FD9F6FFE5F4FCFFE4F3FCFFE3F3FCFFE5F4
+          FCFF9FD9F6FF459CDEFF0C2A435B000000030000000000000000000000000000
+          000000000000000000011B45697B499FE2FFB0D9F5FFE9F5FDFFE9F5FCFFB0D9
+          F4FF4299DEFF16466F8B00000005000000010000000000000000000000000000
+          00000000000000000000000000010E24374226649AB33080C6E52E7FC4E52261
+          98B40C2236450000000300000001000000000000000000000000}
+        Styles.Content = cxstylAvisos
+      end
     end
     inherited GridLevel1: TcxGridLevel
       object cxLvlFolios: TcxGridLevel
@@ -124,27 +164,27 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited pnlDatos: TPanel
-    Top = 386
-    Width = 722
+    Top = 461
+    Width = 1374
     Height = 163
     ExplicitTop = 386
-    ExplicitWidth = 612
+    ExplicitWidth = 722
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
-      Width = 718
+      Width = 1370
       Height = 159
-      ExplicitWidth = 608
+      ExplicitWidth = 718
       ExplicitHeight = 159
       ClientRectBottom = 153
-      ClientRectRight = 712
+      ClientRectRight = 1364
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
-        ExplicitWidth = 600
+        ExplicitWidth = 710
         ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 710
+          Width = 1362
           Height = 126
-          ExplicitWidth = 600
+          ExplicitWidth = 710
           ExplicitHeight = 126
           object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
@@ -291,11 +331,11 @@ inherited FrmVales: TFrmVales
     end
   end
   inherited cxSplitter1: TcxSplitter
-    Top = 380
-    Width = 722
+    Top = 455
+    Width = 1374
     Height = 6
     AlignSplitter = salBottom
-    ExplicitTop = 381
+    ExplicitTop = 380
     ExplicitWidth = 722
     ExplicitHeight = 6
   end
@@ -727,6 +767,16 @@ inherited FrmVales: TFrmVales
       AssignedValues = [svColor, svTextColor]
       Color = 3054090
       TextColor = clWhite
+    end
+    object cxstylAvisos: TcxStyle
+      AssignedValues = [svColor, svFont, svTextColor]
+      Color = clYellow
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      TextColor = clMaroon
     end
   end
   object dxPopupFolio: TdxRibbonPopupMenu

@@ -175,6 +175,12 @@
 			<DCCReference Include="RecursosHumanos\UFrmCostosInstalacion.pas">
 				<Form>FrmCostosInstalacion</Form>
 			</DCCReference>
+			<DCCReference Include="Generales\UfrmPermisoUsuarioModulo.pas">
+				<Form>FrmPermisousuarioModulo</Form>
+			</DCCReference>
+			<DCCReference Include="Generales\UFrmPerfiles.pas">
+				<Form>FrmPerfiles</Form>
+			</DCCReference>
 			<None Include="Debug\Win32\Busy.ani"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

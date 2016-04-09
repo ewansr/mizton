@@ -55,7 +55,9 @@ uses
   uLkJSON in 'lkJSON-1.07\uLkJSON.pas',
   UFrmCatalogoMateriales in 'RecursosHumanos\UFrmCatalogoMateriales.pas' {FrmCatalogoMateriales},
   UFrmTipoOrden in 'RecursosHumanos\UFrmTipoOrden.pas' {FrmTipoOrden},
-  UFrmCostosInstalacion in 'RecursosHumanos\UFrmCostosInstalacion.pas' {FrmCostosInstalacion};
+  UFrmCostosInstalacion in 'RecursosHumanos\UFrmCostosInstalacion.pas' {FrmCostosInstalacion},
+  UfrmPermisoUsuarioModulo in 'Generales\UfrmPermisoUsuarioModulo.pas' {FrmPermisousuarioModulo},
+  UFrmPerfiles in 'Generales\UFrmPerfiles.pas' {FrmPerfiles};
 
 {$R *.res}
 
@@ -67,8 +69,5 @@ begin
   Application.CreateForm(TFrmInicio, FrmInicio);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TMsgBox, MsgBox);
-  Application.CreateForm(TFrmCatalogoMateriales, FrmCatalogoMateriales);
-  Application.CreateForm(TFrmTipoOrden, FrmTipoOrden);
-  Application.CreateForm(TFrmCostosInstalacion, FrmCostosInstalacion);
   Application.Run;
 end.

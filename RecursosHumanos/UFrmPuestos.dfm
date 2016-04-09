@@ -9,17 +9,15 @@ inherited FrmPuestos: TFrmPuestos
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     Width = 441
+    ExplicitWidth = 441
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Puestos'
       Index = 0
     end
   end
   inherited cxGridGral: TcxGrid
-    Width = 430
+    Width = 429
     Height = 280
-    ExplicitLeft = 8
-    ExplicitWidth = 832
-    ExplicitHeight = 264
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       object cxColCodigo: TcxGridDBColumn
@@ -44,18 +42,13 @@ inherited FrmPuestos: TFrmPuestos
     inherited cxPageDatos: TcxPageControl
       Width = 437
       Height = 108
-      ExplicitHeight = 178
+      ExplicitWidth = 437
       ClientRectBottom = 102
       ClientRectRight = 431
       inherited cxTsDatos: TcxTabSheet
-        ExplicitWidth = 831
-        ExplicitHeight = 145
         inherited dxLYCDatos: TdxLayoutControl
           Width = 429
           Height = 75
-          ExplicitLeft = 4
-          ExplicitWidth = 831
-          ExplicitHeight = 145
           object cxTextCodigo: TcxDBTextEdit [0]
             Tag = -1
             Left = 60
@@ -99,8 +92,6 @@ inherited FrmPuestos: TFrmPuestos
   end
   inherited cxSplitter1: TcxSplitter
     Height = 286
-    ExplicitLeft = 0
-    ExplicitHeight = 270
   end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''

@@ -21,7 +21,7 @@ uses
   dxLayoutControl, cxContainer, cxEdit, dxLayoutcxEditAdapters, cxMaskEdit,
   cxDBEdit, cxTextEdit, cxDropDownEdit, cxCalendar, Menus, StdCtrls, cxButtons,
   DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, UConection, UMsgBox,
-  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxMemo;
 
 type
   TFrmCapturaFolio = class(TForm)
@@ -48,11 +48,32 @@ type
     dsMaterial: TDataSource;
     zVales: TZQuery;
     dsVales: TDataSource;
+    cbbContratista: TcxDBLookupComboBox;
+    lyContratista: TdxLayoutItem;
+    cbbTipoOrden: TcxDBLookupComboBox;
+    lyTipoOrden: TdxLayoutItem;
+    cbbCentral: TcxDBLookupComboBox;
+    lyCentral: TdxLayoutItem;
+    cxTextDistrito: TcxDBTextEdit;
+    lyDistrito: TdxLayoutItem;
+    cxMemoComentarios: TcxDBMemo;
+    lyComentarios: TdxLayoutItem;
+    zContratistas: TZQuery;
+    dsContratistas: TDataSource;
+    zTipoOrden: TZQuery;
+    dsTipoOrden: TDataSource;
+    cxTextTerminal: TcxDBTextEdit;
+    lyTerminal: TdxLayoutItem;
+    cxTextPuerto: TcxDBTextEdit;
+    lyPuerto: TdxLayoutItem;
+    zCentral: TZQuery;
+    dsCentral: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure cbbValePropertiesEditValueChanged(Sender: TObject);
+    procedure cbbEstatusPropertiesChange(Sender: TObject);
   private
 
     { Private declarations }
@@ -60,6 +81,7 @@ type
     { Public declarations }
     IdFolio: Integer;
     IdPersonal: Integer;
+    TipoInstalacion: Integer;
   end;
 
 var
@@ -83,6 +105,8 @@ begin
     Cursor := Screen.Cursor;
     try
       screen.Cursor := crAppStart;
+
+      zDatos.FieldByName('TipoOS').AsString := zTipoOrden.FieldByName('TipoOrden').AsString;
       zDatos.Post;
       Close;
     finally
@@ -102,6 +126,17 @@ begin
   end;
 end;
 
+procedure TFrmCapturaFolio.cbbEstatusPropertiesChange(Sender: TObject);
+var
+  visible: Boolean;
+begin
+  visible := cbbEstatus.Text = 'Liquidada';
+  lyPrincipal.Visible := visible;
+  lySecundario.Visible := visible;
+  lyCentral.Visible := visible;
+  lyDistrito.Visible := visible;
+end;
+
 procedure TFrmCapturaFolio.cbbValePropertiesEditValueChanged(Sender: TObject);
 begin
   if zDatos.Active AND zVales.Active then
@@ -117,12 +152,17 @@ end;
 procedure TFrmCapturaFolio.FormCreate(Sender: TObject);
 begin
   IdFolio := -9;
+  TipoInstalacion := 1; //1 cobre 2 Fibra
   if not AsignarSQL(zDatos, 'mt_foliosxtecnicos', pUpdate) then
     raise Exception.Create(pErrorConsulta + '[mt_foliosxtecnicos]');
 
-  if not AsignarSQL(zVales, 'mt_vales', pReadOnly) then
-    raise Exception.Create(pErrorConsulta + '[Catálogo de Vales]');
+//  if not AsignarSQL(zVales, 'mt_vales', pReadOnly) then
+//    raise Exception.Create(pErrorConsulta + '[Catálogo de Vales]');
+//
 
+  AsignarSQL(zContratistas, 'mt_contratistas', pReadOnly);
+  AsignarSQL(zTipoOrden, 'mt_tipoorden', pReadOnly);
+  AsignarSQL(zCentral, 'mt_central', pReadOnly);
 end;
 
 procedure TFrmCapturaFolio.FormShow(Sender: TObject);
@@ -152,13 +192,37 @@ begin
       else
         zDatos.Edit;
 
-      if not FiltrarDataset(zVales, 'Estatus', ['Abierto']) then
-        raise Exception.Create(pErrorFiltrar + '[Catálogo de Vales]');
+      FiltrarDataset(zContratistas,'IdContratista', ['-1']);
+      FiltrarDataset(zTipoOrden,'IdTipo', ['-1']);
+      FiltrarDataset(zCentral,'idCentral', ['-1']);
 
-      if zVales.Active then
-        zVales.Refresh
+      zContratistas.Open;
+      zTipoOrden.Open;
+      zCentral.Open;
+
+
+
+
+      if TipoInstalacion = 1 then
+      begin
+        lyContratista.Visible := False;
+        lyTerminal.Visible := False;
+        lyPuerto.Visible := False;
+        zTipoOrden.Filtered := False;
+        zTipoOrden.Filter := 'TipoInstalacion = ' + QuotedStr('Cobre') ;
+        zTipoOrden.Filtered := True;
+      end
       else
-        zVales.Open;
+      begin
+        lyContratista.Visible := True;
+        lyTerminal.Visible := True;
+        lyPuerto.Visible := True;
+        lyPrincipal.Visible := False;
+        lySecundario.Visible := False;
+        zTipoOrden.Filtered := False;
+        zTipoOrden.Filter := 'TipoInstalacion = ' + QuotedStr('FO') ;
+        zTipoOrden.Filtered := True;
+      end;
 
     finally
       SCreen.Cursor := Cursor;

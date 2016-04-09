@@ -49,6 +49,7 @@ type
     procedure btn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    mensajeLogin: String;
     procedure VentanaConfigMYSQL;
     function VerificarUsuario: Boolean;
     { Private declarations }
@@ -138,7 +139,7 @@ begin
       if cxTextUsuario.CanFocus then
         cxTextUsuario.SetFocus;
 
-      raise eWarning.Create('El nombre de usuario o contraseña es incorrecto. Por favor intentalo nuevamente.');
+      raise eWarning.Create(mensajeLogin);
     end;
 
     if ObligaCerrar then
@@ -345,10 +346,24 @@ begin
       else
         zUsuario.Open;
 
-      if (zUsuario.recordcount = 1) and ((zUsuario.FieldByName('Contrasena').AsString) = cxTextContrasena.Text) then
-        Result := True
-      else
+      if zUsuario.FieldByName('AccesoEscritorio').AsString = 'No' then
+      begin
+        mensajeLogin := 'No cuentas con el permiso para acceder a esta aplicación.';
         Result := False;
+      end
+      else
+      begin
+        if (zUsuario.recordcount = 1) and ((zUsuario.FieldByName('Contrasena').AsString) = cxTextContrasena.Text) then
+        begin
+          varGlobal.SetValue('IdPerfil', zUsuario.fieldByName('IdPerfil').AsString);
+          Result := True
+        end
+        else
+        begin
+          mensajeLogin :=  'El nombre de usuario o contraseña es incorrecto. Por favor intentalo nuevamente.';
+          Result := False;
+        end;
+      end;
     finally
       zUsuario.Free;
     end;
