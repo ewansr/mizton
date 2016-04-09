@@ -90,8 +90,6 @@ type
     pCampos: string;
     pValores: String;
     { Public declarations }
-   Protected
-    insert, Edit, Delete: boolean;
   end;
 
 var
@@ -108,11 +106,11 @@ var Estado: Boolean;
 begin
   Estado := (zDatosUpt.Active) and (zDatosUpt.State = dsBrowse);
   dxButtonActualizar.Enabled := Estado;
-  dxButtonNuevo.Enabled := Insert and Estado;
+  dxButtonNuevo.Enabled := Estado;
 
   Estado := (zDatos.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
-  dxBButtonEditar.Enabled := Edit and Estado;
-  dxBButtonEliminar.Enabled := delete and Estado;
+  dxBButtonEditar.Enabled := Estado;
+  dxBButtonEliminar.Enabled := Estado;
   dxBButtonBuscar.Enabled := Estado;
 
   Estado := (zDatosUpt.Active) and (zDatosUpt.State in [dsEdit, dsInsert]);
@@ -194,6 +192,7 @@ begin
       if (zDatos.Active) and (zDatos.RecordCount > 0) then
       begin
         LocCampo := zDatos.FieldByName(CampoMostrar).AsString;
+        //if MessageDlg('¿Estás seguro que deseas eliminar el registro ['+ LocCampo +']', mtConfirmation, [mbYes, mbNo], 0)= mrYes then
         ModalRes := MsgBox.ShowModal('Confirmación', '¿Estás seguro que deseas eliminar el registro ['+ LocCampo +']?', cmtConfirmation, [cMbDelete, cMbNo], imagenAStream(campoImagen,zDatos) );
         if ModalRes = mrYes then
         begin
@@ -206,6 +205,7 @@ begin
             zDatosUpt.Open;
 
           BorrarRegistro(zDatosUpt);
+          //zDatosUpt.Delete;
           dxButtonActualizarClick(Nil);
         end;
       end;
@@ -240,6 +240,7 @@ begin
   except
     on e: exception do
     begin
+      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
     end;
   end;
@@ -260,6 +261,7 @@ begin
   except
     on e: exception do
     begin
+      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
     end;
   end;
@@ -289,7 +291,7 @@ begin
     //Excel.ActiveCell.Font
 //    Excel.ActiveWorkBook.Save;
 
-
+     //if MessageDlg('¿Desea abrir el documento exportado?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
      if MsgBox.ShowModal('Confirmar exportación' ,'¿Desea abrir el documento exportado?', cmtConfirmation, [cMbOpen, cmbNo]) = mrYes then
         ShellExecute(Self.Handle, Nil, PChar(rutaArchivo), '', '', SW_SHOWNORMAL);
   end;
@@ -421,8 +423,6 @@ begin
   try
     Cursor := Screen.Cursor;
     try
-      LeerPermisos(Self.Name, insert, edit, delete);
-
       esLlamado := Tag = 1111;
       OldHeight := pnlDatos.Height;
       Screen.Cursor := crAppStart;

@@ -301,13 +301,11 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
       end>
     IconOptions.AutoArrange = True
     RowSelect = True
-    SmallImages = UDMConection.cxImage16
+    SmallImages = UDMConection.cxMizton16
     SortType = stText
     TabOrder = 2
     ViewStyle = vsReport
-    ExplicitLeft = -2
-    ExplicitTop = 54
-    ExplicitHeight = 438
+    ExplicitLeft = 8
   end
   object pnl1: TPanel
     Left = 0

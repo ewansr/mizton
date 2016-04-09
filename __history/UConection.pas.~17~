@@ -1,3 +1,4 @@
+
 unit UConection;
 
 interface
@@ -73,6 +74,7 @@ type
     stCustom: TdxScreenTip;
     cxMizton32: TcxImageList;
     cxMizton16: TcxImageList;
+    zKardex: TZQuery;
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
@@ -268,6 +270,8 @@ begin
 
     zVerificaExiste.Active := False;
     zVerificaExiste.SQL.Text := SQL;
+    zVerificaExiste.BeforeOpen := gBeforeOpen;
+    zVerificaExiste.BeforeRefresh := gBeforeRefresh;
     zVerificaExiste.open;
 
     Result := zVerificaExiste.FieldByName('Cont').AsInteger;
@@ -291,6 +295,8 @@ begin
             begin
               zTemp.Connection := conBD;
               zTemp.SQL.Text := 'UPDATE ' + QueryName + ' SET Activo = "Si" Where ' + Cond;
+              zTemp.BeforeOpen := gBeforeOpen;
+              zTemp.BeforeRefresh := gBeforeRefresh;
               zTemp.ExecSQL;
               Reactivado := True;
             end else Cancelado := True;
@@ -371,6 +377,8 @@ begin
                         ' AND TABLE_NAME = :Tabla' ;
     zLastId.ParamByName('Tabla').AsString := Tabla;
     zLastId.ParamByName('Db').AsString := conBD.Database;
+    zLastId.BeforeOpen := gBeforeOpen;
+    zLastId.BeforeRefresh := gBeforeRefresh;
     zLastId.Open;
    if (zLastId.RecordCount > 0) then
      Result :=zLastId.FieldByName('AUTO_INCREMENT').AsInteger
@@ -406,10 +414,14 @@ begin
     Result := False;
     zConsultasSQL.Active := False;
     zConsultasSQL.SQL.Text := 'Select * from master_consultassql';
+    zConsultasSQL.BeforeOpen := gBeforeOpen;
+    zConsultasSQL.BeforeRefresh := gBeforeRefresh;
     zConsultasSQL.Open;
 
     zValidacion.Active := False;
     zValidacion.ParamByName('pBd').AsString := conBD.Database;
+    zConsultasSQL.BeforeOpen := gBeforeOpen;
+    zConsultasSQL.BeforeRefresh := gBeforeRefresh;
     zValidacion.Open;
 
     Result := True;
@@ -669,6 +681,7 @@ begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;
       end;
+
       Dataset.BeforeOpen := gBeforeOpen;
       Dataset.BeforeRefresh := gBeforeRefresh;
 

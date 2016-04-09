@@ -227,9 +227,8 @@ type
 
 var
   FrmInicio: TFrmInicio;
-
-  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
+  Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
 
 implementation
 
@@ -337,12 +336,14 @@ procedure TFrmInicio.actualizarPermisoModulos;
 var
   i: integer;
 begin
-  if zModulos.Active and (zModulos.RecordCount > 0) then
+  if zModulos.Active then
   begin
     for i := 0 to acListMenu.ActionCount -1 do
     begin
-      if zModulos.Locate('FormName', acListMenu.Actions[i].Name, [loCaseInsensitive]) then
-        //algo
+      if zModulos.Locate('NombreForm', acListMenu.Actions[i].Name, [loCaseInsensitive]) then
+      begin
+        Taction(acListMenu.Actions[i]).Enabled := True;
+      end
       else
         Taction(acListMenu.Actions[i]).Enabled := False;
     end;
@@ -449,7 +450,7 @@ begin
       dxTabManager1.LookAndFeel.SkinName := ASkinName;   //TabManager
 
       //leer permisos de usuarios
-      if Not AsignarSQL(zModulos, 'master_modulos', pReadOnly) then
+      if Not AsignarSQL(zModulos, 'master_modulos', pUpdate) then
         raise Exception.Create(pErrorConsulta + '[master_modulos]');
 
       if not FiltrarDataset(zModulos, 'IdPerfil', [varGlobal.Elemento('IdPerfil').AsString]) then
@@ -460,9 +461,11 @@ begin
       else
         zModulos.Open;
 
-      if zModulos.RecordCount = 0 then
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') and (zModulos.RecordCount = 0) then
         MsgBox.ShowModal('aviso', 'No tienes acceso a ningún modulo de Mizton Desk contacta a tu administrador del sistema', cmtInformation, [cmbOK, cmbCancel]);
 
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') then
+        actualizarPermisoModulos;
 
       //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
       if Not AsignarSQL(zEmpresa, 'master_empresa', pReadOnly) then
@@ -830,6 +833,22 @@ begin
   Except
     ON E: exception do
       ;
+  end;
+end;
+
+Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
+var
+  zMod: TZQuery;
+begin
+  if Assigned(FrmInicio.zModulos) then
+  begin
+    zMod := FrmInicio.zModulos;
+    zMod.Filtered := False;
+    zMod.Filter := 'NombreForm = ' + FormName;
+    zMod.Filtered := True;
+    insert := zMod.FieldByName('insertar').AsString = 'Si';
+    edit := zMod.FieldByName('insertar').AsString = 'Si';
+    Delete := zMod.FieldByName('insertar').AsString = 'Si';
   end;
 end;
 

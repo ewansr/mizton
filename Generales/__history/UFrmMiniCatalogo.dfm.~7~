@@ -43,9 +43,9 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
   end
   object cxGridGral: TcxGrid
     AlignWithMargins = True
-    Left = 11
+    Left = 8
     Top = 125
-    Width = 829
+    Width = 832
     Height = 264
     Align = alClient
     TabOrder = 1
@@ -95,10 +95,10 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
       Properties.ActivateFocusedTab = False
       Properties.CustomButtons.Buttons = <>
       Properties.NavigatorPosition = npRightBottom
-      ClientRectBottom = 174
-      ClientRectLeft = 4
-      ClientRectRight = 835
-      ClientRectTop = 24
+      ClientRectBottom = 172
+      ClientRectLeft = 2
+      ClientRectRight = 833
+      ClientRectTop = 27
       object cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de registro.'
         ImageIndex = 0
@@ -106,7 +106,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
           Left = 0
           Top = 0
           Width = 831
-          Height = 150
+          Height = 145
           Align = alClient
           TabOrder = 0
           LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -125,7 +125,7 @@ object FrmMiniCatalogo: TFrmMiniCatalogo
   object cxSplitter1: TcxSplitter
     Left = 0
     Top = 122
-    Width = 8
+    Width = 5
     Height = 270
     HotZoneClassName = 'TcxMediaPlayer9Style'
   end

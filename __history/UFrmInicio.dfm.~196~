@@ -186,6 +186,9 @@ object FrmInicio: TFrmInicio
         end
         item
           Item = LinkUsuarios
+        end
+        item
+          Item = LinkPerfiles
         end>
     end
     object LinkPersonal: TdxNavBarItem
@@ -237,6 +240,9 @@ object FrmInicio: TFrmInicio
     end
     object LinkConsultaOrdenes: TdxNavBarItem
       Action = actConsultarOrd
+    end
+    object LinkPerfiles: TdxNavBarItem
+      Action = actPerfiles
     end
   end
   object cxLabel2: TcxLabel
@@ -325,55 +331,20 @@ object FrmInicio: TFrmInicio
     AlignSplitter = salRight
   end
   object cxGboxDatos: TcxGroupBox
-    Left = 999
+    Left = 968
     Top = 0
     Align = alRight
     Caption = 'Registro de actividades'
     TabOrder = 10
     Height = 765
-    Width = 301
-    object dbGridDatos: TDBGrid
-      Left = 3
-      Top = 345
-      Width = 295
-      Height = 410
-      Align = alClient
-      DataSource = dsHiloFolio
-      TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'CodigoPersonal'
-          ReadOnly = True
-          Width = 93
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'Folio'
-          ReadOnly = True
-          Width = 103
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'Estatus'
-          ReadOnly = True
-          Visible = True
-        end>
-    end
+    Width = 332
     object Panel1: TPanel
       Left = 3
       Top = 15
-      Width = 295
+      Width = 326
       Height = 330
       Align = alTop
-      TabOrder = 1
+      TabOrder = 0
       object cxGboxTotal: TcxGroupBox
         AlignWithMargins = True
         Left = 4
@@ -382,7 +353,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Total'
         TabOrder = 0
         Height = 73
-        Width = 287
+        Width = 318
         object cxImage3: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -603,7 +574,7 @@ object FrmInicio: TFrmInicio
         end
         object DbLblTotal: TcxDBLabel
           AlignWithMargins = True
-          Left = 143
+          Left = 174
           Top = 18
           Margins.Right = 10
           Align = alRight
@@ -629,7 +600,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Liquidadas'
         TabOrder = 1
         Height = 73
-        Width = 287
+        Width = 318
         object cxImage2: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -797,7 +768,7 @@ object FrmInicio: TFrmInicio
         end
         object DbLblLiquidadas: TcxDBLabel
           AlignWithMargins = True
-          Left = 169
+          Left = 200
           Top = 18
           Margins.Right = 10
           Align = alRight
@@ -823,7 +794,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Quejas'
         TabOrder = 2
         Height = 73
-        Width = 287
+        Width = 318
         object cxLabel5: TcxLabel
           Left = 46
           Top = 15
@@ -1133,7 +1104,7 @@ object FrmInicio: TFrmInicio
         end
         object DbLblQuejas: TcxDBLabel
           AlignWithMargins = True
-          Left = 143
+          Left = 174
           Top = 18
           Margins.Right = 10
           Align = alRight
@@ -1159,7 +1130,7 @@ object FrmInicio: TFrmInicio
         Caption = 'Objetadas'
         TabOrder = 3
         Height = 73
-        Width = 287
+        Width = 318
         object img1: TcxImage
           AlignWithMargins = True
           Left = 6
@@ -1540,7 +1511,7 @@ object FrmInicio: TFrmInicio
         end
         object DbLblObjetadas: TcxDBLabel
           AlignWithMargins = True
-          Left = 165
+          Left = 196
           Top = 18
           Margins.Right = 10
           Align = alRight
@@ -1559,9 +1530,45 @@ object FrmInicio: TFrmInicio
         end
       end
     end
+    object dbGridDatos: TDBGrid
+      Left = 3
+      Top = 345
+      Width = 326
+      Height = 410
+      Align = alClient
+      DataSource = dsHiloFolio
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 1
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'CodigoPersonal'
+          ReadOnly = True
+          Width = 135
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Folio'
+          ReadOnly = True
+          Width = 103
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Estatus'
+          ReadOnly = True
+          Visible = True
+        end>
+    end
   end
   object cxspltr2: TcxSplitter
-    Left = 993
+    Left = 962
     Top = 0
     Width = 6
     Height = 765
@@ -2216,6 +2223,7 @@ object FrmInicio: TFrmInicio
   end
   object acListMenu: TActionList
     Images = UDMConection.cxMizton16
+    OnExecute = acListMenuExecute
     Left = 704
     Top = 56
     object actPersonal: TAction
@@ -2287,6 +2295,11 @@ object FrmInicio: TFrmInicio
       Caption = 'Consultar Ordenes'
       ImageIndex = 1
       OnExecute = actConsultarOrdExecute
+    end
+    object actPerfiles: TAction
+      Caption = 'Perfiles de Usuario'
+      ImageIndex = 5
+      OnExecute = actPerfilesExecute
     end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
@@ -2398,5 +2411,10 @@ object FrmInicio: TFrmInicio
       OriginalWidth = 853
       OriginalHeight = 561
     end
+  end
+  object zModulos: TZQuery
+    Params = <>
+    Left = 432
+    Top = 200
   end
 end

@@ -1,4 +1,4 @@
-unit UFrmMiniCatalogo;
+unit UFrmCatalogo;
 
 interface
 
@@ -24,10 +24,12 @@ uses
   cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, ZAbstractRODataset, ZAbstractDataset, ZDataset,
   ExtCtrls, dxLayoutContainer, dxLayoutControl, dxBarBuiltInMenu, cxPC,
-  cxGridExportLink, ShellAPI, cxSplitter;
+  cxGridExportLink, ShellAPI, dxDockControl, dxDockPanel,
+  dxSkinsdxDockControlPainter, UMsgBox, dxScreenTip, dxCustomHint, cxHint;
 
 type
-  TFrmMiniCatalogo = class(TForm)
+
+  TFrmCatalogo = class(TForm)
     dxRibbon1Tab1: TdxRibbonTab;
     dxRibbon1: TdxRibbon;
     dxBarManager1: TdxBarManager;
@@ -43,21 +45,28 @@ type
     dxButton2: TdxBarLargeButton;
     dsDatos: TDataSource;
     zDatos: TZQuery;
-    cxGridDatos: TcxGridDBTableView;
-    GridLevel1: TcxGridLevel;
-    cxGridGral: TcxGrid;
-    pnlDatos: TPanel;
-    cxPageDatos: TcxPageControl;
-    cxTsDatos: TcxTabSheet;
-    dxLYCDatos: TdxLayoutControl;
-    dxLyDatos: TdxLayoutGroup;
     dxbrManager1Bar1: TdxBar;
     zDatosUpt: TZQuery;
     dsDatosUpt: TDataSource;
     dxPopupGrid: TdxRibbonPopupMenu;
     dxButtonExportar: TdxBarLargeButton;
     dlgSave1: TSaveDialog;
-    cxSplitter1: TcxSplitter;
+    dxDockSite1: TdxDockSite;
+    dxDockGrid: TdxDockPanel;
+    dxlytdckst1: TdxLayoutDockSite;
+    dxDockDatos: TdxDockPanel;
+    cxGridGral: TcxGrid;
+    cxGridDatos: TcxGridDBTableView;
+    GridLevel1: TcxGridLevel;
+    cxPageDatos: TcxPageControl;
+    cxTsDatos: TcxTabSheet;
+    dxLYCDatos: TdxLayoutControl;
+    dxLyDatos: TdxLayoutGroup;
+    dxDockingManager1: TdxDockingManager;
+    dxButtonOpcional: TdxBarLargeButton;
+    dxButtonDetalle: TdxBarLargeButton;
+    cxHintStyleController: TcxHintStyleController;
+    dxLayoutDockSite1: TdxLayoutDockSite;
     procedure FormShow(Sender: TObject);
     procedure dxButtonSalirClick(Sender: TObject);
     procedure dxButtonNuevoClick(Sender: TObject);
@@ -74,72 +83,94 @@ type
     procedure cxGridDatosKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure dxButtonExportarClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure dxButtonDetalleClick(Sender: TObject);
   private
     { Private declarations }
     OldHeight: Integer;
-    Procedure ActionButtons;
-    procedure MostrarPanel;
-    Procedure OcultarPanel;
+    HuboError: Boolean;
+
   public
     QueryName: String;
     PKField: String;
-    CampoMostrar: string; //Campo que desea mostrar al eliminar
-    campoImagen: string; //Imagen de muestra que desea eliminar
+    CampoMostrar: string;
+    CampoImagen: String;
     esLlamado: Boolean;
     pCondiciones: String;
     pCampos: string;
     pValores: String;
+
+    Procedure ActionButtons;virtual;
+    procedure MostrarPanel;
+    Procedure OcultarPanel;
+    constructor CreateByParam(Modal: Boolean);
     { Public declarations }
-   Protected
-    insert, Edit, Delete: boolean;
   end;
 
 var
-  FrmMiniCatalogo: TFrmMiniCatalogo;
+  FrmCatalogo: TFrmCatalogo;
 
 implementation
 
-uses UMsgBox;
-
 {$R *.dfm}
 
-procedure TFrmMiniCatalogo.ActionButtons;
+procedure TFrmCatalogo.ActionButtons;
 var Estado: Boolean;
 begin
   Estado := (zDatosUpt.Active) and (zDatosUpt.State = dsBrowse);
   dxButtonActualizar.Enabled := Estado;
-  dxButtonNuevo.Enabled := Insert and Estado;
+  dxButtonNuevo.Enabled := Estado;
 
-  Estado := (zDatos.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
-  dxBButtonEditar.Enabled := Edit and Estado;
-  dxBButtonEliminar.Enabled := delete and Estado;
+  Estado := (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
+  dxBButtonEditar.Enabled := Estado;
+  dxButtonOpcional.Enabled := Estado;
+  dxBButtonEliminar.Enabled := Estado;
   dxBButtonBuscar.Enabled := Estado;
+
+  If (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse) then
+    dsDatosUpt.DataSet := zDatos
+  else if (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State in [dsEdit, dsInsert]) then
+    dsDatosUpt.DataSet := zDatosUpt;
 
   Estado := (zDatosUpt.Active) and (zDatosUpt.State in [dsEdit, dsInsert]);
   dxButtonGuardar.Enabled := Estado;
   dxButtonCancelar.Enabled := Estado;
   cxGridGral.Enabled := Not Estado;
-  dxLYCDatos.Enabled := Estado;
+  //dxLYCDatos.Enabled := Estado;
 
   If zDatosUpt.State = dsInsert then
-    cxTsDatos.Caption := 'Inserción de nuevo registro.'
+    dxDockDatos.Caption := 'Inserción de nuevo registro.'
+  else if zDatosUpt.State = dsEdit then
+    dxDockDatos.Caption := 'Edición de registro [' + zDatos.FieldByName(CampoMostrar).AsString + ']'
   else
-    cxTsDatos.Caption := 'Edición de registro [' + zDatos.FieldByName(CampoMostrar).AsString + ']';
+    dxDockDatos.Caption := 'Información adicional.';
 
-  if Estado then
-    MostrarPanel
-  else
-    OcultarPanel;
+
+  dxDockDatos.AllowFloating := False;
+  dxDockDatos.AutoHide := Not (zDatosUpt.State in [dsInsert, dsEdit]);
+
+  //dxButtonDetalleClick(nil);
 end;
 
-procedure TFrmMiniCatalogo.cxGridDatosCellDblClick(
+
+
+constructor TFrmCatalogo.CreateByParam(Modal: Boolean);
+begin
+  if Not Modal then
+  begin
+    self.FormStyle := fsNormal;
+    self.Visible := False;
+  end;
+end;
+
+procedure TFrmCatalogo.cxGridDatosCellDblClick(
   Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   dxBButtonEditarClick(nil);
 end;
 
-procedure TFrmMiniCatalogo.cxGridDatosKeyDown(Sender: TObject; var Key: Word;
+procedure TFrmCatalogo.cxGridDatosKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = VK_RETURN then
@@ -147,18 +178,21 @@ begin
 
   if key = VK_DELETE then
     dxBButtonEliminarClick(nil);
-
 end;
 
-procedure TFrmMiniCatalogo.dxBButtonBuscarClick(Sender: TObject);
+procedure TFrmCatalogo.dxBButtonBuscarClick(Sender: TObject);
 begin
   cxGridDatos.FilterRow.Visible := Not cxGridDatos.FilterRow.Visible;
 end;
 
-procedure TFrmMiniCatalogo.dxBButtonEditarClick(Sender: TObject);
+procedure TFrmCatalogo.dxBButtonEditarClick(Sender: TObject);
+var
+  Cursor: TCursor;
 begin
   try
+    Cursor := Screen.Cursor;
     try
+      Screen.Cursor := crAppStart;
       if (zDatos.Active) and (zDatos.RecordCount > 0) then
       begin
         if not FiltrarDataset(zDatosUpt, PKField, [zDatos.FieldByName(PKField).AsString]) then
@@ -169,33 +203,38 @@ begin
         else
           zDatosUpt.Open;
 
+        if zDatosUpt.Connection.InTransaction then
+          zDatosUpt.Connection.Rollback;
+
+        zDatosUpt.Connection.StartTransaction;
         zDatosUpt.edit;
-        SelectNext(ActiveControl, True, True);
       end;
     finally
       ActionButtons;
+      Screen.Cursor := Cursor;
     end;
   except
     on e: exception do
     begin
       //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
-      MsgBox.ShowModal('Error', pMensajeError + e.Message, cmtError, [cmbOK]);
+      MsgBox.ShowModal('Error.',pMensajeError + e.Message, cmtError, [cmbOK]);
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxBButtonEliminarClick(Sender: TObject);
+procedure TFrmCatalogo.dxBButtonEliminarClick(Sender: TObject);
 var
   LocCampo: String;
-  ModalRes: Integer;
 begin
   try
     try
       if (zDatos.Active) and (zDatos.RecordCount > 0) then
       begin
         LocCampo := zDatos.FieldByName(CampoMostrar).AsString;
-        ModalRes := MsgBox.ShowModal('Confirmación', '¿Estás seguro que deseas eliminar el registro ['+ LocCampo +']?', cmtConfirmation, [cMbDelete, cMbNo], imagenAStream(campoImagen,zDatos) );
-        if ModalRes = mrYes then
+        //if MessageDlg('¿Estás seguro que deseas eliminar el registro ['+ LocCampo +']', mtConfirmation, [mbYes, mbNo], 0)= mrYes then
+        if MsgBox.ShowModal('Confirmación.','¿Estás seguro que deseas eliminar el registro ['+ LocCampo +']', cmtConfirmation, [cmbYes, cmbNo], imagenAStream(campoImagen,zDatos))= mrYes then
         begin
           if not FiltrarDataset(zDatosUpt, PKField, [zDatos.FieldByName(PKField).AsString]) then
           raise Exception.Create(pErrorFiltrar + '[' + QueryName + ']');
@@ -205,7 +244,14 @@ begin
           else
             zDatosUpt.Open;
 
+          if zDatosUpt.Connection.InTransaction then
+            zDatosUpt.Connection.Rollback;
+
+          zDatosUpt.Connection.StartTransaction;
+
           BorrarRegistro(zDatosUpt);
+
+          zDatosUpt.Connection.Commit;
           dxButtonActualizarClick(Nil);
         end;
       end;
@@ -215,13 +261,16 @@ begin
   except
     on e: exception do
     begin
-      if e.message <> '***' then
-        MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
+      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonActualizarClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonActualizarClick(Sender: TObject);
 var
   Cursor: TCursor;
 begin
@@ -229,6 +278,12 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
+
+      zDatosUpt.Cancel;
+      zDatos.Cancel;
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
+
       if (zDatos.Active) then
         zDatos.Refresh
       else
@@ -240,19 +295,25 @@ begin
   except
     on e: exception do
     begin
+      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonCancelarClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonCancelarClick(Sender: TObject);
 begin
   try
     try
       if (zDatosUpt.Active) and (zDatosUpt.State in [dsEdit, dsInsert]) then
       begin
         zDatosUpt.Cancel;
-        OcultarPanel;
+        if zDatosUpt.Connection.InTransaction then
+          zDatosUpt.Connection.Rollback;
+
+        //OcultarPanel;
       end;
     finally
       ActionButtons;
@@ -260,12 +321,26 @@ begin
   except
     on e: exception do
     begin
+      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonExportarClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonDetalleClick(Sender: TObject);
+begin
+  dxDockDatos.AllowFloating := False;
+  dxDockDatos.AutoHide := Not (dxDockDatos.Autohide);
+
+  if dxDockDatos.AutoHide then
+    dxButtonDetalle.Caption := 'Ver Información Adicional'
+  else
+    dxButtonDetalle.Caption := 'Ocultar Información Adicional';
+end;
+
+procedure TFrmCatalogo.dxButtonExportarClick(Sender: TObject);
 var
   rutaArchivo: string;
   Excel, Sheet: Variant;
@@ -275,7 +350,6 @@ begin
   begin
     rutaArchivo := dlgSave1.FileName + '.xls';
     ExportGridToExcel(rutaArchivo, cxGridGral);
-
 //    Excel := CreateOleObject('Excel.Application');
 //    Excel.workbooks.Open(rutaArchivo);
 //
@@ -289,60 +363,62 @@ begin
     //Excel.ActiveCell.Font
 //    Excel.ActiveWorkBook.Save;
 
-
-     if MsgBox.ShowModal('Confirmar exportación' ,'¿Desea abrir el documento exportado?', cmtConfirmation, [cMbOpen, cmbNo]) = mrYes then
+     //if MessageDlg('¿Desea abrir el documento exportado?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+     if MsgBox.ShowModal('Confirmación.','¿Desea abrir el documento exportado?', cmtConfirmation, [cMbOpen, cmbNo]) = mrYes then
         ShellExecute(Self.Handle, Nil, PChar(rutaArchivo), '', '', SW_SHOWNORMAL);
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonGuardarClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonGuardarClick(Sender: TObject);
 var
-  tabla: string;
-  I: Integer;
-  CurControl: TWinControl;
+  i: Integer;
+  Tabla: string;
   Lista: TStringList;
-  Reactivado: Boolean;
+  CurControl: TWinControl;
+  FocusError, Reactivado: Boolean;
 begin
   try
+    Reactivado := false;
+    FocusError := False;
     CurControl := ActiveControl;
     try
-      Lista := TStringList.Create;
       SelectNext(ActiveControl, True, True);
       if (zDatosUpt.Active) and (zDatosUpt.State in [dsEdit, dsInsert]) then
       begin
+        Lista := TStringList.Create;
         if zDatosUpt.state = dsInsert then
           zDatosUpt.FieldByName(PKField).AsInteger := 0;
 
-        if pCondiciones <> '' then
+
+        Tabla := String(TZQuery(zDatosUpt).Properties.Objects[0]);
+        Lista.Delimiter := ',';
+        Lista.DelimitedText := pCampos;
+
+        i := 0;
+        pValores := '';
+        While i < Lista.Count do
         begin
+          if i = (Lista.Count -1) then
+            pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#'
+          else
+            pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#,';
+          Inc(i);
+        end;
 
-          Tabla := String(TZQuery(zDatosUpt).Properties.Objects[0]);
-          Lista.Delimiter := ',';
-          Lista.DelimitedText := pCampos;
+        FocusError := VerificarExiste(tabla, pCondiciones, pValores, Reactivado) > 0;
 
-          i := 0;
-          pValores := '';
-          While i < Lista.Count do
-          begin
-            if i = (Lista.Count -1) then
-              pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#'
-            else
-              pValores := pValores + '#' +zDatosUpt.FieldByName(Lista[i]).AsString + '#,';
-            Inc(i);
-          end;
-
-          //Le paso una variable por referenciar llamada Reactivado, esta me debe retornar con un valor True o False
-          //Siendo true, indicando que hubo una reactivación de este registro y así evitar hacer un post
-          VerificarExiste(tabla, pCondiciones, pValores, Reactivado);
-
-          if Reactivado then
-          begin
-            dxButtonCancelarClick(nil);
-          end;
+        if Reactivado then
+        begin
+          if zDatosUpt.Connection.InTransaction then
+            zDatosUpt.Connection.Commit;
+          dxButtonCancelarClick(nil);
         end;
 
         if zDatosUpt.State in [dsEdit, dsInsert] then
           zDatosUpt.Post;
+
+        if zDatosUpt.Connection.InTransaction then
+          zDatosUpt.Connection.Commit;
 
         dxButtonActualizarClick(nil);
         OcultarPanel;
@@ -353,30 +429,37 @@ begin
     finally
       Lista.Destroy;
       ActionButtons;
-      if (CurControl <> nil) and (CurControl.CanFocus) then
+      if FocusError and (CurControl <> nil) and (CurControl.CanFocus) then
         CurControl.SetFocus;
     end;
   except
     on e: eWarning do
     begin
       if e.message <> '***' then
-        MsgBox.ShowModal('Validación.',e.Message, cmtWarning, [cmbOK]);
+        MsgBox.ShowModal('Validación.', e.Message, cmtWarning, [cmbOK]);
     end;
 
     on e: exception do
     begin
       //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
-      MsgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      MsgBox.ShowModal('Error.' ,pMensajeError + e.Message, cmtError, [cmbOK]);
       if zDatosUpt.Active and (zDatosUpt.State in [dsInsert, dsEdit]) then
         zDatos.Cancel;
+
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonNuevoClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonNuevoClick(Sender: TObject);
+var
+  Cursor: TCursor;
 begin
   try
+    Cursor := Screen.Cursor;
     try
+      Screen.Cursor := crAppStart;
       if (zDatosUpt.Active) then
       begin
          if not FiltrarDataset(zDatosUpt, PKField, ['-9']) then
@@ -387,44 +470,59 @@ begin
         else
           zDatosUpt.Open;
 
-        zDatosUpt.Append;
+        if zDatosUpt.Connection.InTransaction then
+          zDatosUpt.Connection.Rollback;
 
-        SelectNext(ActiveControl, True, True);
+        zDatosUpt.Connection.StartTransaction;
+        zDatosUpt.Append;
       end;
     finally
       ActionButtons;
+      Screen.Cursor := Cursor;
     end;
   except
     on e: exception do
     begin
-      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
-      MsgBox.ShowModal('Error', pMensajeError + e.Message, cmtError, [cMbOK]);
+//      MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
+      msgBox.ShowModal('Error.', pMensajeError + e.Message, cmtError, [cmbOK]);
+      if zDatosUpt.Connection.InTransaction then
+        zDatosUpt.Connection.Rollback;
     end;
   end;
 end;
 
-procedure TFrmMiniCatalogo.dxButtonSalirClick(Sender: TObject);
+procedure TFrmCatalogo.dxButtonSalirClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TFrmMiniCatalogo.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmCatalogo.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if zDatosUpt.Active and (zDatosUpt.State in [dsInsert, dsEdit]) then
     zDatosUpt.Cancel;
+
+  if zDatosUpt.Connection.InTransaction then
+    zDatosUpt.Connection.Rollback;
+
+  Action := caFree;
 end;
 
-Procedure TFrmMiniCatalogo.FormShow(Sender: TObject);
+procedure TFrmCatalogo.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if Not HuboError then
+    CanClose := (MsgBox.ShowModal('Confirmación.','¿Estas seguro que deseas cerrar la ventana ' + Self.Caption + '?', cmtConfirmation, [cmbYes, cMbNo]) = mrYes);
+end;
+
+procedure TFrmCatalogo.FormShow(Sender: TObject);
 var
   Cursor: TCursor;
 begin
   try
+    HuboError := False;
     Cursor := Screen.Cursor;
     try
-      LeerPermisos(Self.Name, insert, edit, delete);
-
+      //OldHeight := pnlDatos.Height;
       esLlamado := Tag = 1111;
-      OldHeight := pnlDatos.Height;
       Screen.Cursor := crAppStart;
 
       if not AsignarSQL(zDatos, QueryName, pReadOnly) then
@@ -449,20 +547,24 @@ begin
       else
         zDatosUpt.Open;
 
-      pnlDatos.Height := 0;
-
+      //pnlDatos.Height := 0;
       ActionButtons;
+      cxPageDatos.ActivePageIndex := 1;
 
       if esLlamado then
         dxButtonNuevoClick(nil);
+        //cxHintStyleController.HintStyle
+      //TdxScreenTipLinks(cxHintStyleController.HintStyle)
     finally
-      AutoFocus(TForm(Self));
+      AutoFocus(TForm(self));
+      dxDockDatos.AutoHide := True;
       Screen.Cursor := Cursor;
       AplicarTema(TForm(Self));
     end;
   except
     on e: exception do
     begin
+      HuboError := True;
       //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.',pMensajeError + e.Message, cmtError, [cmbOK]);
       PostMessage(Self.Handle, WM_CLOSE, 0, 0);
@@ -470,23 +572,31 @@ begin
   end;
 end;
 
-procedure TFrmMiniCatalogo.MostrarPanel;
-
+procedure TFrmCatalogo.MostrarPanel;
+var i,j: Integer;
 begin
-//  while pnlDatos.Height <= OldHeight  do
+  //dxDockDatos.Show;
+  dxDockDatos.AllowFloating := False;
+  dxDockDatos.AutoHide := True;
+  //dxDockDatos.Enabled := True;
+//  i := 0;
+//  while i < cxTsDatos.PageControl.PageCount do
 //  begin
-//    pnlDatos.Height := pnlDatos.Height + 5;
+//    j := 0;
+//    While j < cxTsDatos.PageControl.Pages[i].ComponentCount do
+//    begin
+//      cxTsDatos.PageControl.Pages[i].Components[i].
+//      inc(j);
+//    end;
+//    inc(i);
 //  end;
-  pnlDatos.Height := OldHeight;
 end;
 
-procedure TFrmMiniCatalogo.OcultarPanel;
+procedure TFrmCatalogo.OcultarPanel;
+var i: Integer;
 begin
-//  while pnlDatos.Height > 0  do
-//  begin
-//    pnlDatos.Height := pnlDatos.Height - 5;
-//  end;
-  pnlDatos.Height := 0;
+  dxDockDatos.AutoHide := True;
+  dxDockDatos.Caption := 'Información detallada [Solo lectura].';
+  dxDockDatos.AllowFloating := True;
 end;
-
 end.

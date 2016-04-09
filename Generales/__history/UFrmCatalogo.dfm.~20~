@@ -2,8 +2,8 @@ object FrmCatalogo: TFrmCatalogo
   Left = 0
   Top = 0
   Caption = 'FrmCatalogo'
-  ClientHeight = 472
-  ClientWidth = 913
+  ClientHeight = 557
+  ClientWidth = 1133
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,55 +20,50 @@ object FrmCatalogo: TFrmCatalogo
   TextHeight = 13
   object dxDockSite1: TdxDockSite
     Left = 0
-    Top = 95
-    Width = 913
-    Height = 377
+    Top = 127
+    Width = 1133
+    Height = 430
     Align = alClient
     DockingType = 5
-    OriginalWidth = 913
-    OriginalHeight = 377
-    object dxlytdckst1: TdxLayoutDockSite
+    OriginalWidth = 1133
+    OriginalHeight = 430
+    object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 913
-      Height = 377
+      Width = 743
+      Height = 430
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
-    end
-    object dxHorizContainerDockSite2: TdxHorizContainerDockSite
-      Left = 0
-      Top = 0
-      Width = 913
-      Height = 377
-      ActiveChildIndex = -1
-      AllowFloating = True
-      AutoHide = False
-      CustomCaptionButtons.Buttons = <>
-      DockingType = 0
-      OriginalWidth = 185
-      OriginalHeight = 140
+      object dxlytdckst1: TdxLayoutDockSite
+        Left = 0
+        Top = 0
+        Width = 743
+        Height = 430
+        DockingType = 0
+        OriginalWidth = 300
+        OriginalHeight = 200
+      end
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 632
-        Height = 377
+        Width = 743
+        Height = 430
         AllowFloating = False
         AutoHide = False
         Caption = 'Tabla de registros'
-        CaptionButtons = [cbMaximize]
+        CaptionButtons = []
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
-        ExplicitHeight = 0
-        DockingType = 1
-        OriginalWidth = 632
+        DockingType = 0
+        OriginalWidth = 185
         OriginalHeight = 140
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 618
-          Height = 341
+          Width = 729
+          Height = 394
           Align = alClient
           TabOrder = 0
           object cxGridDatos: TcxGridDBTableView
@@ -94,55 +89,54 @@ object FrmCatalogo: TFrmCatalogo
           end
         end
       end
-      object dxDockDatos: TdxDockPanel
-        Left = 632
+    end
+    object dxDockDatos: TdxDockPanel
+      Left = 743
+      Top = 0
+      Width = 390
+      Height = 430
+      AllowFloating = True
+      AutoHide = False
+      Caption = 'Insertar / Editar Registros'
+      CaptionButtons = [cbHide]
+      CustomCaptionButtons.Buttons = <>
+      Dockable = False
+      TabsProperties.CustomButtons.Buttons = <>
+      DockingType = 3
+      OriginalWidth = 390
+      OriginalHeight = 140
+      object cxPageDatos: TcxPageControl
+        Left = 0
         Top = 0
-        Width = 281
-        Height = 377
-        AllowFloating = True
-        AutoHide = False
-        Caption = 'Insertar / Editar Registros'
-        CaptionButtons = [cbHide]
-        CustomCaptionButtons.Buttons = <>
-        TabsProperties.CustomButtons.Buttons = <>
-        ExplicitTop = 140
-        ExplicitHeight = 140
-        DockingType = 1
-        OriginalWidth = 281
-        OriginalHeight = 140
-        object cxPageDatos: TcxPageControl
-          Left = 0
-          Top = 0
-          Width = 273
-          Height = 347
-          Align = alClient
-          TabOrder = 0
-          Properties.ActivePage = cxTsDatos
-          Properties.CustomButtons.Buttons = <>
-          Properties.NavigatorPosition = npRightBottom
-          ClientRectBottom = 341
-          ClientRectLeft = 2
-          ClientRectRight = 267
-          ClientRectTop = 27
-          object cxTsDatos: TcxTabSheet
-            Caption = 'Datos'
-            ImageIndex = 0
-            object dxLYCDatos: TdxLayoutControl
-              Left = 0
-              Top = 0
-              Width = 265
-              Height = 314
-              Align = alClient
-              TabOrder = 0
-              LayoutLookAndFeel = UDMConection.dxStyleForms
-              object dxLyDatos: TdxLayoutGroup
-                AlignHorz = ahLeft
-                AlignVert = avTop
-                ButtonOptions.Buttons = <>
-                Hidden = True
-                ShowBorder = False
-                Index = -1
-              end
+        Width = 382
+        Height = 400
+        Align = alClient
+        TabOrder = 0
+        Properties.ActivePage = cxTsDatos
+        Properties.CustomButtons.Buttons = <>
+        Properties.NavigatorPosition = npRightBottom
+        ClientRectBottom = 394
+        ClientRectLeft = 2
+        ClientRectRight = 376
+        ClientRectTop = 27
+        object cxTsDatos: TcxTabSheet
+          Caption = 'Datos'
+          ImageIndex = 0
+          object dxLYCDatos: TdxLayoutControl
+            Left = 0
+            Top = 0
+            Width = 374
+            Height = 367
+            Align = alClient
+            TabOrder = 0
+            LayoutLookAndFeel = UDMConection.dxStyleForms
+            object dxLyDatos: TdxLayoutGroup
+              AlignHorz = ahLeft
+              AlignVert = avTop
+              ButtonOptions.Buttons = <>
+              Hidden = True
+              ShowBorder = False
+              Index = -1
             end
           end
         end
@@ -150,20 +144,21 @@ object FrmCatalogo: TFrmCatalogo
     end
   end
   object dxRibbon1: TdxRibbon
-    Left = 0
-    Top = 0
-    Width = 913
-    Height = 95
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 1127
+    Height = 121
     BarManager = dxBarManager1
+    Style = rs2013
     ColorSchemeName = 'VS2010'
-    ShowTabHeaders = False
     SupportNonClientDrawing = True
     Contexts = <>
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
-      Caption = 'Nombre Cat'#225'logo'
+      Caption = 'Inicio'
       Groups = <
         item
         end
@@ -455,6 +450,10 @@ object FrmCatalogo: TFrmCatalogo
     Top = 384
   end
   object dxDockingManager1: TdxDockingManager
+    AutoHideInterval = 0
+    AutoHideMovingInterval = 0
+    AutoHideMovingSize = 0
+    AutoShowInterval = 0
     Color = clBtnFace
     DefaultHorizContainerSiteProperties.CustomCaptionButtons.Buttons = <>
     DefaultHorizContainerSiteProperties.Dockable = True

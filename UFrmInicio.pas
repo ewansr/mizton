@@ -215,6 +215,7 @@ type
     procedure zHiloFolioAfterOpen(DataSet: TDataSet);
     procedure zHiloFolioAfterRefresh(DataSet: TDataSet);
     procedure actPerfilesExecute(Sender: TObject);
+    procedure acListMenuExecute(Action: TBasicAction; var Handled: Boolean);
   private
     { Private declarations }
   public
@@ -227,8 +228,6 @@ type
 
 var
   FrmInicio: TFrmInicio;
-
-  //zHiloFolios: TzQuery;
   OldCountFolio, NuevoCountFolio: Integer;
 
 implementation
@@ -247,6 +246,14 @@ Uses
   UfrmPerfiles;
 
 { TForm1 }
+
+procedure TFrmInicio.acListMenuExecute(Action: TBasicAction;
+  var Handled: Boolean);
+begin
+  zModulos.Filtered := false;
+  zModulos.Filter := 'NombreForm = ' + QuotedStr(Action.Name);
+  zModulos.Filtered := True;
+end;
 
 procedure TFrmInicio.actAdminCostosExecute(Sender: TObject);
 begin
@@ -465,7 +472,7 @@ begin
       if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') and (zModulos.RecordCount = 0) then
         MsgBox.ShowModal('aviso', 'No tienes acceso a ningún modulo de Mizton Desk contacta a tu administrador del sistema', cmtInformation, [cmbOK, cmbCancel]);
 
-      if (UpperCase(varGlobal.Elemento('usuario').AsString <> 'ADMIN')) then
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') then
         actualizarPermisoModulos;
 
       //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
@@ -836,5 +843,7 @@ begin
       ;
   end;
 end;
+
+
 
 end.

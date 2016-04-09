@@ -152,7 +152,7 @@ begin
       ao.Name := al.Actions[i].Name;
       ao.Caption := TAction(al.Actions[i]).Caption ;
       LstModulos.AddItem(ao.Caption,ao);
-      lstModulos.Items.Item[lstModulos.Items.Count-1].ImageIndex := 15;
+      lstModulos.Items.Item[lstModulos.Items.Count-1].ImageIndex := TAction(al.Actions[i]).ImageIndex;
     end;
   end;
 

@@ -121,6 +121,8 @@ const
   pErrorFiltrar: string = 'Error al filtrar en la consulta SQL ';
   pANSI: String = 'ANSI';
 
+
+  Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
   procedure AplicarTema(var Ventana: TForm);
   Function GetUltimoId: Integer;
   function AsignarSQL(var Dataset: TZQuery; QueryName: String; Option: string): Boolean;Overload;
@@ -1266,6 +1268,26 @@ begin
   //Result := Resultado;
 end;
 
-
+Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
+var
+  zMod: TZQuery;
+begin
+  if Assigned(FrmInicio.zModulos) and (UPPERCASE(Varglobal.Elemento('usuario').AsString) <> 'ADMIN') then
+  begin
+    zMod := FrmInicio.zModulos;
+//    zMod.Filtered := False;
+//    zMod.Filter := 'NombreForm = ' + FormName;
+//    zMod.Filtered := True;
+    insert := zMod.FieldByName('insertar').AsString = 'Si';
+    edit := zMod.FieldByName('Editar').AsString = 'Si';
+    Delete := zMod.FieldByName('Eliminar').AsString = 'Si';
+  end
+  else
+  begin
+    insert := true;
+    edit := True;
+    Delete := True;
+  end;
+end;
 
 end.

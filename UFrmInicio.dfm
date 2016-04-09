@@ -2223,6 +2223,7 @@ object FrmInicio: TFrmInicio
   end
   object acListMenu: TActionList
     Images = UDMConection.cxMizton16
+    OnExecute = acListMenuExecute
     Left = 704
     Top = 56
     object actPersonal: TAction

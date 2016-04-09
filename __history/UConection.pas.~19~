@@ -74,6 +74,7 @@ type
     stCustom: TdxScreenTip;
     cxMizton32: TcxImageList;
     cxMizton16: TcxImageList;
+    zKardex: TZQuery;
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
@@ -120,6 +121,8 @@ const
   pErrorFiltrar: string = 'Error al filtrar en la consulta SQL ';
   pANSI: String = 'ANSI';
 
+
+  Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
   procedure AplicarTema(var Ventana: TForm);
   Function GetUltimoId: Integer;
   function AsignarSQL(var Dataset: TZQuery; QueryName: String; Option: string): Boolean;Overload;
@@ -376,6 +379,8 @@ begin
                         ' AND TABLE_NAME = :Tabla' ;
     zLastId.ParamByName('Tabla').AsString := Tabla;
     zLastId.ParamByName('Db').AsString := conBD.Database;
+    zLastId.BeforeOpen := gBeforeOpen;
+    zLastId.BeforeRefresh := gBeforeRefresh;
     zLastId.Open;
    if (zLastId.RecordCount > 0) then
      Result :=zLastId.FieldByName('AUTO_INCREMENT').AsInteger
@@ -411,10 +416,14 @@ begin
     Result := False;
     zConsultasSQL.Active := False;
     zConsultasSQL.SQL.Text := 'Select * from master_consultassql';
+    zConsultasSQL.BeforeOpen := gBeforeOpen;
+    zConsultasSQL.BeforeRefresh := gBeforeRefresh;
     zConsultasSQL.Open;
 
     zValidacion.Active := False;
     zValidacion.ParamByName('pBd').AsString := conBD.Database;
+    zConsultasSQL.BeforeOpen := gBeforeOpen;
+    zConsultasSQL.BeforeRefresh := gBeforeRefresh;
     zValidacion.Open;
 
     Result := True;
@@ -1259,6 +1268,20 @@ begin
   //Result := Resultado;
 end;
 
-
+Procedure LeerPermisos(FormName: String; Var insert:Boolean; var Edit:Boolean; var Delete:Boolean);
+var
+  zMod: TZQuery;
+begin
+  if Assigned(FrmInicio.zModulos) and (UPPERCASE(Varglobal.Elemento('usuario').AsString) <> 'ADMIN') then
+  begin
+    zMod := FrmInicio.zModulos;
+    zMod.Filtered := False;
+    zMod.Filter := 'NombreForm = ' + FormName;
+    zMod.Filtered := True;
+    insert := zMod.FieldByName('insertar').AsString = 'Si';
+    edit := zMod.FieldByName('Editar').AsString = 'Si';
+    Delete := zMod.FieldByName('Eliminar').AsString = 'Si';
+  end;
+end;
 
 end.

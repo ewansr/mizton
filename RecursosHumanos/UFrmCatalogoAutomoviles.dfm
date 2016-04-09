@@ -33,7 +33,7 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
         OriginalWidth = 185
         OriginalHeight = 140
         inherited cxGridGral: TcxGrid
-          Height = 560
+          Height = 558
           ExplicitWidth = 729
           ExplicitHeight = 558
           inherited cxGridDatos: TcxGridDBTableView
@@ -83,9 +83,9 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
       OriginalWidth = 390
       OriginalHeight = 140
       inherited cxPageDatos: TcxPageControl
-        Height = 566
+        Height = 564
         ExplicitHeight = 564
-        ClientRectBottom = 562
+        ClientRectBottom = 558
         inherited cxTsDatos: TcxTabSheet
           Caption = 'Informaci'#243'n detallada'
           ExplicitHeight = 531
@@ -93,8 +93,8 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 372
-            Height = 532
+            Width = 368
+            Height = 525
             ExplicitLeft = 3
             ExplicitTop = 3
             ExplicitWidth = 368
@@ -255,10 +255,8 @@ inherited FrmCatalogoAutomoviles: TFrmCatalogoAutomoviles
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 153
-      FloatClientHeight = 309
+      FloatClientHeight = 307
     end
     inherited dxButtonGuardar: TdxBarLargeButton
       ImageIndex = 8

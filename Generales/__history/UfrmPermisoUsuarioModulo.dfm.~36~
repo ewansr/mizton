@@ -2,8 +2,8 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
   Left = 0
   Top = 0
   Caption = 'Asignaci'#243'n de permisos por m'#243'dulo'
-  ClientHeight = 658
-  ClientWidth = 1109
+  ClientHeight = 572
+  ClientWidth = 953
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,18 +12,19 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
   Font.Style = []
   OldCreateOrder = False
   Scaled = False
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlOpciones: TPanel
     Left = 257
-    Top = 0
+    Top = 81
     Width = 104
-    Height = 658
+    Height = 491
     Align = alLeft
     TabOrder = 0
-    ExplicitLeft = 255
-    ExplicitHeight = 581
+    ExplicitTop = 0
+    ExplicitHeight = 492
     object btnAgregar: TcxButton
       AlignWithMargins = True
       Left = 4
@@ -34,9 +35,6 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
       Caption = '&Agregar'
       TabOrder = 0
       OnClick = btnAgregarClick
-      ExplicitLeft = 24
-      ExplicitTop = 8
-      ExplicitWidth = 75
     end
     object btnQuitar: TcxButton
       AlignWithMargins = True
@@ -48,19 +46,18 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
       Caption = '&Quitar'
       TabOrder = 1
       OnClick = btnQuitarClick
-      ExplicitLeft = 6
     end
   end
   object CxGrdPermisos: TcxGrid
     Left = 361
-    Top = 0
-    Width = 748
-    Height = 658
+    Top = 81
+    Width = 592
+    Height = 491
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 355
-    ExplicitWidth = 603
-    ExplicitHeight = 581
+    ExplicitTop = 0
+    ExplicitWidth = 593
+    ExplicitHeight = 492
     object cxGridPermisos: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsPermisos
@@ -73,6 +70,7 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
       object cxColCaption: TcxGridDBColumn
         Caption = 'M'#243'dulo'
         DataBinding.FieldName = 'Caption'
+        PropertiesClassName = 'TcxLabelProperties'
         HeaderGlyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000000000000000
@@ -246,6 +244,7 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
       object cxColForm: TcxGridDBColumn
         Caption = 'Form. Desarrollador'
         DataBinding.FieldName = 'NombreForm'
+        PropertiesClassName = 'TcxLabelProperties'
         HeaderGlyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000000000003333
@@ -290,9 +289,9 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
   end
   object lstModulos: TcxListView
     Left = 0
-    Top = 0
+    Top = 81
     Width = 257
-    Height = 658
+    Height = 491
     Align = alLeft
     Columns = <
       item
@@ -306,7 +305,32 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
     SortType = stText
     TabOrder = 2
     ViewStyle = vsReport
-    ExplicitHeight = 581
+    ExplicitLeft = -2
+    ExplicitTop = 54
+    ExplicitHeight = 438
+  end
+  object pnl1: TPanel
+    Left = 0
+    Top = 54
+    Width = 953
+    Height = 27
+    Align = alTop
+    TabOrder = 7
+    object LblLeyenda: TcxLabel
+      Left = 1
+      Top = 1
+      Align = alClient
+      Caption = 'Permisos para'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -11
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = [fsBold, fsItalic]
+      Style.IsFontAssigned = True
+      Transparent = True
+      ExplicitHeight = 24
+    end
   end
   object zPermisos: TZQuery
     Params = <>
@@ -317,5 +341,79 @@ object FrmPermisousuarioModulo: TFrmPermisousuarioModulo
     DataSet = zPermisos
     Left = 512
     Top = 216
+  end
+  object dxBarManager1: TdxBarManager
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Categories.Strings = (
+      'Default')
+    Categories.ItemsVisibles = (
+      2)
+    Categories.Visibles = (
+      True)
+    ImageOptions.LargeImages = UDMConection.cxMizton32
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    Left = 312
+    Top = 256
+    DockControlHeights = (
+      0
+      0
+      54
+      0)
+    object dxbrManager1Bar: TdxBar
+      BorderStyle = bbsNone
+      Caption = 'Custom 1'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 433
+      FloatTop = 261
+      FloatClientWidth = 62
+      FloatClientHeight = 108
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'btnGuardar'
+        end
+        item
+          Visible = True
+          ItemName = 'btnCancelar'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = True
+      UseRestSpace = True
+      Visible = True
+      WholeRow = True
+    end
+    object btnGuardar: TdxBarLargeButton
+      Caption = '&Guardar'
+      Category = 0
+      Hint = 'Guardar'
+      Visible = ivAlways
+      LargeImageIndex = 9
+      OnClick = btnGuardarClick
+      AutoGrayScale = False
+    end
+    object btnCancelar: TdxBarLargeButton
+      Caption = '&Cancelar'
+      Category = 0
+      Hint = 'Cancelar'
+      Visible = ivAlways
+      LargeImageIndex = 14
+      OnClick = btnCancelarClick
+      AutoGrayScale = False
+    end
   end
 end

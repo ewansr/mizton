@@ -186,6 +186,9 @@ object FrmInicio: TFrmInicio
         end
         item
           Item = LinkUsuarios
+        end
+        item
+          Item = LinkPerfiles
         end>
     end
     object LinkPersonal: TdxNavBarItem
@@ -237,6 +240,9 @@ object FrmInicio: TFrmInicio
     end
     object LinkConsultaOrdenes: TdxNavBarItem
       Action = actConsultarOrd
+    end
+    object LinkPerfiles: TdxNavBarItem
+      Action = actPerfiles
     end
   end
   object cxLabel2: TcxLabel
@@ -339,7 +345,6 @@ object FrmInicio: TFrmInicio
       Height = 330
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 295
       object cxGboxTotal: TcxGroupBox
         AlignWithMargins = True
         Left = 4
@@ -347,7 +352,6 @@ object FrmInicio: TFrmInicio
         Align = alTop
         Caption = 'Total'
         TabOrder = 0
-        ExplicitWidth = 287
         Height = 73
         Width = 318
         object cxImage3: TcxImage
@@ -584,7 +588,6 @@ object FrmInicio: TFrmInicio
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
           Transparent = True
-          ExplicitLeft = 143
           Height = 42
           Width = 131
         end
@@ -596,7 +599,6 @@ object FrmInicio: TFrmInicio
         Align = alTop
         Caption = 'Liquidadas'
         TabOrder = 1
-        ExplicitWidth = 287
         Height = 73
         Width = 318
         object cxImage2: TcxImage
@@ -780,7 +782,6 @@ object FrmInicio: TFrmInicio
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
           Transparent = True
-          ExplicitLeft = 169
           Height = 42
           Width = 105
         end
@@ -792,7 +793,6 @@ object FrmInicio: TFrmInicio
         Align = alTop
         Caption = 'Quejas'
         TabOrder = 2
-        ExplicitWidth = 287
         Height = 73
         Width = 318
         object cxLabel5: TcxLabel
@@ -1118,7 +1118,6 @@ object FrmInicio: TFrmInicio
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
           Transparent = True
-          ExplicitLeft = 143
           Height = 42
           Width = 131
         end
@@ -1130,7 +1129,6 @@ object FrmInicio: TFrmInicio
         Align = alTop
         Caption = 'Objetadas'
         TabOrder = 3
-        ExplicitWidth = 287
         Height = 73
         Width = 318
         object img1: TcxImage
@@ -1527,7 +1525,6 @@ object FrmInicio: TFrmInicio
           Style.Font.Style = [fsBold, fsUnderline]
           Style.IsFontAssigned = True
           Transparent = True
-          ExplicitLeft = 165
           Height = 42
           Width = 109
         end
@@ -1540,6 +1537,7 @@ object FrmInicio: TFrmInicio
       Height = 410
       Align = alClient
       DataSource = dsHiloFolio
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -1576,8 +1574,6 @@ object FrmInicio: TFrmInicio
     Height = 765
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salRight
-    ExplicitLeft = 873
-    ExplicitTop = -6
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -2299,6 +2295,11 @@ object FrmInicio: TFrmInicio
       ImageIndex = 1
       OnExecute = actConsultarOrdExecute
     end
+    object actPerfiles: TAction
+      Caption = 'Perfiles de Usuario'
+      ImageIndex = 5
+      OnExecute = actPerfilesExecute
+    end
   end
   object dxrbndrpdwnglry1: TdxRibbonDropDownGallery
     BarManager = dxBarManager1
@@ -2409,5 +2410,10 @@ object FrmInicio: TFrmInicio
       OriginalWidth = 853
       OriginalHeight = 561
     end
+  end
+  object zModulos: TZQuery
+    Params = <>
+    Left = 432
+    Top = 200
   end
 end

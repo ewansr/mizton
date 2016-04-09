@@ -105,12 +105,17 @@ type
     Procedure OcultarPanel;
     constructor CreateByParam(Modal: Boolean);
     { Public declarations }
+   Protected
+    Insert: Boolean;
+    Edit: Boolean;
+    Delete: Boolean;
   end;
 
 var
   FrmCatalogo: TFrmCatalogo;
 
 implementation
+
 
 {$R *.dfm}
 
@@ -119,12 +124,12 @@ var Estado: Boolean;
 begin
   Estado := (zDatosUpt.Active) and (zDatosUpt.State = dsBrowse);
   dxButtonActualizar.Enabled := Estado;
-  dxButtonNuevo.Enabled := Estado;
+  dxButtonNuevo.Enabled := insert and Estado;
 
   Estado := (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse);
-  dxBButtonEditar.Enabled := Estado;
+  dxBButtonEditar.Enabled := Edit and Estado;
   dxButtonOpcional.Enabled := Estado;
-  dxBButtonEliminar.Enabled := Estado;
+  dxBButtonEliminar.Enabled := delete and Estado;
   dxBButtonBuscar.Enabled := Estado;
 
   If (zDatosUpt.Active) and (zDatos.RecordCount > 0) and (zDatosUpt.State = dsBrowse) then
@@ -136,7 +141,6 @@ begin
   dxButtonGuardar.Enabled := Estado;
   dxButtonCancelar.Enabled := Estado;
   cxGridGral.Enabled := Not Estado;
-  //dxLYCDatos.Enabled := Estado;
 
   If zDatosUpt.State = dsInsert then
     dxDockDatos.Caption := 'Inserción de nuevo registro.'
@@ -145,11 +149,8 @@ begin
   else
     dxDockDatos.Caption := 'Información adicional.';
 
-
   dxDockDatos.AllowFloating := False;
   dxDockDatos.AutoHide := Not (zDatosUpt.State in [dsInsert, dsEdit]);
-
-  //dxButtonDetalleClick(nil);
 end;
 
 
@@ -521,7 +522,9 @@ begin
     HuboError := False;
     Cursor := Screen.Cursor;
     try
-      //OldHeight := pnlDatos.Height;
+      LeerPermisos(self.Name, Insert, Edit, Delete);
+
+
       esLlamado := Tag = 1111;
       Screen.Cursor := crAppStart;
 
@@ -547,14 +550,11 @@ begin
       else
         zDatosUpt.Open;
 
-      //pnlDatos.Height := 0;
       ActionButtons;
       cxPageDatos.ActivePageIndex := 1;
 
       if esLlamado then
         dxButtonNuevoClick(nil);
-        //cxHintStyleController.HintStyle
-      //TdxScreenTipLinks(cxHintStyleController.HintStyle)
     finally
       AutoFocus(TForm(self));
       dxDockDatos.AutoHide := True;
@@ -565,7 +565,6 @@ begin
     on e: exception do
     begin
       HuboError := True;
-      //MessageDlg(pMensajeError + e.Message, mtError, [mbOK],0);
       MsgBox.ShowModal('Error.',pMensajeError + e.Message, cmtError, [cmbOK]);
       PostMessage(Self.Handle, WM_CLOSE, 0, 0);
     end;

@@ -40,7 +40,6 @@ object FrmCatalogo: TFrmCatalogo
         Top = 0
         Width = 743
         Height = 430
-        ExplicitWidth = 1105
         DockingType = 0
         OriginalWidth = 300
         OriginalHeight = 200
@@ -56,7 +55,6 @@ object FrmCatalogo: TFrmCatalogo
         CaptionButtons = []
         CustomCaptionButtons.Buttons = <>
         TabsProperties.CustomButtons.Buttons = <>
-        ExplicitWidth = 1105
         DockingType = 0
         OriginalWidth = 185
         OriginalHeight = 140
@@ -68,7 +66,6 @@ object FrmCatalogo: TFrmCatalogo
           Height = 394
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1091
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
