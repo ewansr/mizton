@@ -46,7 +46,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cxCheckMAPropertiesChange(Sender: TObject);
     procedure dxButtonPermisosClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,6 +81,7 @@ begin
   FrmPermisousuarioModulo.IdPerfil := zDatos.FieldByName('IdPerfil').AsString;
   FrmPermisousuarioModulo.NombrePerfil := zDatos.FieldByName('Perfil').AsString;
   FrmPermisousuarioModulo.ShowModal;
+
 end;
 
 procedure TFrmPerfiles.FormCreate(Sender: TObject);
@@ -93,12 +93,6 @@ begin
 
   pCondiciones := '~(IdPerfil)&(Perfil)';
   pCampos := 'IdPerfil,Perfil';
-end;
-
-procedure TFrmPerfiles.FormShow(Sender: TObject);
-begin
-  inherited;
-  dxButtonPermisos.Enabled := edit;
 end;
 
 end.

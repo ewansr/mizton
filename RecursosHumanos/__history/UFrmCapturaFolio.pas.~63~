@@ -181,6 +181,7 @@ begin
       else
         zDatos.Open;
 
+
       if IdFolio = -9 then
       begin
         zDatos.Append;

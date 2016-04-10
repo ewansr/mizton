@@ -1275,11 +1275,12 @@ begin
   if Assigned(FrmInicio.zModulos) and (UPPERCASE(Varglobal.Elemento('usuario').AsString) <> 'ADMIN') then
   begin
     zMod := FrmInicio.zModulos;
-
+//    zMod.Filtered := False;
+//    zMod.Filter := 'NombreForm = ' + FormName;
+//    zMod.Filtered := True;
     insert := zMod.FieldByName('insertar').AsString = 'Si';
     edit := zMod.FieldByName('Editar').AsString = 'Si';
     Delete := zMod.FieldByName('Eliminar').AsString = 'Si';
-    FrmInicio.zModulos.Filtered := false;
   end
   else
   begin

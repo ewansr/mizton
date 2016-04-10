@@ -212,7 +212,6 @@ begin
 
   Estado := (zOtros.Active) and (zOtros.State in [dsEdit, dsInsert]);
   dxButtonGuardar.Enabled := edit and Estado;
-  dxBtnGuardarMy.Enabled := edit and Estado;
   dxButtonCancelar.Enabled := edit and Estado;
   dxButtonCambiarImg2.Enabled := edit and  Estado;
 

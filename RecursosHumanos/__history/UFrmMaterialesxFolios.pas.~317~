@@ -1082,9 +1082,6 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
-
-      LeerPermisos(self.Name,insert,edit,delete);
-
       cxGridGral.OnActiveTabChanged := nil;
 
       cxDateDesde.Date := StartOfTheWeek(Now);
@@ -1115,8 +1112,6 @@ begin
       end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
-      ActionButtons;
-
     finally
       cxGridGral.OnActiveTabChanged := cxGridGralActiveTabChanged;
       AplicarTema(TForm(Self));

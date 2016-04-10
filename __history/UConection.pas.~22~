@@ -1279,7 +1279,6 @@ begin
     insert := zMod.FieldByName('insertar').AsString = 'Si';
     edit := zMod.FieldByName('Editar').AsString = 'Si';
     Delete := zMod.FieldByName('Eliminar').AsString = 'Si';
-    FrmInicio.zModulos.Filtered := false;
   end
   else
   begin

@@ -160,8 +160,6 @@ type
     actPerfiles: TAction;
     LinkPerfiles: TdxNavBarItem;
     zModulos: TZQuery;
-    dxStatusBarInicioContainer10: TdxStatusBarContainerControl;
-    btnLogin: TcxButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -217,7 +215,6 @@ type
     procedure zHiloFolioAfterRefresh(DataSet: TDataSet);
     procedure actPerfilesExecute(Sender: TObject);
     procedure acListMenuExecute(Action: TBasicAction; var Handled: Boolean);
-    procedure btnLoginClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -350,7 +347,7 @@ begin
   begin
     for i := 0 to acListMenu.ActionCount -1 do
     begin
-      if zModulos.Locate('NombreForm', acListMenu.Actions[i].Name, [loCaseInsensitive]) or (UpperCase(varGlobal.Elemento('usuario').AsString) = 'ADMIN') then
+      if zModulos.Locate('NombreForm', acListMenu.Actions[i].Name, [loCaseInsensitive]) then
       begin
         Taction(acListMenu.Actions[i]).Enabled := True;
       end
@@ -474,7 +471,8 @@ begin
       if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') and (zModulos.RecordCount = 0) then
         MsgBox.ShowModal('aviso', 'No tienes acceso a ningún modulo de Mizton Desk contacta a tu administrador del sistema', cmtInformation, [cmbOK, cmbCancel]);
 
-      actualizarPermisoModulos;
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') then
+        actualizarPermisoModulos;
 
       //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
       if Not AsignarSQL(zEmpresa, 'master_empresa', pReadOnly) then
@@ -558,12 +556,6 @@ procedure TFrmInicio.btnEnviarCorreoClick(Sender: TObject);
 begin
   application.createform(TFrmEnviarCorreo, FrmEnviarCorreo);
   FrmEnviarCorreo.ShowModal;
-end;
-
-procedure TFrmInicio.btnLoginClick(Sender: TObject);
-begin
-  ArrancarSistema;
-  UDMConection.inicializaConAnsi;
 end;
 
 procedure TFrmInicio.CargarImpuestosEmpresa(EmpresaSel: Integer);

@@ -160,7 +160,7 @@ begin
 //    raise Exception.Create(pErrorConsulta + '[Catálogo de Vales]');
 //
 
-  AsignarSQL(zContratistas, 'mt_contratistas', pReadOnly);
+  AsignarSQL(zContratistas, 'mt_contratista', pReadOnly);
   AsignarSQL(zTipoOrden, 'mt_tipoorden', pReadOnly);
   AsignarSQL(zCentral, 'mt_central', pReadOnly);
 end;
@@ -181,6 +181,7 @@ begin
       else
         zDatos.Open;
 
+
       if IdFolio = -9 then
       begin
         zDatos.Append;
@@ -198,6 +199,9 @@ begin
       zContratistas.Open;
       zTipoOrden.Open;
       zCentral.Open;
+
+
+
 
       if TipoInstalacion = 1 then
       begin

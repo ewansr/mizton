@@ -211,10 +211,9 @@ begin
   dxBButtonBuscar.Enabled := Estado;
 
   Estado := (zOtros.Active) and (zOtros.State in [dsEdit, dsInsert]);
-  dxButtonGuardar.Enabled := edit and Estado;
-  dxBtnGuardarMy.Enabled := edit and Estado;
-  dxButtonCancelar.Enabled := edit and Estado;
-  dxButtonCambiarImg2.Enabled := edit and  Estado;
+  dxButtonGuardar.Enabled := Estado;
+  dxButtonCancelar.Enabled := Estado;
+  dxButtonCambiarImg2.Enabled := Estado;
 
   if Estado then
     img2.Visible := zOtros.FieldByName('ImagenCuenta').IsNull;

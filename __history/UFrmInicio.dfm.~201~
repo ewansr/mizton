@@ -102,14 +102,15 @@ object FrmInicio: TFrmInicio
       Width = 75
       Height = 23
       object btnLogin: TcxButton
-        Left = 3
+        Left = 0
         Top = 0
-        Width = 72
+        Width = 75
         Height = 23
         Align = alRight
         Caption = 'Cerrar Sesi'#243'n'
         TabOrder = 0
-        OnClick = btnLoginClick
+        ExplicitLeft = 8
+        ExplicitHeight = 25
       end
     end
   end

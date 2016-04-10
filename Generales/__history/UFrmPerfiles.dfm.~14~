@@ -9,7 +9,6 @@ inherited FrmPerfiles: TFrmPerfiles
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     Width = 528
-    ExplicitWidth = 528
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -19,8 +18,7 @@ inherited FrmPerfiles: TFrmPerfiles
     Width = 516
     Height = 256
     ExplicitLeft = 9
-    ExplicitWidth = 516
-    ExplicitHeight = 256
+    ExplicitWidth = 831
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       object cxColPerfil: TcxGridDBColumn
@@ -50,23 +48,19 @@ inherited FrmPerfiles: TFrmPerfiles
     Width = 528
     Height = 207
     ExplicitTop = 384
-    ExplicitWidth = 528
+    ExplicitWidth = 727
     ExplicitHeight = 207
     inherited cxPageDatos: TcxPageControl
       Width = 524
       Height = 203
-      ExplicitWidth = 524
-      ExplicitHeight = 203
       ClientRectBottom = 197
       ClientRectRight = 518
       inherited cxTsDatos: TcxTabSheet
-        ExplicitWidth = 516
-        ExplicitHeight = 170
         inherited dxLYCDatos: TdxLayoutControl
           Width = 516
           Height = 170
-          ExplicitWidth = 516
-          ExplicitHeight = 170
+          ExplicitLeft = -2
+          ExplicitWidth = 715
           object cxTextPerfil: TcxDBTextEdit [0]
             Left = 116
             Top = 11
@@ -124,6 +118,9 @@ inherited FrmPerfiles: TFrmPerfiles
                 'Propias OT'
                 'Todas las OT')
               TabOrder = 0
+              ExplicitLeft = 9
+              ExplicitTop = 21
+              ExplicitWidth = 475
               Width = 173
             end
           end
@@ -168,7 +165,6 @@ inherited FrmPerfiles: TFrmPerfiles
   end
   inherited cxSplitter1: TcxSplitter
     Height = 262
-    ExplicitHeight = 262
   end
   inherited dxBarManager1: TdxBarManager
     LookAndFeel.SkinName = ''
@@ -178,8 +174,6 @@ inherited FrmPerfiles: TFrmPerfiles
       0
       0)
     inherited dxbrManager1Bar: TdxBar
-      DockedDockControl = nil
-      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end

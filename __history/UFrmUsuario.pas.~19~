@@ -203,18 +203,17 @@ var Estado: Boolean;
 begin
   Estado := (zOtros.Active) and (zOtros.State = dsBrowse);
   dxButtonActualizar.Enabled := Estado;
-  dxButtonNuevo.Enabled := insert and Estado;
+  dxButtonNuevo.Enabled := Estado;
 
   Estado := (zOtros.Active) and (zOtros.RecordCount > 0) and (zOtros.State = dsBrowse);
-  dxBButtonEditar.Enabled := edit and Estado;
-  dxBButtonEliminar.Enabled := delete and Estado;
+  dxBButtonEditar.Enabled := Estado;
+  dxBButtonEliminar.Enabled := Estado;
   dxBButtonBuscar.Enabled := Estado;
 
   Estado := (zOtros.Active) and (zOtros.State in [dsEdit, dsInsert]);
-  dxButtonGuardar.Enabled := edit and Estado;
-  dxBtnGuardarMy.Enabled := edit and Estado;
-  dxButtonCancelar.Enabled := edit and Estado;
-  dxButtonCambiarImg2.Enabled := edit and  Estado;
+  dxButtonGuardar.Enabled := Estado;
+  dxButtonCancelar.Enabled := Estado;
+  dxButtonCambiarImg2.Enabled := Estado;
 
   if Estado then
     img2.Visible := zOtros.FieldByName('ImagenCuenta').IsNull;
@@ -497,9 +496,6 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
-
-      LeerPermisos(self.Name, insert,edit,delete);
-
       cxTextUsuario.Enabled := False;
 
        if not FiltrarDataset(zEmpleados, 'Activo', ['Si']) then

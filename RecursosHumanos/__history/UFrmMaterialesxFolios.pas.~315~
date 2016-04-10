@@ -182,14 +182,11 @@ type
     procedure dxButtonFIBRaClick(Sender: TObject);
   private
     ExApp: Variant;
-    Procedure ActionButtons;
     { Private declarations }
   public
     IdPersonal: integer;
     constructor CreateByParam(Personal: Integer; Modal: Boolean = False);
     { Public declarations }
-  protected
-    insert, edit, delete: Boolean;
   end;
 
 var
@@ -201,14 +198,6 @@ implementation
 
 uses UfrmCapturaFolio, UfrmFolioMAterial;
 
-
-procedure TFrmMaterialesxFolios.ActionButtons;
-var Estado: Boolean;
-begin
-  dxButtonNuevo.Enabled := Insert;
-  dxBButtonEditar.Enabled := Edit;
-  dxBButtonEliminar.Enabled := delete;
-end;
 
 procedure TFrmMaterialesxFolios.btnaddClick(Sender: TObject);
 begin
@@ -1082,9 +1071,6 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
-
-      LeerPermisos(self.Name,insert,edit,delete);
-
       cxGridGral.OnActiveTabChanged := nil;
 
       cxDateDesde.Date := StartOfTheWeek(Now);
@@ -1115,8 +1101,6 @@ begin
       end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
-      ActionButtons;
-
     finally
       cxGridGral.OnActiveTabChanged := cxGridGralActiveTabChanged;
       AplicarTema(TForm(Self));

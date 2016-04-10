@@ -474,7 +474,8 @@ begin
       if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') and (zModulos.RecordCount = 0) then
         MsgBox.ShowModal('aviso', 'No tienes acceso a ningún modulo de Mizton Desk contacta a tu administrador del sistema', cmtInformation, [cmbOK, cmbCancel]);
 
-      actualizarPermisoModulos;
+      if (UpperCase(varGlobal.Elemento('usuario').AsString) <> 'ADMIN') then
+        actualizarPermisoModulos;
 
       //Arrancar el form de la empresa en caso de que no tenga definidas el sistema
       if Not AsignarSQL(zEmpresa, 'master_empresa', pReadOnly) then

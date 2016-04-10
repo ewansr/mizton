@@ -1115,8 +1115,6 @@ begin
       end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
-      ActionButtons;
-
     finally
       cxGridGral.OnActiveTabChanged := cxGridGralActiveTabChanged;
       AplicarTema(TForm(Self));
