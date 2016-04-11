@@ -757,6 +757,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         end
         item
           Visible = True
+          ItemName = 'btnDatosGrales'
+        end
+        item
+          Visible = True
           ItemName = 'btnExport2'
         end>
       OneOnRow = True
@@ -974,6 +978,14 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       OnClick = dxButtonFIBRaClick
     end
+    object btnDatosGrales: TdxBarLargeButton
+      Caption = 'Generar plantilla Datos Generales'
+      Category = 0
+      Hint = 'Generar plantilla Datos Generales'
+      Visible = ivAlways
+      LargeImageIndex = 15
+      OnClick = btnDatosGralesClick
+    end
   end
   object dsDatos: TDataSource
     DataSet = zDatos
@@ -1148,5 +1160,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     UseOwnFont = False
     Left = 320
     Top = 304
+  end
+  object zConceptos: TZQuery
+    Params = <>
+    Left = 672
+    Top = 352
   end
 end

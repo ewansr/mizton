@@ -22,8 +22,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Width = 1034
     Height = 544
     Align = alClient
-    ExplicitLeft = 300
-    ExplicitWidth = 1035
     DockingType = 5
     OriginalWidth = 1034
     OriginalHeight = 544
@@ -32,7 +30,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Top = 0
       Width = 644
       Height = 544
-      ExplicitWidth = 645
       DockingType = 0
       OriginalWidth = 300
       OriginalHeight = 200
@@ -62,14 +59,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         object cxGridGral: TcxGrid
           AlignWithMargins = True
           Left = 3
-          Top = 52
+          Top = 49
           Width = 630
-          Height = 459
+          Height = 462
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
-          ExplicitWidth = 631
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -190,7 +186,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             end
           end
           object GridLevel1: TcxGridLevel
-            Caption = 'Informaci'#243'n detallada por folios'
+            Caption = 'Informaci'#243'n detallada por '#243'rden'
             GridView = cxGridDatos
           end
           object cxLvlGrafico: TcxGridLevel
@@ -204,27 +200,33 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Align = alTop
           Caption = 'Informaci'#243'n de apoyo'
           TabOrder = 1
-          ExplicitWidth = 637
-          Height = 49
+          Height = 46
           Width = 636
           object Panel1: TPanel
             AlignWithMargins = True
-            Left = 6
+            Left = 92
             Top = 18
             Width = 19
-            Height = 18
+            Height = 15
             Align = alLeft
             BevelOuter = bvNone
-            BorderStyle = bsSingle
-            Color = 13553407
+            Color = 3054090
             ParentBackground = False
             TabOrder = 0
           end
           object LblSinpago: TcxLabel
-            Left = 28
+            Left = 114
             Top = 15
             Align = alLeft
-            Caption = 'Sin informaci'#243'n de pago'
+            Caption = 'Autorizada(Solo Lectura)'
+            ParentFont = False
+            Style.Font.Charset = DEFAULT_CHARSET
+            Style.Font.Color = clWindowText
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
+            Transparent = True
           end
           object LblLeyendaVale: TcxLabel
             Left = 300
@@ -238,7 +240,33 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Style.Font.Name = 'Tahoma'
             Style.Font.Style = [fsBold, fsItalic]
             Style.IsFontAssigned = True
-            ExplicitLeft = 301
+            Transparent = True
+          end
+          object Panel2: TPanel
+            AlignWithMargins = True
+            Left = 6
+            Top = 18
+            Width = 19
+            Height = 15
+            Align = alLeft
+            BevelOuter = bvNone
+            Color = 8421631
+            ParentBackground = False
+            TabOrder = 3
+          end
+          object cxLabel1: TcxLabel
+            Left = 28
+            Top = 15
+            Align = alLeft
+            Caption = 'Pendiente'
+            ParentFont = False
+            Style.Font.Charset = DEFAULT_CHARSET
+            Style.Font.Color = clWindowText
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
+            Transparent = True
           end
         end
       end
@@ -250,11 +278,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Height = 544
       AllowFloating = True
       AutoHide = False
-      Caption = 'Materiales asignados a cada folio'
+      Caption = 'Materiales asignados a cada Orden'
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      ExplicitLeft = 645
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
@@ -268,16 +295,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitTop = 63
-        ExplicitHeight = 451
         ClientRectBottom = 449
         ClientRectLeft = 2
         ClientRectRight = 376
         ClientRectTop = 27
         object cxTsDatos: TcxTabSheet
-          Caption = 'Materiales por Folio'
+          Caption = 'Materiales por Orden'
           ImageIndex = 0
-          ExplicitHeight = 418
           object dxLYCDatos: TdxLayoutControl
             Left = 0
             Top = 406
@@ -287,7 +311,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             TabOrder = 0
             Visible = False
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitTop = 402
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -305,7 +328,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Height = 362
             Align = alClient
             TabOrder = 1
-            ExplicitHeight = 358
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               OnEditKeyDown = cxGridMaterialesEditKeyDown
@@ -351,7 +373,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Align = alBottom
             TabOrder = 2
             Visible = False
-            ExplicitTop = 364
             object btnSaveChanges: TcxButton
               AlignWithMargins = True
               Left = 256
@@ -423,7 +444,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Top = 65
           Width = 75
           Height = 25
-          Caption = '&Mostrar Actividades'
+          Caption = '&Mostrar '#211'rdenes'
           TabOrder = 2
           OnClick = btnAplicarClick
         end
@@ -783,18 +804,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       WholeRow = False
     end
     object dxButtonNuevo: TdxBarLargeButton
-      Caption = '&Nuevo'#13#10'Folio'
+      Caption = '&Nueva Orden'
       Category = 0
-      Hint = 'Nuevo'#13#10'Folio'
+      Hint = 'Nueva Orden'
       Visible = ivAlways
+      ButtonStyle = bsDropDown
+      DropDownMenu = dxPopupTipo
       LargeImageIndex = 4
       ShortCut = 16462
       OnClick = dxButtonNuevoClick
     end
     object dxBButtonEditar: TdxBarButton
-      Caption = '&Editar Folio'
+      Caption = '&Editar Orden'
       Category = 0
-      Hint = 'Editar Folio'
+      Hint = 'Editar Orden'
       Visible = ivAlways
       ImageIndex = 3
       LargeImageIndex = 3
@@ -802,18 +825,18 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OnClick = dxBButtonEditarClick
     end
     object dxBButtonBuscar: TdxBarButton
-      Caption = '&Buscar Folio'
+      Caption = '&Buscar Orden'
       Category = 0
-      Hint = 'Buscar Folio'
+      Hint = 'Buscar Orden'
       Visible = ivAlways
       ImageIndex = 10
       ShortCut = 16450
       OnClick = dxBButtonBuscarClick
     end
     object dxBButtonEliminar: TdxBarButton
-      Caption = 'Eli&minar Folio'
+      Caption = 'Eli&minar Orden'
       Category = 0
-      Hint = 'Eliminar Folio'
+      Hint = 'Eliminar Orden'
       Visible = ivAlways
       ImageIndex = 11
       LargeImageIndex = 11
@@ -821,9 +844,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       OnClick = dxBButtonEliminarClick
     end
     object dxButtonGuardar: TdxBarLargeButton
-      Caption = '&Guardar Folio'
+      Caption = '&Guardar Orden'
       Category = 0
-      Hint = 'Guardar Folio'
+      Hint = 'Guardar Orden'
       Visible = ivNever
       LargeImageIndex = 9
       ShortCut = 16455
@@ -936,6 +959,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       LargeImageIndex = 15
       OnClick = btnParElectricosClick
+    end
+    object dxButtonCObre: TdxBarButton
+      Caption = '&Cobre'
+      Category = 0
+      Hint = 'Cobre'
+      Visible = ivAlways
+      OnClick = dxButtonCObreClick
+    end
+    object dxButtonFIBRa: TdxBarButton
+      Caption = 'Fibra '#243'ptica'
+      Category = 0
+      Hint = 'Fibra '#243'ptica'
+      Visible = ivAlways
+      OnClick = dxButtonFIBRaClick
     end
   end
   object dsDatos: TDataSource
@@ -1096,5 +1133,20 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Color = 3054090
       TextColor = clWhite
     end
+  end
+  object dxPopupTipo: TdxBarPopupMenu
+    BarManager = dxBarManager1
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxButtonCObre'
+      end
+      item
+        Visible = True
+        ItemName = 'dxButtonFIBRa'
+      end>
+    UseOwnFont = False
+    Left = 320
+    Top = 304
   end
 end

@@ -2,8 +2,8 @@ object FrmInicio: TFrmInicio
   Left = 0
   Top = 0
   Caption = 'Mizton Construcciones S.A. de C.V.'
-  ClientHeight = 788
-  ClientWidth = 1306
+  ClientHeight = 787
+  ClientWidth = 1297
   Color = clBtnFace
   DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
@@ -21,14 +21,14 @@ object FrmInicio: TFrmInicio
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignSize = (
-    1306
-    788)
+    1297
+    787)
   PixelsPerInch = 96
   TextHeight = 13
   object dxStatusBarInicio: TdxRibbonStatusBar
     Left = 0
-    Top = 765
-    Width = 1306
+    Top = 764
+    Width = 1297
     Height = 23
     Panels = <
       item
@@ -39,7 +39,7 @@ object FrmInicio: TFrmInicio
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
         Bevel = dxpbNone
-        Width = 100
+        Width = 150
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -48,7 +48,7 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        Width = 150
+        Width = 200
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
@@ -81,38 +81,51 @@ object FrmInicio: TFrmInicio
       end
       item
         PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
-        Width = 200
+        Width = 250
+      end
+      item
       end
       item
         PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
-        PanelStyle.Container = dxStatusBarInicioContainer9
+        PanelStyle.Container = dxStatusBarInicioContainer10
       end>
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clDefault
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    ExplicitTop = 607
-    ExplicitWidth = 1200
-    object dxStatusBarInicioContainer9: TdxStatusBarContainerControl
-      Left = 1000
+    ExplicitTop = 768
+    ExplicitWidth = 1306
+    object dxStatusBarInicioContainer10: TdxStatusBarContainerControl
+      Left = 1203
       Top = 0
-      Width = 287
+      Width = 75
       Height = 23
+      object btnLogin: TcxButton
+        Left = 3
+        Top = 0
+        Width = 72
+        Height = 23
+        Align = alRight
+        Caption = 'Cerrar Sesi'#243'n'
+        TabOrder = 0
+        OnClick = btnLoginClick
+      end
     end
   end
   object cxspltrMenu: TcxSplitter
     Left = 281
     Top = 0
     Width = 6
-    Height = 765
+    Height = 764
     HotZoneClassName = 'TcxMediaPlayer9Style'
+    ExplicitHeight = 765
   end
   object navMenu: TdxNavBar
     Left = 0
     Top = 0
     Width = 281
-    Height = 765
+    Height = 764
     Align = alLeft
     PopupMenu = dxPopup1
     ActiveGroupIndex = 0
@@ -122,6 +135,8 @@ object FrmInicio: TFrmInicio
     ViewStyle.SkinNameAssigned = True
     OptionsImage.LargeImages = UDMConection.cxMizton32
     OptionsImage.SmallImages = UDMConection.cxMizton16
+    ExplicitLeft = -6
+    ExplicitHeight = 765
     object ItemRh: TdxNavBarGroup
       Caption = 'Recursos Humanos'
       LargeImageIndex = 0
@@ -246,9 +261,9 @@ object FrmInicio: TFrmInicio
     end
   end
   object cxLabel2: TcxLabel
-    Left = 1054
-    Top = 766
-    Anchors = [akLeft, akRight, akBottom]
+    Left = 962
+    Top = 767
+    Anchors = [akRight, akBottom]
     Caption = 'Activar Avisos'
     ParentColor = False
     ParentFont = False
@@ -266,10 +281,11 @@ object FrmInicio: TFrmInicio
     StyleFocused.LookAndFeel.NativeStyle = True
     StyleHot.LookAndFeel.NativeStyle = True
     Transparent = True
+    ExplicitTop = 768
   end
   object advAviso1: TAdvSmoothSlider
-    Left = 1159
-    Top = 766
+    Left = 1067
+    Top = 767
     Width = 80
     Height = 20
     AppearanceOn.Fill.Color = 11196927
@@ -318,25 +334,29 @@ object FrmInicio: TFrmInicio
     Fill.Rounding = 4
     Fill.ShadowOffset = 0
     Fill.Glow = gmNone
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     TabOrder = 5
     OnClick = advAviso1Click
+    ExplicitTop = 768
   end
   object cxspltr1: TcxSplitter
-    Left = 1300
+    Left = 959
     Top = 0
     Width = 6
-    Height = 765
+    Height = 764
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salRight
+    ExplicitLeft = 1049
   end
   object cxGboxDatos: TcxGroupBox
-    Left = 968
+    Left = 965
     Top = 0
     Align = alRight
     Caption = 'Registro de actividades'
     TabOrder = 10
-    Height = 765
+    ExplicitLeft = 968
+    ExplicitHeight = 765
+    Height = 764
     Width = 332
     object Panel1: TPanel
       Left = 3
@@ -1534,7 +1554,7 @@ object FrmInicio: TFrmInicio
       Left = 3
       Top = 345
       Width = 326
-      Height = 410
+      Height = 409
       Align = alClient
       DataSource = dsHiloFolio
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -1568,12 +1588,14 @@ object FrmInicio: TFrmInicio
     end
   end
   object cxspltr2: TcxSplitter
-    Left = 962
+    Left = 953
     Top = 0
     Width = 6
-    Height = 765
+    Height = 764
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salRight
+    ExplicitLeft = 962
+    ExplicitHeight = 765
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -2223,6 +2245,7 @@ object FrmInicio: TFrmInicio
   end
   object acListMenu: TActionList
     Images = UDMConection.cxMizton16
+    OnExecute = acListMenuExecute
     Left = 704
     Top = 56
     object actPersonal: TAction

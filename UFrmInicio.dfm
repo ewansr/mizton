@@ -5,14 +5,13 @@ object FrmInicio: TFrmInicio
   ClientHeight = 787
   ClientWidth = 1297
   Color = clBtnFace
-  DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsMDIForm
-  OldCreateOrder = True
+  OldCreateOrder = False
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate

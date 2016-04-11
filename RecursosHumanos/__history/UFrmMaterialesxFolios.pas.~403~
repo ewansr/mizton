@@ -149,6 +149,11 @@ type
     cxstylAutorizada: TcxStyle;
     Panel2: TPanel;
     cxLabel1: TcxLabel;
+    dxPopupTipo: TdxBarPopupMenu;
+    dxButtonCObre: TdxBarButton;
+    dxButtonFIBRa: TdxBarButton;
+    btnDatosGrales: TdxBarLargeButton;
+    zConceptos: TZQuery;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -175,13 +180,19 @@ type
       ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
       var AStyle: TcxStyle);
     procedure btnParElectricosClick(Sender: TObject);
+    procedure dxButtonCObreClick(Sender: TObject);
+    procedure dxButtonFIBRaClick(Sender: TObject);
+    procedure btnDatosGralesClick(Sender: TObject);
   private
     ExApp: Variant;
+    Procedure ActionButtons;
     { Private declarations }
   public
     IdPersonal: integer;
     constructor CreateByParam(Personal: Integer; Modal: Boolean = False);
     { Public declarations }
+  protected
+    insert, edit, delete: Boolean;
   end;
 
 var
@@ -193,6 +204,14 @@ implementation
 
 uses UfrmCapturaFolio, UfrmFolioMAterial;
 
+
+procedure TFrmMaterialesxFolios.ActionButtons;
+var Estado: Boolean;
+begin
+  dxButtonNuevo.Enabled := Insert;
+  dxBButtonEditar.Enabled := Edit;
+  dxBButtonEliminar.Enabled := delete;
+end;
 
 procedure TFrmMaterialesxFolios.btnaddClick(Sender: TObject);
 begin
@@ -252,6 +271,312 @@ begin
     begin
       MsgBox.ShowModal('Error.', 'Ha ocurrido el siguiente error: ' + e.Message, cmtError, [cmbOK]);
     end;
+  end;
+end;
+
+procedure TFrmMaterialesxFolios.btnDatosGralesClick(Sender: TObject);
+Var
+  cursor: TCursor;
+  Continuar: Boolean;
+  Rango: Variant;
+  zMat: TZQuery;
+  iniFila, iniCol, recFila, recCol, rc, i, k: Integer;
+  ListaMaterial: TStringList;
+  tipo:String;
+begin
+  try
+    zDatos.Filtered := False;
+    zDatos.Filter := 'Estatus=' + QuotedStr('Liquidada');
+    zDatos.Filtered := True;
+
+    Try
+      Continuar     := True;
+      ExApp := CreateOleObject('Excel.Application');
+      ExApp.Visible := True;
+      ExApp.DisplayAlerts := False;
+      ExApp.Workbooks.Add;
+    Except
+      on e:Exception do
+      begin
+        Continuar := False;
+        msgBox.ShowModal('Ha ocurrido un error.','Al parecer no el equipo no tiene instalado Microsoft Excel, Contacte a su administrador de sistema para poder utilizar esta característica', cmtError, [cmbOK]);
+      end;
+    End;
+
+    //Si no se vá al chorizo, continuar
+    if Continuar then
+    begin
+      //encabezado y datos generales
+      ExApp.Range['A1:K1'] := 'FORMATO DE ENTREGA Y CONTROL DE TRABAJOS DE A0.';
+      ExApp.Range['A1:K1'].MergeCells := true;
+      FormatoTexto(ExApp.Range['A1'], 'Arial', 22, True, True);
+
+      ExApp.Range['G6:G6'] := 'DIVISION';
+      ExApp.Range['H6:K6'] := zDatos.FieldByName('Division').AsString;
+      ExApp.Range['H6:K6'].mergeCells := True;
+
+      ExApp.Range['G7:G7'] := 'AREA';
+      ExApp.Range['H7:K7'] := zDatos.FieldByName('Area').AsString;
+      ExApp.Range['H7:K7'].mergeCells := True;
+
+      ExApp.Range['G8:G8'] := 'CONTRATISTA';
+      ExApp.Range['H8:K8'] := zDatos.FieldByName('Contratista').AsString;
+      ExApp.Range['H8:K8'].mergeCells := True;
+
+      ExApp.Range['G9:G9'] := 'COPE';
+      ExApp.Range['H9:K9'] := zDatos.FieldByName('NoVale').AsString;
+      ExApp.Range['H9:K9'].mergeCells := True;
+
+      ExApp.Range['G10:G10'] := 'SEMANA';
+      ExApp.Range['H10:K10'] := zDatos.FieldByName('FechaVale').AsString;
+      ExApp.Range['H10:K10'].mergeCells := True;
+
+
+      SetBorders(Exapp.Range['G6:k10'], xlThin, xlContinuous);
+
+      ExApp.Range['A13'] := 'NO.';
+      ExApp.Columns['A:A'].ColumnWidth := 9;
+      ExApp.Range['B13'] := 'NUMERO DE FACTURA';
+      ExApp.Columns['B:B'].ColumnWidth := 12.14;
+      ExApp.Range['C13'] := 'No. FACTURA CABLEADO';
+      ExApp.Columns['C:C'].ColumnWidth := 12.14;
+      ExApp.Range['D13'] := 'FOLIO VALIDACION';
+      ExApp.Columns['D:D'].ColumnWidth := 12.14;
+      ExApp.Range['E13'] := 'FOLIO OS';
+      ExApp.Columns['E:E'].ColumnWidth := 12.14;
+      ExApp.Range['F13'] := 'TELEFONO CON CLAVE LADA 10 DIG';
+      ExApp.Columns['F:F'].ColumnWidth := 19;
+      ExApp.Range['G13'] := 'TIPO DE OS';
+      ExApp.Columns['G:G'].ColumnWidth := 12.14;
+      ExApp.Range['H13'] := 'CTL';
+      ExApp.Columns['H:H'].ColumnWidth := 9;
+      ExApp.Range['I13'] := 'DTO';
+      ExApp.Columns['I:I'].ColumnWidth := 9;
+      ExApp.Range['J13'] := 'PRINC';
+      ExApp.Columns['J:J'].ColumnWidth := 9;
+      ExApp.Range['K13'] := 'SEC';
+      ExApp.Columns['K:K'].ColumnWidth := 9;
+      ExApp.Range['L13'] := 'FECHA INSTALACION';
+      ExApp.Columns['L:L'].ColumnWidth := 12.14;
+      EXApp.Range['A13:L13'].wrapText := True;
+
+
+      //Esto es para que no me desmadre el formato de principal y secundario
+      ExApp.Columns['E:F'].NumberFormat := '@';
+
+      Cursor := Screen.Cursor;
+      try
+        Screen.Cursor := crAppStart;
+
+        iniFila := 12;
+        InicOl := 13;
+        recFila := 0;
+        recCol := 0;
+        k := 1;
+
+        //UNiverso de materiales utilizados en la semana
+        if not FiltrarDataset(zConceptos, 'IdConcepto', ['-1']) then
+          raise Exception.Create(pErrorFiltrar + '[mt_foliosxtecnicos]');
+
+        if zConceptos.Active then
+          zConceptos.Refresh
+        else
+          zConceptos.Open;
+
+        //Formato color encabezados
+        Rango := EXApp.Range['A13:' + ColumnaNombre(12 + zConceptos.RecordCount)+ '13'];
+        FormatoTexto(Rango, 'Arial Narrow', 9, True);
+        Rango.interior.color := rgb(217,217,217);
+
+
+        rc := 0;
+        zConceptos.First;
+        tipo := zConceptos.FieldByName('Tipo').AsString;
+        while not zConceptos.Eof do
+        begin
+          if ((zConceptos.RecNo > 1) and (Tipo <> zConceptos.FieldByName('Tipo').AsString)) or (zconceptos.RecordCount = zConceptos.RecNo) then
+          begin
+            if (zconceptos.RecordCount = zConceptos.RecNo) then
+              Rango := ExApp.Range[ColumnaNombre(IniCol + recCol-rc) + IntToStr(3) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(3)]
+            else
+              Rango := ExApp.Range[ColumnaNombre(IniCol + recCol-rc) + IntToStr(3) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(3)];
+
+            Rango.MergeCells := True;
+            if (zconceptos.RecordCount = zConceptos.RecNo) then
+              Rango := ExApp.Range[ColumnaNombre(IniCol + recCol-rc) + IntToStr(4) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(4)]
+            else
+              Rango := ExApp.Range[ColumnaNombre(IniCol + recCol-rc) + IntToStr(4) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(4)];
+
+            if k = 1 then
+              rango.Interior.color := RGB(255,255,153);
+            if k = 2 then
+              rango.Interior.color := RGB(153,255,102);
+            if k = 3 then
+              rango.Interior.color := RGB(197,217,241);
+            tipo := zConceptos.FieldByName('Tipo').AsString;
+            rc := 0;
+            inc(k)
+          end;
+
+
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(3)] := UpperCase(zConceptos.FieldByName('Tipo').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(4)] := zConceptos.FieldByName('Concepto').AsString;
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(4)].mergeCells := True;
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(4)].Orientation := 90;
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(4)].wraptext := true;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol) + IntToStr(1)], 'Arial Narrow', 9, true, False);
+          ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)] := zConceptos.FieldByName('codigo').AsString;
+          FormatoTexto(ExApp.Range[ColumnaNombre(IniCol + recCol) + IntToStr(IniFila+1)], 'Arial Narrow', 8, true, True);
+
+          inc(RecCol);
+          inc(rc);
+          zConceptos.Next;
+
+        end;
+        SetBorders(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(IniFila) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(3)], xlThin, xlContinuous);
+
+        //Color y bordes a encabezado tipo de concepto
+        ExApp.Range[ColumnaNombre(IniCol) + IntToStr(3) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(3)].interior.color := Rgb(150,150,150);
+        FormatoTexto(ExApp.Range[ColumnaNombre(IniCol) + IntToStr(3) + ':' + ColumnaNombre(IniCol + recCol-1) + IntToStr(3)],'Arial', 18, True, True);
+
+
+        //Agregando folios de la semana
+        iniFila := 14;
+        InicOl := 0;
+        recFila := 0;
+
+        zDatos.First;
+        while Not zDatos.Eof do
+        begin
+          ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila + recFila)] := zDatos.recNo;
+          ExApp.Range[ColumnaNombre(IniCol + 5) + IntToStr(IniFila + recFila)] := Chr(39) +UpperCase(zDatos.FieldByName('Folio').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + 6) + IntToStr(IniFila + recFila)] := Chr(39) +UpperCase(zDatos.FieldByName('Telefono').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + 7) + IntToStr(IniFila + recFila)] := UpperCase(zDatos.FieldByName('TipoOs').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + 8) + IntToStr(IniFila + recFila)] := UpperCase(zDatos.FieldByName('Central').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + 9) + IntToStr(IniFila + recFila)] := upperCase(zDatos.FieldByName('Distrito').AsString);
+
+          ExApp.Range[ColumnaNombre(IniCol + 10) + IntToStr(IniFila + recFila)].numberFormat := '@';
+          ExApp.Range[ColumnaNombre(IniCol + 10) + IntToStr(IniFila + recFila)].FormulaR1C1 := Chr(39) +  UpperCase(zDatos.FieldByName('Principal').AsString);
+          ExApp.Range[ColumnaNombre(IniCol + 11) + IntToStr(IniFila + recFila)].NumberFormat := '@';
+          ExApp.Range[ColumnaNombre(IniCol + 11) + IntToStr(IniFila + recFila)].FormulaR1C1 := Chr(39)  + UpperCase(zDatos.FieldByName('Secundario').AsString) + ' ';
+          ExApp.Range[ColumnaNombre(IniCol + 12) + IntToStr(IniFila + recFila)] := UpperCase(zDatos.FieldByName('FechaCreacion').AsString);
+
+
+          inc(RecFila);
+          zDatos.Next;
+        end;
+
+        //Colocar las Formulas Sumatoria
+        ExApp.Range['A'+intToStr(IniFila +RecFila)] := 'TOTAL UNIDADES';
+        ExApp.Range['A'+intToStr(IniFila +RecFila) + ':L'+intToStr(IniFila +RecFila)].MergeCells := True;
+
+        for i := 0 to ZConceptos.RecordCount-1 do
+        begin
+          ExApp.Range[ColumnaNombre(13+i) +intToStr(IniFila + RecFila)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
+        end;
+
+        //Borders a cuerpo del excel
+        Rango := ExApp.Range[ColumnaNombre(IniCol + 1) + IntToStr(IniFila-1) + ':' + ColumnaNombre(12 + zConceptos.RecordCount) + IntToStr(IniFila + recFila)];
+        SetBorders(Rango, xlThin, xlContinuous);
+        FormatoTexto(Rango, 'Arial', 10, True);
+
+
+        ExApp.Range['A44:C44'] := 'TIPO DE SERVICIO';
+        ExApp.Range['A44:C44'].MergeCells := True;
+        FormatoTexto(ExApp.Range['A44:C44'], 'Arial', 12, False, True);
+
+
+        ExApp.Range['F'+IntToStr(IniFila + recFila+2)] := 'A0';
+        ExApp.Range['F'+IntToStr(IniFila + recFila+3)] := 'A5';
+        ExApp.Range['F'+IntToStr(IniFila + recFila+4)] := 'N3';
+        FormatoTexto(ExApp.Range['F'+IntToStr(IniFila + recFila+2)+':F'+IntToStr(IniFila + recFila+4)], 'Arial', 12, true, True);
+
+        ExApp.Range['J'+IntToStr(IniFila + recFila+2)] := 'A7';
+        ExApp.Range['J'+IntToStr(IniFila + recFila+3)] := 'A9';
+        ExApp.Range['J'+IntToStr(IniFila + recFila+4)] := 'A4';
+        FormatoTexto(ExApp.Range['J'++IntToStr(IniFila + recFila+2)+':J'+IntToStr(IniFila + recFila+4)], 'Arial', 12, true, True);
+
+        ExApp.Range['G'+IntToStr(IniFila + recFila+2)] := 'Alta nueva';
+        ExApp.Range['G'+IntToStr(IniFila + recFila+3)] := 'Alta con prioridad';
+        ExApp.Range['G'+IntToStr(IniFila + recFila+4)] := 'Conver Inalamb/Cobre';
+        FormatoTexto(ExApp.Range['G'++IntToStr(IniFila + recFila+2)+':G'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
+
+        ExApp.Range['K'+IntToStr(IniFila + recFila+2)] := 'Alta línea más adicional (alta nueva más adicional)';
+        ExApp.Range['K'+IntToStr(IniFila + recFila+3)] := 'Alta sin costo FP (línea telefónica nueva e Infinitum)';
+        ExApp.Range['K'+IntToStr(IniFila + recFila+4)] := 'Alta por baja sin costo';
+        FormatoTexto(ExApp.Range['K'+IntToStr(IniFila + recFila+2)+':K'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
+
+        //pie de pagina
+        Inc(recFila,9);
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+2)+':' +'I' +IntToStr(IniFila + recFila+2)].select;
+        ExApp.selection.Borders[xlDiagonalDown].lineStyle := xlNone;
+        ExApp.selection.Borders[xlDiagonalUp].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeLeft].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeTop].lineStyle := xlNone;
+        ExApp.selection.Borders[xlEdgeBottom].lineStyle := xlContinuous;
+        ExApp.selection.Borders[xlEdgeBottom].weight := xlThin;
+
+        ExApp.selection.Borders[xlEdgeRight].lineStyle := xlNone;
+        ExApp.selection.Borders[xlInsideVertical].lineStyle := xlNone;
+        ExApp.selection.Borders[xlInsideHorizontal].lineStyle := xlNone;
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+3)] := 'NOMBRE Y FIRMA DE QUIEN RECIBE Y AUTORIZA LOS TRABAJOS EJECUTADOS (TELMEX)';
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+3) + ':I'+ IntToStr(IniFila + recFila+3)].mergeCells := True;
+
+        FormatoTexto(ExApp.Range['A'+ IntToStr(IniFila + recFila+3)],'Arial', 9, False, True);
+
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+5)+':' +'A' +IntToStr(IniFila + recFila+5)] := 'NOMBRE';
+        ExApp.Range['B'+ IntToStr(IniFila + recFila+5)+':' +'G' +IntToStr(IniFila + recFila+5)].select;
+        ExApp.Selection.mergeCells := True;
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'H' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+        ExApp.Range['A'+ IntToStr(IniFila + recFila+6)+':' +'A' +IntToStr(IniFila + recFila+6)] := 'PUESTO';
+        ExApp.Range['B'+ IntToStr(IniFila + recFila+6)+':' +'E' +IntToStr(IniFila + recFila+6)].mergeCells := True;
+        ExApp.Range['F'+ IntToStr(IniFila + recFila+6)+':' +'G' +IntToStr(IniFila + recFila+6)] := 'FECHA';
+        ExApp.Range['F'+ IntToStr(IniFila + recFila+6)+':' +'G' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+        SetBorders(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
+        FormatoTexto(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)],'Arial', 11, True);
+
+
+        //Segunda seccion de firmantes
+
+        ExApp.Range['K'+ IntToStr(IniFila + recFila+5)+':' +'K' +IntToStr(IniFila + recFila+5)] := 'NOMBRE';
+        ExApp.Range['L'+ IntToStr(IniFila + recFila+5)+':' +'O' +IntToStr(IniFila + recFila+5)].select;
+        ExApp.Selection.mergeCells := True;
+
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+5)] := 'NO. EXP.';
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+5)+':' +'H' +IntToStr(IniFila + recFila+5)].MergeCells := True;
+        ExApp.Range['K'+ IntToStr(IniFila + recFila+6)+':' +'K' +IntToStr(IniFila + recFila+6)] := 'PUESTO';
+        ExApp.Range['L'+ IntToStr(IniFila + recFila+6)+':' +'O' +IntToStr(IniFila + recFila+6)].mergeCells := True;
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+6)+':' +'Q' +IntToStr(IniFila + recFila+6)] := 'FECHA';
+        ExApp.Range['P'+ IntToStr(IniFila + recFila+6)+':' +'Q' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+
+        ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
+
+        SetBorders(ExApp.Range['k' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
+        FormatoTexto(ExApp.Range['K' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)],'Arial', 11, True);
+
+
+        ExApp.Columns['L:L'].WrapText := True;
+
+        ExApp.ActiveSheet.name := 'DATOS GENERALES';
+        ExApp.ActiveWindow.DisplayGridlines := False;
+      finally
+        Screen.Cursor := Cursor;
+      end;
+    end;
+  finally
+    zDatos.Filtered := False;
   end;
 end;
 
@@ -781,6 +1106,16 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.dxButtonCObreClick(Sender: TObject);
+begin
+  application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+  FrmCapturaFolio.IdFolio := -9;
+  FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
+
+  If FrmCapturaFolio.ShowModal <> mrCancel then
+    dxButtonActualizar.Click;
+end;
+
 procedure TFrmMaterialesxFolios.dxButtonExportarClick(Sender: TObject);
 Var
   cursor: TCursor;
@@ -1004,15 +1339,21 @@ begin
   end;
 end;
 
+procedure TFrmMaterialesxFolios.dxButtonFIBRaClick(Sender: TObject);
+begin
+  application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
+  FrmCapturaFolio.IdFolio := -9;
+  FrmCapturaFolio.TipoInstalacion := 2;
+  FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
+
+  If FrmCapturaFolio.ShowModal <> mrCancel then
+    dxButtonActualizar.Click;
+end;
+
 procedure TFrmMaterialesxFolios.dxButtonNuevoClick(Sender: TObject);
 begin
   try
-    application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
-    FrmCapturaFolio.IdFolio := -9;
-    FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
 
-    If FrmCapturaFolio.ShowModal <> mrCancel then
-      dxButtonActualizar.Click;
   finally
 
   end;
@@ -1040,6 +1381,10 @@ begin
   if NOT AsignarSQL(zUMateriales, 'mt_universomateriales', pReadOnly) then
     raise Exception.Create(pErrorConsulta + '[mt_universomateriales]');
 
+  if NOT AsignarSQL(zConceptos, 'mt_conceptos_ot', pReadOnly) then
+    raise Exception.Create(pErrorConsulta + '[mt_conceptos_ot]');
+
+
 end;
 
 procedure TFrmMaterialesxFolios.FormShow(Sender: TObject);
@@ -1050,6 +1395,9 @@ begin
     Cursor := Screen.Cursor;
     try
       Screen.Cursor := crAppStart;
+
+      LeerPermisos(self.Name,insert,edit,delete);
+
       cxGridGral.OnActiveTabChanged := nil;
 
       cxDateDesde.Date := StartOfTheWeek(Now);
@@ -1080,6 +1428,8 @@ begin
       end;
 
       self.Caption := 'Actividades: [' + zPersonal.FieldByName('CodigoPersonal').AsString + ']';
+      ActionButtons;
+
     finally
       cxGridGral.OnActiveTabChanged := cxGridGralActiveTabChanged;
       AplicarTema(TForm(Self));
@@ -1112,7 +1462,7 @@ begin
 
 
     dxbrMateriales.Visible := (Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')));
-    cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
+    cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')) or (zDatos.Active and (zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado'));
     LblLeyendaVale.Visible :=   (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto'));
 
 
