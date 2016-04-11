@@ -108,6 +108,7 @@ object FrmInicio: TFrmInicio
         Align = alRight
         Caption = 'Cerrar Sesi'#243'n'
         TabOrder = 0
+        Visible = False
         OnClick = btnLoginClick
       end
     end

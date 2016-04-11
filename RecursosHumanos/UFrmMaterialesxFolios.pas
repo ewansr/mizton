@@ -202,7 +202,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmCapturaFolio, UfrmFolioMAterial;
+uses UfrmCapturaFolio, UfrmFolioMAterial, UfrmInicio;
 
 
 procedure TFrmMaterialesxFolios.ActionButtons;
@@ -285,6 +285,8 @@ Var
   tipo:String;
 begin
   try
+
+    zDatos.AfterScroll := nil;
     zDatos.Filtered := False;
     zDatos.Filter := 'Estatus=' + QuotedStr('Liquidada');
     zDatos.Filtered := True;
@@ -483,9 +485,9 @@ begin
         FormatoTexto(Rango, 'Arial', 10, True);
 
 
-        ExApp.Range['A44:C44'] := 'TIPO DE SERVICIO';
-        ExApp.Range['A44:C44'].MergeCells := True;
-        FormatoTexto(ExApp.Range['A44:C44'], 'Arial', 12, False, True);
+        ExApp.Range['A'+IntToStr(IniFila + recFila+2)] := 'TIPO DE SERVICIO';
+        ExApp.Range['A'+IntToStr(IniFila + recFila+2)].MergeCells := True;
+        FormatoTexto(ExApp.Range['A'+IntToStr(IniFila + recFila+2)], 'Arial', 12, False, True);
 
 
         ExApp.Range['F'+IntToStr(IniFila + recFila+2)] := 'A0';
@@ -501,7 +503,7 @@ begin
         ExApp.Range['G'+IntToStr(IniFila + recFila+2)] := 'Alta nueva';
         ExApp.Range['G'+IntToStr(IniFila + recFila+3)] := 'Alta con prioridad';
         ExApp.Range['G'+IntToStr(IniFila + recFila+4)] := 'Conver Inalamb/Cobre';
-        FormatoTexto(ExApp.Range['G'++IntToStr(IniFila + recFila+2)+':G'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
+        FormatoTexto(ExApp.Range['G'+IntToStr(IniFila + recFila+2)+':G'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
 
         ExApp.Range['K'+IntToStr(IniFila + recFila+2)] := 'Alta línea más adicional (alta nueva más adicional)';
         ExApp.Range['K'+IntToStr(IniFila + recFila+3)] := 'Alta sin costo FP (línea telefónica nueva e Infinitum)';
@@ -509,7 +511,7 @@ begin
         FormatoTexto(ExApp.Range['K'+IntToStr(IniFila + recFila+2)+':K'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
 
         //pie de pagina
-        Inc(recFila,9);
+        Inc(recFila,4);
 
         ExApp.Range['A'+ IntToStr(IniFila + recFila+2)+':' +'I' +IntToStr(IniFila + recFila+2)].select;
         ExApp.selection.Borders[xlDiagonalDown].lineStyle := xlNone;
@@ -571,9 +573,20 @@ begin
 
         ExApp.Columns['L:L'].WrapText := True;
 
+
+        TBlobField(FrmInicio.zEmpresa.FieldByName('logotipo')).SaveToFile(ExtractFilePath(Application.ExeName) + 'Temp.bmp');
+        ExApp.ActiveSheet.Pictures.Insert(ExtractFilePath(Application.ExeName) + 'Temp.bmp').Select;
+        ExApp.Selection.ShapeRange.LockAspectRatio := False;
+        ExApp.Selection.ShapeRange.Width := 180;
+        ExApp.Selection.ShapeRange.Height :=100;
+        ExApp.Selection.ShapeRange.Left := 50;
+        ExApp.Selection.ShapeRange.top := 50;
+
+
         ExApp.ActiveSheet.name := 'DATOS GENERALES';
         ExApp.ActiveWindow.DisplayGridlines := False;
       finally
+        zDatos.AfterScroll := zDatosAfterScroll;
         Screen.Cursor := Cursor;
       end;
     end;

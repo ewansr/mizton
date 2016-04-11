@@ -523,14 +523,8 @@ begin
   Rango.font.name := Letra;
   Rango.font.Size := Tamano;
   Rango.font.Bold := Negrita;
-  if centrar then
-    Rango.HorizontalAlignment := xlCenter
-  else
-    Rango.HorizontalAlignment := -4131;
-  Rango.VerticalAlignment := xlCenter
-
-
-
+  Rango.HorizontalAlignment := xlCenter;
+  Rango.VerticalAlignment := xlCenter;
 end;
 
 procedure SetBorders(Rango: Variant; Grosor,

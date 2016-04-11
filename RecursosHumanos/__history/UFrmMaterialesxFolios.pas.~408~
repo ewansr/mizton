@@ -330,6 +330,9 @@ begin
       ExApp.Range['G10:G10'] := 'SEMANA';
       ExApp.Range['H10:K10'] := zDatos.FieldByName('FechaVale').AsString;
       ExApp.Range['H10:K10'].mergeCells := True;
+      FormatoTexto(ExApp.Range['G6:K10'], 'Arial', 9,false,True);
+
+
 
 
       SetBorders(Exapp.Range['G6:k10'], xlThin, xlContinuous);
@@ -359,7 +362,6 @@ begin
       ExApp.Range['L13'] := 'FECHA INSTALACION';
       ExApp.Columns['L:L'].ColumnWidth := 12.14;
       EXApp.Range['A13:L13'].wrapText := True;
-
 
       //Esto es para que no me desmadre el formato de principal y secundario
       ExApp.Columns['E:F'].NumberFormat := '@';
@@ -468,7 +470,7 @@ begin
 
         //Colocar las Formulas Sumatoria
         ExApp.Range['A'+intToStr(IniFila +RecFila)] := 'TOTAL UNIDADES';
-        ExApp.Range['A'+intToStr(IniFila +RecFila) + ':F'+intToStr(IniFila +RecFila)].MergeCells := True;
+        ExApp.Range['A'+intToStr(IniFila +RecFila) + ':L'+intToStr(IniFila +RecFila)].MergeCells := True;
 
         for i := 0 to ZConceptos.RecordCount-1 do
         begin
@@ -481,7 +483,33 @@ begin
         FormatoTexto(Rango, 'Arial', 10, True);
 
 
+        ExApp.Range['A44:C44'] := 'TIPO DE SERVICIO';
+        ExApp.Range['A44:C44'].MergeCells := True;
+        FormatoTexto(ExApp.Range['A44:C44'], 'Arial', 12, False, True);
+
+
+        ExApp.Range['F'+IntToStr(IniFila + recFila+2)] := 'A0';
+        ExApp.Range['F'+IntToStr(IniFila + recFila+3)] := 'A5';
+        ExApp.Range['F'+IntToStr(IniFila + recFila+4)] := 'N3';
+        FormatoTexto(ExApp.Range['F'+IntToStr(IniFila + recFila+2)+':F'+IntToStr(IniFila + recFila+4)], 'Arial', 12, true, True);
+
+        ExApp.Range['J'+IntToStr(IniFila + recFila+2)] := 'A7';
+        ExApp.Range['J'+IntToStr(IniFila + recFila+3)] := 'A9';
+        ExApp.Range['J'+IntToStr(IniFila + recFila+4)] := 'A4';
+        FormatoTexto(ExApp.Range['J'+IntToStr(IniFila + recFila+2)+':J'+IntToStr(IniFila + recFila+4)], 'Arial', 12, true, True);
+
+        ExApp.Range['G'+IntToStr(IniFila + recFila+2)] := 'Alta nueva';
+        ExApp.Range['G'+IntToStr(IniFila + recFila+3)] := 'Alta con prioridad';
+        ExApp.Range['G'+IntToStr(IniFila + recFila+4)] := 'Conver Inalamb/Cobre';
+        FormatoTexto(ExApp.Range['G'+IntToStr(IniFila + recFila+2)+':G'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
+
+        ExApp.Range['K'+IntToStr(IniFila + recFila+2)] := 'Alta línea más adicional (alta nueva más adicional)';
+        ExApp.Range['K'+IntToStr(IniFila + recFila+3)] := 'Alta sin costo FP (línea telefónica nueva e Infinitum)';
+        ExApp.Range['K'+IntToStr(IniFila + recFila+4)] := 'Alta por baja sin costo';
+        FormatoTexto(ExApp.Range['K'+IntToStr(IniFila + recFila+2)+':K'+IntToStr(IniFila + recFila+4)], 'Arial', 12, false, false);
+
         //pie de pagina
+        Inc(recFila,4);
 
         ExApp.Range['A'+ IntToStr(IniFila + recFila+2)+':' +'I' +IntToStr(IniFila + recFila+2)].select;
         ExApp.selection.Borders[xlDiagonalDown].lineStyle := xlNone;
@@ -516,7 +544,7 @@ begin
         ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
 
         SetBorders(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
-        FormatoTexto(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)],'Arial', 11, True, True);
+        FormatoTexto(ExApp.Range['A' + IntToStr(IniFila + recFila+5)+':' +'I' +IntToStr(IniFila + recFila+6)],'Arial', 11, False);
 
 
         //Segunda seccion de firmantes
@@ -538,7 +566,7 @@ begin
         ExApp.Range['H'+ IntToStr(IniFila + recFila+6)+':' +'I' +IntToStr(IniFila + recFila+6)].MergeCells := True;
 
         SetBorders(ExApp.Range['k' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)], xlThin, xlContinuous);
-        FormatoTexto(ExApp.Range['K' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)],'Arial', 11, True);
+        FormatoTexto(ExApp.Range['K' + IntToStr(IniFila + recFila+5)+':' +'Q' +IntToStr(IniFila + recFila+6)],'Arial', 11, False);
 
 
         ExApp.Columns['L:L'].WrapText := True;

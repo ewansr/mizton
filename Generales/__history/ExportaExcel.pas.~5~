@@ -523,13 +523,11 @@ begin
   Rango.font.name := Letra;
   Rango.font.Size := Tamano;
   Rango.font.Bold := Negrita;
+  Rango.HorizontalAlignment := xlCenter;
   if centrar then
-    Rango.HorizontalAlignment := xlCenter
+    Rango.VerticalAlignment := xlCenter
   else
-    Rango.HorizontalAlignment := -4131;
-  Rango.VerticalAlignment := xlCenter
-
-
+    Rango.VerticalAlignment := -4131;
 
 end;
 
