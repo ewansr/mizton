@@ -11,7 +11,7 @@ inherited FrmVales: TFrmVales
   TextHeight = 13
   inherited dxRibbon1: TdxRibbon
     Width = 1374
-    ExplicitWidth = 1374
+    ExplicitWidth = 722
     inherited dxRibbon1Tab1: TdxRibbonTab
       Caption = 'Inicio'
       Index = 0
@@ -22,11 +22,12 @@ inherited FrmVales: TFrmVales
     Width = 1368
     Height = 327
     ExplicitLeft = 3
-    ExplicitWidth = 1368
-    ExplicitHeight = 327
+    ExplicitWidth = 716
+    ExplicitHeight = 252
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       DataController.DetailKeyFieldNames = 'IdVale'
+      DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       OptionsView.GroupByBox = True
       object cxColNoVale: TcxGridDBColumn
@@ -86,8 +87,6 @@ inherited FrmVales: TFrmVales
       object cxColExpediente: TcxGridDBColumn
         Caption = 'Expediente'
         DataBinding.FieldName = 'CodigoPersonal'
-        Visible = False
-        GroupIndex = 1
         Width = 140
       end
       object cxColFolio: TcxGridDBColumn
@@ -168,24 +167,24 @@ inherited FrmVales: TFrmVales
     Top = 461
     Width = 1374
     Height = 163
-    ExplicitTop = 461
-    ExplicitWidth = 1374
+    ExplicitTop = 386
+    ExplicitWidth = 722
     ExplicitHeight = 163
     inherited cxPageDatos: TcxPageControl
       Width = 1370
       Height = 159
-      ExplicitWidth = 1370
+      ExplicitWidth = 718
       ExplicitHeight = 159
       ClientRectBottom = 153
       ClientRectRight = 1364
       inherited cxTsDatos: TcxTabSheet
         Caption = 'Inserci'#243'n/Edici'#243'n de vales'
-        ExplicitWidth = 1362
+        ExplicitWidth = 710
         ExplicitHeight = 126
         inherited dxLYCDatos: TdxLayoutControl
           Width = 1362
           Height = 126
-          ExplicitWidth = 1362
+          ExplicitWidth = 710
           ExplicitHeight = 126
           object cxTextNoVale: TcxDBTextEdit [0]
             Tag = -1
@@ -336,8 +335,8 @@ inherited FrmVales: TFrmVales
     Width = 1374
     Height = 6
     AlignSplitter = salBottom
-    ExplicitTop = 455
-    ExplicitWidth = 1374
+    ExplicitTop = 380
+    ExplicitWidth = 722
     ExplicitHeight = 6
   end
   inherited dxBarManager1: TdxBarManager
@@ -743,8 +742,8 @@ inherited FrmVales: TFrmVales
     Top = 24
   end
   inherited dlgSave1: TSaveDialog
-    Left = 688
-    Top = 88
+    Left = 528
+    Top = 80
   end
   object zFolios: TZQuery
     Params = <>
@@ -757,8 +756,8 @@ inherited FrmVales: TFrmVales
     Top = 272
   end
   object cxStyleRepository1: TcxStyleRepository
-    Left = 656
-    Top = 208
+    Left = 304
+    Top = 280
     PixelsPerInch = 96
     object cxstylPendiente: TcxStyle
       AssignedValues = [svColor]

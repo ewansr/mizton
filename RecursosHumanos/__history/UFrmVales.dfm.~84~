@@ -27,6 +27,7 @@ inherited FrmVales: TFrmVales
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
       DataController.DetailKeyFieldNames = 'IdVale'
+      DataController.KeyFieldNames = 'IdVale'
       DataController.MasterKeyFieldNames = 'IdVale'
       OptionsView.GroupByBox = True
       object cxColNoVale: TcxGridDBColumn
@@ -86,8 +87,6 @@ inherited FrmVales: TFrmVales
       object cxColExpediente: TcxGridDBColumn
         Caption = 'Expediente'
         DataBinding.FieldName = 'CodigoPersonal'
-        Visible = False
-        GroupIndex = 1
         Width = 140
       end
       object cxColFolio: TcxGridDBColumn

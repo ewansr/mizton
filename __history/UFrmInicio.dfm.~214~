@@ -276,7 +276,6 @@ object FrmInicio: TFrmInicio
     StyleFocused.LookAndFeel.NativeStyle = True
     StyleHot.LookAndFeel.NativeStyle = True
     Transparent = True
-    Visible = False
   end
   object advAviso1: TAdvSmoothSlider
     Left = 1067
@@ -332,7 +331,6 @@ object FrmInicio: TFrmInicio
     Anchors = [akRight, akBottom]
     TabOrder = 5
     OnClick = advAviso1Click
-    Visible = False
   end
   object cxspltr1: TcxSplitter
     Left = 1291

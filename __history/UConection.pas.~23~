@@ -495,9 +495,6 @@ begin
     if Not Assigned(Dataset) then
       raise Exception.Create('El componente no se encuentra creado.');
 
-    if (Not zConsultasSQL.Active) then
-      ReloadQuerys;
-
     if (Not zConsultasSQL.Active) or (zConsultasSQL.Active and (zConsultasSQL.RecordCount = 0)) then
       raise Exception.Create('No se encuentra consultas SQL definidas dentro de la tabla master_ConsultasSql');
 
@@ -662,9 +659,6 @@ begin
     Result := False;
     if Not Assigned(Dataset) then
       raise Exception.Create('El componente no se encuentra creado.');
-
-    if (Not zConsultasSQL.Active) then
-      ReloadQuerys;
 
     if (Not zConsultasSQL.Active) or (zConsultasSQL.Active and (zConsultasSQL.RecordCount = 0)) then
       raise Exception.Create('No se encuentra consultas SQL definidas dentro de la tabla master_ConsultasSql');

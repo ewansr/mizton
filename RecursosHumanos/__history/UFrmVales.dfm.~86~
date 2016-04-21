@@ -86,8 +86,6 @@ inherited FrmVales: TFrmVales
       object cxColExpediente: TcxGridDBColumn
         Caption = 'Expediente'
         DataBinding.FieldName = 'CodigoPersonal'
-        Visible = False
-        GroupIndex = 1
         Width = 140
       end
       object cxColFolio: TcxGridDBColumn
@@ -350,6 +348,8 @@ inherited FrmVales: TFrmVales
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end

@@ -1020,9 +1020,6 @@ begin
       application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
       FrmCapturaFolio.lyEstatus.Enabled := (zmaterial.RecordCount = 0);
       FrmCapturaFolio.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
-      if zDatos.FieldByName('TipoInstalacion').AsString = 'FO' then
-        FrmCapturaFolio.TipoInstalacion := 2;          
-        
       FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;
       If FrmCapturaFolio.ShowModal <> mrCancel then
         dxButtonActualizar.Click;

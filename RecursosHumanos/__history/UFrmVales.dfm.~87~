@@ -76,7 +76,6 @@ inherited FrmVales: TFrmVales
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsView.ColumnAutoWidth = True
-      OptionsView.GroupByBox = False
       Styles.OnGetContentStyle = cxGridFoliosStylesGetContentStyle
       object cxColFecha: TcxGridDBColumn
         Caption = 'Fecha'
@@ -86,8 +85,6 @@ inherited FrmVales: TFrmVales
       object cxColExpediente: TcxGridDBColumn
         Caption = 'Expediente'
         DataBinding.FieldName = 'CodigoPersonal'
-        Visible = False
-        GroupIndex = 1
         Width = 140
       end
       object cxColFolio: TcxGridDBColumn

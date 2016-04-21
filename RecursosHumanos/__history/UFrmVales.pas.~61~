@@ -244,7 +244,7 @@ procedure TFrmVales.FormShow(Sender: TObject);
 begin
   inherited;
   AsignarSQL(zFolios, 'mt_foliosxtecnicos', pReadOnly);
-  FiltrarDataset(zFolios, 'IdPersonal,Desde,Hasta,SoloconVales', ['-1', '-1', '-1', 'Si']) ;
+  FiltrarDataset(zFolios, 'IdPersonal,Desde,Hasta', ['-1', '-1', '-1']) ;
 
   if zFolios.Active then
     zFolios.Refresh

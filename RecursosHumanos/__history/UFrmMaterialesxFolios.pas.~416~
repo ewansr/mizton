@@ -1020,7 +1020,7 @@ begin
       application.CreateForm(TFrmCapturaFolio, FrmCapturaFolio);
       FrmCapturaFolio.lyEstatus.Enabled := (zmaterial.RecordCount = 0);
       FrmCapturaFolio.IdFolio := zDatos.FieldByName('IdFolio').AsInteger;
-      if zDatos.FieldByName('TipoInstalacion').AsString = 'FO' then
+      if zDatos.FieldByName('tipoOrden').AsString = 'FO' then
         FrmCapturaFolio.TipoInstalacion := 2;          
         
       FrmCapturaFolio.IdPersonal := zPersonal.FieldByName('IdPersonal').AsInteger;

@@ -299,9 +299,10 @@ object FrmSplash: TFrmSplash
       01004285E00300840AC107000815820F00102A041F002054083E0040A8107C00
       805021F80000A142F001004285E00300840AC1070008151191FF0F56B4046954
       B3DE030000000049454E44AE426082}
-    Properties.FitMode = ifmStretch
     Style.BorderStyle = ebsNone
     TabOrder = 0
+    ExplicitWidth = 423
+    ExplicitHeight = 217
     Height = 244
     Width = 443
   end

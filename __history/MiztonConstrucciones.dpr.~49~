@@ -57,8 +57,7 @@ uses
   UFrmTipoOrden in 'RecursosHumanos\UFrmTipoOrden.pas' {FrmTipoOrden},
   UFrmCostosInstalacion in 'RecursosHumanos\UFrmCostosInstalacion.pas' {FrmCostosInstalacion},
   UfrmPermisoUsuarioModulo in 'Generales\UfrmPermisoUsuarioModulo.pas' {FrmPermisousuarioModulo},
-  UFrmPerfiles in 'Generales\UFrmPerfiles.pas' {FrmPerfiles},
-  UDashboard in 'UDashboard.pas' {FrmDashboard};
+  UFrmPerfiles in 'Generales\UFrmPerfiles.pas' {FrmPerfiles};
 
 {$R *.res}
 

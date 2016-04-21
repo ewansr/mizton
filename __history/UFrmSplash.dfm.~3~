@@ -1,0 +1,60 @@
+object FrmSplash: TFrmSplash
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'FrmSplash'
+  ClientHeight = 57
+  ClientWidth = 322
+  Color = clWhite
+  TransparentColor = True
+  TransparentColorValue = clFuchsia
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  GlassFrame.SheetOfGlass = True
+  OldCreateOrder = True
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object advcrclrprgrs1: TAdvCircularProgress
+    Left = 0
+    Top = 0
+    Width = 60
+    Height = 57
+    Align = alLeft
+    Appearance.BackGroundColor = clNone
+    Appearance.BorderColor = clNone
+    Appearance.ActiveSegmentColor = 16752543
+    Appearance.InActiveSegmentColor = clSilver
+    Appearance.TransitionSegmentColor = 10485760
+    Appearance.ProgressSegmentColor = 4194432
+    Interval = 100
+    ExplicitLeft = 6
+    ExplicitTop = -3
+    ExplicitHeight = 60
+  end
+  object Panel1: TPanel
+    Left = 60
+    Top = 0
+    Width = 262
+    Height = 57
+    Align = alClient
+    BevelOuter = bvNone
+    Caption = 'Iniciando Sistema Mizton...'
+    TabOrder = 0
+    ExplicitLeft = 66
+    ExplicitTop = 16
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+  end
+  object tmr1: TTimer
+    Interval = 2000
+    OnTimer = tmr1Timer
+    Left = 280
+    Top = 8
+  end
+end

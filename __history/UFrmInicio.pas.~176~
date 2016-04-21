@@ -129,7 +129,21 @@ type
     dxDockPanel1: TdxDockPanel;
     dxFloatDockSite1: TdxFloatDockSite;
     cxspltr1: TcxSplitter;
+    cxGboxDatos: TcxGroupBox;
     cxspltr2: TcxSplitter;
+    Panel1: TPanel;
+    cxGboxTotal: TcxGroupBox;
+    cxImage3: TcxImage;
+    cxLabel1: TcxLabel;
+    cxGboxLiquidadas: TcxGroupBox;
+    cxImage2: TcxImage;
+    cxLabel3: TcxLabel;
+    cxGboxQuejas: TcxGroupBox;
+    cxGboxObjetadas: TcxGroupBox;
+    cxLabel5: TcxLabel;
+    cxImage4: TcxImage;
+    img1: TcxImage;
+    cxLabel4: TcxLabel;
     actMateriales: TAction;
     LinkMateriales: TdxNavBarItem;
     actTipoOrden: TAction;
@@ -138,6 +152,11 @@ type
     LinkCostos: TdxNavBarItem;
     actConsultarOrd: TAction;
     LinkConsultaOrdenes: TdxNavBarItem;
+    DbLblLiquidadas: TcxDBLabel;
+    DbLblObjetadas: TcxDBLabel;
+    DbLblQuejas: TcxDBLabel;
+    DbLblTotal: TcxDBLabel;
+    dbGridDatos: TDBGrid;
     actPerfiles: TAction;
     LinkPerfiles: TdxNavBarItem;
     zModulos: TZQuery;
@@ -776,11 +795,11 @@ var
 
 begin
 
-//  hiloEjecucion := THilo.Create;
-//  if OldCountFolio <> NuevoCountFolio then
-//  begin
-//    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',2);
-//  end;
+  hiloEjecucion := THilo.Create;
+  if OldCountFolio <> NuevoCountFolio then
+  begin
+    dxAlertSRV.Show('Nuevo Folio asignado','Se ha creado un nuevo folio desde una aplicación externa',2);
+  end;
 end;
 
 procedure TFrmInicio.zHiloFolioAfterOpen(DataSet: TDataSet);

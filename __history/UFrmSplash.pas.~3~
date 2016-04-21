@@ -23,7 +23,8 @@ uses
 type
   TFrmSplash = class(TForm)
     tmr1: TTimer;
-    cxImage1: TcxImage;
+    advcrclrprgrs1: TAdvCircularProgress;
+    Panel1: TPanel;
     procedure tmr1Timer(Sender: TObject);
   private
     { Private declarations }
